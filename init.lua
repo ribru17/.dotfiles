@@ -17,6 +17,8 @@ vim.opt.ignorecase = true
 vim.opt.colorcolumn = "80"
 vim.g.mapleader = " "
 
+vim.g.mkdp_echo_preview_url = 1
+
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
@@ -52,10 +54,14 @@ Plug 'hrsh7th/cmp-nvim-lua'     -- Optional
 Plug 'L3MON4D3/LuaSnip'             -- Required
 Plug 'rafamadriz/friendly-snippets' -- Optional
 
+-- LSP
 Plug('VonHeikemen/lsp-zero.nvim', {branch = 'v1.x'})
 
 -- Toggle comments
 Plug 'numToStr/Comment.nvim'
+
+-- Markdown Preview
+Plug('iamcco/markdown-preview.nvim', { run = 'cd app && yarn install' })
 
 vim.call('plug#end')
 
