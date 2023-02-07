@@ -61,7 +61,7 @@ Plug('VonHeikemen/lsp-zero.nvim', {branch = 'v1.x'})
 Plug 'numToStr/Comment.nvim'
 
 -- Markdown Preview
-Plug('iamcco/markdown-preview.nvim', { run = 'cd app && yarn install' })
+Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
 
 vim.call('plug#end')
 
