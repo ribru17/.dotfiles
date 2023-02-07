@@ -62,7 +62,7 @@ Plug('VonHeikemen/lsp-zero.nvim', {branch = 'v1.x'})
 -- Toggle comments
 Plug 'numToStr/Comment.nvim'
 
--- Markdown Preview
+-- Markdown Preview, use :MarkdownPreview
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
 
 vim.call('plug#end')
