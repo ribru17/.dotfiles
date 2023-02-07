@@ -15,8 +15,8 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.ignorecase = true
 vim.opt.colorcolumn = "80"
-vim.g.mapleader = " "
 
+vim.g.mapleader = " "
 vim.g.mkdp_echo_preview_url = 1
 
 local Plug = vim.fn['plug#']
@@ -25,18 +25,20 @@ vim.call('plug#begin')
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'rust-lang/rust.vim'
--- Plug('neoclide/coc.nvim', {branch = 'release'})
--- Plug 'dense-analysis/ale'
 
--- faster highlight updates
+-- Faster highlight updates
 Plug('nvim-treesitter/nvim-treesitter', {run = 'TSUpdate'})
--- color scheme
+
+-- Color scheme
 Plug('catppuccin/nvim', { as = 'catppuccin' })
--- searching files easier
+
+-- Searching files easier
 Plug 'nvim-lua/plenary.nvim'
 Plug('nvim-telescope/telescope.nvim', { tag = '0.1.1' })
--- this is for :Git ~something~ commands to make git easier
+
+-- :Git ~something~ commands to make git easier
 Plug 'tpope/vim-fugitive'
+
 -- LSP Support
 Plug 'neovim/nvim-lspconfig'             -- Required
 Plug 'williamboman/mason.nvim'           -- Optional
@@ -101,10 +103,11 @@ local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
 
-local check_backspace = function()
-  local col = vim.fn.col "." - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-end
+-- This function may be necessary in the future
+-- local check_backspace = function()
+--   local col = vim.fn.col "." - 1
+--   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+-- end
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -139,6 +142,12 @@ lsp.configure('sumneko_lua', {
         }
     }
 })
+
+lsp.on_attach(function(_, bufnr)
+    local opts = { buffer = bufnr, remap = false }
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+end)
 
 lsp.setup()
 
@@ -199,7 +208,6 @@ vim.keymap.set('i', '<M-;>', ';', {remap = false})
 --> END OF EZ SEMICOLON VIM EDITION <--
 
 --> MISCELLANEOUS KEYMAPS <--
-vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { buffer = bufnr, remap = false })
 vim.keymap.set("x", "<Tab>", ">", {remap = false})
 vim.keymap.set("x", "<S-Tab>", "<", {remap = false})
 
