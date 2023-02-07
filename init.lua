@@ -232,18 +232,6 @@ vim.keymap.set("n", "Q", "<nop>")
 -- replace instances of hovered word
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
--- comment in insert mode
-function mysplit (inputstr, sep)
-        if sep == nil then
-                sep = "%s"
-        end
-        local t={}
-        for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-                table.insert(t, str)
-        end
-        return t
-end
-
 -- toggle comment in insert mode
 vim.keymap.set("i", "<C-_>", function()
     local api = require('Comment.api')
