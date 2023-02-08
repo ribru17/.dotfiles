@@ -27,7 +27,7 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
-Plug 'LunarWatcher/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 Plug 'rust-lang/rust.vim'
 
 -- Faster highlight updates
@@ -70,6 +70,8 @@ Plug 'numToStr/Comment.nvim'
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
 
 vim.call('plug#end')
+
+require('nvim-autopairs').setup {}
 
 require('Comment').setup({
     toggler = {
