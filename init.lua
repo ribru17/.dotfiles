@@ -15,6 +15,10 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.ignorecase = true
 vim.opt.colorcolumn = "80"
+-- allow bracket deletion on same line only - good!
+vim.g.AutoPairsMapBS = 1
+-- prevent comment from being inserted when entering new line in existing comment
+vim.api.nvim_create_autocmd("BufEnter", { callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c","r","o" } end, })
 
 vim.g.mapleader = " "
 vim.g.mkdp_echo_preview_url = 1
@@ -23,7 +27,7 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
-Plug 'jiangmiao/auto-pairs'
+Plug 'LunarWatcher/auto-pairs'
 Plug 'rust-lang/rust.vim'
 
 -- Faster highlight updates
