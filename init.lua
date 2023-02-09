@@ -15,6 +15,7 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.ignorecase = true
 vim.opt.colorcolumn = "80"
+vim.opt.mouse = ""
 -- allow bracket deletion on same line only - good!
 vim.g.AutoPairsMapBS = 1
 -- prevent comment from being inserted when entering new line in existing comment
