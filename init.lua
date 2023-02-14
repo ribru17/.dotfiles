@@ -68,9 +68,21 @@ Plug 'numToStr/Comment.nvim'
 -- Markdown Preview, use :MarkdownPreview
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
 
+-- Surround
+Plug 'kylechui/nvim-surround'
+
 vim.call('plug#end')
 
 require('nvim-autopairs').setup {}
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
+
+require('nvim-surround').setup {}
 
 require('Comment').setup({
     toggler = {
@@ -132,7 +144,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
         "i",
         "s",
     }),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.complete()
 })
 
 lsp.setup_nvim_cmp({
@@ -228,6 +240,20 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+-- surround visual selection
+vim.keymap.set("v", "(", "S(", { remap = true })
+vim.keymap.set("v", ")", "S)", { remap = true })
+vim.keymap.set("v", "{", "S{", { remap = true })
+vim.keymap.set("v", "}", "S}", { remap = true })
+vim.keymap.set("v", "'", "S'", { remap = true })
+vim.keymap.set("v", '"', 'S"', { remap = true })
+vim.keymap.set("v", "`", "S`", { remap = true })
+vim.keymap.set("v", "<", "S<", { remap = true })
+vim.keymap.set("v", ">", "S>", { remap = true })
+vim.keymap.set("v", "T", "ST", { remap = true })
+vim.keymap.set("v", "[[", "S[", { remap = true })
+vim.keymap.set("v", "]]", "S]", { remap = true })
 
 -- clear search highlighting
 vim.keymap.set("n", "<Esc>", ":noh<CR>")
