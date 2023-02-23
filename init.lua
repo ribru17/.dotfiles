@@ -144,7 +144,10 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
         "i",
         "s",
     }),
-    ['<C-Space>'] = cmp.mapping.complete()
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<CR>'] = cmp.mapping(function(fallback)
+        fallback()
+    end),
 })
 
 lsp.setup_nvim_cmp({
