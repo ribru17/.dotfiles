@@ -126,7 +126,6 @@ lsp.preset('recommended')
 --   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 -- end
 
-local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local luasnip = require('luasnip')
 local cmp_mappings = lsp.defaults.cmp_mappings({
