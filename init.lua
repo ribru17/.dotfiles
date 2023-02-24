@@ -260,6 +260,8 @@ vim.keymap.set('i', '<M-;>', ';', {remap = false})
 -- VSCode style block indentation
 vim.keymap.set("x", "<Tab>", ">", {remap = false})
 vim.keymap.set("x", "<S-Tab>", "<", {remap = false})
+vim.keymap.set("n", "<Tab>", ">>", {remap = false})
+vim.keymap.set("n", "<S-Tab>", "<<", {remap = false})
 
 -- move selected code blocks smartly with
 -- indenting for if statements and such
