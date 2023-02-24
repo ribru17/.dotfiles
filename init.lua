@@ -268,6 +268,10 @@ vim.keymap.set("n", "<S-Tab>", "<<", {remap = false})
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- easily move cursor selection backwards
+vim.keymap.set("v", "H", "oho", {remap = false})
+vim.keymap.set("v", "L", "olo", {remap = false})
+
 -- keep cursor in place 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -305,6 +309,11 @@ vim.keymap.set("i", "<C-_>", function()
     vim.cmd('normal! $')
     vim.cmd([[startinsert!]])
 end, {})
+
+-- change current HTML-style tags
+vim.keymap.set("n", "<leader>ht", "cst", {remap = true})
+-- delete current HTML-style tags
+vim.keymap.set("n", "<leader>dht", "dst", {remap = true})
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
