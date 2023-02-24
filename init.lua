@@ -16,7 +16,6 @@ vim.opt.backup = false
 vim.opt.ignorecase = true
 vim.opt.colorcolumn = "80"
 vim.opt.mouse = ""
-vim.opt.statusline = "%f %h%w%m%r%=%-14.(%l/%L,%c%V%) %P"
 
 -- prevent comment from being inserted when entering new line in existing comment
 vim.api.nvim_create_autocmd("BufEnter", { callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c","r","o" } end, })
@@ -73,9 +72,14 @@ Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
 -- Surround
 Plug 'kylechui/nvim-surround'
 
+-- Cool statusline
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+
 vim.call('plug#end')
 
 require('nvim-autopairs').setup {}
+
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
@@ -83,6 +87,18 @@ cmp.event:on(
   'confirm_done',
   cmp_autopairs.on_confirm_done()
 )
+
+-- Custom statusline that shows total line number with current
+local function line_total()
+    local curs = vim.api.nvim_win_get_cursor(0)
+    return curs[1] .. "/" .. vim.api.nvim_buf_line_count(vim.fn.winbufnr(0)) .. "," .. curs[2]
+end
+
+require('lualine').setup {
+    sections = {
+        lualine_z = {line_total}
+    },
+}
 
 require('nvim-surround').setup {}
 
