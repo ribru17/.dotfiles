@@ -314,6 +314,9 @@ end, {})
 vim.keymap.set("n", "<leader>ht", "cst", {remap = true})
 -- delete current HTML-style tags
 vim.keymap.set("n", "<leader>dht", "dst", {remap = true})
+-- delete surrounding delimiters
+vim.keymap.set("n", "<leader>dq", 'ds"', {remap = true})
+vim.keymap.set("n", "<leader>dp", 'ds(', {remap = true})
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
