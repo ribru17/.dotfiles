@@ -76,6 +76,9 @@ Plug 'kylechui/nvim-surround'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
+-- HTML-Style tag completion
+Plug 'windwp/nvim-ts-autotag'
+
 vim.call('plug#end')
 
 require('nvim-autopairs').setup {}
@@ -101,6 +104,13 @@ require('lualine').setup {
 }
 
 require('nvim-surround').setup {}
+
+-- require('nvim-ts-autotag').setup()
+require'nvim-treesitter.configs'.setup {
+    autotag = {
+        enable = true,
+    }
+}
 
 require('Comment').setup({
     toggler = {
@@ -246,6 +256,8 @@ vim.keymap.set('i', '<M-;>', ';', {remap = false})
 --> END OF EZ SEMICOLON VIM EDITION <--
 
 --> MISCELLANEOUS KEYMAPS <--
+
+-- VSCode style block indentation
 vim.keymap.set("x", "<Tab>", ">", {remap = false})
 vim.keymap.set("x", "<S-Tab>", "<", {remap = false})
 
