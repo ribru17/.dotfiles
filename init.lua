@@ -80,12 +80,9 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'windwp/nvim-ts-autotag'
 
 -- Show git diff line markers
-Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 
 vim.call('plug#end')
-
--- Update git diff line markers on save (auto-updates every 4s)
-vim.api.nvim_command('autocmd BufWritePost * GitGutter')
 
 require('nvim-autopairs').setup {}
 
@@ -110,6 +107,8 @@ require('lualine').setup {
 }
 
 require('nvim-surround').setup {}
+
+require('gitsigns').setup()
 
 -- require('nvim-ts-autotag').setup()
 require'nvim-treesitter.configs'.setup {
