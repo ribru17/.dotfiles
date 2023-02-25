@@ -79,7 +79,13 @@ Plug 'kyazdani42/nvim-web-devicons'
 -- HTML-Style tag completion
 Plug 'windwp/nvim-ts-autotag'
 
+-- Show git diff line markers
+Plug 'airblade/vim-gitgutter'
+
 vim.call('plug#end')
+
+-- Update git diff line markers on save (auto-updates every 4s)
+vim.api.nvim_command('autocmd BufWritePost * GitGutter')
 
 require('nvim-autopairs').setup {}
 
