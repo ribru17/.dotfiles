@@ -1,5 +1,6 @@
 vim.opt.compatible = false
 vim.opt.encoding="utf-8"
+vim.opt.filetype = "on"
 vim.opt.signcolumn="yes"
 vim.opt.scrolloff=8
 vim.opt.sidescrolloff=5
@@ -9,6 +10,7 @@ vim.opt.softtabstop=4
 vim.opt.shiftwidth=4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+vim.opt.autoindent = true
 vim.opt.completeopt = {'menu', 'menuone', 'preview', 'noselect', 'noinsert'}
 vim.opt.wrap = false
 vim.opt.swapfile = false
@@ -16,6 +18,16 @@ vim.opt.backup = false
 vim.opt.ignorecase = true
 vim.opt.colorcolumn = "80"
 vim.opt.mouse = ""
+
+-- specify different tab widths on certain files
+vim.api.nvim_create_augroup('setIndent', { clear = true })
+vim.api.nvim_create_autocmd('Filetype', {
+  group = 'setIndent',
+  pattern = { 'xml', 'html', 'xhtml', 'css', 'scss', 'javascript', 'typescript',
+    'yaml', 'javascriptreact', 'typescriptreact'
+  },
+  command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2'
+})
 
 -- prevent comment from being inserted when entering new line in existing comment
 vim.api.nvim_create_autocmd("BufEnter", { callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c","r","o" } end, })
@@ -332,7 +344,7 @@ vim.keymap.set("n", "<leader>dp", 'ds(', {remap = true})
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the four listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "help", "javascript", "typescript", "rust" },
+  ensure_installed = { "c", "lua", "vim", "help", "javascript", "typescript", "rust", "tsx" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
