@@ -112,9 +112,14 @@ require'nvim-treesitter.configs'.setup {
     }
 }
 
+-- Make comment work on terminals where C-/ is literally C-/
+vim.keymap.set('n', '<C-/>', '<C-_>', {remap = true})
+vim.keymap.set('v', '<C-/>', '<C-_>', {remap = true})
+vim.keymap.set('i', '<C-/>', '<C-_>', {remap = true})
+
 require('Comment').setup({
     toggler = {
-        line = '<C-_>'
+        line = '<C-_>',
     },
     opleader = {
         line = '<C-_>'
