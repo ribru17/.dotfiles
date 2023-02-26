@@ -17,6 +17,7 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.ignorecase = true
 vim.opt.colorcolumn = "80"
+vim.opt.termguicolors = true
 vim.opt.mouse = ""
 
 -- specify different tab widths on certain files
@@ -88,6 +89,9 @@ Plug 'kylechui/nvim-surround'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
+-- Cool bufferline
+Plug 'akinsho/bufferline.nvim'
+
 -- HTML-Style tag completion
 Plug 'windwp/nvim-ts-autotag'
 
@@ -97,6 +101,43 @@ Plug 'lewis6991/gitsigns.nvim'
 vim.call('plug#end')
 
 require('nvim-autopairs').setup {}
+
+require('bufferline').setup {
+    options = {
+        mode = "tabs",
+        separator_style = "slant",
+        color_icons = true,
+        show_close_icon = false,
+        show_buffer_close_icons = false,
+    },
+    -- fixing up issues with tabs and color scheme
+    highlights = {
+        background = {
+            bg = '#181825',
+        },
+        separator = {
+            bg = '#181825',
+            fg = '#11111b',
+        },
+        separator_visible = {
+            fg = '#11111b',
+        },
+        separator_selected = {
+            fg = '#11111b',
+        },
+        fill = {
+            bg = '#11111b',
+        },
+        buffer_selected = {
+            bg = '#1e1e2e',
+        },
+    }
+}
+
+-- cycle through tabs
+vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCycleNext<CR>', {})
+vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCyclePrev<CR>', {})
+-- vim.keymap.set('n', '<C-x>', '<Cmd>bdelete<CR>', {}) -- not necessary
 
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
@@ -146,6 +187,7 @@ require('Comment').setup({
 vim.cmd.colorscheme "catppuccin"
 vim.g.rustfmt_autosave = 1
 
+local actions = require('telescope.actions')
 require("telescope").setup({
     defaults = {
         layout_config = {
@@ -153,7 +195,12 @@ require("telescope").setup({
                 preview_cutoff = 0,
             },
         },
-        initial_mode = "normal"
+        initial_mode = "normal",
+        mappings = {
+            n = {
+                ["<Tab>"] = actions.select_tab -- <Tab> to open as tab
+            }
+        }
     },
 })
 
