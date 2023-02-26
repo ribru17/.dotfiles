@@ -170,7 +170,34 @@ require('lualine').setup {
 
 require('nvim-surround').setup {}
 
-require('gitsigns').setup()
+require('gitsigns').setup({
+    on_attach = function (bufnr)
+        local gs = package.loaded.gitsigns
+
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
+        end
+
+        -- next git changes
+        map('n', '<leader>gj', function()
+            if vim.wo.diff then return ']c' end
+            vim.schedule(function() gs.next_hunk() end)
+            return '<Ignore>'
+        end, {expr=true})
+
+        map('n', '<leader>gk', function()
+            if vim.wo.diff then return '[c' end
+            vim.schedule(function() gs.prev_hunk() end)
+            return '<Ignore>'
+        end, {expr=true})
+
+        -- git preview, git blame, git line
+        map('n', '<leader>gp', gs.preview_hunk)
+        map('n', '<leader>gb', function() gs.blame_line{full=true} end)
+    end
+})
 
 -- require('nvim-ts-autotag').setup()
 require'nvim-treesitter.configs'.setup {
@@ -207,6 +234,9 @@ require("telescope").setup({
         initial_mode = "normal",
         mappings = {
             n = {
+                ["<Tab>"] = actions.select_tab -- <Tab> to open as tab
+            },
+            i = {
                 ["<Tab>"] = actions.select_tab -- <Tab> to open as tab
             }
         }
