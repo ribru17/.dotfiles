@@ -143,9 +143,9 @@ require('bufferline').setup {
     }
 }
 
--- cycle through tabs
-vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCycleNext<CR>', {})
-vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCyclePrev<CR>', {})
+-- cycle through tabs (reversing order for more intuitive UX)
+vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', {})
+vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCycleNext<CR>', {})
 -- vim.keymap.set('n', '<C-x>', '<Cmd>bdelete<CR>', {}) -- not necessary
 
 -- If you want insert `(` after select function or method item
