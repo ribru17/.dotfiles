@@ -30,6 +30,10 @@ vim.api.nvim_create_autocmd('Filetype', {
   command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2'
 })
 
+-- where applicable, reset cursor to blinking I-beam after closing Neovim
+-- https://github.com/neovim/neovim/issues/4867
+vim.cmd([[au VimLeave * set guicursor=a:ver10-blinkon1]])
+
 -- prevent comment from being inserted when entering new line in existing comment
 vim.api.nvim_create_autocmd("BufEnter", { callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c","r","o" } end, })
 
