@@ -1,17 +1,17 @@
 vim.opt.compatible = false
-vim.opt.encoding="utf-8"
+vim.opt.encoding = "utf-8"
 vim.opt.filetype = "on"
-vim.opt.signcolumn="yes"
-vim.opt.scrolloff=8
-vim.opt.sidescrolloff=5
+vim.opt.signcolumn = "yes"
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 5
 vim.opt.number = true
-vim.opt.tabstop=4
-vim.opt.softtabstop=4
-vim.opt.shiftwidth=4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.autoindent = true
-vim.opt.completeopt = {'menu', 'menuone', 'preview', 'noselect', 'noinsert'}
+vim.opt.completeopt = { 'menu', 'menuone', 'preview', 'noselect', 'noinsert' }
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -23,11 +23,11 @@ vim.opt.mouse = ""
 -- specify different tab widths on certain files
 vim.api.nvim_create_augroup('setIndent', { clear = true })
 vim.api.nvim_create_autocmd('Filetype', {
-  group = 'setIndent',
-  pattern = { 'xml', 'html', 'xhtml', 'css', 'scss', 'javascript', 'typescript',
-    'yaml', 'javascriptreact', 'typescriptreact'
-  },
-  command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2'
+    group = 'setIndent',
+    pattern = { 'xml', 'html', 'xhtml', 'css', 'scss', 'javascript', 'typescript',
+        'yaml', 'javascriptreact', 'typescriptreact'
+    },
+    command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2'
 })
 
 -- where applicable, reset cursor to blinking I-beam after closing Neovim
@@ -40,7 +40,8 @@ vim.api.nvim_create_autocmd('VimLeave', {
 })
 
 -- prevent comment from being inserted when entering new line in existing comment
-vim.api.nvim_create_autocmd("BufEnter", { callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c","r","o" } end, })
+vim.api.nvim_create_autocmd("BufEnter",
+    { callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } end, })
 
 vim.g.mapleader = " "
 vim.g.mkdp_echo_preview_url = 1
@@ -53,7 +54,7 @@ Plug 'windwp/nvim-autopairs'
 Plug 'rust-lang/rust.vim'
 
 -- Faster highlight updates
-Plug('nvim-treesitter/nvim-treesitter', {run = 'TSUpdate'})
+Plug('nvim-treesitter/nvim-treesitter', { run = 'TSUpdate' })
 
 -- Color scheme
 Plug('catppuccin/nvim', { as = 'catppuccin' })
@@ -66,24 +67,24 @@ Plug('nvim-telescope/telescope.nvim', { tag = '0.1.1' })
 Plug 'tpope/vim-fugitive'
 
 -- LSP Support
-Plug 'neovim/nvim-lspconfig'             -- Required
-Plug 'williamboman/mason.nvim'           -- Optional
+Plug 'neovim/nvim-lspconfig' -- Required
+Plug 'williamboman/mason.nvim' -- Optional
 Plug 'williamboman/mason-lspconfig.nvim' -- Optional
 
 -- Autocompletion Engine
-Plug 'hrsh7th/nvim-cmp'         -- Required
-Plug 'hrsh7th/cmp-nvim-lsp'     -- Required
-Plug 'hrsh7th/cmp-buffer'       -- Optional
-Plug 'hrsh7th/cmp-path'         -- Optional
+Plug 'hrsh7th/nvim-cmp' -- Required
+Plug 'hrsh7th/cmp-nvim-lsp' -- Required
+Plug 'hrsh7th/cmp-buffer' -- Optional
+Plug 'hrsh7th/cmp-path' -- Optional
 Plug 'saadparwaiz1/cmp_luasnip' -- Optional
-Plug 'hrsh7th/cmp-nvim-lua'     -- Optional
+Plug 'hrsh7th/cmp-nvim-lua' -- Optional
 
 -- Snippets
-Plug 'L3MON4D3/LuaSnip'             -- Required
+Plug 'L3MON4D3/LuaSnip' -- Required
 Plug 'rafamadriz/friendly-snippets' -- Optional
 
 -- LSP
-Plug('VonHeikemen/lsp-zero.nvim', {branch = 'v1.x'})
+Plug('VonHeikemen/lsp-zero.nvim', { branch = 'v1.x' })
 
 -- Toggle comments
 Plug 'numToStr/Comment.nvim'
@@ -140,6 +141,9 @@ require('bufferline').setup {
         buffer_selected = {
             bg = '#1e1e2e',
         },
+        modified = {
+            bg = '#181825',
+        }
     }
 }
 
@@ -152,8 +156,8 @@ vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCycleNext<CR>', {})
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
 cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
 )
 
 -- Custom statusline that shows total line number with current
@@ -164,20 +168,20 @@ end
 
 require('lualine').setup {
     sections = {
-        lualine_z = {line_total}
+        lualine_z = { line_total }
     },
 }
 
 require('nvim-surround').setup {}
 
 require('gitsigns').setup({
-    on_attach = function (bufnr)
+    on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
         local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
         end
 
         -- next git changes
@@ -185,31 +189,31 @@ require('gitsigns').setup({
             if vim.wo.diff then return ']c' end
             vim.schedule(function() gs.next_hunk() end)
             return '<Ignore>'
-        end, {expr=true})
+        end, { expr = true })
 
         map('n', '<leader>gk', function()
             if vim.wo.diff then return '[c' end
             vim.schedule(function() gs.prev_hunk() end)
             return '<Ignore>'
-        end, {expr=true})
+        end, { expr = true })
 
         -- git preview, git blame, git line
         map('n', '<leader>gp', gs.preview_hunk)
-        map('n', '<leader>gb', function() gs.blame_line{full=true} end)
+        map('n', '<leader>gb', function() gs.blame_line { full = true } end)
     end
 })
 
 -- require('nvim-ts-autotag').setup()
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
     autotag = {
         enable = true,
     }
 }
 
 -- Make comment work on terminals where C-/ is literally C-/
-vim.keymap.set('n', '<C-/>', '<C-_>', {remap = true})
-vim.keymap.set('v', '<C-/>', '<C-_>', {remap = true})
-vim.keymap.set('i', '<C-/>', '<C-_>', {remap = true})
+vim.keymap.set('n', '<C-/>', '<C-_>', { remap = true })
+vim.keymap.set('v', '<C-/>', '<C-_>', { remap = true })
+vim.keymap.set('i', '<C-/>', '<C-_>', { remap = true })
 
 require('Comment').setup({
     toggler = {
@@ -262,7 +266,7 @@ lsp.preset('recommended')
 --   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 -- end
 
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local luasnip = require('luasnip')
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
@@ -293,7 +297,7 @@ lsp.setup_nvim_cmp({
 lsp.configure('sumneko_lua', {
     settings = {
         Lua = {
-            diagnostics = { globals = {'vim'} }
+            diagnostics = { globals = { 'vim' } }
         }
     }
 })
@@ -319,7 +323,7 @@ vim.diagnostic.config({
 --> BEGINNING OF EZ SEMICOLON VIM EDITION <--
 
 local function trim(s)
-   return s:gsub("^%s+", ""):gsub("%s+$", "")
+    return s:gsub("^%s+", ""):gsub("%s+$", "")
 end
 local function trimBeg(s)
     return s:gsub("^%s+", "")
@@ -351,25 +355,25 @@ vim.keymap.set('i', ';', function()
             return '<esc>$'
         else
             return '<esc>g_a;<esc>'
-    	end
+        end
     end
     if last == ';' then
         return '<esc>$a<cr>'
     else
         return '<esc>g_a;<cr>'
     end
-end, {expr = true})
-vim.keymap.set('i', '<M-;>', ';', {remap = false})
+end, { expr = true })
+vim.keymap.set('i', '<M-;>', ';', { remap = false })
 
 --> END OF EZ SEMICOLON VIM EDITION <--
 
 --> MISCELLANEOUS KEYMAPS <--
 
 -- VSCode style block indentation
-vim.keymap.set("x", "<Tab>", ">", {remap = false})
-vim.keymap.set("x", "<S-Tab>", "<", {remap = false})
-vim.keymap.set("n", "<Tab>", ">>", {remap = false})
-vim.keymap.set("n", "<S-Tab>", "<<", {remap = false})
+vim.keymap.set("x", "<Tab>", ">", { remap = false })
+vim.keymap.set("x", "<S-Tab>", "<", { remap = false })
+vim.keymap.set("n", "<Tab>", ">>", { remap = false })
+vim.keymap.set("n", "<S-Tab>", "<<", { remap = false })
 
 -- move selected code blocks smartly with
 -- indenting for if statements and such
@@ -377,10 +381,10 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- easily move cursor selection backwards
-vim.keymap.set("v", "H", "oho", {remap = false})
-vim.keymap.set("v", "L", "olo", {remap = false})
+vim.keymap.set("v", "H", "oho", { remap = false })
+vim.keymap.set("v", "L", "olo", { remap = false })
 
--- keep cursor in place 
+-- keep cursor in place
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -408,7 +412,7 @@ vim.keymap.set("n", "<Esc>", ":noh<CR>")
 vim.keymap.set("n", "Q", "<nop>")
 
 -- replace instances of hovered word
-vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+vim.keymap.set("n", "<leader>h", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 -- toggle comment in insert mode
 vim.keymap.set("i", "<C-_>", function()
@@ -419,34 +423,34 @@ vim.keymap.set("i", "<C-_>", function()
 end, {})
 
 -- change current HTML-style tags
-vim.keymap.set("n", "<leader>ht", "cst", {remap = true})
+vim.keymap.set("n", "<leader>cht", "cst", { remap = true })
 -- delete current HTML-style tags
-vim.keymap.set("n", "<leader>dht", "dst", {remap = true})
+vim.keymap.set("n", "<leader>dht", "dst", { remap = true })
 -- delete surrounding delimiters
-vim.keymap.set("n", "<leader>dq", 'ds"', {remap = true})
-vim.keymap.set("n", "<leader>dp", 'ds(', {remap = true})
+vim.keymap.set("n", "<leader>dq", 'ds"', { remap = true })
+vim.keymap.set("n", "<leader>dp", 'ds(', { remap = true })
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the four listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "help", "javascript", "typescript", "rust", "tsx" },
+require 'nvim-treesitter.configs'.setup {
+    -- A list of parser names, or "all" (the four listed parsers should always be installed)
+    ensure_installed = { "c", "lua", "vim", "help", "javascript", "typescript", "rust", "tsx" },
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
+    -- Automatically install missing parsers when entering buffer
+    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+    auto_install = true,
 
-  highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
+    highlight = {
+        -- `false` will disable the whole extension
+        enable = true,
 
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+    },
 }
