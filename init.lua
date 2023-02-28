@@ -115,6 +115,25 @@ vim.call('plug#end')
 
 require('nvim-autopairs').setup {}
 
+-- Configure emmet-ls ONLY for HTML, avoiding irritating, incorrect snippets for TSX, JSX
+local lspconfig = require('lspconfig')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.emmet_ls.setup({
+    -- on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { 'html', },
+    init_options = {
+      html = {
+        options = {
+          -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+          ["bem.enabled"] = true,
+        },
+      },
+    }
+})
+
 local null_ls = require("null-ls")
 
 local lsp_formatting = function(bufnr)
