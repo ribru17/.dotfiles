@@ -115,63 +115,51 @@ vim.call('plug#end')
 
 require('nvim-autopairs').setup {}
 
--- Configure emmet-ls ONLY for HTML, avoiding irritating, incorrect snippets for TSX, JSX
-local lspconfig = require('lspconfig')
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-lspconfig.emmet_ls.setup({
-    -- on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { 'html', },
-    init_options = {
-      html = {
-        options = {
-          -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-          ["bem.enabled"] = true,
-        },
-      },
-    }
-})
-
 local null_ls = require("null-ls")
 
-local lsp_formatting = function(bufnr)
+local lsp_formatting = function()
     vim.lsp.buf.format({
         filter = function(client)
             -- use clang_format instead for more granular control via null-ls
             -- this makes it so we can still use clangd as an LSP (yay!)
             return client.name ~= "clangd"
         end,
-        bufnr = bufnr,
     })
 end
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- Explicitly format on save: passing this through null-ls failed with
+-- unsupported formatters, e.g. html-lsp
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { '*.xml', '*.html', '*.xhtml', '*.css', '*.scss', '*.js', '*.ts',
+        '*.yaml', '*.jsx', '*.tsx', '*.md', '*.lua', '*.c', '*.cpp'
+    },
+    callback = function()
+        lsp_formatting()
+    end
+})
+
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 require("null-ls").setup({
     -- you can reuse a shared lspconfig on_attach callback here
-    debug = true,
-    on_attach = function(client, bufnr)
-        -- if client.name == "clangd" then
-        --     client.server_capabilities.documentFormattingProvider = false
-        -- end
-        if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                -- pattern = { '*.xml', '*.html', '*.xhtml', '*.css', '*.scss', '*.js', '*.ts',
-                --     '*.yaml', '*.jsx', '*.tsx', '*.md', '*.lua', '*.c', '*.cpp'
-                -- },
-                callback = function()
-                    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                    -- vim.lsp.buf.format({ bufnr = bufnr })
-                    -- vim.lsp.buf.formatting_sync()
-                    lsp_formatting(bufnr)
-                end,
-            })
-        end
-    end,
+    -- debug = true,
+    -- on_attach = function(client, bufnr)
+    --     -- if client.name == "clangd" then
+    --     --     client.server_capabilities.documentFormattingProvider = false
+    --     -- end
+    --     -- if client.supports_method("textDocument/formatting") then
+    --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    --         vim.api.nvim_create_autocmd("BufWritePre", {
+    --             group = augroup,
+    --             buffer = bufnr,
+    --             -- pattern = { '*.xml', '*.html', '*.xhtml', '*.css', '*.scss', '*.js', '*.ts',
+    --             --     '*.yaml', '*.jsx', '*.tsx', '*.md', '*.lua', '*.c', '*.cpp'
+    --             -- },
+    --             callback = function()
+    --                 lsp_formatting(bufnr)
+    --             end,
+    --         })
+    --     -- end
+    -- end,
     sources = {
         null_ls.builtins.formatting.deno_fmt.with({
             extra_args = { "--single-quote" }
@@ -337,11 +325,11 @@ lsp.preset('recommended')
 -- end
 
 local has_words_before = function()
-  unpack = unpack or table.unpack
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    unpack = unpack or table.unpack
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
-
+-- supertab functionality
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local luasnip = require('luasnip')
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -360,13 +348,13 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
         end
     end, { "i", "s", }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
+        if cmp.visible() then
+            cmp.select_prev_item()
+        elseif luasnip.jumpable( -1) then
+            luasnip.jump( -1)
+        else
+            fallback()
+        end
     end, { "i", "s" }),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping(function(fallback)
