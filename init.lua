@@ -20,6 +20,10 @@ vim.opt.colorcolumn = "80"
 vim.opt.termguicolors = true
 vim.opt.mouse = ""
 
+vim.g.mapleader = " "
+vim.g.mkdp_echo_preview_url = 1
+vim.g.rustfmt_autosave = 1
+
 -- specify different tab widths on certain files
 vim.api.nvim_create_augroup('setIndent', { clear = true })
 vim.api.nvim_create_autocmd('Filetype', {
@@ -42,9 +46,6 @@ vim.api.nvim_create_autocmd('VimLeave', {
 -- prevent comment from being inserted when entering new line in existing comment
 vim.api.nvim_create_autocmd("BufEnter",
     { callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } end, })
-
-vim.g.mapleader = " "
-vim.g.mkdp_echo_preview_url = 1
 
 local Plug = vim.fn['plug#']
 
@@ -108,9 +109,51 @@ Plug 'windwp/nvim-ts-autotag'
 -- Show git diff line markers
 Plug 'lewis6991/gitsigns.nvim'
 
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
 vim.call('plug#end')
 
 require('nvim-autopairs').setup {}
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.deno_fmt.with({
+            extra_args = { "--single-quote" }
+        }),
+    },
+})
+
+-- format on save
+vim.api.nvim_create_augroup('formatOnSave', { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = 'formatOnSave',
+    pattern = { '*.xml', '*.html', '*.xhtml', '*.css', '*.scss', '*.js', '*.ts',
+        '*.yaml', '*.jsx', '*.tsx', '*.md', '*.lua'
+    },
+    command = 'lua vim.lsp.buf.format()'
+})
+
+--> MIGHT BE A BETTER WAY TO DO THIS
+--> TODO: LOOK INTO THIS
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- require("null-ls").setup({
+--     -- you can reuse a shared lspconfig on_attach callback here
+--     on_attach = function(client, bufnr)
+--         if client.supports_method("textDocument/formatting") then
+--             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+--             vim.api.nvim_create_autocmd("BufWritePre", {
+--                 group = augroup,
+--                 buffer = bufnr,
+--                 callback = function()
+--                     -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+--                     vim.lsp.buf.formatting_sync()
+--                 end,
+--             })
+--         end
+--     end,
+-- })
 
 require('bufferline').setup {
     options = {
@@ -184,7 +227,7 @@ require('gitsigns').setup({
             vim.keymap.set(mode, l, r, opts)
         end
 
-        -- next git changes
+        -- next/prev git changes
         map('n', '<leader>gj', function()
             if vim.wo.diff then return ']c' end
             vim.schedule(function() gs.next_hunk() end)
@@ -200,7 +243,8 @@ require('gitsigns').setup({
         -- git preview, git blame, git line
         map('n', '<leader>gp', gs.preview_hunk)
         map('n', '<leader>gb', function() gs.blame_line { full = true } end)
-    end
+    end,
+    -- sign_priority = 10
 })
 
 -- require('nvim-ts-autotag').setup()
@@ -225,7 +269,6 @@ require('Comment').setup({
 })
 
 vim.cmd.colorscheme "catppuccin"
-vim.g.rustfmt_autosave = 1
 
 local actions = require('telescope.actions')
 require("telescope").setup({
@@ -325,9 +368,11 @@ vim.diagnostic.config({
 local function trim(s)
     return s:gsub("^%s+", ""):gsub("%s+$", "")
 end
+
 local function trimBeg(s)
     return s:gsub("^%s+", "")
 end
+
 local function isInFor(s)
     local firstFour = string.sub(trimBeg(s), 1, 4)
     if firstFour == 'for ' or firstFour == 'for(' then
@@ -336,6 +381,7 @@ local function isInFor(s)
         return false
     end
 end
+
 local function isInReturn(s)
     local firstSeven = string.sub(trimBeg(s), 1, 7)
     if firstSeven == 'return ' or firstSeven == 'return' or firstSeven == 'return;' then
@@ -344,6 +390,7 @@ local function isInReturn(s)
         return false
     end
 end
+
 vim.keymap.set('i', ';', function()
     local line = vim.api.nvim_get_current_line()
     local last = string.sub(trim(line), -1)
