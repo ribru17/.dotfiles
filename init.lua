@@ -117,43 +117,51 @@ require('nvim-autopairs').setup {}
 
 local null_ls = require("null-ls")
 
-null_ls.setup({
+local lsp_formatting = function(bufnr)
+    vim.lsp.buf.format({
+        filter = function(client)
+            -- use clang_format instead for more granular control via null-ls
+            -- this makes it so we can still use clangd as an LSP (yay!)
+            return client.name ~= "clangd"
+        end,
+        bufnr = bufnr,
+    })
+end
+
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+require("null-ls").setup({
+    -- you can reuse a shared lspconfig on_attach callback here
+    debug = true,
+    on_attach = function(client, bufnr)
+        -- if client.name == "clangd" then
+        --     client.server_capabilities.documentFormattingProvider = false
+        -- end
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                -- pattern = { '*.xml', '*.html', '*.xhtml', '*.css', '*.scss', '*.js', '*.ts',
+                --     '*.yaml', '*.jsx', '*.tsx', '*.md', '*.lua', '*.c', '*.cpp'
+                -- },
+                callback = function()
+                    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                    -- vim.lsp.buf.format({ bufnr = bufnr })
+                    -- vim.lsp.buf.formatting_sync()
+                    lsp_formatting(bufnr)
+                end,
+            })
+        end
+    end,
     sources = {
         null_ls.builtins.formatting.deno_fmt.with({
             extra_args = { "--single-quote" }
         }),
+        null_ls.builtins.formatting.clang_format.with({
+            extra_args = { "--style", "{IndentWidth: 4}" }
+        }),
     },
 })
-
--- format on save
-vim.api.nvim_create_augroup('formatOnSave', { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = 'formatOnSave',
-    pattern = { '*.xml', '*.html', '*.xhtml', '*.css', '*.scss', '*.js', '*.ts',
-        '*.yaml', '*.jsx', '*.tsx', '*.md', '*.lua'
-    },
-    command = 'lua vim.lsp.buf.format()'
-})
-
---> MIGHT BE A BETTER WAY TO DO THIS
---> TODO: LOOK INTO THIS
--- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
--- require("null-ls").setup({
---     -- you can reuse a shared lspconfig on_attach callback here
---     on_attach = function(client, bufnr)
---         if client.supports_method("textDocument/formatting") then
---             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
---             vim.api.nvim_create_autocmd("BufWritePre", {
---                 group = augroup,
---                 buffer = bufnr,
---                 callback = function()
---                     -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
---                     vim.lsp.buf.formatting_sync()
---                 end,
---             })
---         end
---     end,
--- })
 
 require('bufferline').setup {
     options = {

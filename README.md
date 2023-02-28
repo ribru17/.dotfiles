@@ -12,3 +12,6 @@ recommend anyone take influence from it.
 - In Neovim run `:PlugInstall`
 - If statusline icons aren't working, make sure you have a font that is patched
   with the Nerd Fonts library
+- _**Optional**_ Install `clang_format` via Mason for C, C++ formatting. Most
+  other LSP's have formatting configured also but the default configuration of
+  `clangd` is not extensible with `null-ls`
