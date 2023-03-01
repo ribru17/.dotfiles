@@ -131,7 +131,7 @@ end
 -- unsupported formatters, e.g. html-lsp
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { '*.xml', '*.html', '*.xhtml', '*.css', '*.scss', '*.js', '*.ts',
-        '*.yaml', '*.jsx', '*.tsx', '*.md', '*.lua', '*.c', '*.cpp'
+        '*.yaml', '*.jsx', '*.tsx', '*.md', '*.mdx', '*.lua', '*.c', '*.cpp'
     },
     callback = function()
         lsp_formatting()
@@ -205,7 +205,7 @@ require('bufferline').setup {
     }
 }
 
--- If you want insert `(` after select function or method item
+-- Insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
 cmp.event:on(
