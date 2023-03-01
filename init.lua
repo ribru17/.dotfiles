@@ -510,7 +510,7 @@ vim.keymap.set("n", "<leader>dp", 'ds(', { remap = true })
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 require 'nvim-treesitter.configs'.setup {
-    -- A list of parser names, or "all" (the four listed parsers should always be installed)
+    -- A list of parser names, or "all" (the four first parsers should always be installed)
     ensure_installed = { "c", "lua", "vim", "help", "javascript", "typescript", "rust", "tsx" },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -531,3 +531,32 @@ require 'nvim-treesitter.configs'.setup {
         additional_vim_regex_highlighting = false,
     },
 }
+
+require("luasnip.loaders.from_vscode").lazy_load()
+local ls = require('luasnip')
+local s = ls.snippet
+local i = ls.insert_node
+local t = ls.text_node
+local fmt = require("luasnip.extras.fmt").fmt
+local conds = require("luasnip.extras.expand_conditions")
+
+ls.add_snippets("html", {
+    s("!", fmt([[
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>{1}</title>
+   </head>
+   <body>
+
+   </body>
+   </html>
+    ]], {
+        i(1, 'Document')
+    }), {
+        condition = conds.line_begin,
+    })
+})
