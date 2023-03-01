@@ -16,8 +16,3 @@ recommend anyone take influence from it.
 - _**Optional**_ Install `clang_format` via Mason for C, C++ formatting. Most
   other LSP's have formatting configured also but the default configuration of
   `clangd` is not extensible with `null-ls`
-- _**Optional**_ Install `emmet-ls`
-  **[globally](https://github.com/aca/emmet-ls)** and **NOT** through Mason as
-  this will make it unconfigurable. `lsp-config` only recognizes `emmet-ls`
-  through global install. Installing through Mason causes irritating and
-  incorrect snippets to take precedence over the correct ones in TSX, JSX files.
