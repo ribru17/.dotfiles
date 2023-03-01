@@ -9,8 +9,6 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
--- vim.opt.smartindent = true -- conflicts with tree sitter indentation
--- vim.opt.autoindent = true
 vim.opt.completeopt = { 'menu', 'menuone', 'preview', 'noselect', 'noinsert' }
 vim.opt.wrap = false
 vim.opt.swapfile = false
@@ -62,7 +60,7 @@ Plug('catppuccin/nvim', { as = 'catppuccin' })
 
 -- Searching files easier
 Plug 'nvim-lua/plenary.nvim'
-Plug('nvim-telescope/telescope.nvim', { tag = '0.1.1' })
+Plug('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
 
 -- :Git ~something~ commands to make git easier
 Plug 'tpope/vim-fugitive'
@@ -82,7 +80,6 @@ Plug 'hrsh7th/cmp-nvim-lua' -- Optional
 
 -- Snippets
 Plug 'L3MON4D3/LuaSnip' -- Required
--- Plug 'rafamadriz/friendly-snippets' -- Optional
 
 -- LSP
 Plug('VonHeikemen/lsp-zero.nvim', { branch = 'v1.x' })
@@ -309,8 +306,6 @@ vim.keymap.set('n', '<leader>sf', function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end, {})
 
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
-
 local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
@@ -375,9 +370,12 @@ lsp.configure('sumneko_lua', {
 lsp.on_attach(function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
     -- ^^ go back with <C-o>
+    vim.keymap.set("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
+    vim.keymap.set("n", "gE", function() vim.diagnostic.goto_prev() end, opts)
+    vim.keymap.set("n", "ge", function() vim.diagnostic.goto_next() end, opts)
 end)
 
 lsp.setup()
@@ -508,6 +506,9 @@ vim.keymap.set("n", "<leader>dp", 'ds(', { remap = true })
 -- cycle through tabs (reversing order for more intuitive UX)
 vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', {})
 vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCycleNext<CR>', {})
+
+-- copy to clipboard (Linux)
+vim.keymap.set('v', '<C-c>', '"+y', { remap = false })
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
