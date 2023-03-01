@@ -9,8 +9,8 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.opt.autoindent = true
+-- vim.opt.smartindent = true -- conflicts with tree sitter indentation
+-- vim.opt.autoindent = true
 vim.opt.completeopt = { 'menu', 'menuone', 'preview', 'noselect', 'noinsert' }
 vim.opt.wrap = false
 vim.opt.swapfile = false
@@ -261,6 +261,9 @@ require 'nvim-treesitter.configs'.setup {
     autotag = {
         enable = true,
     },
+    indent = {
+        enable = true
+    }
 }
 
 -- Make comment work on terminals where C-/ is literally C-/
