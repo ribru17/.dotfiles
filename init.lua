@@ -82,7 +82,7 @@ Plug 'hrsh7th/cmp-nvim-lua' -- Optional
 
 -- Snippets
 Plug 'L3MON4D3/LuaSnip' -- Required
-Plug 'rafamadriz/friendly-snippets' -- Optional
+-- Plug 'rafamadriz/friendly-snippets' -- Optional
 
 -- LSP
 Plug('VonHeikemen/lsp-zero.nvim', { branch = 'v1.x' })
@@ -254,14 +254,13 @@ require('gitsigns').setup({
         map('n', '<leader>gp', gs.preview_hunk)
         map('n', '<leader>gb', function() gs.blame_line { full = true } end)
     end,
-    -- sign_priority = 10
 })
 
--- require('nvim-ts-autotag').setup()
 require 'nvim-treesitter.configs'.setup {
+    -- HTML-style tag completion
     autotag = {
         enable = true,
-    }
+    },
 }
 
 -- Make comment work on terminals where C-/ is literally C-/
@@ -275,7 +274,7 @@ require('Comment').setup({
     },
     opleader = {
         line = '<C-_>'
-    }
+    },
 })
 
 vim.cmd.colorscheme "catppuccin"
@@ -531,7 +530,6 @@ require 'nvim-treesitter.configs'.setup {
     },
 }
 
-require("luasnip.loaders.from_vscode").lazy_load()
 local ls = require('luasnip')
 local s = ls.snippet
 local i = ls.insert_node
