@@ -205,11 +205,6 @@ require('bufferline').setup {
     }
 }
 
--- cycle through tabs (reversing order for more intuitive UX)
-vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', {})
-vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCycleNext<CR>', {})
--- vim.keymap.set('n', '<C-x>', '<Cmd>bdelete<CR>', {}) -- not necessary
-
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
@@ -454,12 +449,12 @@ vim.keymap.set("n", "<S-Tab>", "<<", { remap = false })
 
 -- move selected code blocks smartly with
 -- indenting for if statements and such
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
 -- easily move cursor selection backwards
-vim.keymap.set("v", "H", "oho", { remap = false })
-vim.keymap.set("v", "L", "olo", { remap = false })
+vim.keymap.set("x", "H", "oho", { remap = false })
+vim.keymap.set("x", "L", "olo", { remap = false })
 
 -- keep cursor in place
 vim.keymap.set("n", "J", "mzJ`z")
@@ -469,18 +464,18 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- surround visual selection
-vim.keymap.set("v", "(", "S(", { remap = true })
-vim.keymap.set("v", ")", "S)", { remap = true })
-vim.keymap.set("v", "{", "S{", { remap = true })
-vim.keymap.set("v", "}", "S}", { remap = true })
-vim.keymap.set("v", "'", "S'", { remap = true })
-vim.keymap.set("v", '"', 'S"', { remap = true })
-vim.keymap.set("v", "`", "S`", { remap = true })
-vim.keymap.set("v", "<", "S<", { remap = true })
-vim.keymap.set("v", ">", "S>", { remap = true })
-vim.keymap.set("v", "T", "ST", { remap = true })
-vim.keymap.set("v", "[[", "S[", { remap = true })
-vim.keymap.set("v", "]]", "S]", { remap = true })
+vim.keymap.set("x", "(", "S(", { remap = true })
+vim.keymap.set("x", ")", "S)", { remap = true })
+vim.keymap.set("x", "{", "S{", { remap = true })
+vim.keymap.set("x", "}", "S}", { remap = true })
+vim.keymap.set("x", "'", "S'", { remap = true })
+vim.keymap.set("x", '"', 'S"', { remap = true })
+vim.keymap.set("x", "`", "S`", { remap = true })
+vim.keymap.set("x", "<", "S<", { remap = true })
+vim.keymap.set("x", ">", "S>", { remap = true })
+vim.keymap.set("x", "T", "ST", { remap = true })
+vim.keymap.set("x", "[[", "S[", { remap = true })
+vim.keymap.set("x", "]]", "S]", { remap = true })
 
 -- clear search highlighting
 vim.keymap.set("n", "<Esc>", ":noh<CR>")
@@ -506,6 +501,10 @@ vim.keymap.set("n", "<leader>dht", "dst", { remap = true })
 -- delete surrounding delimiters
 vim.keymap.set("n", "<leader>dq", 'ds"', { remap = true })
 vim.keymap.set("n", "<leader>dp", 'ds(', { remap = true })
+
+-- cycle through tabs (reversing order for more intuitive UX)
+vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', {})
+vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCycleNext<CR>', {})
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
@@ -536,12 +535,16 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local ls = require('luasnip')
 local s = ls.snippet
 local i = ls.insert_node
-local t = ls.text_node
+-- local t = ls.text_node
 local fmt = require("luasnip.extras.fmt").fmt
 local conds = require("luasnip.extras.expand_conditions")
 
 ls.add_snippets("html", {
-    s("!", fmt([[
+    s({
+        trig = "!",
+        name = "Emmet HTML5 Boilerplate",
+        dscr = "Creates a barebones HTML5 application."
+    }, fmt([[
    <!DOCTYPE html>
    <html lang="en">
    <head>
