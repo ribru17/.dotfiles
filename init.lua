@@ -558,11 +558,13 @@ ls.add_snippets("html", {
      <title>{1}</title>
    </head>
    <body>
-
+     {2}
    </body>
-   </html>
+   </html>{3}
     ]], {
-        i(1, 'Document')
+        i(1, 'Document'),
+        i(2, ''),
+        i(3, ''),
     }), {
         condition = conds.line_begin,
     }),
