@@ -485,7 +485,8 @@ vim.keymap.set("n", "<Esc>", ":noh<CR>")
 vim.keymap.set("n", "Q", "<nop>")
 
 -- replace instances of hovered word
-vim.keymap.set("n", "<leader>h", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+vim.keymap.set("n", "<leader>h", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gIc<Left><Left><Left><Left>")
+vim.keymap.set("n", "<leader>H", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 -- toggle comment in insert mode
 vim.keymap.set("i", "<C-_>", function()
