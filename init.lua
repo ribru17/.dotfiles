@@ -106,7 +106,11 @@ Plug 'windwp/nvim-ts-autotag'
 -- Show git diff line markers
 Plug 'lewis6991/gitsigns.nvim'
 
+-- Configure formatters
 Plug 'jose-elias-alvarez/null-ls.nvim'
+
+-- Case matching text replace
+Plug 'tpope/vim-abolish'
 
 vim.call('plug#end')
 
@@ -485,8 +489,8 @@ vim.keymap.set("n", "<Esc>", ":noh<CR>")
 vim.keymap.set("n", "Q", "<nop>")
 
 -- replace instances of hovered word
-vim.keymap.set("n", "<leader>h", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gIc<Left><Left><Left><Left>")
-vim.keymap.set("n", "<leader>H", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+vim.keymap.set("n", "<leader>h", ":%S/<C-r><C-w>/<C-r><C-w>/gcw<Left><Left><Left><Left>")
+vim.keymap.set("n", "<leader>H", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gIc<Left><Left><Left><Left>")
 
 -- toggle comment in insert mode
 vim.keymap.set("i", "<C-_>", function()
@@ -508,8 +512,9 @@ vim.keymap.set("n", "<leader>dp", 'ds(', { remap = true })
 vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', {})
 vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCycleNext<CR>', {})
 
--- copy to clipboard (Linux)
+-- copy/cut to clipboard (Linux)
 vim.keymap.set('v', '<C-c>', '"+y', { remap = false })
+vim.keymap.set('v', '<C-x>', '"+x', { remap = false })
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
