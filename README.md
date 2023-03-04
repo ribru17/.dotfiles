@@ -1,4 +1,4 @@
-# My init.lua
+# My Neovim Configuration
 
 This is mostly for backup purposes as my config is very disorganized and I don't
 recommend anyone take influence from it.
