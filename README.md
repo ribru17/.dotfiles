@@ -3,6 +3,8 @@
 This is mostly for backup purposes as my config is very disorganized and I don't
 recommend anyone take influence from it.
 
+![neovim](https://user-images.githubusercontent.com/55766287/222920744-73644efd-b7fa-4876-85f9-b1bec5706782.png)
+
 ## Prerequisites
 
 - Install [vim-plug](https://github.com/junegunn/vim-plug)
