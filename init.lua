@@ -66,17 +66,17 @@ Plug('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
 Plug 'tpope/vim-fugitive'
 
 -- LSP Support
-Plug 'neovim/nvim-lspconfig' -- Required
-Plug 'williamboman/mason.nvim' -- Optional
+Plug 'neovim/nvim-lspconfig'             -- Required
+Plug 'williamboman/mason.nvim'           -- Optional
 Plug 'williamboman/mason-lspconfig.nvim' -- Optional
 
 -- Autocompletion Engine
-Plug 'hrsh7th/nvim-cmp' -- Required
-Plug 'hrsh7th/cmp-nvim-lsp' -- Required
-Plug 'hrsh7th/cmp-buffer' -- Optional
-Plug 'hrsh7th/cmp-path' -- Optional
+Plug 'hrsh7th/nvim-cmp'         -- Required
+Plug 'hrsh7th/cmp-nvim-lsp'     -- Required
+Plug 'hrsh7th/cmp-buffer'       -- Optional
+Plug 'hrsh7th/cmp-path'         -- Optional
 Plug 'saadparwaiz1/cmp_luasnip' -- Optional
-Plug 'hrsh7th/cmp-nvim-lua' -- Optional
+Plug 'hrsh7th/cmp-nvim-lua'     -- Optional
 
 -- Snippets
 Plug 'L3MON4D3/LuaSnip' -- Required
@@ -346,8 +346,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
             cmp.select_prev_item()
-        elseif luasnip.jumpable( -1) then
-            luasnip.jump( -1)
+        elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
         else
             fallback()
         end
@@ -511,6 +511,8 @@ vim.keymap.set("n", "<leader>dp", 'ds(', { remap = true })
 -- cycle through tabs (reversing order for more intuitive UX)
 vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', {})
 vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCycleNext<CR>', {})
+vim.keymap.set('n', '<C-l>', '<Cmd>tabmove +1<CR>', {})
+vim.keymap.set('n', '<C-h>', '<Cmd>tabmove -1<CR>', {})
 
 -- copy/cut to clipboard (Linux)
 vim.keymap.set('v', '<C-c>', '"+y', { remap = false })
@@ -532,7 +534,6 @@ require 'nvim-treesitter.configs'.setup {
     highlight = {
         -- `false` will disable the whole extension
         enable = true,
-
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
@@ -577,8 +578,11 @@ ls.add_snippets("html", {
 
 ls.add_snippets("all", {
     s({
-        trig = 'lorem',
-        name = 'Lorem Ipsum Text',
-        dscr = 'Generates a long lorem ipsum text.'
-    }, fmt([[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet nec ullamcorper sit amet. Volutpat diam ut venenatis tellus in. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Sapien pellentesque habitant morbi tristique senectus et netus et malesuada. Eu feugiat pretium nibh ipsum. Convallis aenean et tortor at risus viverra. Libero volutpat sed cras ornare arcu. Pharetra vel turpis nunc eget lorem dolor sed viverra. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Ut eu sem integer vitae justo eget magna fermentum. Leo duis ut diam quam nulla porttitor massa id. Purus sit amet volutpat consequat mauris nunc congue. Eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Cursus risus at ultrices mi.]], {}), {}),
+            trig = 'lorem',
+            name = 'Lorem Ipsum Text',
+            dscr = 'Generates a long lorem ipsum text.'
+        },
+        fmt(
+            [[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet nec ullamcorper sit amet. Volutpat diam ut venenatis tellus in. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Sapien pellentesque habitant morbi tristique senectus et netus et malesuada. Eu feugiat pretium nibh ipsum. Convallis aenean et tortor at risus viverra. Libero volutpat sed cras ornare arcu. Pharetra vel turpis nunc eget lorem dolor sed viverra. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Ut eu sem integer vitae justo eget magna fermentum. Leo duis ut diam quam nulla porttitor massa id. Purus sit amet volutpat consequat mauris nunc congue. Eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Cursus risus at ultrices mi.]],
+            {}), {}),
 })
