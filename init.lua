@@ -314,6 +314,9 @@ local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
 
+-- Suppress irritating `undefined global vim` errors
+lsp.nvim_workspace()
+
 -- This function may be necessary in the future
 -- local check_backspace = function()
 --   local col = vim.fn.col "." - 1
@@ -360,15 +363,6 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings
-})
-
--- suppress irritating undefined global vim warnings
-lsp.configure('sumneko_lua', {
-    settings = {
-        Lua = {
-            diagnostics = { globals = { 'vim' } }
-        }
-    }
 })
 
 lsp.on_attach(function(_, bufnr)
