@@ -279,12 +279,6 @@ lsp.preset('recommended')
 -- Suppress irritating `undefined global vim` errors
 lsp.nvim_workspace()
 
--- This function may be necessary in the future
--- local check_backspace = function()
---   local col = vim.fn.col "." - 1
---   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
--- end
-
 local has_words_before = function()
     unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
