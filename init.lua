@@ -17,6 +17,10 @@ vim.opt.ignorecase = true
 vim.opt.colorcolumn = "80"
 vim.opt.termguicolors = true
 vim.opt.mouse = ""
+-- function func()
+--
+-- end
+-- local thing
 
 vim.g.mapleader = " "
 vim.g.mkdp_echo_preview_url = 1
@@ -178,6 +182,13 @@ require('bufferline').setup {
         color_icons = true,
         show_close_icon = false,
         show_buffer_close_icons = false,
+        modified_icon = "",
+        -- show_buffer_icons = true,
+        diagnostics = "nvim_lsp",
+        diagnostics_indicator = function(count, level)
+            local icon = level:match("error") and "" or ""
+            return icon .. " " .. count
+        end,
     },
     -- fixing up issues with tabs and color scheme
     highlights = {
@@ -199,10 +210,59 @@ require('bufferline').setup {
         },
         buffer_selected = {
             bg = '#1e1e2e',
+            -- italic = false
         },
         modified = {
             bg = '#181825',
-        }
+        },
+        error_diagnostic = {
+            bg = '#181825',
+            fg = "#ff0000",
+        },
+        error = {
+            bg = "#181825"
+        },
+        error_diagnostic_selected = {
+            fg = "#ff0000",
+            italic = false,
+            bold = false
+        },
+        warning_diagnostic = {
+            bg = '#181825',
+            fg = "#ffff00",
+        },
+        warning = {
+            bg = "#181825"
+        },
+        warning_diagnostic_selected = {
+            fg = "#ffff00",
+            italic = false,
+            bold = false,
+        },
+        info_diagnostic = {
+            bg = '#181825',
+            fg = "#00ffff",
+        },
+        info = {
+            bg = "#181825"
+        },
+        info_diagnostic_selected = {
+            fg = "#00ffff",
+            italic = false,
+            bold = false,
+        },
+        hint_diagnostic = {
+            bg = '#181825',
+            fg = "#ff00ff",
+        },
+        hint = {
+            bg = "#181825"
+        },
+        hint_diagnostic_selected = {
+            fg = "#ff00ff",
+            italic = false,
+            bold = false,
+        },
     }
 }
 
