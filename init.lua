@@ -141,26 +141,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 require("null-ls").setup({
-    -- you can reuse a shared lspconfig on_attach callback here
-    -- debug = true,
-    -- on_attach = function(client, bufnr)
-    --     -- if client.name == "clangd" then
-    --     --     client.server_capabilities.documentFormattingProvider = false
-    --     -- end
-    --     -- if client.supports_method("textDocument/formatting") then
-    --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    --         vim.api.nvim_create_autocmd("BufWritePre", {
-    --             group = augroup,
-    --             buffer = bufnr,
-    --             -- pattern = { '*.xml', '*.html', '*.xhtml', '*.css', '*.scss', '*.js', '*.ts',
-    --             --     '*.yaml', '*.jsx', '*.tsx', '*.md', '*.lua', '*.c', '*.cpp'
-    --             -- },
-    --             callback = function()
-    --                 lsp_formatting(bufnr)
-    --             end,
-    --         })
-    --     -- end
-    -- end,
     sources = {
         null_ls.builtins.formatting.deno_fmt.with({
             extra_args = { "--single-quote" }
