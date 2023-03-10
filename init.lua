@@ -112,6 +112,9 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 -- Case matching text replace
 Plug 'tpope/vim-abolish'
 
+-- Indent lines
+Plug 'lukas-reineke/indent-blankline.nvim'
+
 vim.call('plug#end')
 
 require('nvim-autopairs').setup {}
@@ -139,8 +142,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
 })
 
--- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-require("null-ls").setup({
+null_ls.setup({
     sources = {
         null_ls.builtins.formatting.deno_fmt.with({
             extra_args = { "--single-quote" }
@@ -150,6 +152,29 @@ require("null-ls").setup({
         }),
     },
 })
+
+require("catppuccin").setup {
+    integrations = {
+        indent_blankline = {
+            enabled = true,
+            colored_indent_levels = true,
+        }
+    }
+}
+
+require("indent_blankline").setup {
+    -- only allow context indents
+    -- https://www.reddit.com/r/neovim/comments/yiodnb/proper_configuration_for_indentblankline/
+    max_indent_increase = 1,
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+    },
+}
 
 require('bufferline').setup {
     options = {
