@@ -163,17 +163,18 @@ require("catppuccin").setup {
 }
 
 require("indent_blankline").setup {
-    -- only allow context indents
+    -- reduce indentation clutter
     -- https://www.reddit.com/r/neovim/comments/yiodnb/proper_configuration_for_indentblankline/
     max_indent_increase = 1,
-    char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
-    },
+    --> Uncomment to get colored indent lines
+    -- char_highlight_list = {
+    --     "IndentBlanklineIndent1",
+    --     "IndentBlanklineIndent2",
+    --     "IndentBlanklineIndent3",
+    --     "IndentBlanklineIndent4",
+    --     "IndentBlanklineIndent5",
+    --     "IndentBlanklineIndent6",
+    -- },
 }
 
 require('bufferline').setup {
@@ -552,12 +553,16 @@ ls.add_snippets("html", {
 })
 
 ls.add_snippets("all", {
-    s({
+    s(
+        {
             trig = 'lorem',
             name = 'Lorem Ipsum Text',
             dscr = 'Generates a long lorem ipsum text.'
         },
         fmt(
             [[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet nec ullamcorper sit amet. Volutpat diam ut venenatis tellus in. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Sapien pellentesque habitant morbi tristique senectus et netus et malesuada. Eu feugiat pretium nibh ipsum. Convallis aenean et tortor at risus viverra. Libero volutpat sed cras ornare arcu. Pharetra vel turpis nunc eget lorem dolor sed viverra. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Ut eu sem integer vitae justo eget magna fermentum. Leo duis ut diam quam nulla porttitor massa id. Purus sit amet volutpat consequat mauris nunc congue. Eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Cursus risus at ultrices mi.]],
-            {}), {}),
+            {}
+        ),
+        {}
+    ),
 })
