@@ -53,7 +53,7 @@ Plug 'windwp/nvim-autopairs'
 Plug 'rust-lang/rust.vim'
 
 -- Faster highlight updates
-Plug('nvim-treesitter/nvim-treesitter', { run = 'TSUpdate' })
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = 'TSUpdate' })
 
 -- Color scheme
 Plug('catppuccin/nvim', { as = 'catppuccin' })
