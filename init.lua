@@ -506,6 +506,9 @@ vim.keymap.set('c', '<C-h>', '<Left>', { remap = false })
 vim.keymap.set('c', '<C-j>', '<Down>', { remap = false })
 vim.keymap.set('c', '<C-l>', '<Right>', { remap = false })
 
+-- quicker than hitting esc?
+vim.keymap.set('i', '<M-i>', '<Esc>', { remap = false })
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 require 'nvim-treesitter.configs'.setup {
