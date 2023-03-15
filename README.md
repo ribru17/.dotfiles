@@ -26,7 +26,7 @@ recommend anyone take influence from it.
   (or [build from source](https://github.com/bugaevc/wl-clipboard)) if using
   Wayland in order to support yanking to the system clipboard.
 
-## Basic Usage
+## Usage
 
 This configuration extends all of the core functionality of Neovim. I use
 `Space` as the Leader key. All mappings in Normal mode unless specified
@@ -82,6 +82,9 @@ otherwise.
 - Use `Tab` and `Shift+Tab` to indent or remove indent, respectively
   - In Normal mode, this affects the current line. In Visual mode, this affects
     all selected lines.
+- Use `<leader>h` and `<leader>H` to search and replace instances of the hovered
+  word, with and without smart adjustment for different cases (like camel case),
+  respectively
 - Miscellaneous useful Visual mode operations
   - Use `K` and `J` to move the selected lines up or down, respectively, smartly
     indenting if the lines move within the scope of, say, an if statement
@@ -90,14 +93,33 @@ otherwise.
   - Surround selection with brackets by pressing that bracket. Open bracket
     surrounds with spaces in-between and closed bracket surrounds without
     spaces.
-    - Example (asterisks represent selection): `*surround* here` -> '(' pressed
-      -> `( surround ) here`
+    - Example (asterisk demarcates the selection): `*surround* here` -> '('
+      pressed -> `( surround ) here`
     - _**NOTES**_
       - Works with all brackets and quotation marks, but square brackets must be
         escaped by being pressed twice, e.g. `]]`, as square brackets are mapped
         to other behavior in Vim
       - Surround with HTML-style tag using `T`
   - Use `Ctrl+y` and `Ctrl+x` to copy or cut to system clipboard, respectively
-- Use `<leader>h` and `<leader>H` to search and replace instances of the hovered
-  word, with and without smart adjustment for different cases (like camel case),
-  respectively
+- Other useful surround operations
+  - Use `<leader>dq` to Delete surrounding Quotes
+  - Use `<leader>dp` to Delete surround Parentheses
+  - Use `<leader>db` to Delete any matching Brackets
+  - Use `<leader>cht` and `<leader>dht` to Change and Delete surrounding
+    HTML-style Tags, respectively
+  - Use `<leader>dd` to Delete any valid Delimiter
+  - Use `cs{A}{B}` to Change any Surrounding delimiter A to B
+    - Example: `"here is" a string` -> `cs"'` -> `'here is' a string`
+
+### Viewing
+
+- Use `Esc` to clear search highlighting
+- Use `K` to hover over the current object, showing LSP information
+- Use `<leader>e` to show current error information
+
+### Snippets
+
+Inherits all snippets provided by the LSP. Additionally...
+
+- `!`: snippet for HTML (Emmet style) that provides a generic HTML5 template
+- `lorem`: snippet for all filetypes that provides a long lorem ipsum string

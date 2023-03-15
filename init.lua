@@ -214,7 +214,12 @@ require('lualine').setup {
     },
 }
 
-require('nvim-surround').setup {}
+require('nvim-surround').setup {
+    aliases = {
+        ["d"] = { "{", "[", "(", "<", '"', "'", "`" }, -- any delimiter
+        ["b"] = { "{", "[", "(", "<" },                -- bracket
+    }
+}
 
 require('gitsigns').setup({
     on_attach = function(bufnr)
@@ -481,8 +486,12 @@ vim.keymap.set("n", "<leader>cht", "cst", { remap = true })
 -- delete current HTML-style tags
 vim.keymap.set("n", "<leader>dht", "dst", { remap = true })
 -- delete surrounding delimiters
-vim.keymap.set("n", "<leader>dq", 'ds"', { remap = true })
-vim.keymap.set("n", "<leader>dp", 'ds(', { remap = true })
+-- view is marked and loaded to prevent disorienting scrolling behavior:
+-- https://github.com/kylechui/nvim-surround/issues/149
+vim.keymap.set("n", "<leader>dq", '<Cmd>mkview<CR>dsq<Cmd>loadview<CR>', { remap = true })
+vim.keymap.set("n", "<leader>dp", '<Cmd>mkview<CR>ds(<Cmd>loadview<CR>', { remap = true })
+vim.keymap.set("n", "<leader>db", '<Cmd>mkview<CR>dsb<Cmd>loadview<CR>', { remap = true })
+vim.keymap.set("n", "<leader>dd", '<Cmd>mkview<CR>dsd<Cmd>loadview<CR>', { remap = true })
 
 -- cycle through tabs (reversing order for more intuitive UX)
 vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', {})
