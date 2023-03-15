@@ -239,7 +239,7 @@ require('gitsigns').setup({
             return '<Ignore>'
         end, { expr = true })
 
-        -- git preview, git blame, git line
+        -- git preview, git blame
         map('n', '<leader>gp', gs.preview_hunk)
         map('n', '<leader>gb', function() gs.blame_line { full = true } end)
     end,
@@ -328,7 +328,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
             fallback()
         end
     end, { "i", "s", }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
             cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
