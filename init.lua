@@ -491,8 +491,20 @@ vim.keymap.set('n', '<C-l>', '<Cmd>tabmove +1<CR>', {})
 vim.keymap.set('n', '<C-h>', '<Cmd>tabmove -1<CR>', {})
 
 -- copy/cut to clipboard (Linux)
-vim.keymap.set('v', '<C-c>', '"+y', { remap = false })
+vim.keymap.set('v', '<C-y>', '"+y', { remap = false })
 vim.keymap.set('v', '<C-x>', '"+x', { remap = false })
+
+-- insert mode navigation
+vim.keymap.set('i', '<C-k>', '<Up>', { remap = false })
+vim.keymap.set('i', '<C-h>', '<Left>', { remap = false })
+vim.keymap.set('i', '<C-j>', '<Down>', { remap = false })
+vim.keymap.set('i', '<C-l>', '<Right>', { remap = false })
+
+-- command mode navigation
+vim.keymap.set('c', '<C-k>', '<Up>', { remap = false })
+vim.keymap.set('c', '<C-h>', '<Left>', { remap = false })
+vim.keymap.set('c', '<C-j>', '<Down>', { remap = false })
+vim.keymap.set('c', '<C-l>', '<Right>', { remap = false })
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
