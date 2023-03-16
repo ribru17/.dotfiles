@@ -34,8 +34,8 @@ otherwise.
 ### Navigation
 
 - Files
-  - _**NOTE**_: Use `Enter` to switch to current file and `Tab` to open current
-    file in new tab
+  - _**NOTE**_: Use `Enter` to switch to selected file and `Tab` to open
+    selected file in new tab
   - Use `<leader>ff` to fuzzy Find Files
   - Use `<leader>gf` to fuzzy Find files in the Git index and working tree (I
     don't ever use this)
