@@ -28,7 +28,7 @@ recommend anyone take influence from it.
 ## Usage
 
 This configuration extends all of the core functionality of Neovim. I use
-`Space` as the Leader key. All mappings in Normal mode unless specified
+`Space` as the Leader key. All mappings are in Normal mode unless specified
 otherwise.
 
 ### Navigation

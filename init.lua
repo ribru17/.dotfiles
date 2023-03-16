@@ -354,7 +354,27 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
+    mapping = cmp_mappings,
+    sources = {
+        { name = 'path' },
+        { name = 'nvim_lsp' },
+        { name = 'luasnip', keyword_length = 2 },
+        { name = 'buffer',  keyword_length = 3 },
+    },
+    formatting = {
+        fields = { 'menu', 'abbr', 'kind' },
+        format = function(entry, item)
+            local menu_icon = {
+                nvim_lsp = '󰆧',
+                luasnip = '󰘖',
+                buffer = '',
+                path = '',
+            }
+
+            item.menu = menu_icon[entry.source.name]
+            return item
+        end,
+    },
 })
 
 lsp.on_attach(function(_, bufnr)
