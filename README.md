@@ -9,7 +9,7 @@ recommend anyone take influence from it.
 
 - Install [vim-plug](https://github.com/junegunn/vim-plug)
 - In Neovim run `:PlugInstall`
-- _**Optional**_ Use a font that is patched with the
+- **NOTE**: Use a font that is patched with the
   [Nerd Fonts library](https://github.com/ryanoasis/nerd-fonts) for statusline,
   bufferline icons
 - _**Optional**_ Install [ripgrep](https://github.com/BurntSushi/ripgrep) for
@@ -34,8 +34,8 @@ otherwise.
 ### Navigation
 
 - Files
-  - _**NOTE**_: Use `Enter` to switch to selected file and `Tab` to open
-    selected file in new tab
+  - **NOTE**: Use `Enter` to switch to selected file and `Tab` to open selected
+    file in new tab
   - Use `<leader>ff` to fuzzy Find Files
   - Use `<leader>gf` to fuzzy Find files in the Git index and working tree (I
     don't ever use this)
@@ -94,7 +94,7 @@ otherwise.
     spaces.
     - Example (asterisk demarcates the selection): `*surround* here` -> '('
       pressed -> `( surround ) here`
-    - _**NOTES**_
+    - **NOTES**
       - Works with all brackets and quotation marks, but square brackets must be
         escaped by being pressed twice, e.g. `]]`, as square brackets are mapped
         to other behavior in Vim
