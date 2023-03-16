@@ -88,7 +88,12 @@ Plug('VonHeikemen/lsp-zero.nvim', { branch = 'v1.x' })
 Plug 'numToStr/Comment.nvim'
 
 -- Markdown Preview, use :MarkdownPreview
-Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
+Plug('iamcco/markdown-preview.nvim', {
+    ['do'] = function()
+        vim.call('mkdp#util#install')
+    end,
+    ['for'] = { 'markdown', 'vim-plug' }
+})
 
 -- Surround
 Plug 'kylechui/nvim-surround'

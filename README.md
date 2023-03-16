@@ -14,7 +14,6 @@ recommend anyone take influence from it.
   bufferline icons
 - _**Optional**_ Install [ripgrep](https://github.com/BurntSushi/ripgrep) for
   fuzzy finding files with keyword search
-- _**Optional**_ Install yarn (`npm i -g yarn`) for `markdown-preview.nvim`
 - _**Optional**_ Install
   [Deno](https://deno.land/manual@v1.31.1/getting_started/installation) for code
   formatting via `deno fmt`
@@ -116,6 +115,7 @@ otherwise.
 - Use `Esc` to clear search highlighting
 - Use `K` to hover over the current object, showing LSP information
 - Use `<leader>e` to show current error information
+- Use `:MarkdownPreview` command to preview a markdown file
 
 ### Snippets
 
