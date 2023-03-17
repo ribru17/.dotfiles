@@ -545,6 +545,21 @@ vim.keymap.set('i', '<M-i>', '<Esc>', { remap = false })
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+
+--> MISCELLANEOUS USER COMMANDS <--
+
+-- write without formatting
+vim.api.nvim_create_user_command('W', 'noa w', {})
+vim.api.nvim_create_user_command('Wq', 'noa w | q', {})
+vim.api.nvim_create_user_command('Wa', 'noa wa', {})
+vim.api.nvim_create_user_command('Wqa', 'noa wa | qa', {})
+vim.api.nvim_create_user_command('Wn', 'noa wn', {})
+vim.api.nvim_create_user_command('WN', 'noa wN', {})
+vim.api.nvim_create_user_command('Wp', 'noa wp', {})
+
+--> END OF MISCELLANEOUS USER COMMANDS <--
+
 require 'nvim-treesitter.configs'.setup {
     -- A list of parser names, or "all" (the four first parsers should always be installed)
     ensure_installed = { "c", "lua", "vim", "help", "javascript", "typescript", "rust", "tsx" },

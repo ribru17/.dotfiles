@@ -19,11 +19,11 @@ recommend anyone take influence from it.
   formatting via `deno fmt`
 - _**Optional**_ Install `clang_format` via Mason for C, C++ formatting. Most
   other LSP's have formatting configured also but the default configuration of
-  `clangd` is not extensible with `null-ls`
+  `clangd` is not extensible with `null-ls`.
 - _**Optional**_ Install
-  [`wl-clipboard`](https://archlinux.org/packages/community/x86_64/wl-clipboard/)
+  [wl-clipboard](https://archlinux.org/packages/community/x86_64/wl-clipboard/)
   (or [build from source](https://github.com/bugaevc/wl-clipboard)) if using
-  Wayland in order to support yanking to the system clipboard.
+  Wayland in order to support yanking to the system clipboard
 
 ## Usage
 
@@ -60,6 +60,9 @@ otherwise.
   - Can use `Meta+i` as an alternative to `Esc` to exit Insert mode
 
 ### Editing
+
+By default this configuration formats text on save (if a formatter is found for
+that file). Save without formatting with `:W`.
 
 - Use `Ctrl+/` to toggle comments
   - In Normal and Insert mode, toggles current line
