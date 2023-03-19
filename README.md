@@ -31,6 +31,11 @@ This configuration extends all of the core functionality of Neovim. I use
 `Space` as the Leader key. All mappings are in Normal mode unless specified
 otherwise.
 
+### Basic
+
+- Update plugins with `:PlugUpdate`
+- Install LSP's, formatters, etc. with `:Mason`
+
 ### Navigation
 
 - Files
