@@ -7,13 +7,14 @@ recommend anyone take influence from it.
 
 ## Prerequisites
 
-- Install [vim-plug](https://github.com/junegunn/vim-plug)
+- Install [vim-plug](https://github.com/junegunn/vim-plug#installation)
 - In Neovim run `:PlugInstall`
 - **NOTE**: Use a font that is patched with the
   [Nerd Fonts library](https://github.com/ryanoasis/nerd-fonts) for statusline,
   bufferline icons
-- _**Optional**_ Install [ripgrep](https://github.com/BurntSushi/ripgrep) for
-  fuzzy finding files with keyword search
+- _**Optional**_ Install
+  [ripgrep](https://github.com/BurntSushi/ripgrep#installation) for fuzzy
+  finding files with keyword search
 - _**Optional**_ Install
   [Deno](https://deno.land/manual@v1.31.1/getting_started/installation) for code
   formatting via `deno fmt`
@@ -22,8 +23,8 @@ recommend anyone take influence from it.
   `clangd` is not extensible with `null-ls`.
 - _**Optional**_ Install
   [wl-clipboard](https://archlinux.org/packages/community/x86_64/wl-clipboard/)
-  (or [build from source](https://github.com/bugaevc/wl-clipboard)) if using
-  Wayland in order to support yanking to the system clipboard
+  (or [build from source](https://github.com/bugaevc/wl-clipboard#building)) if
+  using Wayland in order to support yanking to the system clipboard
 
 ## Usage
 
