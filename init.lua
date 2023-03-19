@@ -289,6 +289,7 @@ require("telescope").setup({
                 preview_cutoff = 0,
             },
         },
+        prompt_prefix = '🔎 ',
         initial_mode = "normal",
         mappings = {
             n = {
