@@ -435,7 +435,7 @@ vim.keymap.set('i', ';', function()
     end
     if isInReturn(line) then
         if last == ';' then
-            return '<esc>$'
+            return '<esc>g_'
         else
             return '<esc>g_a;<esc>'
         end
@@ -443,6 +443,9 @@ vim.keymap.set('i', ';', function()
     if last == ';' then
         return '<esc>$a<cr>'
     else
+        if string.len(trim(line)) == 0 then
+            return ';<esc>==$a<cr>'
+        end
         return '<esc>g_a;<cr>'
     end
 end, { expr = true })
