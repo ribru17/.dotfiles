@@ -35,6 +35,9 @@ otherwise.
 
 - Update plugins with `:PlugUpdate`
 - Install LSP's, formatters, etc. with `:Mason`
+  - `i` to install current package
+  - `u` to update current package
+  - `X` to remove current package
 
 ### Navigation
 
