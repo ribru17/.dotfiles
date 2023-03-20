@@ -39,6 +39,11 @@ otherwise.
   - `i` to install current package
   - `u` to update current package
   - `X` to remove current package
+- Install syntax highlighters for a given filetype with `:TSInstall {filetype}`
+  - This is also the solution to the `tree-sitter` error for a given filetype:
+    ```
+    Error executing lua: ...query: invalid node type at position...
+    ```
 
 ### Navigation
 
