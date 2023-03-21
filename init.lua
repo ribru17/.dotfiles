@@ -255,16 +255,6 @@ require('gitsigns').setup({
     end,
 })
 
-require 'nvim-treesitter.configs'.setup {
-    -- HTML-style tag completion
-    autotag = {
-        enable = true,
-    },
-    indent = {
-        enable = true
-    }
-}
-
 -- Make comment work on terminals where C-/ is literally C-/
 vim.keymap.set('n', '<C-/>', '<C-_>', { remap = true })
 vim.keymap.set('v', '<C-/>', '<C-_>', { remap = true })
@@ -591,6 +581,13 @@ require 'nvim-treesitter.configs'.setup {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
     },
+    -- HTML-style tag completion
+    autotag = {
+        enable = true,
+    },
+    indent = {
+        enable = true
+    }
 }
 
 local ls = require('luasnip')
