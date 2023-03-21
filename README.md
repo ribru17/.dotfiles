@@ -41,10 +41,6 @@ otherwise.
   - `u` to update current package
   - `X` to remove current package
 - Install syntax highlighters for a given filetype with `:TSInstall {filetype}`
-  - This is also the solution to the `tree-sitter` error for a given filetype:
-    ```
-    Error executing lua: ...query: invalid node type at position...
-    ```
 
 ### Navigation
 
@@ -141,3 +137,19 @@ Inherits all snippets provided by the LSP. Additionally...
 
 - `!`: snippet for HTML (Emmet style) that provides a generic HTML5 template
 - `lorem`: snippet for all filetypes that provides a long lorem ipsum string
+
+## Troubleshooting
+
+- If, after quitting Neovim in a Markdown file, you get the error:
+  ```
+  client 2 quit with exit code 143 and signal 0
+  ```
+  uninstall the `marksman` LSP with Mason.
+- If the post install hook doesn't work when first installing `tree-sitter`, run
+  `:TSUpdate` manually and it should work.
+- If you get an error when opening a certain file type:
+  ```
+  Error executing lua: ...query: invalid node type at position...
+  ```
+  run `:TSInstall {filetype}` (or enter the valid name for the tree sitter
+  highlighter for that filetype) and this should fix it.

@@ -62,7 +62,7 @@ Plug('catppuccin/nvim', { as = 'catppuccin' })
 Plug 'nvim-lua/plenary.nvim'
 Plug('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
 
--- :Git ~something~ commands to make git easier
+-- :Git commands to make git easier
 Plug 'tpope/vim-fugitive'
 
 -- LSP Support
@@ -119,6 +119,10 @@ Plug 'tpope/vim-abolish'
 
 -- Indent lines
 Plug 'lukas-reineke/indent-blankline.nvim'
+
+Plug('iurimateus/luasnip-latex-snippets.nvim', {
+    ['for'] = { 'markdown', 'tex' }
+})
 
 vim.call('plug#end')
 
@@ -585,6 +589,8 @@ require 'nvim-treesitter.configs'.setup {
         enable = true
     }
 }
+
+require('luasnip-latex-snippets').setup({ use_treesitter = true })
 
 local ls = require('luasnip')
 local s = ls.snippet
