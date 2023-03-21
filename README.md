@@ -25,6 +25,7 @@ recommend anyone take influence from it.
   [wl-clipboard](https://archlinux.org/packages/community/x86_64/wl-clipboard/)
   (or [build from source](https://github.com/bugaevc/wl-clipboard#building)) if
   using Wayland in order to support yanking to the system clipboard
+- _**Optional**_ Run `:TSInstall markdown_inline` for full Markdown highlighting
 
 ## Usage
 
