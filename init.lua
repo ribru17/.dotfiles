@@ -562,8 +562,8 @@ vim.api.nvim_create_user_command('Wp', 'noa wp', {})
 --> END OF MISCELLANEOUS USER COMMANDS <--
 
 require 'nvim-treesitter.configs'.setup {
-    -- A list of parser names, or "all" (the four first parsers should always be installed)
-    ensure_installed = { "c", "lua", "vim", "help", "javascript", "typescript", "rust", "tsx" },
+    -- A list of parser names, or "all" (the first five parsers should always be installed)
+    ensure_installed = { "c", "lua", "vim", "help", "query", "javascript", "typescript", "rust", "tsx" },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
