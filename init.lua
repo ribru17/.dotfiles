@@ -409,20 +409,12 @@ end
 
 local function isInFor(s)
     local firstFour = string.sub(trimBeg(s), 1, 4)
-    if firstFour == 'for ' or firstFour == 'for(' then
-        return true
-    else
-        return false
-    end
+    return firstFour == 'for ' or firstFour == 'for('
 end
 
 local function isInReturn(s)
     local firstSeven = string.sub(trimBeg(s), 1, 7)
-    if firstSeven == 'return ' or firstSeven == 'return' or firstSeven == 'return;' then
-        return true
-    else
-        return false
-    end
+    return firstSeven == 'return ' or firstSeven == 'return' or firstSeven == 'return;'
 end
 
 vim.keymap.set('i', ';', function()
@@ -534,6 +526,8 @@ vim.keymap.set('i', '<C-k>', '<Up>', { remap = false })
 vim.keymap.set('i', '<C-h>', '<Left>', { remap = false })
 vim.keymap.set('i', '<C-j>', '<Down>', { remap = false })
 vim.keymap.set('i', '<C-l>', '<Right>', { remap = false })
+vim.keymap.set('i', '<C-w>', '<C-Right>', { remap = false })
+vim.keymap.set('i', '<C-b>', '<C-Left>', { remap = false })
 
 -- command mode navigation
 vim.keymap.set('c', '<C-k>', '<Up>', { remap = false })
@@ -543,6 +537,8 @@ vim.keymap.set('c', '<C-l>', '<Right>', { remap = false })
 
 -- quicker than hitting esc?
 vim.keymap.set('i', '<M-i>', '<Esc>', { remap = false })
+
+vim.keymap.set('i', '<M-BS>', '<C-w>', { remap = false })
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
