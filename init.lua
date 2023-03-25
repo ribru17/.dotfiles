@@ -253,9 +253,12 @@ require('gitsigns').setup({
             return '<Ignore>'
         end, { expr = true })
 
-        -- git preview, git blame
+        -- git preview
         map('n', '<leader>gp', gs.preview_hunk)
+        -- git blame
         map('n', '<leader>gb', function() gs.blame_line { full = true } end)
+        -- undo git change
+        map('n', '<leader>gu', gs.reset_hunk)
     end,
 })
 
