@@ -290,10 +290,14 @@ require("telescope").setup({
         initial_mode = "normal",
         mappings = {
             n = {
-                ["<Tab>"] = actions.select_tab -- <Tab> to open as tab
+                ["<Tab>"] = actions.select_tab, -- <Tab> to open as tab
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-j>"] = actions.move_selection_next,
             },
             i = {
-                ["<Tab>"] = actions.select_tab -- <Tab> to open as tab
+                ["<Tab>"] = actions.select_tab, -- <Tab> to open as tab
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-j>"] = actions.move_selection_next,
             }
         }
     },
