@@ -137,6 +137,8 @@ Inherits all snippets provided by the LSP. Additionally...
 
 - `!`: snippet for HTML (Emmet style) that provides a generic HTML5 template
 - `lorem`: snippet for all filetypes that provides a long lorem ipsum string
+- Some Markdown Tex snippets as defined by
+  [this plugin](https://github.com/iurimateus/luasnip-latex-snippets.nvim)
 
 ## Troubleshooting
 
