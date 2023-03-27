@@ -515,12 +515,10 @@ vim.keymap.set("n", "<leader>cht", "cst", { remap = true })
 -- delete current HTML-style tags
 vim.keymap.set("n", "<leader>dht", "dst", { remap = true })
 -- delete surrounding delimiters
--- view is marked and loaded to prevent disorienting scrolling behavior:
--- https://github.com/kylechui/nvim-surround/issues/149
-vim.keymap.set("n", "<leader>dq", '<Cmd>mkview<CR>dsq<Cmd>loadview<CR>', { remap = true })
-vim.keymap.set("n", "<leader>dp", '<Cmd>mkview<CR>ds(<Cmd>loadview<CR>', { remap = true })
-vim.keymap.set("n", "<leader>db", '<Cmd>mkview<CR>dsb<Cmd>loadview<CR>', { remap = true })
-vim.keymap.set("n", "<leader>dd", '<Cmd>mkview<CR>dsd<Cmd>loadview<CR>', { remap = true })
+vim.keymap.set("n", "<leader>dq", 'dsq', { remap = true })
+vim.keymap.set("n", "<leader>dp", 'ds(', { remap = true })
+vim.keymap.set("n", "<leader>db", 'dsb', { remap = true })
+vim.keymap.set("n", "<leader>dd", 'dsd', { remap = true })
 
 -- cycle through tabs (reversing order for more intuitive UX)
 vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', {})
