@@ -18,11 +18,7 @@ return {
     },
     {
         'akinsho/bufferline.nvim',
-        lazy = false,
-        dependencies = {
-            'catppuccin/nvim',
-            'kyazdani42/nvim-web-devicons'
-        },
+        event = { 'VeryLazy' },
         config = function()
             require('bufferline').setup {
                 options = {
@@ -44,8 +40,7 @@ return {
     },
     {
         'nvim-lualine/lualine.nvim',
-        lazy = false,
-        dependencies = { 'kyazdani42/nvim-web-devicons' },
+        event = { 'VeryLazy' },
         config = function()
             -- Custom statusline that shows total line number with current
             local function line_total()
