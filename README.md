@@ -31,6 +31,9 @@ This configuration extends all of the core functionality of Neovim. I use
 `Space` as the Leader key. All mappings are in Normal mode unless specified
 otherwise.
 
+For best results use a terminal that supports ligatures (I use Konsole and
+WezTerm)
+
 ### Basic
 
 - Update plugins with `:Lazy update`
@@ -95,9 +98,11 @@ that file). Save without formatting with `:W`.
 - Use `Tab` and `Shift+Tab` to indent or remove indent, respectively
   - In Normal mode, this affects the current line. In Visual mode, this affects
     all selected lines.
-- Use `<leader>h` and `<leader>H` to search and replace instances of the hovered
-  word, with and without smart adjustment for different cases (like camel case),
-  respectively
+- Search and Replace
+  - Use `<leader>h` to search and replace instances of the hovered word
+    - Use a capital `H` to smartly match different cases like camelCase,
+      PascalCase, etc. (but without incremental search)
+  - Use `<leader>r` to take advantage of LSP renaming feature
 - Miscellaneous useful Visual mode operations
   - Use `K` and `J` to move the selected lines up or down, respectively, smartly
     indenting if the lines move within the scope of, say, an if statement
@@ -139,6 +144,11 @@ Inherits all snippets provided by the LSP. Additionally...
 - `lorem`: snippet for all filetypes that provides a long lorem ipsum string
 - Some Markdown Tex snippets as defined by
   [this plugin](https://github.com/iurimateus/luasnip-latex-snippets.nvim)
+
+### Debugging
+
+- Check base startup time with `:StartupTime`
+- Check plugin loading information with `:Lazy profile`
 
 ## Troubleshooting
 
