@@ -1,26 +1,24 @@
 return {
     {
-        'williamboman/mason.nvim',
-        cmd = 'Mason'
-    },
-    { 'williamboman/mason-lspconfig.nvim', lazy = true },
-    { 'neovim/nvim-lspconfig',             lazy = true }, -- Required
-    { 'hrsh7th/nvim-cmp',                  lazy = true }, -- Required
-    { 'hrsh7th/cmp-nvim-lsp',              lazy = true }, -- Required
-    { 'hrsh7th/cmp-buffer',                lazy = true }, -- Optional
-    { 'hrsh7th/cmp-path',                  lazy = true }, -- Optional
-    { 'saadparwaiz1/cmp_luasnip',          lazy = true }, -- Optional
-    { 'hrsh7th/cmp-nvim-lua',              lazy = true }, -- Optional
-    { 'onsails/lspkind-nvim',              lazy = true }, -- Optional
-    {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
         event = { 'VeryLazy' },
         dependencies = {
-            -- Snippets
+            {
+                'williamboman/mason.nvim',
+                cmd = 'Mason'
+            },
+            { 'williamboman/mason-lspconfig.nvim', },
+            { 'neovim/nvim-lspconfig', },    -- Required
+            { 'hrsh7th/nvim-cmp', },         -- Required
+            { 'hrsh7th/cmp-nvim-lsp', },     -- Required
+            { 'hrsh7th/cmp-buffer', },       -- Optional
+            { 'hrsh7th/cmp-path', },         -- Optional
+            { 'saadparwaiz1/cmp_luasnip', }, -- Optional
+            { 'hrsh7th/cmp-nvim-lua', },     -- Optional
+            { 'onsails/lspkind-nvim', },     -- Optional
             {
                 'L3MON4D3/LuaSnip',
-                lazy = true,
                 config = function()
                     local ls = require('luasnip')
                     local s = ls.snippet
@@ -155,7 +153,7 @@ return {
                 vim.keymap.set("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
                 vim.keymap.set("n", "gE", function() vim.diagnostic.goto_prev() end, opts)
                 vim.keymap.set("n", "ge", function() vim.diagnostic.goto_next() end, opts)
-                --vim.keymap.set("n", "ge", function() vim.lsp.buf.rename() end, opts)
+                vim.keymap.set("n", "<leader>r", function() vim.lsp.buf.rename() end, opts)
             end)
 
             lsp.setup()
