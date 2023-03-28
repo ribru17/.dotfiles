@@ -18,7 +18,7 @@ return {
     },
     {
         'rust-lang/rust.vim',
-        ft = 'rust'
+        ft = 'rust',
     },
     {
         'nvim-treesitter/nvim-treesitter',
@@ -67,6 +67,7 @@ return {
                     }
                 }
             }
+            vim.cmd.colorscheme "catppuccin"
         end
     },
     {
@@ -119,7 +120,7 @@ return {
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
-        event = { 'BufReadPre', 'BufNewFile' },
+        event = { 'BufReadPost', 'BufNewFile' },
         dependencies = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' },             -- Required
@@ -353,7 +354,12 @@ return {
             }
         end
     },
-    'windwp/nvim-ts-autotag',
+    {
+        'windwp/nvim-ts-autotag',
+        ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx',
+            'jsx', 'rescript', 'php', 'markdown', 'glimmer', 'handlebars', 'hbs'
+        }
+    },
     {
         'lewis6991/gitsigns.nvim',
         config = function()
@@ -432,8 +438,9 @@ return {
     },
     {
         'iurimateus/luasnip-latex-snippets.nvim',
+        ft = 'markdown',
         config = function()
             require('luasnip-latex-snippets').setup({ use_treesitter = true })
         end
-    }
+    },
 }

@@ -104,8 +104,6 @@ vim.keymap.set('n', '<C-/>', '<C-_>', { remap = true })
 vim.keymap.set('v', '<C-/>', '<C-_>', { remap = true })
 vim.keymap.set('i', '<C-/>', '<C-_>', { remap = true })
 
-vim.cmd.colorscheme "catppuccin"
-
 vim.diagnostic.config({
     virtual_text = true,
     signs = true,
