@@ -41,7 +41,6 @@ return {
     {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
-        -- event = { 'VeryLazy' },
         keys = {
             { '<leader>ff' },
             { '<leader>sf' },
@@ -95,9 +94,13 @@ return {
         cmd = 'Git'
     },
     {
+        'tpope/vim-abolish',
+        cmd = 'S'
+    },
+    {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
-        --event = "VeryLazy",
+        event = "VeryLazy",
         config = function()
             require("nvim-surround").setup({
                 -- Configuration here, or leave empty to use defaults
@@ -109,64 +112,17 @@ return {
         end
     },
     {
-        'lewis6991/gitsigns.nvim',
+        'numToStr/Comment.nvim',
         event = { 'VeryLazy' },
         config = function()
-            require('gitsigns').setup({
-                on_attach = function(bufnr)
-                    local gs = package.loaded.gitsigns
-
-                    local function map(mode, l, r, opts)
-                        opts = opts or {}
-                        opts.buffer = bufnr
-                        vim.keymap.set(mode, l, r, opts)
-                    end
-
-                    -- next/prev git changes
-                    map('n', '<leader>gj', function()
-                        if vim.wo.diff then return ']c' end
-                        vim.schedule(function() gs.next_hunk() end)
-                        return '<Ignore>'
-                    end, { expr = true })
-
-                    map('n', '<leader>gk', function()
-                        if vim.wo.diff then return '[c' end
-                        vim.schedule(function() gs.prev_hunk() end)
-                        return '<Ignore>'
-                    end, { expr = true })
-
-                    -- git preview
-                    map('n', '<leader>gp', gs.preview_hunk)
-                    -- git blame
-                    map('n', '<leader>gb', function() gs.blame_line { full = true } end)
-                    -- undo git change
-                    map('n', '<leader>gu', gs.reset_hunk)
-                end,
+            require('Comment').setup({
+                toggler = {
+                    line = '<C-_>',
+                },
+                opleader = {
+                    line = '<C-_>'
+                },
             })
-        end
-    },
-    {
-        'tpope/vim-abolish',
-        event = { 'VeryLazy' },
-    },
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        event = { 'VeryLazy' },
-        config = function()
-            require("indent_blankline").setup {
-                -- reduce indentation clutter
-                -- https://www.reddit.com/r/neovim/comments/yiodnb/proper_configuration_for_indentblankline/
-                max_indent_increase = 1,
-                --> Uncomment to get colored indent lines
-                -- char_highlight_list = {
-                --     "IndentBlanklineIndent1",
-                --     "IndentBlanklineIndent2",
-                --     "IndentBlanklineIndent3",
-                --     "IndentBlanklineIndent4",
-                --     "IndentBlanklineIndent5",
-                --     "IndentBlanklineIndent6",
-                -- },
-            }
         end
     },
 }
