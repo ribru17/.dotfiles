@@ -1,7 +1,10 @@
 # My Neovim Configuration
 
-This is mostly for backup purposes as my config is very disorganized and I don't
-recommend anyone take influence from it.
+## Screenshot
+
+- Font: [Iosevka](https://github.com/ribru17/iosevka-config), Custom Extended
+  15pt
+- Theme: [Catppuccin](https://github.com/catppuccin/nvim)
 
 ![neovim](https://user-images.githubusercontent.com/55766287/222920744-73644efd-b7fa-4876-85f9-b1bec5706782.png)
 
