@@ -1,28 +1,26 @@
 return {
     {
+        'williamboman/mason.nvim',
+        cmd = 'Mason'
+    },
+    { 'williamboman/mason-lspconfig.nvim', lazy = true },
+    { 'neovim/nvim-lspconfig',             lazy = true }, -- Required
+    { 'hrsh7th/nvim-cmp',                  lazy = true }, -- Required
+    { 'hrsh7th/cmp-nvim-lsp',              lazy = true }, -- Required
+    { 'hrsh7th/cmp-buffer',                lazy = true }, -- Optional
+    { 'hrsh7th/cmp-path',                  lazy = true }, -- Optional
+    { 'saadparwaiz1/cmp_luasnip',          lazy = true }, -- Optional
+    { 'hrsh7th/cmp-nvim-lua',              lazy = true }, -- Optional
+    { 'onsails/lspkind-nvim',              lazy = true }, -- Optional
+    {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
-        -- event = { 'BufReadPre', 'BufNewFile' },
         event = { 'VeryLazy' },
         dependencies = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },             -- Required
-            { 'williamboman/mason.nvim' },           -- Optional
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },         -- Required
-            { 'hrsh7th/cmp-nvim-lsp' },     -- Required
-            { 'hrsh7th/cmp-buffer' },       -- Optional
-            { 'hrsh7th/cmp-path' },         -- Optional
-            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-            { 'hrsh7th/cmp-nvim-lua' },     -- Optional
-            { 'onsails/lspkind-nvim' },     --Optional
-
             -- Snippets
             {
                 'L3MON4D3/LuaSnip',
-                event = { 'VeryLazy' },
+                lazy = true,
                 config = function()
                     local ls = require('luasnip')
                     local s = ls.snippet
