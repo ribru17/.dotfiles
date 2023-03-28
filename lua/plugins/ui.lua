@@ -116,4 +116,55 @@ return {
             })
         end
     },
+    {
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        keys = {
+            { '<leader>ff' },
+            { '<leader>sf' },
+            { '<leader>gf' },
+        },
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            local actions = require('telescope.actions')
+            require("telescope").setup({
+                defaults = {
+                    layout_config = {
+                        horizontal = {
+                            preview_cutoff = 0,
+                        },
+                    },
+                    prompt_prefix = '🔎 ',
+                    initial_mode = "normal",
+                    mappings = {
+                        n = {
+                            ["<Tab>"] = actions.select_tab, -- <Tab> to open as tab
+                            ["<C-k>"] = actions.move_selection_previous,
+                            ["<C-j>"] = actions.move_selection_next,
+                        },
+                        i = {
+                            ["<Tab>"] = actions.select_tab, -- <Tab> to open as tab
+                            ["<C-k>"] = actions.move_selection_previous,
+                            ["<C-j>"] = actions.move_selection_next,
+                        }
+                    }
+                },
+            })
+
+            local builtin = require('telescope.builtin')
+            vim.keymap.set('n', '<leader>ff', function()
+                builtin.find_files {
+                    find_command = function()
+                        return { 'rg', '--files', '-g',
+                            '!' .. string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd(), '') }
+                    end
+                }
+            end
+            , {})
+            vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
+            vim.keymap.set('n', '<leader>sf', function()
+                builtin.grep_string({ search = vim.fn.input("Grep > ") });
+            end, {})
+        end
+    },
 }
