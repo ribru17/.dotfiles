@@ -57,5 +57,6 @@ vim.api.nvim_create_autocmd("InsertEnter", {
     -- pattern = "VeryLazy",
     callback = function()
         require('ezsemicolon')
+        vim.api.nvim_clear_autocmds({ group = "LoadEZSemicolon" })
     end,
 })

@@ -8,27 +8,22 @@
 
 ![neovim](https://user-images.githubusercontent.com/55766287/222920744-73644efd-b7fa-4876-85f9-b1bec5706782.png)
 
-## Prerequisites
+## Optional Prerequisites
 
-- Install [vim-plug](https://github.com/junegunn/vim-plug#installation)
-- In Neovim run `:PlugInstall`
-- **NOTE**: Use a font that is patched with the
+- Use a font that is patched with the
   [Nerd Fonts library](https://github.com/ryanoasis/nerd-fonts) for statusline,
   bufferline icons
-- _**Optional**_ Install
-  [ripgrep](https://github.com/BurntSushi/ripgrep#installation) for fuzzy
-  finding files with keyword search
-- _**Optional**_ Install
-  [Deno](https://deno.land/manual@v1.31.1/getting_started/installation) for code
-  formatting via `deno fmt`
-- _**Optional**_ Install `clang_format` via Mason for C, C++ formatting. Most
-  other LSP's have formatting configured also but the default configuration of
-  `clangd` is not extensible with `null-ls`.
-- _**Optional**_ Install
+- Install
   [wl-clipboard](https://archlinux.org/packages/community/x86_64/wl-clipboard/)
   (or [build from source](https://github.com/bugaevc/wl-clipboard#building)) if
   using Wayland in order to support yanking to the system clipboard
-- _**Optional**_ Run `:TSInstall markdown_inline` for full Markdown highlighting
+- Install [ripgrep](https://github.com/BurntSushi/ripgrep#installation) for
+  fuzzy finding files with keyword search
+- Install [Deno](https://deno.land/manual@v1.31.1/getting_started/installation)
+  for `deno fmt` (formatting of Javascript-family files and Markdown)
+- Install `clang_format` via Mason for C, C++ formatting (`clangd` enables
+  formatting but it's not extensible with `null-ls`)
+- Run `:TSInstall markdown_inline` for full Markdown highlighting
 
 ## Usage
 
@@ -38,7 +33,8 @@ otherwise.
 
 ### Basic
 
-- Update plugins with `:PlugUpdate`
+- Update plugins with `:Lazy update`
+- Manager plugins via GUI with `:Lazy`
 - Install LSP's, formatters, etc. with `:Mason`
   - `i` to install current package
   - `u` to update current package
@@ -60,6 +56,7 @@ otherwise.
     - I chose these directions because they make more sense to me as `n` is on
       the left and `p` is on the right on a keyboard
   - Use `Ctrl+h` and `Ctrl+l` to move tabs to the left of right, respectively
+  - Use `Ctrl+t` to open a new tab
 - Git
   - Use `<leader>gk` and `<leader>gj` to move up and down Git changes,
     respectively
@@ -67,7 +64,7 @@ otherwise.
   - Use `<leader>gb` to Git-Blame the current line
 - Diagnostics
   - Use `gd` to Go to Definition of current object
-  - Use `gD` to Go to Definition of current object in a new tab (useful)
+  - Use `gD` to Go to Definition of current object in a new tab
   - Use `ge` and `gE` to Go to next or previous Error, respectively
 - Insert mode
   - Prepend `Ctrl` to `h`, `j`, `k`, `l` to navigate as in Normal mode
