@@ -184,23 +184,30 @@ return {
 
             dashboard.section.header.val = vim.split(logo, "\n")
             dashboard.section.buttons.val = {
-                dashboard.button("f", " " .. " Find file", ":lua require('telescope.builtin').find_files()<CR>"),
-                dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-                dashboard.button("r", " " .. " Recent files", ":lua require('telescope.builtin').oldfiles()<CR>"),
-                dashboard.button("g", " " .. " Find text",
+                {
+                    type = "text",
+                    val = " ",
+                    opts = {
+                        position = 'center'
+                    }
+                },
+                {type = "padding", val = 2},
+                dashboard.button("f", " " .. " Open file", ":lua require('telescope.builtin').find_files()<CR>"),
+                dashboard.button("r", " " .. " Open recent", ":lua require('telescope.builtin').oldfiles()<CR>"),
+                dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
+                dashboard.button("s", " " .. " Search text",
                     ":lua require('telescope.builtin').live_grep({initial_mode = 'insert'})<CR>"),
                 dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-                dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
+                dashboard.button("p", " " .. " Plugins", ":Lazy<CR>"),
                 dashboard.button("q", " " .. " Quit", ":qa<CR>"),
             }
-            for _, button in ipairs(dashboard.section.buttons.val) do
-                button.opts.hl = "AlphaButtons"
-                button.opts.hl_shortcut = "AlphaShortcut"
-            end
-            dashboard.section.header.opts.hl = "AlphaHeader"
-            dashboard.section.buttons.opts.hl = "AlphaButtons"
-            dashboard.section.footer.opts.hl = "AlphaFooter"
-            dashboard.opts.layout[1].val = 8
+            dashboard.opts.layout[1].val = 4
+            dashboard.opts.layout[3].val = 0
+            dashboard.section.footer.val = "Now I will have less distraction.\n- Leonhard Euler"
+            table.insert(dashboard.config.layout, 5, {
+                type = "padding",
+                val = 1
+            })
             return dashboard
         end,
         config = function(_, dashboard)
@@ -222,7 +229,7 @@ return {
                 callback = function()
                     local stats = require("lazy").stats()
                     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-                    dashboard.section.footer.val = "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+                    dashboard.section.buttons.val[1].val = "⚡ Loaded " .. stats.count .. " plugins in " .. ms .. "ms"
                     pcall(vim.cmd.AlphaRedraw)
                 end,
             })
