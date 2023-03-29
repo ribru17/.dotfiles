@@ -52,6 +52,11 @@ return {
                 sections = {
                     lualine_z = { line_total }
                 },
+                options = {
+                    disabled_filetypes = {
+                        'alpha'
+                    }
+                }
             }
         end
     },
@@ -191,7 +196,7 @@ return {
                         position = 'center'
                     }
                 },
-                {type = "padding", val = 2},
+                { type = "padding", val = 2 },
                 dashboard.button("f", " " .. " Open file", ":lua require('telescope.builtin').find_files()<CR>"),
                 dashboard.button("r", " " .. " Open recent", ":lua require('telescope.builtin').oldfiles()<CR>"),
                 dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
