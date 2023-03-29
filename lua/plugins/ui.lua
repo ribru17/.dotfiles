@@ -240,4 +240,16 @@ return {
             })
         end,
     },
+    {
+        'Bekaboo/deadcolumn.nvim',
+        event = { 'InsertEnter' },
+        opts = {
+            blending = {
+                threshold = 0,
+            },
+            warning = {
+                colorcode = '#ED8796',
+            }
+        }
+    }
 }
