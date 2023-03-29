@@ -34,10 +34,7 @@ end
 -- Explicitly format on save: passing this through null-ls failed with
 -- unsupported formatters, e.g. html-lsp
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { '*.xml', '*.html', '*.xhtml', '*.css', '*.scss', '*.js', '*.ts',
-    '*.yaml', '*.jsx', '*.tsx', '*.md', '*.mdx', '*.lua', '*.c', '*.cpp',
-    '*.rs'
-  },
+  pattern = '*',
   callback = function()
     lsp_formatting()
   end
