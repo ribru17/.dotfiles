@@ -242,7 +242,7 @@ return {
   },
   {
     'Bekaboo/deadcolumn.nvim',
-    event = { 'InsertEnter' },
+    event = { 'VeryLazy' },
     opts = {
       blending = {
         threshold = 0,
