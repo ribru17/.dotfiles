@@ -35,7 +35,8 @@ end
 -- unsupported formatters, e.g. html-lsp
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { '*.xml', '*.html', '*.xhtml', '*.css', '*.scss', '*.js', '*.ts',
-    '*.yaml', '*.jsx', '*.tsx', '*.md', '*.mdx', '*.lua', '*.c', '*.cpp'
+    '*.yaml', '*.jsx', '*.tsx', '*.md', '*.mdx', '*.lua', '*.c', '*.cpp',
+    '*.rs'
   },
   callback = function()
     lsp_formatting()

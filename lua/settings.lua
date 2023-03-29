@@ -21,12 +21,3 @@ vim.opt.mouse = ""
 vim.g.mapleader = " "
 vim.g.mkdp_echo_preview_url = 1
 vim.g.rustfmt_autosave = 1
-
-vim.diagnostic.config({
-  virtual_text = true,
-  signs = true,
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
-  float = true,
-})
