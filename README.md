@@ -165,3 +165,8 @@ Inherits all snippets provided by the LSP. Additionally...
   ```
   run `:TSInstall {filetype}` (or enter the valid name for the tree sitter
   highlighter for that filetype) and this should fix it.
+- If you get an error relating to `rust-analyzer` not being found or executable
+  when opening Rust files, this may be because Mason's installed version cannot
+  be executed due to shared library issues(?) and if this is the case it may be
+  best to just keep the Mason installation (for compatibility reasons) and
+  install the `rust-analyzer` binary on your machine regularly
