@@ -48,10 +48,10 @@ vim.keymap.set("n", "<leader>H", ":%S/<C-r><C-w>/<C-r><C-w>/gcw<Left><Left><Left
 
 -- toggle comment in insert mode
 vim.keymap.set("i", "<C-_>", function()
-    local api = require('Comment.api')
-    api.toggle.linewise.current()
-    vim.cmd('normal! $')
-    vim.cmd([[startinsert!]])
+  local api = require('Comment.api')
+  api.toggle.linewise.current()
+  vim.cmd('normal! $')
+  vim.cmd([[startinsert!]])
 end, {})
 
 -- change current HTML-style tags
