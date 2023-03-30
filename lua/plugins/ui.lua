@@ -159,12 +159,13 @@ return {
 
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', function()
-        builtin.find_files {
-          find_command = function()
-            return { 'rg', '--files', '-g',
-              '!' .. string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd(), '') }
-          end
-        }
+        if vim.fn.isdirectory(vim.fn.expand('%')) == 1 or vim.bo.filetype == 'alpha' then
+          builtin.find_files()
+        else
+          builtin.find_files {
+            file_ignore_patterns = { vim.fn.expand('%') }
+          }
+        end
       end
       , {})
       vim.keymap.set('n', '<leader>gf', builtin.git_files, {})

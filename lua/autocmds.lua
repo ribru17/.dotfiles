@@ -52,9 +52,17 @@ vim.api.nvim_create_autocmd("User", {
 -- load EZ-Semicolon upon entering insert mode
 vim.api.nvim_create_autocmd("InsertEnter", {
   group = vim.api.nvim_create_augroup("LoadEZSemicolon", { clear = true }),
-  -- pattern = "VeryLazy",
   callback = function()
     require('ezsemicolon')
     vim.api.nvim_clear_autocmds({ group = "LoadEZSemicolon" })
   end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
+      require('alpha')
+      vim.cmd.Alpha()
+    end
+  end
 })
