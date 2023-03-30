@@ -46,6 +46,9 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>h", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gIc<Left><Left><Left><Left>")
 vim.keymap.set("n", "<leader>H", ":%S/<C-r><C-w>/<C-r><C-w>/gcw<Left><Left><Left><Left>")
 
+-- crude search & replace visual selection (breaks on multiple lines, special chars)
+vim.keymap.set("x", "<leader>h", '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>', { remap = false })
+
 -- toggle comment in insert mode
 vim.keymap.set("i", "<C-_>", function()
   local api = require('Comment.api')

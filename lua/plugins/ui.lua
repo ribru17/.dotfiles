@@ -245,7 +245,7 @@ return {
     event = { 'VeryLazy' },
     opts = {
       blending = {
-        threshold = 0,
+        threshold = 0.75,
       },
       warning = {
         colorcode = '#ED8796',
