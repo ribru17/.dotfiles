@@ -20,23 +20,24 @@ return {
           name = "Emmet HTML5 Boilerplate",
           dscr = "Creates a barebones HTML5 application."
         }, fmt([[
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>{1}</title>
-   </head>
-   <body>
-     {2}
-   </body>
-   </html>{3}
-    ]], {
-          i(1, 'Document'),
-          i(2, ''),
-          i(3, ''),
-        }), {
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+              <meta charset="UTF-8">
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>{1}</title>
+            </head>
+            <body>
+              {2}
+            </body>
+            </html>{3}
+            ]],
+          {
+            i(1, 'Document'),
+            i(2, ''),
+            i(3, ''),
+          }), {
           condition = conds.line_begin,
         }),
       })
