@@ -122,7 +122,7 @@ return {
         end),
       })
 
-      lsp.setup_nvim_cmp({
+      local cmp_config = lsp.defaults.cmp_config({
         mapping = cmp_mappings,
         sources = {
           { name = 'path' },
@@ -142,7 +142,12 @@ return {
             end,
           }),
         },
+        window = {
+          completion = cmp.config.window.bordered()
+        }
       })
+
+      cmp.setup(cmp_config)
 
       lsp.on_attach(function(_, bufnr)
         local opts = { buffer = bufnr, remap = false }
