@@ -244,7 +244,7 @@ return {
     end,
   },
   {
-    'ribru17/deadcolumn.nvim',
+    'Bekaboo/deadcolumn.nvim',
     event = { 'VeryLazy' },
     opts = {
       blending = {
