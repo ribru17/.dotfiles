@@ -76,7 +76,11 @@ return {
       local cmp = require('cmp')
       local lspkind = require('lspkind')
 
-      lsp.preset('recommended')
+      lsp.preset({
+        name = 'recommended',
+        manage_nvim_cmp = false,
+        set_lsp_keymaps = false,
+      })
 
       -- Suppress irritating `undefined global vim` errors
       lsp.nvim_workspace()
@@ -126,6 +130,7 @@ return {
         mapping = cmp_mappings,
         sources = {
           { name = 'path' },
+          { name = 'nvim_lua' },
           { name = 'nvim_lsp' },
           { name = 'luasnip', keyword_length = 2 },
           { name = 'buffer',  keyword_length = 3 },
@@ -144,8 +149,13 @@ return {
         },
         window = {
           completion = cmp.config.window.bordered()
-        }
+        },
       })
+
+      local palettes = require('catppuccin.palettes').get_palette()
+      vim.api.nvim_set_hl(0, "CmpItemAbbr", { ctermbg = 0, fg = palettes.text })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { ctermbg = 0, fg = palettes.blue })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { ctermbg = 0, fg = palettes.blue })
 
       cmp.setup(cmp_config)
 
