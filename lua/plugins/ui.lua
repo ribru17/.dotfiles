@@ -118,6 +118,7 @@ return {
           -- undo git change
           map('n', '<leader>gu', gs.reset_hunk)
         end,
+        sign_priority = 0,
       })
     end
   },

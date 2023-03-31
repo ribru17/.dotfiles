@@ -1,7 +1,7 @@
 vim.opt.compatible = false
 vim.opt.encoding = "utf-8"
 vim.opt.filetype = "on"
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes:2"
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 5
 vim.opt.number = true
