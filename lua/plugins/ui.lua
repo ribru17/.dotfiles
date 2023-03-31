@@ -72,7 +72,7 @@ return {
         -- reduce indentation clutter
         -- https://www.reddit.com/r/neovim/comments/yiodnb/proper_configuration_for_indentblankline/
         max_indent_increase = 1,
-        char = '▏', -- uncomment to center align indentation guide
+        char = '🭰', -- comment this out to center align indent indicator
         --> Uncomment to get colored indent lines
         -- char_highlight_list = {
         --     "IndentBlanklineIndent1",
@@ -243,18 +243,16 @@ return {
       })
     end,
   },
-  -- disabling for now, see issue
-  -- https://github.com/Bekaboo/deadcolumn.nvim/issues/4
-  -- {
-  --   'Bekaboo/deadcolumn.nvim',
-  --   event = { 'VeryLazy' },
-  --   opts = {
-  --     blending = {
-  --       threshold = 0.75,
-  --     },
-  --     warning = {
-  --       colorcode = '#ED8796',
-  --     }
-  --   }
-  -- }
+  {
+    'ribru17/deadcolumn.nvim',
+    event = { 'VeryLazy' },
+    opts = {
+      blending = {
+        threshold = 0.75,
+      },
+      warning = {
+        colorcode = '#ED8796',
+      }
+    }
+  }
 }
