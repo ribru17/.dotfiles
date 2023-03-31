@@ -66,12 +66,13 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = { 'VeryLazy' },
+    event = { 'BufReadPost', 'BufNewFile' },
     config = function()
       require("indent_blankline").setup {
         -- reduce indentation clutter
         -- https://www.reddit.com/r/neovim/comments/yiodnb/proper_configuration_for_indentblankline/
         max_indent_increase = 1,
+        char = '▏', -- uncomment to center align indentation guide
         --> Uncomment to get colored indent lines
         -- char_highlight_list = {
         --     "IndentBlanklineIndent1",
