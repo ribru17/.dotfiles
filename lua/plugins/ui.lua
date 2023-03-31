@@ -35,7 +35,7 @@ return {
           end,
           name_formatter = function(buf)
             if buf.name == '[No Name]' and buf.tabnr == 1 then
-              return 'Home'
+              return 'RB.NVIM'
             end
           end,
           -- always_show_bufferline = false,
