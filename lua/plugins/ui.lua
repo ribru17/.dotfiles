@@ -243,16 +243,18 @@ return {
       })
     end,
   },
-  {
-    'Bekaboo/deadcolumn.nvim',
-    event = { 'VeryLazy' },
-    opts = {
-      blending = {
-        threshold = 0.75,
-      },
-      warning = {
-        colorcode = '#ED8796',
-      }
-    }
-  }
+  -- disabling for now, see issue
+  -- https://github.com/Bekaboo/deadcolumn.nvim/issues/4
+  -- {
+  --   'Bekaboo/deadcolumn.nvim',
+  --   event = { 'VeryLazy' },
+  --   opts = {
+  --     blending = {
+  --       threshold = 0.75,
+  --     },
+  --     warning = {
+  --       colorcode = '#ED8796',
+  --     }
+  --   }
+  -- }
 }
