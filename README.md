@@ -14,12 +14,12 @@
 - Use a font that is patched with the
   [Nerd Fonts library](https://github.com/ryanoasis/nerd-fonts) for statusline,
   bufferline icons
+- Install [ripgrep](https://github.com/BurntSushi/ripgrep#installation) for
+  fuzzy finding files with keyword search
 - Install
   [wl-clipboard](https://archlinux.org/packages/community/x86_64/wl-clipboard/)
   (or [build from source](https://github.com/bugaevc/wl-clipboard#building)) if
   using Wayland in order to support yanking to the system clipboard
-- Install [ripgrep](https://github.com/BurntSushi/ripgrep#installation) for
-  fuzzy finding files with keyword search
 - Install [Deno](https://deno.land/manual@v1.31.1/getting_started/installation)
   for `deno fmt` (formatting of Javascript-family files and Markdown)
 - Install `clang_format` via Mason for C, C++ formatting (`clangd` enables

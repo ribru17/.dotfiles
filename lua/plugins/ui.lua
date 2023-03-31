@@ -33,8 +33,15 @@ return {
             local icon = level:match("error") and "" or ""
             return icon .. " " .. count
           end,
+          name_formatter = function(buf)
+            if buf.name == '[No Name]' and buf.tabnr == 1 then
+              return 'Home'
+            end
+          end,
+          -- always_show_bufferline = false,
+          -- enforce_regular_tabs = true,
         },
-        highlights = require("catppuccin.groups.integrations.bufferline").get()
+        highlights = require("catppuccin.groups.integrations.bufferline").get(),
       }
     end
   },
