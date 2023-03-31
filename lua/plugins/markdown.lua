@@ -14,4 +14,8 @@ return {
       require('luasnip-latex-snippets').setup({ use_treesitter = true })
     end
   },
+  {
+    'dkarter/bullets.vim',
+    ft = 'markdown',
+  }
 }

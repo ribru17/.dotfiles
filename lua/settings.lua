@@ -21,3 +21,4 @@ vim.opt.mouse = ""
 vim.g.mapleader = " "
 vim.g.mkdp_echo_preview_url = 1
 vim.g.rustfmt_autosave = 1
+vim.g.bullets_set_mappings = 1
