@@ -22,4 +22,4 @@ vim.opt.pumheight = 10
 vim.g.mapleader = " "
 vim.g.mkdp_echo_preview_url = 1
 vim.g.rustfmt_autosave = 1
-vim.g.bullets_set_mappings = 1
+vim.g.bullets_outline_levels = { 'ROM', 'ABC', 'num', 'abc', 'rom', 'std-' }

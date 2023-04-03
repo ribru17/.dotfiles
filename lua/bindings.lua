@@ -103,6 +103,9 @@ vim.keymap.set('n', '<C-/>', '<C-_>', { remap = true })
 vim.keymap.set('v', '<C-/>', '<C-_>', { remap = true })
 vim.keymap.set('i', '<C-/>', '<C-_>', { remap = true })
 
+-- easier keybind of bullet formatting
+vim.keymap.set('i', '<C-f>', '<C-t>', { remap = true })
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
