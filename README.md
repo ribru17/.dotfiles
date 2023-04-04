@@ -38,7 +38,7 @@ WezTerm)
 ### Basic
 
 - Update plugins with `:Lazy update`
-- Manager plugins via GUI with `:Lazy`
+- Manage plugins via GUI with `:Lazy`
 - Install LSP's, formatters, etc. with `:Mason`
   - `i` to install current package
   - `u` to update current package
