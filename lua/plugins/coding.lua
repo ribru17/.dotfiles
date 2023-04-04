@@ -18,7 +18,8 @@ return {
           ["d"] = { "{", "[", "(", "<", '"', "'", "`" }, -- any delimiter
           ["b"] = { "{", "[", "(", "<" },                -- bracket
           ["p"] = { "(" },
-        }
+        },
+        move_cursor = false,
       })
     end
   },
