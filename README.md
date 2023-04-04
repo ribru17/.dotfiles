@@ -24,7 +24,6 @@
   for `deno fmt` (formatting of Javascript-family files and Markdown)
 - Install `clang_format` via Mason for C, C++ formatting (`clangd` enables
   formatting but it's not extensible with `null-ls`)
-- Run `:TSInstall markdown_inline` for full Markdown highlighting
 
 ## Usage
 
