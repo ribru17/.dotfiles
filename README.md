@@ -78,6 +78,7 @@ WezTerm)
 By default this configuration formats text on save (if a formatter is found for
 that file). Save without formatting with `:W`.
 
+- Use `<leader>ca` to run Code Actions through the LSP
 - Use `Ctrl+/` to toggle comments
   - In Normal and Insert mode, toggles current line
   - In Visual mode, toggles selected lines (or text if only one line selected)
