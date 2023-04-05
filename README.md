@@ -136,6 +136,7 @@ that file). Save without formatting with `:W`.
 - Use `Esc` to clear search highlighting
 - Use `K` to hover over the current object, showing LSP information
 - Use `<leader>e` to show current error information
+- Use `<leader>z` to toggle current fold
 - Use `:MarkdownPreview` command to preview a markdown file
 
 ### Snippets

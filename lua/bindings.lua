@@ -106,6 +106,9 @@ vim.keymap.set('i', '<C-/>', '<C-_>', { remap = true })
 -- easier keybind of bullet formatting
 vim.keymap.set('i', '<C-f>', '<C-t>', { remap = true })
 
+-- folding
+vim.keymap.set('n', '<leader>z', 'za', { remap = true })
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
