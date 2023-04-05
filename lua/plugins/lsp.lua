@@ -10,6 +10,32 @@ return {
     lazy = true,
   },
   {
+    'mrcjkb/haskell-tools.nvim',
+    ft = 'haskell',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
+    branch = '1.x.x',
+    config = function()
+      local ht = require('haskell-tools')
+      -- local buffer = vim.api.nvim_get_current_buf()
+      local def_opts = { noremap = true, silent = true, }
+      ht.start_or_attach {
+        hls = {
+          on_attach = function(_, bufnr)
+            local opts = vim.tbl_extend('keep', def_opts, { buffer = bufnr, })
+            -- haskell-language-server relies heavily on codeLenses,
+            -- so auto-refresh (see advanced configuration) is enabled by default
+            -- vim.keymap.set('n', '<leader>ca', vim.lsp.codelens.run, opts)
+            vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature, opts)
+            vim.keymap.set('n', '<leader>ea', ht.lsp.buf_eval_all, opts)
+          end,
+        },
+      }
+    end
+  },
+  {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
@@ -51,6 +77,7 @@ return {
           vim.keymap.set("n", "gE", function() vim.diagnostic.goto_prev() end, opts)
           vim.keymap.set("n", "ge", function() vim.diagnostic.goto_next() end, opts)
           vim.keymap.set("n", "<leader>r", function() vim.lsp.buf.rename() end, opts)
+          vim.keymap.set("n", "<leader>ca", vim.lsp.codelens.run, opts)
         end
       })
 
