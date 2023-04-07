@@ -29,7 +29,8 @@ return {
             -- so auto-refresh (see advanced configuration) is enabled by default
             -- vim.keymap.set('n', '<leader>ca', vim.lsp.codelens.run, opts)
             vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature, opts)
-            vim.keymap.set('n', '<leader>ea', ht.lsp.buf_eval_all, opts)
+            -- buggy and sort of useless
+            -- vim.keymap.set('n', '<leader>ha', ht.lsp.buf_eval_all, opts)
           end,
         },
       }
