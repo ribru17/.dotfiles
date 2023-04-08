@@ -25,7 +25,12 @@ return {
   },
   {
     'numToStr/Comment.nvim',
-    event = { 'VeryLazy' },
+    keys = {
+      { mode = "n", "<C-_>", },
+      { mode = "x", "<C-_>", },
+      "gc",
+      "gb",
+    },
     config = function()
       require('Comment').setup({
         toggler = {
