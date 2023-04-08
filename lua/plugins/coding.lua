@@ -39,6 +39,13 @@ return {
         opleader = {
           line = '<C-_>'
         },
+        ignore = function()
+          local mode = vim.api.nvim_get_mode()["mode"]
+          if mode == 'n' then
+            return '^$'
+          end
+          return nil
+        end
       })
     end
   },
