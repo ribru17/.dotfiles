@@ -1,8 +1,8 @@
 --> MISCELLANEOUS KEYMAPS <--
 
 -- VSCode style block indentation
-vim.keymap.set("x", "<Tab>", ">", { remap = false })
-vim.keymap.set("x", "<S-Tab>", "<", { remap = false })
+vim.keymap.set("x", "<Tab>", ">gv", { remap = false })
+vim.keymap.set("x", "<S-Tab>", "<gv", { remap = false })
 vim.keymap.set("n", "<Tab>", ">>", { remap = false })
 vim.keymap.set("n", "<S-Tab>", "<<", { remap = false })
 
@@ -12,8 +12,10 @@ vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
 -- easily move cursor selection backwards
-vim.keymap.set("x", "H", "oho", { remap = false })
-vim.keymap.set("x", "L", "olo", { remap = false })
+vim.keymap.set("x", "<C-h>", "oho", { remap = false })
+vim.keymap.set("x", "<C-l>", "olo", { remap = false })
+vim.keymap.set("x", "<C-k>", "oko", { remap = false })
+vim.keymap.set("x", "<C-j>", "ojo", { remap = false })
 
 -- keep cursor in place
 vim.keymap.set("n", "J", "mzJ`z")
@@ -23,18 +25,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- surround visual selection
-vim.keymap.set("x", "(", "S(", { remap = true })
-vim.keymap.set("x", ")", "S)", { remap = true })
-vim.keymap.set("x", "{", "S{", { remap = true })
-vim.keymap.set("x", "}", "S}", { remap = true })
-vim.keymap.set("x", "'", "S'", { remap = true })
-vim.keymap.set("x", '"', 'S"', { remap = true })
-vim.keymap.set("x", "`", "S`", { remap = true })
-vim.keymap.set("x", "<", "S<", { remap = true })
-vim.keymap.set("x", ">", "S>", { remap = true })
-vim.keymap.set("x", "T", "ST", { remap = true })
-vim.keymap.set("x", "[[", "S[", { remap = true })
-vim.keymap.set("x", "]]", "S]", { remap = true })
+vim.keymap.set("x", "s", "S", { remap = true })
 
 -- clear search highlighting
 vim.keymap.set("n", "<Esc>", ":noh<CR>")
@@ -108,6 +99,10 @@ vim.keymap.set('i', '<C-f>', '<C-t>', { remap = true })
 
 -- folding
 vim.keymap.set('n', '<leader>z', 'za', { remap = true })
+
+-- cursor-in-place copy/paste
+vim.keymap.set('n', 'P', 'P`[', { remap = false })
+vim.keymap.set('x', 'y', 'ygv<Esc>', { remap = false })
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 

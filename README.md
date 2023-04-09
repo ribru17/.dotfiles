@@ -109,18 +109,14 @@ that file). Save without formatting with `:W`.
 - Miscellaneous useful Visual mode operations
   - Use `K` and `J` to move the selected lines up or down, respectively, smartly
     indenting if the lines move within the scope of, say, an if statement
-  - Use `H` and `L` to move the _end_ of the selection left or right,
-    respectively
-  - Surround selection with brackets by pressing that bracket. Open bracket
-    surrounds with spaces in-between and closed bracket surrounds without
-    spaces.
-    - Example (asterisk demarcates the selection): `*surround* here` -> '('
-      pressed -> `( surround ) here`
-    - **NOTES**
-      - Works with all brackets and quotation marks, but square brackets must be
-        escaped by being pressed twice, e.g. `]]`, as square brackets are mapped
-        to other behavior in Vim
-      - Surround with HTML-style tag using `T`
+  - Prefix the `h`, `j`, `k`, and `l` motions with `Ctrl` to move the _end_ of
+    the selection
+  - Surround selection with brackets by pressing `s` or `S` then that bracket.
+    Open bracket surrounds with spaces in-between and closed bracket surrounds
+    without spaces.
+    - Example (asterisk demarcates the selection): `*surround* here` -> `S(` ->
+      `( surround ) here`
+    - **NOTE:** Surround with HTML-style tag using `T`
   - Use `Ctrl+y` and `Ctrl+x` to copy or cut to system clipboard, respectively
 - Other useful surround operations
   - Use `<leader>dq` to Delete surrounding Quotes
