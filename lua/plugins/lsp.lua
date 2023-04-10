@@ -87,7 +87,12 @@ return {
           vim.keymap.set("n", "gE", function() vim.diagnostic.goto_prev() end, opts)
           vim.keymap.set("n", "ge", function() vim.diagnostic.goto_next() end, opts)
           vim.keymap.set("n", "<leader>r", function() vim.lsp.buf.rename() end, opts)
-          vim.keymap.set("n", "<leader>ca", vim.lsp.codelens.run, opts)
+          vim.keymap.set("n", "<leader>ca", function()
+            vim.lsp.buf.code_action({
+              apply = true,
+            })
+          end, opts)
+          vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, opts)
         end
       })
 
