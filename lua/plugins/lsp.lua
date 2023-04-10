@@ -60,6 +60,10 @@ return {
                   -- Get the language server to recognize the `vim` global
                   globals = { 'vim' },
                 },
+                telemetry = { enable = false },
+                runtime = {
+                  version = 'LuaJIT',
+                },
               },
             },
           }
@@ -68,7 +72,7 @@ return {
           local capabilities = vim.lsp.protocol.make_client_capabilities()
           capabilities.offsetEncoding = { "utf-16" }
           require("lspconfig").clangd.setup({ capabilities = capabilities })
-        end
+        end,
       }
 
       vim.api.nvim_create_autocmd('LspAttach', {
