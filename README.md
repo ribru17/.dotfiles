@@ -38,7 +38,7 @@ WezTerm)
 
 - Update plugins with `:Lazy update`
 - Manage plugins via GUI with `:Lazy`
-- Install LSP's, formatters, etc. with `:Mason`
+- Install LSP's, formatters, etc. with `:LspInstall` or with `:Mason`:
   - `i` to install current package
   - `u` to update current package
   - `X` to remove current package

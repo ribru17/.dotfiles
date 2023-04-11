@@ -8,6 +8,10 @@ return {
     cmd = 'S'
   },
   {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    lazy = true,
+  },
+  {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
@@ -45,7 +49,8 @@ return {
             return '^$'
           end
           return nil
-        end
+        end,
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
       })
     end
   },
