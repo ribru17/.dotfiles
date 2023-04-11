@@ -73,6 +73,15 @@ return {
           capabilities.offsetEncoding = { "utf-16" }
           require("lspconfig").clangd.setup({ capabilities = capabilities })
         end,
+        ['cssls'] = function()
+          --Enable (broadcasting) snippet capability for completion
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+          require 'lspconfig'.cssls.setup {
+            capabilities = capabilities,
+          }
+        end,
       }
 
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -151,7 +160,8 @@ return {
   },
   {
     'jose-elias-alvarez/null-ls.nvim',
-    event = { 'VeryLazy' },
+    event = { 'LspAttach' },
+    ft = { 'markdown' }, -- other lsp's covered by LspAttach
     dependencies = {
       'nvim-lua/plenary.nvim'
     },
