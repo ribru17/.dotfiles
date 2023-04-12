@@ -122,6 +122,8 @@ return {}, {
   s({ trig = '<<', wordTrig = false, }, fmt([[\ll]], {}), { condition = in_mathzone }),
   s({ trig = '!=', wordTrig = false, }, fmt([[\neq]], {}), { condition = in_mathzone }),
   s({ trig = 'nabla', wordTrig = false, }, fmt([[\nabla]], {}), { condition = in_mathzone }),
+  s({ trig = '//', wordTrig = false, }, fmt([[\frac{{{1}}}{{{2}}}]], { i(1, 'a'), i(2, 'b') }),
+    { condition = in_mathzone }),
   s({ trig = 'EE', wordTrig = false, }, fmt([[\exists]], {}), { condition = in_mathzone }),
   s({ trig = 'AA', wordTrig = false, }, fmt([[\forall]], {}), { condition = in_mathzone }),
   s({ trig = 'notin', wordTrig = false, }, fmt([[\not\in]], {}), { condition = in_mathzone }),
@@ -129,6 +131,9 @@ return {}, {
   s({ trig = '<-> ', wordTrig = false, }, fmt([[\leftrightarrow ]], {}), { condition = in_mathzone }),
   s({ trig = '...', wordTrig = false, }, fmt([[\ldots]], {}), { condition = in_mathzone }),
   s({ trig = 'iff', wordTrig = false, }, fmt([[\iff]], {}), { condition = in_mathzone }),
+  s({ trig = 'in', wordTrig = false, }, fmt([[\in]], {}), { condition = in_mathzone }),
+  s({ trig = 'to', wordTrig = false, }, fmt([[\to]], {}), { condition = in_mathzone }),
+  s({ trig = 'sqrt', wordTrig = false, }, fmt([[\sqrt{{{1}}}]], { i(1, '') }), { condition = in_mathzone }),
   s({ trig = 'inf', wordTrig = false, }, fmt([[\infty]], {}), { condition = in_mathzone }),
   s({ trig = '<> ', wordTrig = false, }, fmt([[\diamond ]], {}), { condition = in_mathzone }),
   s({ trig = 'xnn', wordTrig = false, }, t([[x_{n}]]), { condition = in_mathzone }),
@@ -205,6 +210,16 @@ return {}, {
   s({ trig = 'Psi', wordTrig = false, }, fmt([[\Psi]], {}), { condition = in_mathzone }),
   s({ trig = 'omega', wordTrig = false, }, fmt([[\omega]], {}), { condition = in_mathzone }),
   s({ trig = 'Omega', wordTrig = false, }, fmt([[\Omega]], {}), { condition = in_mathzone }),
+  s({ trig = 'ddx', wordTrig = false, }, fmt([[\frac{{\mathrm{{d{1}}}}}{{\mathrm{{d{2}}}}}]], { i(1, 'V'), i(2, 'x') }),
+    { condition = in_mathzone }),
+  s({ trig = 'sum', wordTrig = false, }, fmt([[\sum_{{n={1}}}^{{{2}}}]], { i(1, '1'), i(2, [[\infty]]) }),
+    { condition = in_mathzone }),
+  s({ trig = 'prod', wordTrig = false, }, fmt([[\prod_{{n={1}}}^{{{2}}}]], { i(1, '1'), i(2, [[\infty]]) }),
+    { condition = in_mathzone }),
+  s({ trig = 'partial', wordTrig = false, }, fmt([[\frac{{\partial {1}}}{{\partial {2}}}]], { i(1, 'V'), i(2, 'x') }),
+    { condition = in_mathzone }),
+  s({ trig = 'lim', wordTrig = false, }, fmt([[\lim_{{{1} \to {2}}}]], { i(1, 'n'), i(2, [[\infty]]) }),
+    { condition = in_mathzone }),
   s(
     {
       trig = "(%a)bar",
@@ -213,9 +228,35 @@ return {}, {
       priority = 100,
     },
     f(function(_, snip)
-      return string.format("\\overline{%s}", snip.captures[1])
+      return string.format("\\overline{%s}", snip.capturesh1h)
     end, {})
   ),
+  s(
+    {
+      trig = "(%a)hat",
+      wordTrig = false,
+      regTrig = true,
+      priority = 100,
+    },
+    f(function(_, snip)
+      return string.format("\\hat{%s}", snip.captures[1])
+    end, {})
+  ),
+  s({ trig = 'sin', wordTrig = false, }, fmt([[\sin]], {}), { condition = in_mathzone }),
+  s({ trig = 'cos', wordTrig = false, }, fmt([[\cos]], {}), { condition = in_mathzone }),
+  s({ trig = 'tan', wordTrig = false, }, fmt([[\tan]], {}), { condition = in_mathzone }),
+  s({ trig = 'asin', wordTrig = false, }, fmt([[\arcsin]], {}), { condition = in_mathzone }),
+  s({ trig = 'acos', wordTrig = false, }, fmt([[\arccos]], {}), { condition = in_mathzone }),
+  s({ trig = 'atan', wordTrig = false, }, fmt([[\arctan]], {}), { condition = in_mathzone }),
+  s({ trig = 'csc', wordTrig = false, }, fmt([[\csc]], {}), { condition = in_mathzone }),
+  s({ trig = 'sec', wordTrig = false, }, fmt([[\sec]], {}), { condition = in_mathzone }),
+  s({ trig = 'cot', wordTrig = false, }, fmt([[\cot]], {}), { condition = in_mathzone }),
+  s({ trig = 'ln', wordTrig = false, }, fmt([[\ln]], {}), { condition = in_mathzone }),
+  s({ trig = 'log', wordTrig = false, }, fmt([[\log]], {}), { condition = in_mathzone }),
+  s({ trig = 'exp', wordTrig = false, }, fmt([[\exp]], {}), { condition = in_mathzone }),
+  s({ trig = 'star', wordTrig = false, }, fmt([[\star]], {}), { condition = in_mathzone }),
+  s({ trig = 'perp', wordTrig = false, }, fmt([[\perp]], {}), { condition = in_mathzone }),
+  s({ trig = 'int', wordTrig = false, }, fmt([[\int]], {}), { condition = in_mathzone }),
   -- in math, word boundary
   frac,
 
