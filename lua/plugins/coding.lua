@@ -56,8 +56,10 @@ return {
   },
   {
     'windwp/nvim-ts-autotag',
-    ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx',
-      'jsx', 'rescript', 'php', 'markdown', 'glimmer', 'handlebars', 'hbs'
+    ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact',
+      'typescriptreact', 'svelte', 'vue', 'tsx',
+      'jsx', 'rescript', 'php', 'glimmer', 'handlebars', 'hbs',
+      -- 'markdown', -- breaks snippets that end in `>`
     }
   },
   {

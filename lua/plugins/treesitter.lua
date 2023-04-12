@@ -29,6 +29,14 @@ return {
         -- HTML-style tag completion
         autotag = {
           enable = true,
+          filetypes = {
+            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
+            'rescript',
+            'xml',
+            'php',
+            -- 'markdown', -- breaks snippets that end in `>`
+            'glimmer', 'handlebars', 'hbs'
+          }
         },
         indent = {
           enable = true
