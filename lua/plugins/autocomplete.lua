@@ -8,6 +8,10 @@ return {
     lazy = true,
     config = function()
       local ls = require('luasnip')
+      ls.config.set_config {
+        enable_autosnippets = true,
+      }
+      require("luasnip.loaders.from_lua").lazy_load({ paths = "./snippets" })
       local s = ls.snippet
       local i = ls.insert_node
       -- local t = ls.text_node
