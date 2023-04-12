@@ -13,54 +13,6 @@ return {
         history = true,
       }
       require("luasnip.loaders.from_lua").lazy_load({ paths = "./snippets" })
-      local s = ls.snippet
-      local i = ls.insert_node
-      -- local t = ls.text_node
-      local fmt = require("luasnip.extras.fmt").fmt
-      local conds = require("luasnip.extras.expand_conditions")
-
-      ls.add_snippets("html", {
-        s({
-          trig = "!",
-          name = "Emmet HTML5 Boilerplate",
-          dscr = "Creates a barebones HTML5 application."
-        }, fmt([[
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-              <meta charset="UTF-8">
-              <meta http-equiv="X-UA-Compatible" content="IE=edge">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>{1}</title>
-            </head>
-            <body>
-              {2}
-            </body>
-            </html>{3}
-            ]],
-          {
-            i(1, 'Document'),
-            i(2, ''),
-            i(3, ''),
-          }), {
-          condition = conds.line_begin,
-        }),
-      })
-
-      ls.add_snippets("all", {
-        s(
-          {
-            trig = 'lorem',
-            name = 'Lorem Ipsum Text',
-            dscr = 'Generates a long lorem ipsum text.'
-          },
-          fmt(
-            [[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet nec ullamcorper sit amet. Volutpat diam ut venenatis tellus in. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Sapien pellentesque habitant morbi tristique senectus et netus et malesuada. Eu feugiat pretium nibh ipsum. Convallis aenean et tortor at risus viverra. Libero volutpat sed cras ornare arcu. Pharetra vel turpis nunc eget lorem dolor sed viverra. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Ut eu sem integer vitae justo eget magna fermentum. Leo duis ut diam quam nulla porttitor massa id. Purus sit amet volutpat consequat mauris nunc congue. Eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Cursus risus at ultrices mi.]],
-            {}
-          ),
-          {}
-        ),
-      })
     end
   },
   {
@@ -75,7 +27,6 @@ return {
       { 'onsails/lspkind-nvim', },
     },
     config = function()
-      -- local lsp = require('lsp-zero')
       local cmp = require('cmp')
       local lspkind = require('lspkind')
 
@@ -134,7 +85,7 @@ return {
           { name = 'path' },
           { name = 'nvim_lua' },
           { name = 'nvim_lsp' },
-          { name = 'luasnip', keyword_length = 2 },
+          { name = 'luasnip' },
           { name = 'buffer',  keyword_length = 3 },
         },
         formatting = {
