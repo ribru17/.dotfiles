@@ -205,7 +205,7 @@ return {
         dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
         dashboard.button("s", " " .. " Search text",
           ":lua require('telescope.builtin').live_grep({initial_mode = 'insert'})<CR>"),
-        dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
+        dashboard.button("l", " " .. " LSP's", ":Mason<CR>"),
         dashboard.button("p", " " .. " Plugins", ":Lazy<CR>"),
         dashboard.button("q", " " .. " Quit", ":qa<CR>"),
       }
