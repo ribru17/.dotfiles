@@ -7,8 +7,8 @@ return {
     config = function()
       require 'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all" (the first five parsers should always be installed)
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript",
-          "typescript", "rust", "tsx", "markdown", "markdown_inline" },
+        ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'javascript',
+          'typescript', 'rust', 'tsx', 'markdown', 'markdown_inline' },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
@@ -30,22 +30,20 @@ return {
         autotag = {
           enable = true,
           filetypes = {
-            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
-            'rescript',
-            'xml',
-            'php',
+            'html', 'javascript', 'typescript', 'javascriptreact',
+            'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript', 'xml',
+            'php', 'glimmer', 'handlebars', 'hbs'
             -- 'markdown', -- breaks snippets that end in `>`
-            'glimmer', 'handlebars', 'hbs'
-          }
+          },
         },
         indent = {
-          enable = true
+          enable = true,
         },
         context_commentstring = {
           enable = true,
           enable_autocmd = false,
         },
       }
-    end
+    end,
   },
 }

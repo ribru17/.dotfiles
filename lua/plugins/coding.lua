@@ -12,31 +12,31 @@ return {
     lazy = true,
   },
   {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
+    'kylechui/nvim-surround',
+    version = '*', -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
     config = function()
-      require("nvim-surround").setup({
+      require('nvim-surround').setup {
         -- Configuration here, or leave empty to use defaults
         aliases = {
-          ["d"] = { "{", "[", "(", "<", '"', "'", "`" }, -- any delimiter
-          ["b"] = { "{", "[", "(", "<" },                -- bracket
-          ["p"] = { "(" },
+          ['d'] = { '{', '[', '(', '<', '"', "'", '`' }, -- any delimiter
+          ['b'] = { '{', '[', '(', '<' },                -- bracket
+          ['p'] = { '(' },
         },
         move_cursor = false,
-      })
-    end
+      }
+    end,
   },
   {
     'numToStr/Comment.nvim',
     keys = {
-      { mode = "n", "<C-_>", },
-      { mode = "x", "<C-_>", },
-      "gc",
-      "gb",
+      { mode = 'n', '<C-_>' },
+      { mode = 'x', '<C-_>' },
+      'gc',
+      'gb',
     },
     config = function()
-      require('Comment').setup({
+      require('Comment').setup {
         toggler = {
           line = '<C-_>',
         },
@@ -44,15 +44,16 @@ return {
           line = '<C-_>'
         },
         ignore = function()
-          local mode = vim.api.nvim_get_mode()["mode"]
+          local mode = vim.api.nvim_get_mode()['mode']
           if mode == 'n' then
             return '^$'
           end
           return nil
         end,
-        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-      })
-    end
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim')
+        .create_pre_hook(),
+      }
+    end,
   },
   {
     'windwp/nvim-ts-autotag',
@@ -60,10 +61,10 @@ return {
       'typescriptreact', 'svelte', 'vue', 'tsx',
       'jsx', 'rescript', 'php', 'glimmer', 'handlebars', 'hbs',
       -- 'markdown', -- breaks snippets that end in `>`
-    }
+    },
   },
   {
     'dstein64/vim-startuptime',
     cmd = 'StartupTime'
-  }
+  },
 }

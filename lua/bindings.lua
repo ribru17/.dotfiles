@@ -1,47 +1,50 @@
 --> MISCELLANEOUS KEYMAPS <--
 
 -- VSCode style block indentation
-vim.keymap.set("x", "<Tab>", ">gv", { remap = false })
-vim.keymap.set("x", "<S-Tab>", "<gv", { remap = false })
-vim.keymap.set("n", "<Tab>", ">>", { remap = false })
-vim.keymap.set("n", "<S-Tab>", "<<", { remap = false })
+vim.keymap.set('x', '<Tab>', '>gv', { remap = false })
+vim.keymap.set('x', '<S-Tab>', '<gv', { remap = false })
+vim.keymap.set('n', '<Tab>', '>>', { remap = false })
+vim.keymap.set('n', '<S-Tab>', '<<', { remap = false })
 
 -- move selected code blocks smartly with
 -- indenting for if statements and such
-vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set('x', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('x', 'K', ":m '<-2<CR>gv=gv")
 
 -- easily move cursor selection backwards
-vim.keymap.set("x", "<C-h>", "oho", { remap = false })
-vim.keymap.set("x", "<C-l>", "olo", { remap = false })
-vim.keymap.set("x", "<C-k>", "oko", { remap = false })
-vim.keymap.set("x", "<C-j>", "ojo", { remap = false })
+vim.keymap.set('x', '<C-h>', 'oho', { remap = false })
+vim.keymap.set('x', '<C-l>', 'olo', { remap = false })
+vim.keymap.set('x', '<C-k>', 'oko', { remap = false })
+vim.keymap.set('x', '<C-j>', 'ojo', { remap = false })
 
 -- keep cursor in place
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set('n', 'J', 'mzJ`z')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- surround visual selection
-vim.keymap.set("x", "s", "S", { remap = true })
+vim.keymap.set('x', 's', 'S', { remap = true })
 
 -- clear search highlighting
-vim.keymap.set("n", "<Esc>", ":noh<CR>")
+vim.keymap.set('n', '<Esc>', ':noh<CR>')
 
 -- don't enter ex mode(?) by accident
-vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set('n', 'Q', '<nop>')
 
 -- replace instances of hovered word
-vim.keymap.set("n", "<leader>h", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gIc<Left><Left><Left><Left>")
-vim.keymap.set("n", "<leader>H", ":%S/<C-r><C-w>/<C-r><C-w>/gcw<Left><Left><Left><Left>")
+vim.keymap.set('n', '<leader>h',
+':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gIc<Left><Left><Left><Left>')
+vim.keymap.set('n', '<leader>H',
+':%S/<C-r><C-w>/<C-r><C-w>/gcw<Left><Left><Left><Left>')
 
 -- crude search & replace visual selection (breaks on multiple lines, special chars)
-vim.keymap.set("x", "<leader>h", '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>', { remap = false })
+vim.keymap.set('x', '<leader>h', '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
+{ remap = false })
 
 -- toggle comment in insert mode
-vim.keymap.set("i", "<C-_>", function()
+vim.keymap.set('i', '<C-_>', function()
   local api = require('Comment.api')
   api.toggle.linewise.current()
   vim.cmd('normal! $')
@@ -49,14 +52,14 @@ vim.keymap.set("i", "<C-_>", function()
 end, {})
 
 -- change current HTML-style tags
-vim.keymap.set("n", "<leader>cht", "cst", { remap = true })
+vim.keymap.set('n', '<leader>cht', 'cst', { remap = true })
 -- delete current HTML-style tags
-vim.keymap.set("n", "<leader>dht", "dst", { remap = true })
+vim.keymap.set('n', '<leader>dht', 'dst', { remap = true })
 -- delete surrounding delimiters
-vim.keymap.set("n", "<leader>dq", 'dsq', { remap = true })
-vim.keymap.set("n", "<leader>dp", 'ds(', { remap = true })
-vim.keymap.set("n", "<leader>db", 'dsb', { remap = true })
-vim.keymap.set("n", "<leader>dd", 'dsd', { remap = true })
+vim.keymap.set('n', '<leader>dq', 'dsq', { remap = true })
+vim.keymap.set('n', '<leader>dp', 'ds(', { remap = true })
+vim.keymap.set('n', '<leader>db', 'dsb', { remap = true })
+vim.keymap.set('n', '<leader>dd', 'dsd', { remap = true })
 
 -- cycle through tabs (reversing order for more intuitive UX)
 vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', {})

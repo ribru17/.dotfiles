@@ -1,11 +1,11 @@
 --> BEGINNING OF EZ SEMICOLON VIM EDITION <--
 
 local function trim(s)
-  return s:gsub("^%s+", ""):gsub("%s+$", "")
+  return s:gsub('^%s+', ''):gsub('%s+$', '')
 end
 
 local function trimBeg(s)
-  return s:gsub("^%s+", "")
+  return s:gsub('^%s+', '')
 end
 
 local function isInFor(s)
@@ -15,7 +15,8 @@ end
 
 local function isInReturn(s)
   local firstSeven = string.sub(trimBeg(s), 1, 7)
-  return firstSeven == 'return ' or firstSeven == 'return' or firstSeven == 'return;'
+  return firstSeven == 'return ' or firstSeven == 'return' or
+      firstSeven == 'return;'
 end
 
 vim.keymap.set('i', ';', function()

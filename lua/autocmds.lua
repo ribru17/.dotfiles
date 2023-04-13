@@ -18,54 +18,59 @@ vim.api.nvim_create_autocmd('VimLeave', {
 })
 
 -- prevent comment from being inserted when entering new line in existing comment
-vim.api.nvim_create_autocmd("BufEnter",
-  { callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } end, })
+vim.api.nvim_create_autocmd('BufEnter',
+  {
+    callback = function()
+      vim.opt.formatoptions = vim.opt.formatoptions -
+          { 'c', 'r', 'o' }
+    end,
+  })
 
 local lsp_formatting = function()
-  vim.lsp.buf.format({
+  vim.lsp.buf.format {
     filter = function(client)
       -- use clang_format instead for more granular control via null-ls
       -- this makes it so we can still use clangd as an LSP (yay!)
-      return client.name ~= "clangd"
+      return client.name ~= 'clangd'
     end,
-  })
+  }
 end
 
 -- Explicitly format on save: passing this through null-ls failed with
 -- unsupported formatters, e.g. html-lsp
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
   callback = function()
     lsp_formatting()
-  end
+  end,
 })
 
 -- lazy load keymaps and user-defined commands
-vim.api.nvim_create_autocmd("User", {
-  group = vim.api.nvim_create_augroup("LoadBinds", { clear = true }),
-  pattern = "VeryLazy",
+vim.api.nvim_create_autocmd('User', {
+  group = vim.api.nvim_create_augroup('LoadBinds', { clear = true }),
+  pattern = 'VeryLazy',
   callback = function()
     require('bindings')
   end,
 })
 
 -- load EZ-Semicolon upon entering insert mode
-vim.api.nvim_create_autocmd("InsertEnter", {
-  group = vim.api.nvim_create_augroup("LoadEZSemicolon", { clear = true }),
+vim.api.nvim_create_autocmd('InsertEnter', {
+  group = vim.api.nvim_create_augroup('LoadEZSemicolon', { clear = true }),
   callback = function()
     require('ezsemicolon')
-    vim.api.nvim_clear_autocmds({ group = "LoadEZSemicolon" })
+    vim.api.nvim_clear_autocmds { group = 'LoadEZSemicolon' }
   end,
 })
 
 -- open dashboard when in a directory
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
     if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
       require('alpha')
       vim.cmd.Alpha()
     end
-  end
+  end,
 })
 
 local function leave_snippet()
@@ -80,7 +85,7 @@ end
 
 -- prevent weird snippet jumping behavior
 -- https://github.com/L3MON4D3/LuaSnip/issues/258
-vim.api.nvim_create_autocmd("ModeChanged", {
+vim.api.nvim_create_autocmd('ModeChanged', {
   pattern = '*',
-  callback = leave_snippet
+  callback = leave_snippet,
 })

@@ -14,9 +14,9 @@ end
 --> SNIPPET CAN STILL EXPAND BUT WILL NOT SHOW UP IN THE CMP MENU.
 return {
   s({
-    trig = "!",
-    name = "Emmet HTML5 Boilerplate",
-    dscr = "Creates a barebones HTML5 application.",
+    trig = '!',
+    name = 'Emmet HTML5 Boilerplate',
+    dscr = 'Creates a barebones HTML5 application.',
     condition = no,
     show_condition = linestart,
   }, fmt([[
