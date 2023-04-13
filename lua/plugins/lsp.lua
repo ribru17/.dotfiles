@@ -64,6 +64,7 @@ return {
                 runtime = {
                   version = 'LuaJIT',
                 },
+                -- see https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
                 format = {
                   enable = true,
                   defaultConfig = {
