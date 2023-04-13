@@ -106,7 +106,8 @@ return {
           local opts = { buffer = ev.buf, remap = false, silent = true }
           vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
           vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
-          vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
+          vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end,
+            opts)
           -- ^^ go back with <C-o>
           vim.keymap.set('n', 'gD',
             '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
@@ -114,8 +115,13 @@ return {
             opts)
           vim.keymap.set('n', 'ge', function() vim.diagnostic.goto_next() end,
             opts)
-          vim.keymap.set('n', '<leader>r', function() vim.lsp.buf.rename() end,
-            opts)
+          vim.keymap.set('n', '<leader>r', function()
+            local new_name = vim.fn.input { prompt = 'New name: ' }
+            if #new_name == 0 then
+              return
+            end
+            vim.lsp.buf.rename(new_name)
+          end)
           vim.keymap.set('n', '<leader>ca', function()
             vim.lsp.buf.code_action {
               apply = true,
