@@ -76,6 +76,7 @@ local frac = s({
   trig = '.*%)/',
   wordTrig = true,
   regTrig = true,
+  condition = in_mathzone,
 }, {
   f(function(_, snip)
     local match = snip.trigger
@@ -108,11 +109,8 @@ local frac = s({
   i(0),
 })
 
--- local math_wrA = {
--- }
-
 return {}, {
-  -- in math
+  --> IN MATH ZONE, NO WORD BOUNDARY
   s({ trig = '*', wordTrig = false }, fmt([[\cdot]], {}),
     { condition = in_mathzone }),
   s({ trig = '<=', wordTrig = false }, fmt([[\le]], {}),
@@ -322,8 +320,9 @@ return {}, {
       priority = 100,
     },
     f(function(_, snip)
-      return string.format('\\overline{%s}', snip.capturesh1h)
-    end, {})
+      return string.format('\\overline{%s}', snip.captures[1])
+    end, {}),
+    { condition = in_mathzone }
   ),
   s(
     {
@@ -334,7 +333,8 @@ return {}, {
     },
     f(function(_, snip)
       return string.format('\\hat{%s}', snip.captures[1])
-    end, {})
+    end, {}),
+    { condition = in_mathzone }
   ),
   s({ trig = 'sin', wordTrig = false }, fmt([[\sin]], {}),
     { condition = in_mathzone }),
@@ -366,12 +366,14 @@ return {}, {
     { condition = in_mathzone }),
   s({ trig = 'int', wordTrig = false }, fmt([[\int]], {}),
     { condition = in_mathzone }),
-  -- in math, word boundary
-  frac,
 
+  --> IN MATH ZONE, WORD BOUNDARY
+
+  frac,
   s({
     trig = '([%a])(%d)',
     regTrig = true,
+    condition = in_mathzone,
   }, {
     f(function(_, snip)
       return string.format('%s_%s', snip.captures[1], snip.captures[2])
@@ -382,6 +384,7 @@ return {}, {
   s({
     trig = '([%a])_(%d%d)',
     regTrig = true,
+    condition = in_mathzone,
   }, {
     f(function(_, snip)
       return string.format('%s_{%s}', snip.captures[1], snip.captures[2])
@@ -392,28 +395,35 @@ return {}, {
   s({
     trig = '(\\?[%w]+\\?^%w)/',
     regTrig = true,
+    condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
 
   s({
     trig = '(\\?[%w]+\\?_%w)/',
     regTrig = true,
+    condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
 
   s({
     trig = '(\\?[%w]+\\?^{%w*})/',
     regTrig = true,
+    condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
 
   s({
     trig = '(\\?[%w]+\\?_{%w*})/',
     regTrig = true,
+    condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
 
   s({
     trig = '(\\?%w+)/',
     regTrig = true,
+    condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
-  -- not in math
+
+  --> NOT IN MATH ZONE <--
+
   s({ trig = 'dm' }, fmt(
     [[
     $$
