@@ -131,12 +131,33 @@ return {
     lazy = true,
     keys = {
       { '<leader>ff' },
-      { '<leader>sf' },
-      { '<leader>gf' },
+      { '<leader>fs' },
+      { '<leader>fg' },
     },
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       local actions = require('telescope.actions')
+
+      -- open selected buffers in new tabs
+      local function multi_tab(prompt_bufnr)
+        local state = require 'telescope.actions.state'
+        local picker = state.get_current_picker(prompt_bufnr)
+        local multi = picker:get_multi_selection()
+        local single = picker:get_selection()
+        local str = ''
+        if #multi > 0 then
+          for _, j in pairs(multi) do
+            str = str .. 'tabe ' .. j[1] .. ' | '
+          end
+        else
+          -- only open selected in new tab if selection is empty
+          str = str .. 'tabe ' .. single[1]
+        end
+        -- To avoid populating qf or doing ":edit! file", close the prompt first
+        actions.close(prompt_bufnr)
+        vim.api.nvim_command(str)
+      end
+
       require('telescope').setup {
         defaults = {
           layout_config = {
@@ -148,14 +169,17 @@ return {
           initial_mode = 'normal',
           mappings = {
             n = {
-              ['<Tab>'] = actions.select_tab, -- <Tab> to open as tab
+              ['<Tab>'] = multi_tab, -- <Tab> to open as tab
               ['<C-k>'] = actions.move_selection_previous,
               ['<C-j>'] = actions.move_selection_next,
+              ['<S-Space>'] = actions.toggle_selection + actions.move_selection_previous,
+              ['q'] = actions.close,
             },
             i = {
-              ['<Tab>'] = actions.select_tab, -- <Tab> to open as tab
+              ['<Tab>'] = multi_tab, -- <Tab> to open as tab
               ['<C-k>'] = actions.move_selection_previous,
               ['<C-j>'] = actions.move_selection_next,
+              ['<S-Space>'] = actions.toggle_selection + actions.move_selection_previous,
             },
           },
         },
@@ -170,11 +194,10 @@ return {
             file_ignore_patterns = { vim.fn.expand('%') },
           }
         end
-      end
-      , {})
-      vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
-      vim.keymap.set('n', '<leader>sf', function()
-        builtin.grep_string { search = vim.fn.input('Grep > ') };
+      end, {})
+      vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
+      vim.keymap.set('n', '<leader>fs', function()
+        builtin.live_grep { initial_mode = 'insert' }
       end, {})
     end,
   },
