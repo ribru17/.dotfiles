@@ -54,7 +54,7 @@ WezTerm)
   - **NOTE**:
     - Use `Enter` to switch to selected file
     - Use `Tab` to open selected file(s) in new tab
-    - Use `Shift+Space` to add file to selection
+    - Use `t` (`Ctrl+t` in Insert mode) to toggle whether a file is selected
     - Use `q` to quit
 - Tabs
   - Use `Ctrl+n` and `Ctrl+p` to switch to one tab to the left or right,

@@ -172,14 +172,14 @@ return {
               ['<Tab>'] = multi_tab, -- <Tab> to open as tab
               ['<C-k>'] = actions.move_selection_previous,
               ['<C-j>'] = actions.move_selection_next,
-              ['<S-Space>'] = actions.toggle_selection + actions.move_selection_previous,
+              ['t'] = actions.toggle_selection + actions.move_selection_previous,
               ['q'] = actions.close,
             },
             i = {
               ['<Tab>'] = multi_tab, -- <Tab> to open as tab
               ['<C-k>'] = actions.move_selection_previous,
               ['<C-j>'] = actions.move_selection_next,
-              ['<S-Space>'] = actions.toggle_selection + actions.move_selection_previous,
+              ['<C-t>'] = actions.toggle_selection + actions.move_selection_previous,
             },
           },
         },
