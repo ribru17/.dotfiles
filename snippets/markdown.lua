@@ -109,7 +109,25 @@ local frac = s({
   i(0),
 })
 
-return {}, {
+return {
+  --->> NO AUTO-EXPAND <<---
+
+  s(
+    {
+      trig = 'flowchart',
+      name = 'Mermaid Flowchart',
+      dscr = 'Generates a basic left-to-right Mermaid flowchart.'
+    }, fmt([[
+  ```mermaid
+  flowchart LR
+
+  A({1}) --> B({2}){3}
+  ```
+  ]], { i(1, 'Start'), i(2, 'End'), i(3, '') }),
+    { condition = function() return false end, show_condition = in_text }),
+}, {
+  --->> AUTO-EXPAND <<---
+
   --> IN MATH ZONE, NO WORD BOUNDARY
   s({ trig = '*', wordTrig = false }, fmt([[\cdot]], {}),
     { condition = in_mathzone }),
