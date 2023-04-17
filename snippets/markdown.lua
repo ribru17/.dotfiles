@@ -148,8 +148,6 @@ return {}, {
     { condition = in_mathzone }),
   s({ trig = 'iff', wordTrig = false }, fmt([[\iff]], {}),
     { condition = in_mathzone }),
-  s({ trig = 'in', wordTrig = false }, fmt([[\in]], {}),
-    { condition = in_mathzone }),
   s({ trig = 'to', wordTrig = false }, fmt([[\to]], {}),
     { condition = in_mathzone }),
   s({ trig = 'sqrt', wordTrig = false }, fmt([[\sqrt{{{1}}}]], { i(1, '') }),
@@ -421,6 +419,8 @@ return {}, {
     regTrig = true,
     condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
+  s({ trig = 'in' }, fmt([[\in]], {}),
+    { condition = in_mathzone }),
 
   --> NOT IN MATH ZONE <--
 
