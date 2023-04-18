@@ -102,13 +102,13 @@ return {
           end
 
           -- next/prev git changes
-          map('n', '<leader>gj', function()
+          map({ 'n', 'x' }, '<leader>gj', function()
             if vim.wo.diff then return ']c' end
             vim.schedule(function() gs.next_hunk() end)
             return '<Ignore>'
           end, { expr = true })
 
-          map('n', '<leader>gk', function()
+          map({ 'n', 'x' }, '<leader>gk', function()
             if vim.wo.diff then return '[c' end
             vim.schedule(function() gs.prev_hunk() end)
             return '<Ignore>'
