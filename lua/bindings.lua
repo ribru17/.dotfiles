@@ -72,19 +72,13 @@ vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>', {})
 vim.keymap.set('v', '<C-y>', '"+y', { remap = false })
 vim.keymap.set('v', '<C-x>', '"+x', { remap = false })
 
--- insert mode navigation
-vim.keymap.set('i', '<C-k>', '<Up>', { remap = false })
-vim.keymap.set('i', '<C-h>', '<Left>', { remap = false })
-vim.keymap.set('i', '<C-j>', '<Down>', { remap = false })
-vim.keymap.set('i', '<C-l>', '<Right>', { remap = false })
-vim.keymap.set('i', '<C-w>', '<C-Right>', { remap = false })
-vim.keymap.set('i', '<C-b>', '<C-Left>', { remap = false })
-
--- command mode navigation
-vim.keymap.set('c', '<C-k>', '<Up>', { remap = false })
-vim.keymap.set('c', '<C-h>', '<Left>', { remap = false })
-vim.keymap.set('c', '<C-j>', '<Down>', { remap = false })
-vim.keymap.set('c', '<C-l>', '<Right>', { remap = false })
+-- navigation while typing
+vim.keymap.set({ 'i', 'c' }, '<C-k>', '<Up>', { remap = false })
+vim.keymap.set({ 'i', 'c' }, '<C-h>', '<Left>', { remap = false })
+vim.keymap.set({ 'i', 'c' }, '<C-j>', '<Down>', { remap = false })
+vim.keymap.set({ 'i', 'c' }, '<C-l>', '<Right>', { remap = false })
+vim.keymap.set({ 'i', 'c' }, '<C-w>', '<C-Right>', { remap = false })
+vim.keymap.set({ 'i', 'c' }, '<C-b>', '<C-Left>', { remap = false })
 
 -- quicker than hitting esc?
 vim.keymap.set('i', '<M-i>', '<Esc>', { remap = false })
