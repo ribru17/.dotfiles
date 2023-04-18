@@ -35,13 +35,13 @@ vim.keymap.set('n', 'Q', '<nop>')
 
 -- replace instances of hovered word
 vim.keymap.set('n', '<leader>h',
-':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gIc<Left><Left><Left><Left>')
+  ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gIc<Left><Left><Left><Left>')
 vim.keymap.set('n', '<leader>H',
-':%S/<C-r><C-w>/<C-r><C-w>/gcw<Left><Left><Left><Left>')
+  ':%S/<C-r><C-w>/<C-r><C-w>/gcw<Left><Left><Left><Left>')
 
 -- crude search & replace visual selection (breaks on multiple lines, special chars)
 vim.keymap.set('x', '<leader>h', '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
-{ remap = false })
+  { remap = false })
 
 -- toggle comment in insert mode
 vim.keymap.set('i', '<C-_>', function()
@@ -102,6 +102,7 @@ vim.keymap.set('i', '<C-f>', '<C-t>', { remap = true })
 
 -- folding
 vim.keymap.set('n', '<leader>z', 'za', { remap = true })
+vim.keymap.set('n', 'zz', 'za', { remap = true })
 
 -- cursor-in-place copy/paste
 vim.keymap.set('n', 'P', 'P`[', { remap = false })

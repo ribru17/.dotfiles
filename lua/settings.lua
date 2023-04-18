@@ -29,3 +29,4 @@ vim.g.mkdp_preview_options = {
 vim.g.rustfmt_autosave = 1
 vim.g.bullets_outline_levels = { 'ROM', 'ABC', 'num', 'abc', 'rom', 'std-' }
 vim.g.markdown_folding = 1
+vim.g.vim_markdown_folding_style_pythonic = 1
