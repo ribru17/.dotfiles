@@ -131,6 +131,10 @@ return {
   --> IN MATH ZONE, NO WORD BOUNDARY
   s({ trig = '*', wordTrig = false }, fmt([[\cdot]], {}),
     { condition = in_mathzone }),
+  s({ trig = 'ast', wordTrig = false }, fmt([[\ast]], {}),
+    { condition = in_mathzone }),
+  s({ trig = '^', wordTrig = false }, fmt([[^{{{1}}}]], { i(1, '') }),
+    { condition = in_mathzone }),
   s({ trig = '<=', wordTrig = false }, fmt([[\le]], {}),
     { condition = in_mathzone }),
   s({ trig = '>=', wordTrig = false }, fmt([[\ge]], {}),
