@@ -352,6 +352,18 @@ return {
     end, {}),
     { condition = in_mathzone }
   ),
+  s(
+    {
+      trig = '([%a0])vec',
+      wordTrig = false,
+      regTrig = true,
+      priority = 100,
+    },
+    f(function(_, snip)
+      return string.format('\\vec{%s}', snip.captures[1])
+    end, {}),
+    { condition = in_mathzone }
+  ),
   s({ trig = 'sin', wordTrig = false }, fmt([[\sin]], {}),
     { condition = in_mathzone }),
   s({ trig = 'cos', wordTrig = false }, fmt([[\cos]], {}),
