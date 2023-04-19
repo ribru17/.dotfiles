@@ -94,9 +94,16 @@ vim.keymap.set('i', '<C-/>', '<C-_>', { remap = true })
 -- easier keybind of bullet formatting
 vim.keymap.set('i', '<C-f>', '<C-t>', { remap = true })
 
--- folding
+-- toggle current fold
 vim.keymap.set('n', '<leader>z', 'za', { remap = true })
 vim.keymap.set('n', 'zz', 'za', { remap = true })
+-- fold all except current
+vim.keymap.set('n', 'zf', 'zMzv', { remap = true })
+-- open all folds
+vim.keymap.set('n', 'zo', 'zR', { remap = true })
+-- fold selected lines
+vim.keymap.set('x', '<leader>z', 'zf', { remap = true })
+vim.keymap.set('x', 'zz', 'zf', { remap = true })
 
 -- cursor-in-place copy/paste
 vim.keymap.set('n', 'P', 'P`[', { remap = false })

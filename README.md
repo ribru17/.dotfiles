@@ -71,7 +71,8 @@ WezTerm)
 - Diagnostics
   - Use `gd` to Go to Definition of current object
   - Use `gD` to Go to Definition of current object in a new tab
-  - Use `ge` and `gE` to Go to next or previous Error, respectively
+  - Use `<leader>dj` and `<leader>dk` to go to next or previous Diagnostic,
+    respectively
 - Insert mode
   - Prepend `Ctrl` to `h`, `j`, `k`, `l` to navigate as in Normal mode
   - Can use `Meta+i` as an alternative to `Esc` to exit Insert mode
@@ -137,8 +138,13 @@ that file). Save without formatting with `:W`.
 - Use `Esc` to clear search highlighting
 - Use `K` to hover over the current object, showing LSP information
 - Use `<leader>e` to show current error information
-- Use `<leader>z` to toggle current fold
 - Use `:MarkdownPreview` command to preview a markdown file
+- Folding
+  - Use `<leader>z` or `zz` to toggle current fold
+    - Performing these operations in Visual mode will create a fold of the
+      selected lines
+  - Use `zf` to Focus (close all folds except) the current fold
+  - Use `zo` to Open all folds
 
 ### Snippets
 

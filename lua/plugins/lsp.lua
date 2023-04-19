@@ -111,9 +111,11 @@ return {
           -- ^^ go back with <C-o>
           vim.keymap.set('n', 'gD',
             '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
-          vim.keymap.set('n', 'gE', function() vim.diagnostic.goto_prev() end,
+          vim.keymap.set('n', '<leader>dk',
+            function() vim.diagnostic.goto_prev() end,
             opts)
-          vim.keymap.set('n', 'ge', function() vim.diagnostic.goto_next() end,
+          vim.keymap.set('n', '<leader>dj',
+            function() vim.diagnostic.goto_next() end,
             opts)
           vim.keymap.set('n', '<leader>r', function()
             local new_name = vim.fn.input { prompt = 'New name: ' }
