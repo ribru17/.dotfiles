@@ -21,6 +21,8 @@ vim.opt.pumheight = 10
 
 vim.g.mapleader = ' '
 vim.g.mkdp_echo_preview_url = 1
+vim.g.mkdp_markdown_css = vim.fn.expand('~/.config/nvim/markdown.css')
+vim.g.mkdp_theme = 'dark'
 vim.g.mkdp_preview_options = {
   maid = {
     theme = 'dark',
