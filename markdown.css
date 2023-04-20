@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
+.octicon {
+  fill: white;
+}
+
 /*
  * github like style
  * https://github.com/iamcco/markdown.css/blob/master/dest/github/markdown.css
