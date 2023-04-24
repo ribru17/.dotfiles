@@ -213,7 +213,7 @@ return {
     { condition = in_mathzone }),
   s({ trig = 'nn', wordTrig = false }, fmt([[\cap]], {}),
     { condition = in_mathzone }),
-  s({ trig = 'UU', wordTrig = false }, fmt([[\cup]], {}),
+  s({ trig = 'uu', wordTrig = false }, fmt([[\cup]], {}),
     { condition = in_mathzone }),
   s({ trig = 'empty', wordTrig = false }, fmt([[\emptyset]], {}),
     { condition = in_mathzone }),
