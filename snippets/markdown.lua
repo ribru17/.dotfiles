@@ -170,6 +170,8 @@ return {
     { condition = in_mathzone }),
   s({ trig = 'iff', wordTrig = false }, fmt([[\iff]], {}),
     { condition = in_mathzone }),
+  s({ trig = '\\le>', wordTrig = false }, fmt([[\iff]], {}),
+    { condition = in_mathzone }),
   s({ trig = 'to', wordTrig = false }, fmt([[\to]], {}),
     { condition = in_mathzone }),
   s({ trig = 'sqrt', wordTrig = false }, fmt([[\sqrt{{{1}}}]], { i(1, '') }),
@@ -455,6 +457,10 @@ return {
   s({ trig = 'omega' }, fmt([[\omega]], {}),
     { condition = in_mathzone }),
   s({ trig = 'Omega' }, fmt([[\Omega]], {}),
+    { condition = in_mathzone }),
+  s({ trig = 'land' }, fmt([[\land]], {}),
+    { condition = in_mathzone }),
+  s({ trig = 'lor' }, fmt([[\lor]], {}),
     { condition = in_mathzone }),
 
   --> NOT IN MATH ZONE <--
