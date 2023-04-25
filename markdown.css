@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
+.mermaid > svg {
+  max-width: none !important;
+}
+
 .octicon {
   fill: var(--color-text-primary);
 }
