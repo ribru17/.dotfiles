@@ -56,11 +56,11 @@ return {
     end,
   },
   {
-    'windwp/nvim-ts-autotag',
+    'ribru17/nvim-ts-autotag',
     ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact',
       'typescriptreact', 'svelte', 'vue', 'tsx',
       'jsx', 'rescript', 'php', 'glimmer', 'handlebars', 'hbs',
-      -- 'markdown', -- breaks snippets that end in `>`
+      -- 'markdown', -- plugin does not work for markdown files (despite claiming to)
     },
   },
   {
