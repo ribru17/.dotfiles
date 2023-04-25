@@ -25,6 +25,9 @@ require('autocmds')
 require('lazy').setup('plugins', {
   --defaults = { lazy = true },
   -- checker = { enabled = true },
+  change_detection = {
+    notify = false,
+  },
   performance = {
     cache = {
       enabled = true,
