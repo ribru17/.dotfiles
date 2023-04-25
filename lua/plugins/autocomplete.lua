@@ -37,6 +37,19 @@ return {
             vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col)
             :match('%s') == nil
       end
+
+      local escape_next = function()
+        local current_line = vim.api.nvim_get_current_line()
+        local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+        local next_char = string.sub(current_line, col + 1, col + 1)
+        return next_char == ')' or next_char == '"' or next_char == "'" or
+            next_char == '`' or next_char == ']' or next_char == '}'
+      end
+
+      local move_right = function()
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+      end
       -- supertab functionality
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local luasnip = require('luasnip')
@@ -51,6 +64,8 @@ return {
             cmp.confirm { select = true }
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
+          elseif escape_next() then
+            move_right()
           elseif has_words_before() then
             cmp.complete()
           else
