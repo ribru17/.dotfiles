@@ -12,19 +12,19 @@ return {
         enable_autosnippets = true,
         history = true,
       }
-      require("luasnip.loaders.from_lua").lazy_load({ paths = "./snippets" })
-    end
+      require('luasnip.loaders.from_lua').lazy_load { paths = './snippets' }
+    end,
   },
   {
     'hrsh7th/nvim-cmp',
     event = { 'InsertEnter' },
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp', },
-      { 'hrsh7th/cmp-buffer', },
-      { 'hrsh7th/cmp-path', },
-      { 'saadparwaiz1/cmp_luasnip', },
-      { 'hrsh7th/cmp-nvim-lua', },
-      { 'onsails/lspkind-nvim', },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lua' },
+      { 'onsails/lspkind-nvim' },
     },
     config = function()
       local cmp = require('cmp')
@@ -34,7 +34,8 @@ return {
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and
-            vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+            vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col)
+            :match('%s') == nil
       end
       -- supertab functionality
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -55,7 +56,7 @@ return {
           else
             fallback()
           end
-        end, { "i", "s", }),
+        end, { 'i', 's' }),
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -64,7 +65,7 @@ return {
           else
             fallback()
           end
-        end, { "i", "s" }),
+        end, { 'i', 's' }),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping(function(fallback)
           fallback()
@@ -79,7 +80,7 @@ return {
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
-          end
+          end,
         },
         sources = {
           { name = 'path' },
@@ -90,8 +91,8 @@ return {
         },
         formatting = {
           fields = { 'abbr', 'menu', 'kind' },
-          format = lspkind.cmp_format({
-            mode = "symbol_text", -- show only symbol annotations
+          format = lspkind.cmp_format {
+            mode = 'symbol_text', -- show only symbol annotations
             -- The function below will be called before any actual modifications from lspkind
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
             before = function(_, vim_item)
@@ -109,11 +110,11 @@ return {
               end
               return vim_item
             end,
-          }),
+          },
         },
         window = {
           completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered()
+          documentation = cmp.config.window.bordered(),
         },
         experimental = {
           ghost_text = true,
@@ -121,9 +122,11 @@ return {
       }
 
       local palettes = require('catppuccin.palettes').get_palette()
-      vim.api.nvim_set_hl(0, "CmpItemAbbr", { ctermbg = 0, fg = palettes.text })
-      vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { ctermbg = 0, fg = palettes.blue })
-      vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { ctermbg = 0, fg = palettes.blue })
+      vim.api.nvim_set_hl(0, 'CmpItemAbbr', { ctermbg = 0, fg = palettes.text })
+      vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch',
+        { ctermbg = 0, fg = palettes.blue })
+      vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy',
+        { ctermbg = 0, fg = palettes.blue })
 
       require('nvim-autopairs').setup {}
 
@@ -135,6 +138,6 @@ return {
       )
 
       cmp.setup(cmp_config)
-    end
+    end,
   },
 }
