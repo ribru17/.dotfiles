@@ -6,8 +6,8 @@
   15pt
 - Theme: [Catppuccin](https://github.com/catppuccin/nvim)
 
-![neovim1](https://user-images.githubusercontent.com/55766287/228631584-4b8b7fb4-9f8d-4895-9468-71633f0fc218.png)
-![neovim2](https://user-images.githubusercontent.com/55766287/229266560-df25e8c6-fd4e-495e-876d-7a890840815e.png)
+![nvimhome](https://user-images.githubusercontent.com/55766287/234681330-0933305d-0c2d-47e9-90ba-94535aaf616f.png)
+![nvimediting](https://user-images.githubusercontent.com/55766287/229266560-df25e8c6-fd4e-495e-876d-7a890840815e.png)
 
 ## Optional Prerequisites
 
