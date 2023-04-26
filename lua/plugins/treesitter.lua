@@ -8,7 +8,7 @@ return {
       require 'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all" (the first five parsers should always be installed)
         ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'javascript',
-          'typescript', 'rust', 'tsx', 'markdown', 'markdown_inline' },
+          'typescript', 'rust', 'tsx', 'markdown', 'markdown_inline', },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
@@ -32,7 +32,7 @@ return {
           filetypes = {
             'html', 'javascript', 'typescript', 'javascriptreact',
             'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript', 'xml',
-            'php', 'glimmer', 'handlebars', 'hbs'
+            'php', 'glimmer', 'handlebars', 'hbs',
             -- 'markdown', -- breaks snippets that end in `>`
           },
         },

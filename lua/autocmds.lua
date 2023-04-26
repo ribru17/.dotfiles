@@ -3,9 +3,9 @@ vim.api.nvim_create_augroup('setIndent', { clear = true })
 vim.api.nvim_create_autocmd('Filetype', {
   group = 'setIndent',
   pattern = { 'xml', 'html', 'xhtml', 'css', 'scss', 'javascript', 'typescript',
-    'yaml', 'javascriptreact', 'typescriptreact', 'markdown', 'lua'
+    'yaml', 'javascriptreact', 'typescriptreact', 'markdown', 'lua',
   },
-  command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2'
+  command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2',
 })
 
 -- where applicable, reset cursor to blinking I-beam after closing Neovim
@@ -14,7 +14,7 @@ vim.api.nvim_create_augroup('resetCursor', { clear = true })
 vim.api.nvim_create_autocmd('VimLeave', {
   group = 'resetCursor',
   pattern = '*',
-  command = 'set guicursor=a:ver10-blinkon1'
+  command = 'set guicursor=a:ver10-blinkon1',
 })
 
 -- prevent comment from being inserted when entering new line in existing comment
@@ -31,7 +31,8 @@ local lsp_formatting = function()
     filter = function(client)
       -- use clang_format instead for more granular control via null-ls
       -- this makes it so we can still use clangd as an LSP (yay!)
-      return client.name ~= 'clangd'
+      local disabled_formatters = { 'clangd', 'tsserver', 'html' }
+      return disabled_formatters[client.name] == nil
     end,
   }
 end

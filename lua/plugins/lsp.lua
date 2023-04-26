@@ -206,6 +206,9 @@ return {
           null_ls.builtins.formatting.clang_format.with {
             extra_args = { '--style', '{IndentWidth: 4}' },
           },
+          null_ls.builtins.formatting.prettierd.with {
+            filetypes = { 'css', 'html' },
+          },
         },
       }
     end,

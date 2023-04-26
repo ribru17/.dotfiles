@@ -90,7 +90,7 @@ return {
       local cmp_config = {
         mapping = cmp_mappings,
         completion = {
-          completeopt = 'menu,menuone,noinsert'
+          completeopt = 'menu,menuone,noinsert',
         },
         snippet = {
           expand = function(args)
