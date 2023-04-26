@@ -116,7 +116,7 @@ return {
     {
       trig = 'flowchart',
       name = 'Mermaid Flowchart',
-      dscr = 'Generates a basic left-to-right Mermaid flowchart.'
+      dscr = 'Generates a basic left-to-right Mermaid flowchart.',
     }, fmt([[
   ```mermaid
   flowchart LR

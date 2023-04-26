@@ -17,36 +17,36 @@
  */
 
 :root {
-    --color-text-primary: #333;
-    --color-text-tertiary: #777;
-    --color-text-link: #4078c0;
-    --color-bg-primary: #fff;
-    --color-bg-secondary: #fafbfc;
-    --color-bg-tertiary: #f8f8f8;
-    --color-border-primary: #ddd;
-    --color-border-secondary: #eaecef;
-    --color-border-tertiary: #d1d5da;
-    --color-kbd-foreground: #444d56;
-    --color-markdown-blockquote-border: #dfe2e5;
-    --color-markdown-table-border: #dfe2e5;
-    --color-markdown-table-tr-border: #c6cbd1;
-    --color-markdown-code-bg: #1b1f230d;
+  --color-text-primary: #333;
+  --color-text-tertiary: #777;
+  --color-text-link: #4078c0;
+  --color-bg-primary: #fff;
+  --color-bg-secondary: #fafbfc;
+  --color-bg-tertiary: #f8f8f8;
+  --color-border-primary: #ddd;
+  --color-border-secondary: #eaecef;
+  --color-border-tertiary: #d1d5da;
+  --color-kbd-foreground: #444d56;
+  --color-markdown-blockquote-border: #dfe2e5;
+  --color-markdown-table-border: #dfe2e5;
+  --color-markdown-table-tr-border: #c6cbd1;
+  --color-markdown-code-bg: #1b1f230d;
 }
 [data-theme="dark"] {
-    --color-text-primary: #c9d1d9;
-    --color-text-tertiary: #8b949e;
-    --color-text-link: #58a6ff;
-    --color-bg-primary: #0d1117;
-    --color-bg-secondary: #0d1117;
-    --color-bg-tertiary: #161b22;
-    --color-border-primary: #30363d;
-    --color-border-secondary: #21262d;
-    --color-border-tertiary: #6e7681;
-    --color-kbd-foreground: #b1bac4;
-    --color-markdown-blockquote-border: #3b434b;
-    --color-markdown-table-border: #3b434b;
-    --color-markdown-table-tr-border: #272c32;
-    --color-markdown-code-bg: #f0f6fc26;
+  --color-text-primary: #c9d1d9;
+  --color-text-tertiary: #8b949e;
+  --color-text-link: #58a6ff;
+  --color-bg-primary: #0d1117;
+  --color-bg-secondary: #0d1117;
+  --color-bg-tertiary: #161b22;
+  --color-border-primary: #30363d;
+  --color-border-secondary: #21262d;
+  --color-border-tertiary: #6e7681;
+  --color-kbd-foreground: #b1bac4;
+  --color-markdown-blockquote-border: #3b434b;
+  --color-markdown-table-border: #3b434b;
+  --color-markdown-table-tr-border: #272c32;
+  --color-markdown-code-bg: #f0f6fc26;
 }
 
 .markdown-body ol ol,
@@ -61,7 +61,8 @@
   margin-bottom: 0;
 }
 .markdown-body {
-  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
   color: var(--color-text-primary);
   line-height: 1.6;
@@ -184,7 +185,7 @@
   list-style-type: disc;
 }
 .markdown-body dl {
-  margin-bottom: 1.3em
+  margin-bottom: 1.3em;
 }
 .markdown-body dl dt {
   font-weight: 700;
@@ -227,7 +228,7 @@
 .markdown-body kbd {
   display: inline-block;
   padding: 5px 6px;
-  font: 14px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font: 14px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   line-height: 10px;
   color: var(--color-kbd-foreground);
   vertical-align: middle;
@@ -303,7 +304,8 @@
   list-style-type: none;
 }
 .task-list-item input {
-  font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   margin: 0 0.35em 0.25em -1.6em;
   vertical-align: middle;
 }

@@ -1,11 +1,11 @@
 return {
   {
     'tpope/vim-fugitive',
-    cmd = 'Git'
+    cmd = 'Git',
   },
   {
     'tpope/vim-abolish',
-    cmd = 'S'
+    cmd = 'S',
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
@@ -41,7 +41,7 @@ return {
           line = '<C-_>',
         },
         opleader = {
-          line = '<C-_>'
+          line = '<C-_>',
         },
         ignore = function()
           local mode = vim.api.nvim_get_mode()['mode']
@@ -65,6 +65,6 @@ return {
   },
   {
     'dstein64/vim-startuptime',
-    cmd = 'StartupTime'
+    cmd = 'StartupTime',
   },
 }

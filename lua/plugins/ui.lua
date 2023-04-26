@@ -56,7 +56,7 @@ return {
         },
         options = {
           disabled_filetypes = {
-            'alpha'
+            'alpha',
           },
         },
       }
@@ -221,7 +221,7 @@ return {
           type = 'text',
           val = ' ',
           opts = {
-            position = 'center'
+            position = 'center',
           },
         },
         { type = 'padding', val = 2 },

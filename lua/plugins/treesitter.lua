@@ -33,7 +33,7 @@ return {
             'html', 'javascript', 'typescript', 'javascriptreact',
             'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript', 'xml',
             'php', 'glimmer', 'handlebars', 'hbs',
-            -- 'markdown', -- breaks snippets that end in `>`
+            -- 'markdown', -- does not support this filetype though claiming to
           },
         },
         indent = {
