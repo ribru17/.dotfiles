@@ -143,19 +143,18 @@ return {
         local state = require 'telescope.actions.state'
         local picker = state.get_current_picker(prompt_bufnr)
         local multi = picker:get_multi_selection()
-        local single = picker:get_selection()
         local str = ''
         if #multi > 0 then
           for _, j in pairs(multi) do
-            str = str .. 'tabe ' .. j[1] .. ' | '
+            str = str .. 'tabe ' .. j.filename .. ' | '
           end
+          -- To avoid populating qf or doing ":edit! file", close the prompt first
+          actions.close(prompt_bufnr)
+          vim.api.nvim_command(str)
         else
-          -- only open selected in new tab if selection is empty
-          str = str .. 'tabe ' .. single[1]
+          -- only open selected buffer in new tab if selection is empty
+          require('telescope.actions').select_tab(prompt_bufnr)
         end
-        -- To avoid populating qf or doing ":edit! file", close the prompt first
-        actions.close(prompt_bufnr)
-        vim.api.nvim_command(str)
       end
 
       require('telescope').setup {
