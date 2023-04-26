@@ -22,6 +22,8 @@
   using Wayland in order to support yanking to the system clipboard
 - Install [Deno](https://deno.land/manual@v1.31.1/getting_started/installation)
   for `deno fmt` (formatting of Javascript-family files and Markdown)
+- Install `prettierd` via Mason for formatting of files that `deno fmt` doesn't
+  support (CSS, HTML, etc.)
 - Install `clang_format` via Mason for C, C++ formatting (`clangd` enables
   formatting but it's not extensible with `null-ls`)
 
