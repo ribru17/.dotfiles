@@ -56,11 +56,11 @@ return {
     end,
   },
   {
-    'ribru17/nvim-ts-autotag',
+    'windwp/nvim-ts-autotag',
     ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact',
       'typescriptreact', 'svelte', 'vue', 'tsx',
       'jsx', 'rescript', 'php', 'glimmer', 'handlebars', 'hbs',
-      -- 'markdown', -- plugin does not work for markdown files (despite claiming to)
+      'markdown',
     },
   },
   {

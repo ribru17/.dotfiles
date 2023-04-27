@@ -29,12 +29,9 @@ return {
         -- HTML-style tag completion
         autotag = {
           enable = true,
-          filetypes = {
-            'html', 'javascript', 'typescript', 'javascriptreact',
-            'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript', 'xml',
-            'php', 'glimmer', 'handlebars', 'hbs',
-            -- 'markdown', -- does not support this filetype though claiming to
-          },
+          -- disable auto-close because we manually implement this in luasnip
+          -- https://github.com/windwp/nvim-ts-autotag/pull/105#discussion_r1179164951
+          enable_close = 'false',
         },
         indent = {
           enable = true,
