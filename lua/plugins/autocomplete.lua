@@ -22,7 +22,7 @@ return {
         autotag.close_tag()
         vim.api.nvim_win_set_cursor(0, { row, col + 1 })
         ls.expand_auto()
-      end, { remap = false, buffer = 0 })
+      end, { remap = false })
     end,
   },
   {
