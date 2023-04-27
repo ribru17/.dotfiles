@@ -29,10 +29,16 @@ vim.api.nvim_create_autocmd('BufEnter',
 local lsp_formatting = function()
   vim.lsp.buf.format {
     filter = function(client)
-      -- use clang_format instead for more granular control via null-ls
-      -- this makes it so we can still use clangd as an LSP (yay!)
+      -- disable formatters that are already covered by null-ls to prevent conflicts
       local disabled_formatters = { 'clangd', 'tsserver', 'html' }
-      return disabled_formatters[client.name] == nil
+
+      for _, value in ipairs(disabled_formatters) do
+        if client.name == value then
+          return false
+        end
+      end
+
+      return true
     end,
   }
 end
