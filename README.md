@@ -106,8 +106,8 @@ that file). Save without formatting with `:W`.
 - Use `Tab` and `Shift+Tab` to indent or remove indent, respectively
   - In Normal mode, this affects the current line. In Visual mode, this affects
     all selected lines.
-- Use `<C-d>` and `<C-f>` to decrease or increase bullet point indentation in
-  insert mode, respectively.
+- Use `Ctrl+d` and `Ctrl+f` (or `Shift+Tab` and `Tab`) to decrease or increase
+  bullet point indentation in insert mode, respectively.
 - Search and Replace
   - Use `<leader>h` to search and replace instances of the hovered word
     - Use a capital `H` to smartly match different cases like camelCase,
