@@ -30,9 +30,7 @@ return {
   {
     'numToStr/Comment.nvim',
     keys = {
-      { mode = 'n', '<C-_>' },
-      { mode = 'x', '<C-_>' },
-      'gc',
+      { mode = { 'i', 'n', 'x' }, '<C-_>' },
       'gb',
     },
     config = function()
@@ -53,6 +51,14 @@ return {
         pre_hook = require('ts_context_commentstring.integrations.comment_nvim')
             .create_pre_hook(),
       }
+
+      -- toggle comment in insert mode
+      local api = require('Comment.api')
+      vim.keymap.set('i', '<C-_>', function()
+        api.toggle.linewise.current()
+        vim.cmd('normal! $')
+        vim.cmd([[startinsert!]])
+      end, {})
     end,
   },
   {
