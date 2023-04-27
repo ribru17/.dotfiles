@@ -60,6 +60,12 @@ return {
         local row, col = unpack(vim.api.nvim_win_get_cursor(0))
         vim.api.nvim_win_set_cursor(0, { row, col + 1 })
       end
+
+      local try_bullet_tab = function()
+        local line = vim.api.nvim_get_current_line()
+        return line:match('^%s*(.-)%s*$') == '-' and
+            vim.bo.filetype == 'markdown'
+      end
       -- supertab functionality
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local luasnip = require('luasnip')
@@ -76,6 +82,10 @@ return {
             luasnip.expand_or_jump()
           elseif escape_next() then
             move_right()
+          elseif try_bullet_tab() then
+            vim.cmd [[BulletDemote]]
+            local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+            vim.api.nvim_win_set_cursor(0, { row, col + 1 })
           elseif has_words_before() then
             cmp.complete()
           else
@@ -87,6 +97,10 @@ return {
             cmp.select_prev_item()
           elseif luasnip.jumpable(-1) then
             luasnip.jump(-1)
+          elseif try_bullet_tab() then
+            vim.cmd [[BulletPromote]]
+            local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+            vim.api.nvim_win_set_cursor(0, { row, col + 1 })
           else
             fallback()
           end
