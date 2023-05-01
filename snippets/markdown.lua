@@ -143,6 +143,8 @@ return {
     { condition = in_mathzone }),
   s({ trig = '=>', wordTrig = false }, fmt([[\implies]], {}),
     { condition = in_mathzone }),
+  s({ trig = '->', wordTrig = false }, fmt([[\longrightarrow]], {}),
+    { condition = in_mathzone }),
   s({ trig = '=<', wordTrig = false }, fmt([[\impliedby]], {}),
     { condition = in_mathzone }),
   s({ trig = '>>', wordTrig = false }, fmt([[\gg]], {}),

@@ -19,7 +19,15 @@ local function isInReturn(s)
       firstSeven == 'return;'
 end
 
+local disabled_filetypes = { 'markdown', 'text' }
+
 vim.keymap.set('i', ';', function()
+  for k = 1, #disabled_filetypes do
+    local v = disabled_filetypes[k]
+    if vim.bo.filetype == v then
+      return ';'
+    end
+  end
   local line = vim.api.nvim_get_current_line()
   local last = string.sub(trim(line), -1)
   if isInFor(line) then
