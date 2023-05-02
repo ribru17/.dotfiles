@@ -59,6 +59,9 @@ return {
             'alpha',
           },
         },
+        extensions = {
+          'nvim-tree',
+        },
       }
     end,
   },
