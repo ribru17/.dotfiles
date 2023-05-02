@@ -96,8 +96,6 @@ return {
           }
         end
 
-        -- Default mappings. Feel free to modify or remove as you wish.
-        --
         -- BEGIN_DEFAULT_ON_ATTACH
         vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
         vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer,
@@ -174,16 +172,20 @@ return {
           opts('CD'))
         -- END_DEFAULT_ON_ATTACH
 
-
-        -- Mappings migrated from view.mappings.list
-        --
-        -- You will need to insert "your code goes here" for any mappings with a custom action_cb
         vim.keymap.set('n', '.', api.tree.toggle_hidden_filter,
           opts('Toggle Dotfiles'))
-        vim.keymap.set('n', 'n', api.fs.create, opts('Create'))
+        vim.keymap.set('n', 't', api.fs.create, opts('Create'))
         vim.keymap.set('n', 'r', api.fs.rename_sub, opts('Rename: Omit Filename'))
-        -- vim.keymap.set('n', '<', api.tree.change_root_to_parent, opts('Up'))
+        vim.keymap.set('n', 'a', api.tree.change_root_to_node, opts('CD'))
         vim.keymap.set('n', '<C-r>', api.tree.reload, opts('Refresh'))
+        vim.keymap.set('n', '<Tab>', api.node.open.tab, opts('Open: New Tab'))
+        vim.keymap.set('n', 'd', api.fs.trash, opts('Trash'))
+        vim.keymap.set('n', 'D',
+          '<Cmd>lua require("nvim-tree.api").fs.create()<CR>/<Left>',
+          opts('Create Directory'))
+        vim.keymap.set('n', '<Esc>', api.tree.close, opts('Close'))
+        vim.keymap.set('n', 'z', api.node.navigate.parent_close,
+          opts('Close Directory'))
       end
 
       require('nvim-tree').setup {
