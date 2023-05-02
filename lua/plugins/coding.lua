@@ -77,7 +77,7 @@ return {
     'nvim-tree/nvim-tree.lua',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     keys = {
-      { '<leader>t', '<Cmd>NvimTreeToggle<CR>' },
+      { '<leader>t', '<Cmd>NvimTreeFindFileToggle<CR>' },
     },
     config = function()
       local HEIGHT_RATIO = 0.75
