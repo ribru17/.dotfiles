@@ -79,6 +79,7 @@ return {
     keys = {
       { '<leader>t', '<Cmd>NvimTreeFindFileToggle<CR>' },
     },
+    cmd = { 'NvimTreeToggle' },
     config = function()
       local HEIGHT_RATIO = 0.75
       local WIDTH_RATIO = 0.5
