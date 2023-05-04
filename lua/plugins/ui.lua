@@ -189,11 +189,30 @@ return {
 
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', function()
+        -- ignore opened buffers if not in dashboard or directory
         if vim.fn.isdirectory(vim.fn.expand('%')) == 1 or vim.bo.filetype == 'alpha' then
           builtin.find_files()
         else
+          local function get_open_buffers()
+            local buffers = {}
+            local len = 0
+            local vim_fn = vim.fn
+            local buflisted = vim_fn.buflisted
+
+            for buffer = 1, vim_fn.bufnr('$') do
+              if buflisted(buffer) == 1 then
+                len = len + 1
+                -- get relative name of buffer without leading slash
+                buffers[len] = string.gsub(vim.api.nvim_buf_get_name(buffer),
+                  vim.loop.cwd(), ''):sub(2)
+              end
+            end
+
+            return buffers
+          end
+
           builtin.find_files {
-            file_ignore_patterns = { vim.fn.expand('%') },
+            file_ignore_patterns = get_open_buffers(),
           }
         end
       end, {})
