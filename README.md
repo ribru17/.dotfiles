@@ -1,6 +1,6 @@
-# My Neovim Configuration
+# My Neovim Configuration :fire:
 
-## Screenshot
+## :camera: Screenshot
 
 - Font: [Iosevka](https://github.com/ribru17/iosevka-config), Custom Extended
   15pt
@@ -9,7 +9,13 @@
 ![nvimhome](https://user-images.githubusercontent.com/55766287/234681330-0933305d-0c2d-47e9-90ba-94535aaf616f.png)
 ![nvimediting](https://user-images.githubusercontent.com/55766287/229266560-df25e8c6-fd4e-495e-876d-7a890840815e.png)
 
-## Optional Prerequisites
+## :package: Installation
+
+Run `git clone --depth 1 https://github.com/ribru17/nvim.git` in your
+`~/.config` directory (`~/AppData/Local` on Windows). Running `nvim` should
+install all plugins for you, no extra commands necessary.
+
+## :lock: Optional Prerequisites
 
 - Use a font that is patched with the
   [Nerd Fonts library](https://github.com/ryanoasis/nerd-fonts) for statusline,
@@ -27,7 +33,7 @@
 - Install `clang_format` via Mason for C, C++ formatting (`clangd` enables
   formatting but it's not extensible with `null-ls`)
 
-## Usage
+## :rocket: Usage
 
 This configuration extends all of the core functionality of Neovim. I use
 `Space` as the Leader key. All mappings are in Normal mode unless specified
@@ -164,7 +170,7 @@ Inherits all snippets provided by the LSP. Additionally...
 - Check base startup time with `:StartupTime`
 - Check plugin loading information with `:Lazy profile`
 
-## Troubleshooting
+## :question: Troubleshooting
 
 - If, after quitting Neovim in a Markdown file, you get the error:
   ```
