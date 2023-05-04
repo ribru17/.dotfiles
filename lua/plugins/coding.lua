@@ -175,7 +175,7 @@ return {
 
         vim.keymap.set('n', '.', api.tree.toggle_hidden_filter,
           opts('Toggle Dotfiles'))
-        vim.keymap.set('n', 't', api.fs.create, opts('Create'))
+        vim.keymap.set('n', 'n', api.fs.create, opts('Create'))
         vim.keymap.set('n', 'r', api.fs.rename_sub, opts('Rename: Omit Filename'))
         vim.keymap.set('n', 'a', api.tree.change_root_to_node, opts('CD'))
         vim.keymap.set('n', '<C-r>', api.tree.reload, opts('Refresh'))
@@ -218,14 +218,23 @@ return {
           },
         },
         renderer = {
+          -- add a '/' at the end of a folder
           add_trailing = true,
           icons = {
             show = {
+              -- remove annoying icons in front of file names
               modified = false,
               git = false,
             },
           },
+          -- don't highlight special files, only opened ones
+          highlight_opened_files = 'name',
+          special_files = {},
         },
+        -- synchronize the file tree across tabs (emulate VS Code style)
+        -- not really necessary since we are using the float style view but
+        -- going to keep it in just in case we want to switch back to the
+        -- classic view
         tab = {
           sync = {
             open = true,
