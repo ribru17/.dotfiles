@@ -204,7 +204,9 @@ return {
             extra_args = { '--single-quote' },
           },
           null_ls.builtins.formatting.clang_format.with {
-            extra_args = { '--style', '{IndentWidth: 4}' },
+            -- https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+            extra_args = { '--style',
+              '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}', },
           },
           null_ls.builtins.formatting.prettierd.with {
             filetypes = { 'css', 'html' },
