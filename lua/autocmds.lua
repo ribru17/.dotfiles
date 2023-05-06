@@ -94,3 +94,17 @@ vim.api.nvim_create_autocmd('ModeChanged', {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd('TabClosed', {
+  pattern = '*',
+  callback = function()
+    local i = 1
+    local lastbuf = vim.fn.bufnr('$')
+    while i <= lastbuf do
+      if vim.fn.buflisted(i) == 1 and vim.fn.bufwinnr(i) == -1 then
+        vim.cmd(':bd ' .. i)
+      end
+      i = i + 1
+    end
+  end,
+})
