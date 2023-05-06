@@ -193,6 +193,11 @@ return {
         if vim.fn.isdirectory(vim.fn.expand('%')) == 1 or vim.bo.filetype == 'alpha' then
           builtin.find_files()
         else
+          local function literalize(str)
+            return str:gsub('[%(%)%.%%%+%-%*%?%[%]%^%$]',
+              function(c) return '%' .. c end)
+          end
+
           local function get_open_buffers()
             local buffers = {}
             local len = 0
@@ -204,7 +209,7 @@ return {
                 len = len + 1
                 -- get relative name of buffer without leading slash
                 buffers[len] = string.gsub(vim.api.nvim_buf_get_name(buffer),
-                  vim.loop.cwd(), ''):sub(2)
+                  literalize(vim.loop.cwd()), ''):sub(2)
               end
             end
 
