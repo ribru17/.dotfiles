@@ -18,6 +18,7 @@ vim.opt.colorcolumn = '80'
 vim.opt.termguicolors = true
 vim.opt.mouse = ''
 vim.opt.pumheight = 10
+vim.opt.relativenumber = true
 
 vim.g.mapleader = ' '
 vim.g.mkdp_echo_preview_url = 1
