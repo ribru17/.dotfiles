@@ -10,4 +10,8 @@ return {
     'dkarter/bullets.vim',
     ft = 'markdown',
   },
+  {
+    'mikeboiko/vim-markdown-folding',
+    ft = 'markdown',
+  },
 }
