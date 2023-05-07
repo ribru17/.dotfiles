@@ -1,6 +1,6 @@
 return {
   {
-    'iamcco/markdown-preview.nvim',
+    'ribru17/markdown-preview.nvim',
     ft = 'markdown',
     build = function()
       vim.fn['mkdp#util#install']()
