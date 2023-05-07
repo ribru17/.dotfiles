@@ -101,6 +101,38 @@ vim.keymap.set('x', 'zz', 'zf', { remap = true })
 vim.keymap.set('n', 'P', 'P`[', { remap = false })
 vim.keymap.set('x', 'y', 'ygv<Esc>', { remap = false })
 
+local function NextClosedFold(dir)
+  local cmd = 'norm!z' .. dir
+  local view = vim.fn.winsaveview()
+  local l0 = 0
+  local l = view.lnum
+  local open = true
+  while l ~= l0 and open do
+    vim.cmd(cmd)
+    l0 = l
+    l = vim.api.nvim_win_get_cursor(0)[1]
+    open = vim.fn.foldclosed(l) < 0
+  end
+  if open then
+    vim.fn.winrestview(view)
+  end
+end
+
+local function RepeatFoldMove(dir)
+  local n = vim.v.count < 1 and 1 or vim.v.count
+  while n > 0 do
+    NextClosedFold(dir)
+    n = n - 1
+  end
+end
+
+vim.keymap.set({ 'n', 'x' }, 'zj', function()
+  RepeatFoldMove('j')
+end, { remap = false })
+vim.keymap.set({ 'n', 'x' }, 'zk', function()
+  RepeatFoldMove('k')
+end, { remap = false })
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
