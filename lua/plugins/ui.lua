@@ -136,6 +136,7 @@ return {
       { '<leader>ff' },
       { '<leader>fs' },
       { '<leader>fg' },
+      { '<leader>fw' },
     },
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
@@ -221,10 +222,14 @@ return {
           }
         end
       end, {})
-      vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
+      vim.keymap.set('n', '<leader>fg',
+        function()
+          builtin.grep_string { search = vim.fn.input('Grep > ') }
+        end, {})
       vim.keymap.set('n', '<leader>fs', function()
         builtin.live_grep { initial_mode = 'insert' }
       end, {})
+      vim.keymap.set('n', '<leader>fw', builtin.git_files, {})
     end,
   },
   {

@@ -56,9 +56,11 @@ WezTerm)
 
 - Files
   - Use `<leader>ff` to fuzzy Find Files
-  - Use `<leader>fg` to fuzzy Find files in the Git index and working tree (I
-    don't ever use this)
-  - Use `<leader>fs` to Search for Files that contain a phrase (using ripgrep)
+  - Use `<leader>fg` to Grep Files against a fixed input query (more performant,
+    better for large projects)
+  - Use `<leader>fs` to live Search for Files that contain a phrase (using
+    ripgrep)
+  - Use `<leader>fw` to fuzzy find Files in the git Working tree and index
   - **NOTE**:
     - Use `Enter` to switch to selected file
     - Use `Tab` to open selected file(s) in new tab

@@ -95,6 +95,9 @@ vim.api.nvim_create_autocmd('ModeChanged', {
   end,
 })
 
+-- delete buffers that are hidden/remain opened when closing a tab
+-- allows file tree and fuzzy finder to have updated/correct information
+-- on which buffers are still in use
 vim.api.nvim_create_autocmd('TabClosed', {
   pattern = '*',
   callback = function()
