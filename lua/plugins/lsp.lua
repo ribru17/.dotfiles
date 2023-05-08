@@ -87,7 +87,10 @@ return {
         ['clangd'] = function()
           local capabilities = vim.lsp.protocol.make_client_capabilities()
           capabilities.offsetEncoding = { 'utf-16' }
-          require('lspconfig').clangd.setup { capabilities = capabilities }
+          require('lspconfig').clangd.setup {
+            capabilities = capabilities,
+            cmd = { 'clangd', '--header-insertion-decorators=false' },
+          }
         end,
         ['cssls'] = function()
           --Enable (broadcasting) snippet capability for completion
