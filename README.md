@@ -151,7 +151,7 @@ that file). Save without formatting with `:W`.
 - Use `Esc` to clear search highlighting
 - Use `K` to hover over the current object, showing LSP information
 - Use `<leader>e` to show current error information
-- Use `:MarkdownPreview` command to preview a markdown file
+- Use `:M` (or `:MarkdownPreview`) to preview a markdown file
 - Folding
   - Use `<leader>z` or `zz` to toggle current fold
     - Performing these operations in Visual mode will create a fold of the

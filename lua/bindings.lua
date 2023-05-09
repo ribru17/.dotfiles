@@ -126,6 +126,7 @@ local function RepeatFoldMove(dir)
   end
 end
 
+-- only move to closed folds when jumping folds
 vim.keymap.set({ 'n', 'x' }, 'zj', function()
   RepeatFoldMove('j')
 end, { remap = false })
@@ -147,5 +148,8 @@ vim.api.nvim_create_user_command('Wqa', 'noa wa | qa', {})
 vim.api.nvim_create_user_command('Wn', 'noa wn', {})
 vim.api.nvim_create_user_command('WN', 'noa wN', {})
 vim.api.nvim_create_user_command('Wp', 'noa wp', {})
+
+-- easier markdown preview alias
+vim.cmd('command M MarkdownPreview')
 
 --> END OF MISCELLANEOUS USER COMMANDS <--
