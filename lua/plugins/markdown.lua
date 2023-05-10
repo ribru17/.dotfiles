@@ -9,6 +9,7 @@ return {
   {
     'dkarter/bullets.vim',
     ft = 'markdown',
+    cmd = { 'InsertNewBullet' },
   },
   {
     'mikeboiko/vim-markdown-folding',

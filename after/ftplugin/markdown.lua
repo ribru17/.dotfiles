@@ -5,3 +5,5 @@ vim.opt_local.foldexpr = 'NestedMarkdownFolds()'
 
 -- start with all folds open
 vim.cmd [[silent exe "normal zR"]]
+
+vim.keymap.set('n', 'o', '<Plug>(bullets-newline)', { remap = false })

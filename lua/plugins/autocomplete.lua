@@ -106,8 +106,8 @@ return {
           end
         end, { 'i', 's' }),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping(function(fallback)
-          fallback()
+        ['<CR>'] = cmp.mapping(function(_)
+          vim.cmd('InsertNewBullet')
         end),
       }
 
