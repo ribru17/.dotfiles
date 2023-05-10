@@ -76,7 +76,7 @@ vim.keymap.set({ 'i', 'c' }, '<C-b>', '<C-Left>', { remap = false })
 vim.keymap.set('i', '<M-i>', '<Esc>', { remap = false })
 
 -- delete word in insert mode
-vim.keymap.set('i', '<M-BS>', '<C-w>', { remap = false })
+vim.keymap.set({ 'i', 'c' }, '<M-BS>', '<C-w>', { remap = false })
 
 -- Make comment work on terminals where C-/ is literally C-/
 vim.keymap.set('n', '<C-/>', '<C-_>', { remap = true })
