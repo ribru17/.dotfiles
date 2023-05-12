@@ -61,8 +61,8 @@ vim.keymap.set('n', '<C-h>', '<Cmd>tabmove -1<CR>', {})
 vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>', {})
 
 -- copy/cut to clipboard (Linux)
-vim.keymap.set('v', '<C-y>', '"+y', { remap = false })
-vim.keymap.set('v', '<C-x>', '"+x', { remap = false })
+vim.keymap.set({ 'v', 'n' }, '<C-y>', '"+y', { remap = true })
+vim.keymap.set({ 'v', 'n' }, '<C-x>', '"+x', { remap = true })
 
 -- navigation while typing
 vim.keymap.set({ 'i', 'c' }, '<C-k>', '<Up>', { remap = false })
