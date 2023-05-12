@@ -156,7 +156,7 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         experimental = {
-          ghost_text = { hl_group = 'Comment' },
+          ghost_text = true,
         },
       }
 
