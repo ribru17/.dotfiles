@@ -161,12 +161,18 @@ return {
         end
       end
 
+      local putils = require('telescope.previewers.utils')
       require('telescope').setup {
         defaults = {
           preview = {
-            filetype_hook = function(_, _, opts)
+            filetype_hook = function(_, bufnr, opts)
               -- don't display jank pdf previews
-              return opts.ft ~= 'pdf'
+              if opts.ft == 'pdf' then
+                putils.set_preview_message(bufnr, opts.winid,
+                  'Not displaying ' .. opts.ft)
+                return false
+              end
+              return true
             end,
           },
           layout_config = {
