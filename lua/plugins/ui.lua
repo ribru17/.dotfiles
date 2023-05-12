@@ -163,6 +163,12 @@ return {
 
       require('telescope').setup {
         defaults = {
+          preview = {
+            filetype_hook = function(_, _, opts)
+              -- don't display jank pdf previews
+              return opts.ft ~= 'pdf'
+            end,
+          },
           layout_config = {
             horizontal = {
               preview_cutoff = 0,
