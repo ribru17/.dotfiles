@@ -134,6 +134,11 @@ vim.keymap.set({ 'n', 'x' }, 'zk', function()
   RepeatFoldMove('k')
 end, { remap = false })
 
+-- select entire buffer
+vim.keymap.set('x', 'aa', function()
+  local mode = vim.api.nvim_get_mode().mode == 'V' and '' or 'V'
+  return 'ggoG' .. mode
+end, { expr = true })
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
