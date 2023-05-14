@@ -123,6 +123,8 @@ return {
           map('n', '<leader>gb', function() gs.blame_line { full = true } end)
           -- undo git change
           map('n', '<leader>gu', gs.reset_hunk)
+          -- undo all git changes
+          map('n', '<leader>gr', gs.reset_buffer)
         end,
         sign_priority = 0,
       }

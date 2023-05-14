@@ -92,11 +92,14 @@ WezTerm)
 By default this configuration formats text on save (if a formatter is found for
 that file). Save without formatting with `:W`.
 
-- Use `<leader>t` to open the file Tree floating window
+- File Tree
+  - Use `<leader>t` to open the file Tree floating window
   - Create new files or directories with `n` and trash them with `d`
   - Other mappings can be found in the `lua/plugins/coding.lua` file
-- Use `<leader>ca` to run Code Actions through the LSP
-- Use `<leader>cl` to run Code Lens through the LSP
+- LSP
+  - Use `<leader>ca` to run Code Actions through the LSP
+  - Use `<leader>cl` to run Code Lens through the LSP
+  - Use `<leader>r` to smartly rename variables with the LSP
 - Use `Ctrl+/` to toggle comments
   - In Normal and Insert mode, toggles current line
   - In Visual mode, toggles selected lines (or text if only one line selected)
@@ -108,22 +111,25 @@ that file). Save without formatting with `:W`.
   - Use `Ctrl+n` and `Ctrl+p` to navigate to Next or Previous item, respectively
   - Use `Ctrl+e` to Exit autocompletion menu
   - Use `Ctrl+Space` to show full autocompletion menu
+- Git
+  - Use `<leader>gu` to Undo a Git change
+  - Use `<leader>gr` to Reset (undo) _all_ Git changes
 - EZ Semicolon
   - Implements EZ Semicolon (VS Code extension) functionality: inserting a
     semicolon anywhere will always place it at the end of the line followed by a
     new line. The only exceptions to this are if the line is a return statement
     (no new line will be inserted) or a for loop (no formatting will occur at
     all). This behavior can be overridden by using `Meta+;`.
-- Use `Tab` and `Shift+Tab` to indent or remove indent, respectively
-  - In Normal mode, this affects the current line. In Visual mode, this affects
-    all selected lines.
-- Use `Ctrl+d` and `Ctrl+f` (or `Shift+Tab` and `Tab`) to decrease or increase
-  bullet point indentation in insert mode, respectively.
+- Indentation
+  - Use `Tab` and `Shift+Tab` to indent or remove indent, respectively
+    - In Normal mode, this affects the current line. In Visual mode, this
+      affects all selected lines.
+  - Use, in insert mode, `Ctrl+d` and `Ctrl+f` (or `Shift+Tab` and `Tab`) to
+    decrease or increase bullet point indentation, respectively.
 - Search and Replace
   - Use `<leader>h` to search and replace instances of the hovered word
-    - Use a capital `H` to smartly match different cases like camelCase,
-      PascalCase, etc. (but without incremental search)
-  - Use `<leader>r` to take advantage of LSP renaming feature
+  - Use a capital `H` to smartly match different cases like camelCase,
+    PascalCase, etc. (but without incremental search)
 - Miscellaneous useful Visual mode operations
   - Use `K` and `J` to move the selected lines up or down, respectively, smartly
     indenting if the lines move within the scope of, say, an if statement
@@ -136,6 +142,7 @@ that file). Save without formatting with `:W`.
       `( surround ) here`
     - **NOTE:** Surround with HTML-style tag using `T`
   - Use `Ctrl+y` and `Ctrl+x` to copy or cut to system clipboard, respectively
+  - Use `aa` to select the entire buffer
 - Other useful surround operations
   - Use `<leader>dq` to Delete surrounding Quotes
   - Use `<leader>dp` to Delete surround Parentheses
@@ -145,6 +152,8 @@ that file). Save without formatting with `:W`.
   - Use `<leader>dd` to Delete any valid Delimiter
   - Use `cs{A}{B}` to Change any Surrounding delimiter A to B
     - Example: `"here is" a string` -> `cs"'` -> `'here is' a string`
+  - Use `f` postfix to surround with function call
+    - Capital `F` surrounds with a lambda function in Lua files
 
 ### Viewing
 
