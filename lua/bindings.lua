@@ -92,7 +92,9 @@ vim.keymap.set('n', 'zz', 'za', { remap = true })
 -- fold all except current
 vim.keymap.set('n', 'zf', 'zMzv', { remap = true })
 -- open all folds
-vim.keymap.set('n', 'zo', 'zR', { remap = true })
+vim.keymap.set('n', 'zO', 'zR', { remap = true })
+-- open all folds descending from current line
+vim.keymap.set('n', 'zo', 'zO', { remap = false })
 -- fold selected lines
 vim.keymap.set('x', '<leader>z', 'zf', { remap = true })
 vim.keymap.set('x', 'zz', 'zf', { remap = true })
