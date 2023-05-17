@@ -101,15 +101,6 @@ vim.api.nvim_create_autocmd('ModeChanged', {
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*',
   callback = function()
-    local i = 1
-    local lastbuf = vim.fn.bufnr('$')
-    local vim_fn = vim.fn
-    local next = next
-    while i <= lastbuf do
-      if vim_fn.buflisted(i) == 1 and next(vim_fn.win_findbuf(i)) == nil then
-        vim.cmd(':bd ' .. i)
-      end
-      i = i + 1
-    end
+    vim.opt_local.bufhidden = 'delete'
   end,
 })
