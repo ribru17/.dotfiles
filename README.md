@@ -166,7 +166,8 @@ that file). Save without formatting with `:W`.
     - Performing these operations in Visual mode will create a fold of the
       selected lines
   - Use `zf` to Focus (close all folds except) the current fold
-  - Use `zo` to Open all folds
+  - Use `zO` to Open all folds
+  - Use `zo` to Open all folds descending from the fold at the current line
 
 ### Snippets
 
