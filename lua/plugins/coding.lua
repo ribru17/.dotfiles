@@ -191,6 +191,7 @@ return {
 
       require('nvim-tree').setup {
         on_attach = on_attach,
+        hijack_cursor = true,
         view = {
           float = {
             enable = true,
