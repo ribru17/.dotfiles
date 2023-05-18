@@ -160,13 +160,6 @@ return {
         },
       }
 
-      local palettes = require('catppuccin.palettes').get_palette()
-      vim.api.nvim_set_hl(0, 'CmpItemAbbr', { ctermbg = 0, fg = palettes.text })
-      vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch',
-        { ctermbg = 0, fg = palettes.blue })
-      vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy',
-        { ctermbg = 0, fg = palettes.blue })
-
       require('nvim-autopairs').setup {}
 
       -- Insert `(` after select function or method item
