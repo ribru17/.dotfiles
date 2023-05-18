@@ -20,6 +20,7 @@ vim.opt.mouse = ''
 vim.opt.pumheight = 10
 vim.opt.relativenumber = true
 vim.opt.foldenable = false -- start with all folds open
+vim.opt.splitright = true
 
 vim.g.mapleader = ' '
 vim.g.mkdp_echo_preview_url = 1

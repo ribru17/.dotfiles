@@ -144,14 +144,9 @@ that file). Save without formatting with `:W`.
   - Use `Ctrl+y` and `Ctrl+x` to copy or cut to system clipboard, respectively
   - Use `aa` to select the entire buffer
 - Other useful surround operations
-  - Use `<leader>dq` to Delete surrounding Quotes
-  - Use `<leader>dp` to Delete surround Parentheses
-  - Use `<leader>db` to Delete any matching Brackets
-  - Use `<leader>cht` and `<leader>dht` to Change and Delete surrounding
-    HTML-style Tags, respectively
-  - Use `<leader>dd` to Delete any valid Delimiter
-  - Use `cs{A}{B}` to Change any Surrounding delimiter A to B
-    - Example: `"here is" a string` -> `cs"'` -> `'here is' a string`
+  - All defaults provided in
+    [nvim-surround](https://github.com/kylechui/nvim-surround) with some nice
+    aliases
   - Use `f` postfix to surround with function call
     - Capital `F` surrounds with a lambda function in Lua files
 

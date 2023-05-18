@@ -43,16 +43,6 @@ vim.keymap.set('n', '<leader>H',
 vim.keymap.set('x', '<leader>h', '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
   { remap = false })
 
--- change current HTML-style tags
-vim.keymap.set('n', '<leader>cht', 'cst', { remap = true })
--- delete current HTML-style tags
-vim.keymap.set('n', '<leader>dht', 'dst', { remap = true })
--- delete surrounding delimiters
-vim.keymap.set('n', '<leader>dq', 'dsq', { remap = true })
-vim.keymap.set('n', '<leader>dp', 'ds(', { remap = true })
-vim.keymap.set('n', '<leader>db', 'dsb', { remap = true })
-vim.keymap.set('n', '<leader>dd', 'dsd', { remap = true })
-
 -- cycle through tabs (reversing order for more intuitive UX)
 vim.keymap.set('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', {})
 vim.keymap.set('n', '<C-p>', '<Cmd>BufferLineCycleNext<CR>', {})
@@ -141,6 +131,7 @@ vim.keymap.set('x', 'aa', function()
   local mode = vim.api.nvim_get_mode().mode == 'V' and '' or 'V'
   return 'ggoG' .. mode
 end, { expr = true })
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
