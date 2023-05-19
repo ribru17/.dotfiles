@@ -172,6 +172,7 @@ return {
       { '<leader>fs' },
       { '<leader>fg' },
       { '<leader>fw' },
+      { '<leader>fc' },
     },
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
@@ -194,6 +195,11 @@ return {
           -- only open selected buffer in new tab if selection is empty
           require('telescope.actions').select_tab(prompt_bufnr)
         end
+      end
+
+      local function close_with_action(prompt_bufnr)
+        require('telescope.actions').close(prompt_bufnr)
+        vim.cmd [[NvimTreeFindFileToggle]]
       end
 
       local putils = require('telescope.previewers.utils')
@@ -220,6 +226,7 @@ return {
           mappings = {
             n = {
               ['<Tab>'] = multi_tab, -- <Tab> to open as tab
+              ['<leader>t'] = close_with_action,
               ['<C-k>'] = actions.move_selection_previous,
               ['<C-j>'] = actions.move_selection_next,
               ['t'] = actions.toggle_selection + actions.move_selection_previous,
@@ -277,6 +284,8 @@ return {
         builtin.live_grep { initial_mode = 'insert' }
       end, {})
       vim.keymap.set('n', '<leader>fw', builtin.git_files, {})
+      vim.keymap.set('n', '<leader>fc',
+        function() builtin.colorscheme { enable_preview = true } end, {})
     end,
   },
   {
@@ -307,9 +316,9 @@ return {
           ":lua require('telescope.builtin').find_files()<CR>"),
         dashboard.button('r', ' ' .. ' Open recent',
           ":lua require('telescope.builtin').oldfiles()<CR>"),
-        dashboard.button('t', ' ' .. ' File Tree',
+        dashboard.button('t', ' ' .. ' File tree',
           ':NvimTreeToggle <CR>'),
-        dashboard.button('s', ' ' .. ' Search text',
+        dashboard.button('s', ' ' .. ' Search for text',
           ":lua require('telescope.builtin').live_grep({initial_mode = 'insert'})<CR>"),
         dashboard.button('l', ' ' .. " LSP's", ':Mason<CR>'),
         dashboard.button('p', ' ' .. ' Plugins', ':Lazy<CR>'),
