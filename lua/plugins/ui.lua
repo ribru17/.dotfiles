@@ -41,6 +41,7 @@ return {
             ['CmpItemAbbr'] = { ctermbg = 0, fg = colors.text },
             ['CmpItemAbbrMatch'] = { ctermbg = 0, fg = colors.blue },
             ['CmpItemAbbrMatchFuzzy'] = { ctermbg = 0, fg = colors.blue, underline = true },
+            ['NormalFloat'] = { ctermbg = 0, bg = colors.base },
           }
         end,
       }
