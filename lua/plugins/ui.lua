@@ -6,9 +6,6 @@ return {
     config = function()
       require('onedark').setup {
         style = 'warmer',
-        colors = {
-          comment = '#e8ce8f',
-        },
         highlights = {
           ['FloatBorder'] = { bg = '$bg0' },
           ['NormalFloat'] = { bg = '$bg0' },
@@ -17,7 +14,8 @@ return {
           -- prevent Lua constructor tables from being bolded
           ['@constructor.lua'] = { fg = '$yellow', fmt = 'none' },
           ['@parameter'] = { fg = '$red', fmt = 'italic' },
-          ['@comment'] = { fg = '$comment', fmt = 'italic' },
+          ['@comment'] = { fg = '$bg_yellow', fmt = 'italic' },
+          ['rainbowcol6'] = { fg = '$fg' },
         },
         diagnostics = {
           darker = false,
