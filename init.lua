@@ -25,6 +25,9 @@ require('autocmds')
 require('lazy').setup('plugins', {
   --defaults = { lazy = true },
   -- checker = { enabled = true },
+  ui = {
+    border = 'rounded',
+  },
   change_detection = {
     notify = false,
   },
