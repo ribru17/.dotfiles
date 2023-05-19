@@ -7,7 +7,7 @@ return {
       require('onedark').setup {
         style = 'warmer',
         colors = {
-          white = '#d5b9b2',
+          comment = '#e8ce8f',
         },
         highlights = {
           ['FloatBorder'] = { bg = '$bg0' },
@@ -17,13 +17,13 @@ return {
           -- prevent Lua constructor tables from being bolded
           ['@constructor.lua'] = { fg = '$yellow', fmt = 'none' },
           ['@parameter'] = { fg = '$red', fmt = 'italic' },
-          ['@comment'] = { fg = '$white', fmt = 'italic' },
+          ['@comment'] = { fg = '$comment', fmt = 'italic' },
         },
         diagnostics = {
           darker = false,
           -- for undercurl on wezterm:
           -- https://wezfurlong.org/wezterm/faq.html?highlight=undercur#how-do-i-enable-undercurl-curly-underlines
-          undercurl = false,
+          undercurl = true,
         },
       }
       require('onedark').load()
