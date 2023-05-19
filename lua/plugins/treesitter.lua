@@ -4,6 +4,7 @@ return {
     version = false,
     build = ':TSUpdate',
     event = { 'BufReadPost', 'BufNewFile' },
+    dependencies = { 'p00f/nvim-ts-rainbow' },
     config = function()
       require 'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all" (the first five parsers should always be installed)
@@ -40,6 +41,9 @@ return {
         context_commentstring = {
           enable = true,
           enable_autocmd = false,
+        },
+        rainbow = {
+          enable = true,
         },
       }
     end,

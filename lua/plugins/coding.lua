@@ -8,6 +8,10 @@ return {
     cmd = 'S',
   },
   {
+    'p00f/nvim-ts-rainbow',
+    lazy = true,
+  },
+  {
     'JoosepAlviste/nvim-ts-context-commentstring',
     lazy = true,
   },
