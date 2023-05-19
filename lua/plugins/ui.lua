@@ -7,14 +7,18 @@ return {
       require('onedark').setup {
         style = 'warmer',
         highlights = {
+          -- make pop up windows blend better with the background
           ['FloatBorder'] = { bg = '$bg0' },
           ['NormalFloat'] = { bg = '$bg0' },
           ['NvimTreeNormal'] = { bg = '$bg0' },
           ['NvimTreeEndOfBuffer'] = { bg = '$bg0', fg = '$bg0' },
           -- prevent Lua constructor tables from being bolded
           ['@constructor.lua'] = { fg = '$yellow', fmt = 'none' },
+          -- italicize parameters
           ['@parameter'] = { fg = '$red', fmt = 'italic' },
+          -- make comments stand out
           ['@comment'] = { fg = '$bg_yellow', fmt = 'italic' },
+          -- change bracket color so that it doesn't conflict with string color
           ['rainbowcol6'] = { fg = '$fg' },
         },
         diagnostics = {
@@ -41,14 +45,15 @@ return {
         },
         custom_highlights = function(colors)
           return {
+            -- make cmp item text matching easier to spot
             ['CmpItemAbbr'] = { ctermbg = 0, fg = colors.text },
             ['CmpItemAbbrMatch'] = { ctermbg = 0, fg = colors.blue },
             ['CmpItemAbbrMatchFuzzy'] = { ctermbg = 0, fg = colors.blue, underline = true },
+            -- make popup windows blend with the background better
             ['NormalFloat'] = { ctermbg = 0, bg = colors.base },
           }
         end,
       }
-      -- vim.cmd.colorscheme 'catppuccin'
     end,
   },
   {
