@@ -5,7 +5,10 @@ return {
     priority = 1000,
     config = function()
       require('onedark').setup {
-        style = 'darker',
+        style = 'warmer',
+        colors = {
+          white = '#d5b9b2',
+        },
         highlights = {
           ['FloatBorder'] = { bg = '$bg0' },
           ['NormalFloat'] = { bg = '$bg0' },
@@ -14,6 +17,7 @@ return {
           -- prevent Lua constructor tables from being bolded
           ['@constructor.lua'] = { fg = '$yellow', fmt = 'none' },
           ['@parameter'] = { fg = '$red', fmt = 'italic' },
+          ['@comment'] = { fg = '$white', fmt = 'italic' },
         },
         diagnostics = {
           darker = false,
@@ -67,8 +71,6 @@ return {
             return icon .. ' ' .. count
           end,
         },
-        -- highlights = vim.g.colors_name:find('catppuccin') and
-        --     require('catppuccin.groups.integrations.bufferline').get(),
       }
     end,
   },
