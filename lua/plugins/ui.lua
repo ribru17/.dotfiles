@@ -12,7 +12,8 @@ return {
           ['NvimTreeNormal'] = { bg = '$bg0' },
           ['NvimTreeEndOfBuffer'] = { bg = '$bg0', fg = '$bg0' },
           -- prevent Lua constructor tables from being bolded
-          ['@constructor.lua'] = { fg = '$yellow', bold = false },
+          ['@constructor.lua'] = { fg = '$yellow', fmt = 'none' },
+          ['@parameter'] = { fg = '$red', fmt = 'italic' },
         },
         diagnostics = {
           darker = false,
