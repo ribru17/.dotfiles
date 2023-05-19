@@ -11,10 +11,14 @@ return {
           ['NormalFloat'] = { bg = '$bg0' },
           ['NvimTreeNormal'] = { bg = '$bg0' },
           ['NvimTreeEndOfBuffer'] = { bg = '$bg0', fg = '$bg0' },
+          -- prevent Lua constructor tables from being bolded
+          ['@constructor.lua'] = { fg = '$yellow', bold = false },
         },
         diagnostics = {
           darker = false,
-          -- for undercurl: https://wezfurlong.org/wezterm/faq.html?highlight=undercur#how-do-i-enable-undercurl-curly-underlines
+          -- for undercurl on wezterm:
+          -- https://wezfurlong.org/wezterm/faq.html?highlight=undercur#how-do-i-enable-undercurl-curly-underlines
+          undercurl = false,
         },
       }
       require('onedark').load()
