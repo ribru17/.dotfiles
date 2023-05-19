@@ -51,6 +51,7 @@ WezTerm)
   - `u` to update current package
   - `X` to remove current package
 - Install syntax highlighters for a given filetype with `:TSInstall {filetype}`
+- Change/preview color schemes with `<leader>fc`
 
 ### Navigation
 
