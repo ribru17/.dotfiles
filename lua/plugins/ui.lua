@@ -27,8 +27,7 @@ return {
   {
     'catppuccin/nvim',
     name = 'catppuccin',
-    lazy = false,
-    priority = 1000,
+    event = { 'VeryLazy' },
     config = function()
       require('catppuccin').setup {
         integrations = {
