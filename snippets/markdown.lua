@@ -184,6 +184,8 @@ return {
     { condition = in_mathzone }),
   s({ trig = 'to', wordTrig = false }, fmt([[\to]], {}),
     { condition = in_mathzone }),
+  s({ trig = '|', wordTrig = false }, fmt([[\mid]], {}),
+    { condition = in_mathzone }),
   s({ trig = 'sqrt', wordTrig = false }, fmt([[\sqrt{{{1}}}]], { i(1, '') }),
     { condition = in_mathzone }),
   s({ trig = 'inf', wordTrig = false }, fmt([[\infty]], {}),

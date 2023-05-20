@@ -6,6 +6,31 @@ vim.keymap.set('x', '<S-Tab>', '<gv', { remap = false })
 vim.keymap.set('n', '<Tab>', '>>', { remap = false })
 vim.keymap.set('n', '<S-Tab>', '<<', { remap = false })
 
+-- add new lines in normal mode
+vim.keymap.set('n', '<CR>', function()
+  local n = vim.v.count < 1 and 1 or vim.v.count
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+  local lines = {}
+  local i = 1
+  while n >= i do
+    lines[i] = ''
+    i = i + 1
+  end
+  vim.api.nvim_buf_set_lines(0, current_line, current_line, false, lines)
+end, { remap = false })
+
+vim.keymap.set('n', '<S-CR>', function()
+  local n = vim.v.count < 1 and 1 or vim.v.count
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+  local lines = {}
+  local i = 1
+  while n >= i do
+    lines[i] = ''
+    i = i + 1
+  end
+  vim.api.nvim_buf_set_lines(0, current_line - 1, current_line - 1, false, lines)
+end, { remap = false })
+
 -- move selected code blocks smartly with
 -- indenting for if statements and such
 vim.keymap.set('x', 'J', ":m '>+1<CR>gv=gv")
