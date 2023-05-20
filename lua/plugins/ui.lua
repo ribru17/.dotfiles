@@ -20,6 +20,8 @@ return {
           ['@comment'] = { fg = '$bg_yellow', fmt = 'italic' },
           -- change bracket color so that it doesn't conflict with string color
           ['rainbowcol6'] = { fg = '$fg' },
+          -- markdown latex highlighting
+          ['@text.math'] = { fg = '$blue' },
         },
         diagnostics = {
           darker = false,
