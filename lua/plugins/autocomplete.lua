@@ -6,7 +6,12 @@ return {
       local npairs = require 'nvim-autopairs'
       npairs.setup {}
       local Rule = require 'nvim-autopairs.rule'
+      local cond = require 'nvim-autopairs.conds'
 
+      -- rule for: `(|)` -> Space -> `( | )` and associated deletion options
+      -- NOTE: this adds a rule to delete both spaces if the cursor is in
+      -- between two of them NO MATTER WHAT. if this gets annoying it may need
+      -- a change
       local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
       npairs.add_rules {
         Rule(' ', ' ')
@@ -29,6 +34,13 @@ return {
               :use_key(bracket[2]),
         }
       end
+
+      -- add closing parenthesis even if next char is '$'
+      npairs.add_rule(
+      -- for markdown only, change to `Rule('(', ')', 'markdown')`
+        Rule('(', ')')
+        :with_pair(cond.after_text('$'))
+      )
     end,
   },
   {
