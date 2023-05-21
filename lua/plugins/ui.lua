@@ -378,6 +378,7 @@ return {
     config = function()
       local HEIGHT_RATIO = 0.75
       local WIDTH_RATIO = 0.5
+      local FLOAT_ENABLED = false
 
       local function on_attach(bufnr)
         local api = require('nvim-tree.api')
@@ -469,7 +470,7 @@ return {
         -- END_DEFAULT_ON_ATTACH
 
         local function tab_with_close()
-          vim.api.nvim_command('wincmd h')
+          if not FLOAT_ENABLED then vim.api.nvim_command('wincmd h') end
           api.node.open.tab()
         end
 
@@ -499,7 +500,7 @@ return {
         view = {
           side = 'right',
           float = {
-            -- enable = true,
+            enable = FLOAT_ENABLED,
             open_win_config = function()
               -- center the window
               local screen_w = vim.opt.columns:get()
