@@ -89,6 +89,7 @@ vim.keymap.set({ 'i', 'c' }, '<C-j>', '<Down>', { remap = false })
 vim.keymap.set({ 'i', 'c' }, '<C-l>', '<Right>', { remap = false })
 vim.keymap.set({ 'i', 'c' }, '<C-w>', '<C-Right>', { remap = false })
 vim.keymap.set({ 'i', 'c' }, '<C-b>', '<C-Left>', { remap = false })
+vim.keymap.set({ 'i' }, '<C-e>', '<C-o>e<Right>', { remap = false })
 
 -- quicker than hitting esc?
 vim.keymap.set('i', '<M-i>', '<Esc>', { remap = false })
