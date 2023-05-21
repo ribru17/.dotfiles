@@ -150,6 +150,8 @@ that file). Save without formatting with `:W`.
     aliases
   - Use `f` postfix to surround with function call
     - Capital `F` surrounds with a function definition in Lua files
+- Insert new lines in normal mode with `Enter` (line(s) below) or `Shift+Enter`
+  (line(s) above)
 
 ### Viewing
 
