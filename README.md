@@ -180,6 +180,9 @@ Inherits all snippets provided by the LSP. Additionally...
 
 ## :question: Troubleshooting
 
+- **NOTE:** To support `<S-CR>` on Konsole, go to
+  `Settings>Edit Current Profile>Keyboard` and change the `Return+Shift` mapping
+  keycode from `\EOM` (or whatever the current value is) to `\E[13;2u`
 - If, after quitting Neovim in a Markdown file, you get the error:
   ```
   client 2 quit with exit code 143 and signal 0
