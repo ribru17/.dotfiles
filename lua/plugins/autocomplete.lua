@@ -24,16 +24,17 @@ return {
               }, pair)
             end),
       }
-      for _, bracket in pairs(brackets) do
-        npairs.add_rules {
-          Rule(bracket[1] .. ' ', ' ' .. bracket[2])
-              :with_pair(function() return false end)
-              :with_move(function(opts)
-                return opts.prev_char:match('.%' .. bracket[2]) ~= nil
-              end)
-              :use_key(bracket[2]),
-        }
-      end
+      --> NOTE: uncomment to be able to delete, e.g., `{ | }`, in one keystroke
+      -- for _, bracket in pairs(brackets) do
+      --   npairs.add_rules {
+      --     Rule(bracket[1] .. ' ', ' ' .. bracket[2])
+      --         :with_pair(function() return false end)
+      --         :with_move(function(opts)
+      --           return opts.prev_char:match('.%' .. bracket[2]) ~= nil
+      --         end)
+      --         :use_key(bracket[2]),
+      --   }
+      -- end
 
       -- add closing parenthesis even if next char is '$'
       npairs.add_rule(
