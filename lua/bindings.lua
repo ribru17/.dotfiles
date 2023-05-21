@@ -53,7 +53,10 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('x', 's', 'S', { remap = true })
 
 -- clear search highlighting
-vim.keymap.set('n', '<Esc>', ':noh<CR>')
+vim.keymap.set('n', '<Esc>', '<Cmd>noh<CR>')
+
+-- easily exit terminal mode
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { remap = false })
 
 -- don't enter ex mode(?) by accident
 vim.keymap.set('n', 'Q', '<nop>')
