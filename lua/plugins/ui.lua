@@ -372,7 +372,7 @@ return {
     'nvim-tree/nvim-tree.lua',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     keys = {
-      { '<leader>t', '<Cmd>NvimTreeFindFileToggle<CR>' },
+      { '<leader>t', '<Cmd>NvimTreeFindFile<CR>' },
     },
     cmd = { 'NvimTreeFindFileToggle', 'NvimTreeToggle' },
     config = function()
@@ -468,13 +468,18 @@ return {
           opts('CD'))
         -- END_DEFAULT_ON_ATTACH
 
+        local function tab_with_close()
+          vim.api.nvim_command('wincmd h')
+          api.node.open.tab()
+        end
+
         vim.keymap.set('n', '.', api.tree.toggle_hidden_filter,
           opts('Toggle Dotfiles'))
         vim.keymap.set('n', 'n', api.fs.create, opts('Create'))
         vim.keymap.set('n', 'r', api.fs.rename_sub, opts('Rename: Omit Filename'))
         vim.keymap.set('n', 'a', api.tree.change_root_to_node, opts('CD'))
         vim.keymap.set('n', '<C-r>', api.tree.reload, opts('Refresh'))
-        vim.keymap.set('n', '<Tab>', api.node.open.tab, opts('Open: New Tab'))
+        vim.keymap.set('n', '<Tab>', tab_with_close, opts('Open: New Tab'))
         vim.keymap.set('n', 'd', api.fs.trash, opts('Trash'))
         vim.keymap.set('n', 'D',
           '<Cmd>lua require("nvim-tree.api").fs.create()<CR>/<Left>',
@@ -482,14 +487,19 @@ return {
         vim.keymap.set('n', '<Esc>', api.tree.close, opts('Close'))
         vim.keymap.set('n', 'z', api.node.navigate.parent_close,
           opts('Close Directory'))
+        vim.keymap.set('n', '<leader>t', '<C-w>h', opts('Close'))
       end
 
       require('nvim-tree').setup {
         on_attach = on_attach,
         hijack_cursor = true,
+        update_focused_file = {
+          enable = true,
+        },
         view = {
+          side = 'right',
           float = {
-            enable = true,
+            -- enable = true,
             open_win_config = function()
               -- center the window
               local screen_w = vim.opt.columns:get()
