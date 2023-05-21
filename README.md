@@ -86,6 +86,7 @@ WezTerm)
     respectively
 - Insert mode
   - Prepend `Ctrl` to `h`, `j`, `k`, `l` to navigate as in Normal mode
+    - This also works with `w`, `e`, and `b`
   - Can use `Meta+i` as an alternative to `Esc` to exit Insert mode
 
 ### Editing
@@ -125,7 +126,7 @@ that file). Save without formatting with `:W`.
   - Use `Tab` and `Shift+Tab` to indent or remove indent, respectively
     - In Normal mode, this affects the current line. In Visual mode, this
       affects all selected lines.
-  - Use, in insert mode, `Ctrl+d` and `Ctrl+f` (or `Shift+Tab` and `Tab`) to
+  - Use, in Insert mode, `Ctrl+d` and `Ctrl+f` (or `Shift+Tab` and `Tab`) to
     decrease or increase bullet point indentation, respectively.
 - Search and Replace
   - Use `<leader>h` to search and replace instances of the hovered word
@@ -150,7 +151,7 @@ that file). Save without formatting with `:W`.
     aliases
   - Use `f` postfix to surround with function call
     - Capital `F` surrounds with a function definition in Lua files
-- Insert new lines in normal mode with `Enter` (line(s) below) or `Shift+Enter`
+- Insert new lines in Normal mode with `Enter` (line(s) below) or `Shift+Enter`
   (line(s) above)
 
 ### Viewing
