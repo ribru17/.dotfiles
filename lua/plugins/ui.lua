@@ -22,6 +22,8 @@ return {
           ['rainbowcol6'] = { fg = '$fg' },
           -- markdown latex highlighting
           ['@text.math'] = { fg = '$blue' },
+          ['@text.strong.markdown_inline'] = { fg = '$purple', fmt = 'bold' },
+          ['@text.emphasis.markdown_inline'] = { fg = '$purple', fmt = 'italic' },
         },
         diagnostics = {
           darker = false,
