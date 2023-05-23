@@ -95,7 +95,7 @@ By default this configuration formats text on save (if a formatter is found for
 that file). Save without formatting with `:W`.
 
 - File Tree
-  - Use `<leader>t` to open the file Tree floating window
+  - Use `<leader>t` to open the file Tree
   - Create new files or directories with `n` and trash them with `d`
   - Other mappings can be found in the `lua/plugins/coding.lua` file
 - LSP
