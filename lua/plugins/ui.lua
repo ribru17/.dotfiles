@@ -247,6 +247,7 @@ return {
               ['<C-k>'] = actions.move_selection_previous,
               ['<C-j>'] = actions.move_selection_next,
               ['<C-t>'] = actions.toggle_selection + actions.move_selection_previous,
+              ['<C-l>'] = false,
             },
           },
         },
