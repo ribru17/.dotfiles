@@ -381,7 +381,7 @@ return {
     config = function()
       local HEIGHT_RATIO = 0.75
       local WIDTH_RATIO = 0.5
-      local FLOAT_ENABLED = false
+      local FLOAT_ENABLED = true
 
       local function on_attach(bufnr)
         local api = require('nvim-tree.api')
