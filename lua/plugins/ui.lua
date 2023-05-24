@@ -231,7 +231,7 @@ return {
               preview_cutoff = 0,
             },
           },
-          prompt_prefix = '🔎 ',
+          prompt_prefix = '  ',
           initial_mode = 'normal',
           mappings = {
             n = {
