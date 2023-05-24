@@ -33,7 +33,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "e283ab937e0197b37ec5d8013e49495193407324" },
   "onedark.nvim": { "branch": "master", "commit": "f6e82074761473d30a722f5d90c60282de1ac41d" },
   "plenary.nvim": { "branch": "master", "commit": "52544825d6b8be677eb395983515ad5e30ae1f2e" },
-  "telescope.nvim": { "branch": "0.1.x", "commit": "ec42e0203097b51deb5e1ad96247e7902be47084" },
+  "telescope.nvim": { "branch": "0.1.x", "commit": "7c2f0f839860bff9e601e45379acf54110929bea" },
   "vim-abolish": { "branch": "master", "commit": "cb3dcb220262777082f63972298d57ef9e9455ec" },
   "vim-fugitive": { "branch": "master", "commit": "5f0d280b517cacb16f59316659966c7ca5e2bea2" },
   "vim-markdown-folding": { "branch": "master", "commit": "79b89d63509e84c7a2fa708d71d04e09477c8930" },
