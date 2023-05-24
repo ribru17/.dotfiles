@@ -23,8 +23,8 @@ install all plugins for you, no extra commands necessary.
 - Install [ripgrep](https://github.com/BurntSushi/ripgrep#installation) for
   fuzzy finding files with keyword search
 - Install
-  [wl-clipboard](https://archlinux.org/packages/community/x86_64/wl-clipboard/)
-  (or [build from source](https://github.com/bugaevc/wl-clipboard#building)) if
+  [wl-clipboard](https://archlinux.org/packages/extra/x86_64/wl-clipboard/) (or
+  [build from source](https://github.com/bugaevc/wl-clipboard#building)) if
   using Wayland in order to support yanking to the system clipboard
 - Install [Deno](https://deno.land/manual@v1.31.1/getting_started/installation)
   for `deno fmt` (formatting of Javascript-family files and Markdown)
