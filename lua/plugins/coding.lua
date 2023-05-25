@@ -8,7 +8,7 @@ return {
     cmd = 'S',
   },
   {
-    'p00f/nvim-ts-rainbow',
+    'HiPhish/nvim-ts-rainbow2',
     lazy = true,
   },
   {

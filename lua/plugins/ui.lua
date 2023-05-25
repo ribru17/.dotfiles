@@ -19,7 +19,7 @@ return {
           -- make comments stand out
           ['@comment'] = { fg = '$bg_yellow', fmt = 'italic' },
           -- change bracket color so that it doesn't conflict with string color
-          ['rainbowcol6'] = { fg = '$fg' },
+          ['TSRainbowGreen'] = { fg = '$fg' },
           -- markdown latex highlighting
           ['@text.math'] = { fg = '$blue' },
           ['@text.strong.markdown_inline'] = { fg = '$purple', fmt = 'bold' },

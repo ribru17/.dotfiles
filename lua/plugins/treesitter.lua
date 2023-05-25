@@ -4,7 +4,6 @@ return {
     version = false,
     build = ':TSUpdate',
     event = { 'BufReadPost', 'BufNewFile' },
-    dependencies = { 'p00f/nvim-ts-rainbow' },
     config = function()
       require 'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all" (the first five parsers should always be installed)
@@ -45,6 +44,14 @@ return {
         },
         rainbow = {
           enable = true,
+          strategy = {
+            -- disable this extension for all other filetypes
+            function()
+              return nil
+            end,
+            -- only enable it for files that would actually need it
+            commonlisp = require('ts-rainbow').strategy['global'],
+          },
         },
       }
     end,
