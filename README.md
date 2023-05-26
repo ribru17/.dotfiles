@@ -206,3 +206,10 @@ Inherits all snippets provided by the LSP. Additionally...
   be executed due to shared library issues(?) and if this is the case it may be
   best to just keep the Mason installation (for compatibility reasons) and
   install the `rust-analyzer` binary on your machine regularly
+- If you get errors related to the Haskell Language Server not being found even
+  after you have installed `ghc` and `hls`, this is because the version of `ghc`
+  is not yet working in tandem with `hls`. In the `ghcup tui`, make sure your
+  version of GHC says `hls-powered` in the `Notes` section on the right. Once
+  you have done this set that version of GHC using `s` in the TUI and then
+  `ghc install hls`. It is not recommended to install the Haskell Language
+  Server with Mason.
