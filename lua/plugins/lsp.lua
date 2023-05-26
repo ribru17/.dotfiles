@@ -186,7 +186,7 @@ return {
   {
     'jose-elias-alvarez/null-ls.nvim',
     event = { 'LspAttach' },
-    ft = { 'markdown' }, -- other lsp's covered by LspAttach
+    ft = { 'markdown', 'css' }, -- other lsp's covered by LspAttach
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
