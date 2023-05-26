@@ -93,6 +93,10 @@ return {
             capabilities = capabilities,
           }
         end,
+        ['hls'] = function()
+          -- do nothing in case user installed lsp with Mason
+          -- this prevents conflicts with the haskell tools plugin
+        end,
       }
 
       vim.api.nvim_create_autocmd('LspAttach', {
