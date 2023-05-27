@@ -34,6 +34,10 @@ install all plugins for you, no extra commands necessary.
   support (CSS, HTML, etc.)
 - Install `clang_format` via Mason for C, C++ formatting (`clangd` enables
   formatting but it's not extensible with `null-ls`)
+- Install `ghc` and `haskell-language-server` for Haskell development with
+  [haskell-tools.nvim](https://github.com/mrcjkb/haskell-tools.nvim) (avoid
+  installation of the Haskell Language Server with Mason due to compatibility
+  troubles with GHC, see [Troubleshooting](#troubleshooting) for details)
 
 ## :rocket: Usage
 
