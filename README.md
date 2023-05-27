@@ -37,7 +37,8 @@ install all plugins for you, no extra commands necessary.
 - Install `ghc` and `haskell-language-server` for Haskell development with
   [haskell-tools.nvim](https://github.com/mrcjkb/haskell-tools.nvim) (avoid
   installation of the Haskell Language Server with Mason due to compatibility
-  troubles with GHC, see [Troubleshooting](#troubleshooting) for details)
+  troubles with GHC, see [Troubleshooting](#question-troubleshooting) for
+  details)
 
 ## :rocket: Usage
 
