@@ -23,7 +23,7 @@ require('autocmds')
 
 -- load installed plugins and their configurations
 require('lazy').setup('plugins', {
-  --defaults = { lazy = true },
+  -- defaults = { lazy = true },
   -- checker = { enabled = true },
   ui = {
     border = 'rounded',
