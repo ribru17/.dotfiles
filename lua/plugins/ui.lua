@@ -23,14 +23,16 @@ return {
           ['TSRainbowGreen'] = { fg = '$fg' },
           -- markdown latex highlighting
           ['@text.math'] = { fg = '$blue' },
+          -- markdown text modifier highlights
           ['@text.strong.markdown_inline'] = { fg = '$purple', fmt = 'bold' },
           ['@text.emphasis.markdown_inline'] = { fg = '$purple', fmt = 'italic' },
+          -- better match paren highlights
+          ['MatchParen'] = { fg = '$orange', fmt = 'bold' },
         },
         diagnostics = {
           darker = false,
           -- for undercurl on wezterm:
           -- https://wezfurlong.org/wezterm/faq.html?highlight=undercur#how-do-i-enable-undercurl-curly-underlines
-          undercurl = true,
         },
       }
       require('onedark').load()
