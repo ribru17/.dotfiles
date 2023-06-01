@@ -14,8 +14,9 @@ return {
           ['NvimTreeEndOfBuffer'] = { bg = '$bg0', fg = '$bg0' },
           -- prevent Lua constructor tables from being bolded
           ['@constructor.lua'] = { fg = '$yellow', fmt = 'none' },
-          -- italicize parameters
-          ['@parameter'] = { fg = '$red', fmt = 'italic' },
+          -- italicize parameters and conditionals
+          ['@parameter'] = { fmt = 'italic' },
+          ['@conditional'] = { fmt = 'italic' },
           -- make comments stand out
           ['@comment'] = { fg = '$bg_yellow', fmt = 'italic' },
           -- change bracket color so that it doesn't conflict with string color
