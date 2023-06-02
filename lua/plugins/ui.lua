@@ -1,8 +1,6 @@
 return {
   {
     'navarasu/onedark.nvim',
-    lazy = false,
-    priority = 1000,
     config = function()
       require('onedark').setup {
         style = 'warmer',
@@ -14,6 +12,7 @@ return {
           ['NvimTreeEndOfBuffer'] = { bg = '$bg0', fg = '$bg0' },
           -- prevent Lua constructor tables from being bolded
           ['@constructor.lua'] = { fg = '$yellow', fmt = 'none' },
+          ['@function.builtin'] = { fg = '$orange' },
           -- italicize parameters and conditionals
           ['@parameter'] = { fmt = 'italic' },
           ['@conditional'] = { fmt = 'italic' },
@@ -35,7 +34,19 @@ return {
           -- https://wezfurlong.org/wezterm/faq.html?highlight=undercur#how-do-i-enable-undercurl-curly-underlines
         },
       }
-      require('onedark').load()
+    end,
+  },
+  {
+    'ribru17/bamboo.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('bamboo').setup {
+        diagnostics = {
+          undercurl = false,
+        },
+      }
+      require('bamboo').load()
     end,
   },
   {
@@ -317,6 +328,7 @@ return {
       ]]
 
       dashboard.section.header.val = vim.split(logo, '\n')
+      dashboard.section.header.opts.hl = '@string'
       dashboard.section.buttons.val = {
         {
           type = 'text',
