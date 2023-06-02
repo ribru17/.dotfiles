@@ -2,7 +2,7 @@
   "Comment.nvim": { "branch": "master", "commit": "c8043290f2d77f61025494d839d88e414608c460" },
   "LuaSnip": { "branch": "master", "commit": "51ebb4b6637290e1b8e0fb0d6f38b605d3c24940" },
   "alpha-nvim": { "branch": "main", "commit": "1838ae926e8d49fe5330d1498ee8289ae2c340bc" },
-  "bamboo.nvim": { "branch": "master", "commit": "9280ee68c12aaa497cb19a82977d6935b9ba154f" },
+  "bamboo.nvim": { "branch": "master", "commit": "0d8043ea48470159bf1820810cbd671134531a4a" },
   "bufferline.nvim": { "branch": "main", "commit": "32d74d5d044f7cc89892d4781a83d55ee4ed552a" },
   "bullets.vim": { "branch": "master", "commit": "746f92ae05cdcc988857d8e76418326f07af9494" },
   "catppuccin": { "branch": "main", "commit": "c9cc5a997f1dae3f35b4bdd62f35958fee363ab4" },
@@ -38,5 +38,5 @@
   "vim-abolish": { "branch": "master", "commit": "cb3dcb220262777082f63972298d57ef9e9455ec" },
   "vim-fugitive": { "branch": "master", "commit": "5f0d280b517cacb16f59316659966c7ca5e2bea2" },
   "vim-markdown-folding": { "branch": "master", "commit": "79b89d63509e84c7a2fa708d71d04e09477c8930" },
-  "vim-startuptime": { "branch": "master", "commit": "8eed46917c5c4882b295729ce053265c2a74ac4d" }
+  "vim-startuptime": { "branch": "master", "commit": "b5c144367fad9846bd288be6c3933f6c7ddd69ef" }
 }
