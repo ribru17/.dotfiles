@@ -84,8 +84,6 @@ WezTerm)
 - Git
   - Use `<leader>gk` and `<leader>gj` to move up and down Git changes,
     respectively
-  - Use `<leader>gp` to Preview a Git change that the cursor is on
-  - Use `<leader>gb` to Git-Blame the current line
 - Diagnostics
   - Use `gd` to Go to Definition of current object
   - Use `gD` to Go to Definition of current object in a new tab
@@ -104,7 +102,7 @@ that file). Save without formatting with `:W`.
 - File Tree
   - Use `<leader>t` to open the file Tree
   - Create new files or directories with `n` and trash them with `d`
-  - Other mappings can be found in the `lua/plugins/coding.lua` file
+  - Other mappings can be found in the `lua/plugins/ui.lua` file
 - LSP
   - Use `<leader>ca` to run Code Actions through the LSP
   - Use `<leader>cl` to run Code Lens through the LSP
@@ -167,6 +165,9 @@ that file). Save without formatting with `:W`.
 - Use `K` to hover over the current object, showing LSP information
 - Use `<leader>e` to show current error information
 - Use `:M` (or `:MarkdownPreview`) to preview a markdown file
+- Git
+  - Use `<leader>gp` to Preview a Git change that the cursor is on
+  - Use `<leader>gb` to Git-Blame the current line
 - Folding
   - Use `<leader>z` or `zz` to toggle current fold
     - Performing these operations in Visual mode will create a fold of the
