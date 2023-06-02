@@ -42,6 +42,11 @@ return {
     priority = 1000,
     config = function()
       require('bamboo').setup {
+        highlights = {
+          ['@alpha.title'] = { fg = '$green' },
+          ['@alpha.header'] = { fg = '$yellow', fmt = 'bold' },
+          ['@alpha.footer'] = { fg = '$orange', fmt = 'italic' },
+        },
         diagnostics = {
           undercurl = false,
         },
@@ -328,7 +333,7 @@ return {
       ]]
 
       dashboard.section.header.val = vim.split(logo, '\n')
-      dashboard.section.header.opts.hl = '@string'
+      dashboard.section.header.opts.hl = '@alpha.title'
       dashboard.section.buttons.val = {
         {
           type = 'text',
@@ -354,6 +359,7 @@ return {
       dashboard.opts.layout[3].val = 0
       dashboard.section.footer.val =
       'Now I will have less distraction.\n- Leonhard Euler'
+      dashboard.section.footer.opts.hl = '@alpha.footer'
       table.insert(dashboard.config.layout, 5, {
         type = 'padding',
         val = 1,
@@ -381,6 +387,7 @@ return {
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
           dashboard.section.buttons.val[1].val = '⚡ Loaded ' ..
               stats.count .. ' plugins in ' .. ms .. 'ms'
+          dashboard.section.buttons.val[1].opts.hl = '@alpha.header'
           pcall(vim.cmd.AlphaRedraw)
         end,
       })
