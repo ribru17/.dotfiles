@@ -189,6 +189,9 @@ return {
           map('n', '<leader>gr', gs.reset_buffer)
         end,
         sign_priority = 0,
+        preview_config = {
+          border = 'rounded',
+        },
       }
     end,
   },

@@ -35,6 +35,7 @@ return {
       require('mason').setup()
       require('mason-lspconfig').setup()
 
+      require('lspconfig.ui.windows').default_options.border = 'rounded'
       require('mason-lspconfig').setup_handlers {
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn't have
@@ -138,7 +139,7 @@ return {
         update_in_insert = false,
         underline = true,
         severity_sort = true,
-        float = { border = 'single' },
+        float = { border = 'rounded' },
       }
 
       vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
