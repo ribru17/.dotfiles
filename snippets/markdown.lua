@@ -478,6 +478,8 @@ return {
     { condition = in_mathzone }),
   s({ trig = 'not' }, fmt([[\lnot]], {}),
     { condition = in_mathzone }),
+  s({ trig = 'xor' }, fmt([[\oplus]], {}),
+    { condition = in_mathzone }),
   s({ trig = 'satisfies' }, fmt([[\vDash]], {}),
     { condition = in_mathzone }),
   s({ trig = 'entails' }, fmt([[\vDash]], {}),
