@@ -161,6 +161,11 @@ vim.keymap.set('x', 'aa', function()
   return 'ggoG' .. mode
 end, { expr = true })
 
+-- toggle word wrap
+vim.keymap.set('n', '<leader>w', function()
+  vim.wo.wrap = not vim.wo.wrap
+end, { remap = false })
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
