@@ -42,6 +42,7 @@ return {
     priority = 1000,
     config = function()
       require('bamboo').setup {
+        toggle_style_key = '<leader><leader>',
         highlights = {
           ['@alpha.title'] = { fg = '$green' },
           ['@alpha.header'] = { fg = '$yellow', fmt = 'bold' },
@@ -142,12 +143,12 @@ return {
         char = '🭰', -- comment this out to center align indent indicator
         --> Uncomment to get colored indent lines
         -- char_highlight_list = {
-        --     "IndentBlanklineIndent1",
-        --     "IndentBlanklineIndent2",
-        --     "IndentBlanklineIndent3",
-        --     "IndentBlanklineIndent4",
-        --     "IndentBlanklineIndent5",
-        --     "IndentBlanklineIndent6",
+        --   'IndentBlanklineIndent1',
+        --   'IndentBlanklineIndent2',
+        --   'IndentBlanklineIndent3',
+        --   'IndentBlanklineIndent4',
+        --   'IndentBlanklineIndent5',
+        --   'IndentBlanklineIndent6',
         -- },
       }
     end,
