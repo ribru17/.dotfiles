@@ -165,7 +165,7 @@ that file). Save without formatting with `:W`.
 - Use `K` to hover over the current object, showing LSP information
 - Use `<leader>e` to show current error information
 - Use `:M` (or `:MarkdownPreview`) to preview a markdown file
-- Use `<leader>w` to toggle line Wrap
+- Use `<leader>w` to toggle line Wrap for the current buffer
 - Git
   - Use `<leader>gp` to Preview a Git change that the cursor is on
   - Use `<leader>gb` to Git-Blame the current line
