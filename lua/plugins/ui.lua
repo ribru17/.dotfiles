@@ -199,7 +199,6 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
-    lazy = true,
     keys = {
       { '<leader>ff' },
       { '<leader>fs' },
@@ -207,7 +206,13 @@ return {
       { '<leader>fw' },
       { '<leader>fc' },
     },
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+      { 'nvim-lua/plenary.nvim' },
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+      },
+    },
     config = function()
       local actions = require('telescope.actions')
 
@@ -236,7 +241,9 @@ return {
       end
 
       local putils = require('telescope.previewers.utils')
-      require('telescope').setup {
+      local telescope = require('telescope')
+
+      telescope.setup {
         defaults = {
           preview = {
             filetype_hook = function(_, bufnr, opts)
@@ -320,6 +327,8 @@ return {
       vim.keymap.set('n', '<leader>fw', builtin.git_files, {})
       vim.keymap.set('n', '<leader>fc',
         function() builtin.colorscheme { enable_preview = true } end, {})
+
+      telescope.load_extension('fzf')
     end,
   },
   {
