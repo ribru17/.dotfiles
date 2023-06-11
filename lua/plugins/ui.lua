@@ -121,6 +121,11 @@ return {
           disabled_filetypes = {
             'alpha',
           },
+          section_separators = { left = '', right = '' },
+          -- never could decide on any of these
+          -- component_separators = { left = '·', right = '·' },
+          -- component_separators = { left = '', right = '' },
+          -- component_separators = { left = '┊', right = '┊' },
         },
         extensions = {
           'nvim-tree',
