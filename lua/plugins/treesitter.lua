@@ -54,6 +54,7 @@ return {
             scheme = require('ts-rainbow').strategy['global'],
             query = require('ts-rainbow').strategy['global'],
             clojure = require('ts-rainbow').strategy['global'],
+            html = require('ts-rainbow').strategy['global'],
           },
         },
       }
