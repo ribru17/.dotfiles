@@ -28,6 +28,10 @@ return {
           ['@text.emphasis.markdown_inline'] = { fg = '$purple', fmt = 'italic' },
           -- better match paren highlights
           ['MatchParen'] = { fg = '$orange', fmt = 'bold' },
+          -- better dashboard styling
+          ['@alpha.title'] = { fg = '$green' },
+          ['@alpha.header'] = { fg = '$yellow', fmt = 'bold' },
+          ['@alpha.footer'] = { fg = '$red', fmt = 'italic' },
         },
         diagnostics = {
           darker = false,
@@ -45,7 +49,7 @@ return {
       require('bamboo').setup {
         toggle_style_key = '<leader><leader>',
         highlights = {
-          ['@alpha.title'] = { fg = '$purple' },
+          ['@alpha.title'] = { fg = '$green' },
           ['@alpha.header'] = { fg = '$yellow', fmt = 'bold' },
           ['@alpha.footer'] = { fg = '$orange', fmt = 'italic' },
         },
@@ -76,6 +80,10 @@ return {
             ['CmpItemAbbrMatchFuzzy'] = { ctermbg = 0, fg = colors.blue, underline = true },
             -- make popup windows blend with the background better
             ['NormalFloat'] = { ctermbg = 0, bg = colors.base },
+            -- better dashboard styling
+            ['@alpha.title'] = { fg = colors.green },
+            ['@alpha.header'] = { fg = colors.yellow, style = { 'bold' } },
+            ['@alpha.footer'] = { fg = colors.peach, style = { 'italic' } },
           }
         end,
       }
