@@ -1,6 +1,7 @@
 return {
   {
     'navarasu/onedark.nvim',
+    event = { 'VeryLazy' },
     config = function()
       require('onedark').setup {
         style = 'warmer',
@@ -44,7 +45,7 @@ return {
       require('bamboo').setup {
         toggle_style_key = '<leader><leader>',
         highlights = {
-          ['@alpha.title'] = { fg = '$green' },
+          ['@alpha.title'] = { fg = '$purple' },
           ['@alpha.header'] = { fg = '$yellow', fmt = 'bold' },
           ['@alpha.footer'] = { fg = '$orange', fmt = 'italic' },
         },
