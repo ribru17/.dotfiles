@@ -285,15 +285,23 @@ return {
               ['<leader>t'] = close_with_action,
               ['<C-k>'] = actions.move_selection_previous,
               ['<C-j>'] = actions.move_selection_next,
-              ['t'] = actions.toggle_selection + actions.move_selection_previous,
+              ['<Space>'] = {
+                actions.toggle_selection + actions.move_selection_previous,
+                type = 'action',
+                opts = { nowait = true, silent = true, noremap = true },
+              },
               ['q'] = actions.close,
             },
             i = {
               ['<Tab>'] = multi_tab, -- <Tab> to open as tab
               ['<C-k>'] = actions.move_selection_previous,
               ['<C-j>'] = actions.move_selection_next,
-              ['<C-t>'] = actions.toggle_selection + actions.move_selection_previous,
-              ['<C-l>'] = false,
+              ['<C-Space>'] = {
+                actions.toggle_selection + actions.move_selection_previous,
+                type = 'action',
+                opts = { nowait = true, silent = true, noremap = true },
+              },
+              ['<C-l>'] = false, -- override telescope's default
             },
           },
         },
