@@ -182,6 +182,6 @@ vim.api.nvim_create_user_command('WN', 'noa wN', {})
 vim.api.nvim_create_user_command('Wp', 'noa wp', {})
 
 -- easier markdown preview alias
-vim.cmd('command M MarkdownPreview')
+vim.cmd('command M MarkdownPreviewToggle')
 
 --> END OF MISCELLANEOUS USER COMMANDS <--
