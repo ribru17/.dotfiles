@@ -117,24 +117,14 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
--- TODO: make it so that this autocmd only runs when an alpha window is loaded
--- -- super cool and awesome dashboard title fade
--- vim.api.nvim_create_autocmd('ColorScheme', {
---   group = vim.api.nvim_create_augroup('AlphaFade', { clear = true }),
---   callback = function()
---     require('utils').color_fade()
---     -- this causes the autocmd to only run once
---     vim.api.nvim_clear_autocmds { group = 'AlphaFade' }
---   end,
--- })
-
--- -- clean up super cool and awesome dashboard title fade
--- -- NOTE: I don't actually know if this is necessary, I think closing is only
--- -- needed for timers that will only be used sometimes (this timer is used
--- -- globally, always) but better safe than sorry
--- vim.api.nvim_create_autocmd('VimLeave', {
---   pattern = '*',
---   callback = function()
---     require('utils').color_fade_stop()
---   end,
--- })
+vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter' }, {
+  pattern = '*',
+  callback = function()
+    local ft = vim.bo.filetype
+    if ft == 'alpha' then
+      require('utils').color_fade_start()
+    else
+      require('utils').color_fade_stop()
+    end
+  end,
+})

@@ -1,7 +1,7 @@
 local M = {}
 local sat = 40
 local inc = -1
-local timer = vim.loop.new_timer()
+local timer = nil
 local color = string.format('#%x',
   vim.api.nvim_get_hl_by_name('@alpha.title', true).foreground or 16777215)
 local background = string.format('#%x',
@@ -47,8 +47,13 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   end,
 })
 
-function M.color_fade()
-  timer:start(50, 0, vim.schedule_wrap(function()
+function M.color_fade_start()
+  if timer then
+    return
+  end
+
+  timer = vim.loop.new_timer()
+  timer:start(50, 50, vim.schedule_wrap(function()
     sat = sat + inc
     if sat >= 40 or sat <= 0 then
       inc = -1 * inc
@@ -58,12 +63,17 @@ function M.color_fade()
       sat / 40)
     vim.api.nvim_set_hl(0, '@alpha.title',
       { fg = blended })
-    M.color_fade()
   end))
 end
 
 function M.color_fade_stop()
+  if not timer then
+    return
+  end
+
+  timer:stop()
   timer:close()
+  timer = nil
 end
 
 return M
