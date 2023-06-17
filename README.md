@@ -6,7 +6,7 @@
   15pt
 - Theme: [Catppuccin](https://github.com/catppuccin/nvim)
 
-![nvimhome](https://github.com/ribru17/nvim/assets/55766287/e41e25af-3a14-4da6-86b4-c8f5f218db65)
+![nvimhome](https://github.com/ribru17/nvim/assets/55766287/5a4aef38-36b5-4a17-9aec-e9adf6a2cf2a)
 ![nvimediting](https://github.com/ribru17/nvim/assets/55766287/b19ba9f7-eda1-40d7-bda6-d475bbb2a953)
 
 ## :package: Installation
