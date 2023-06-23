@@ -98,6 +98,9 @@ return {
           -- do nothing in case user installed lsp with Mason
           -- this prevents conflicts with the haskell tools plugin
         end,
+        ['tsserver'] = function()
+          -- don't set up, conflicts with typescript-tools.nvim
+        end,
       }
 
       vim.api.nvim_create_autocmd('LspAttach', {

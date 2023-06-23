@@ -8,6 +8,10 @@ return {
     cmd = 'S',
   },
   {
+    'dstein64/vim-startuptime',
+    cmd = 'StartupTime',
+  },
+  {
     'HiPhish/nvim-ts-rainbow2',
     lazy = true,
   },
@@ -74,7 +78,8 @@ return {
     },
   },
   {
-    'dstein64/vim-startuptime',
-    cmd = 'StartupTime',
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
   },
 }
