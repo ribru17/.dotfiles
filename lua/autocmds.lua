@@ -65,10 +65,10 @@ vim.api.nvim_create_autocmd('User', {
 
 -- load EZ-Semicolon upon entering insert mode
 vim.api.nvim_create_autocmd('InsertEnter', {
-  group = vim.api.nvim_create_augroup('LoadEZSemicolon', { clear = true }),
+  pattern = '*',
+  once = true,
   callback = function()
     require('ezsemicolon')
-    vim.api.nvim_clear_autocmds { group = 'LoadEZSemicolon' }
   end,
 })
 
@@ -106,7 +106,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
--- close nvim tree if last buffer if tab/window
+-- close nvim tree if last buffer of tab/window
 vim.api.nvim_create_autocmd('BufEnter', {
   group = vim.api.nvim_create_augroup('NvimTreeClose', { clear = true }),
   pattern = 'NvimTree_*',
