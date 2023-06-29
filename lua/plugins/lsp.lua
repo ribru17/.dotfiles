@@ -194,7 +194,8 @@ return {
   {
     'jose-elias-alvarez/null-ls.nvim',
     event = { 'LspAttach' },
-    ft = { 'markdown', 'css', 'html' }, -- other lsp's not covered by LspAttach
+    -- other filetypes not covered by LspAttach (as they have no LSP)
+    ft = { 'markdown', 'css', 'html' },
     dependencies = {
       'nvim-lua/plenary.nvim',
     },

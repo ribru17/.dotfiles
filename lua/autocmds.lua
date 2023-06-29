@@ -30,7 +30,8 @@ local lsp_formatting = function()
   vim.lsp.buf.format {
     filter = function(client)
       -- disable formatters that are already covered by null-ls to prevent conflicts
-      local disabled_formatters = { 'clangd', 'tsserver', 'html' }
+      local disabled_formatters = { 'clangd', 'tsserver', 'typescript-tools',
+        'html', }
 
       for k = 1, #disabled_formatters do
         local v = disabled_formatters[k]
