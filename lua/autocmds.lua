@@ -56,8 +56,8 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 -- lazy load keymaps and user-defined commands
 vim.api.nvim_create_autocmd('User', {
-  group = vim.api.nvim_create_augroup('LoadBinds', { clear = true }),
   pattern = 'VeryLazy',
+  once = true,
   callback = function()
     require('bindings')
   end,

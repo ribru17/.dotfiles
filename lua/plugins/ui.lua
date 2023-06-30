@@ -290,7 +290,11 @@ return {
                 type = 'action',
                 opts = { nowait = true, silent = true, noremap = true },
               },
-              ['q'] = actions.close,
+              ['q'] = {
+                actions.close,
+                type = 'action',
+                opts = { nowait = true, silent = true, noremap = true },
+              },
             },
             i = {
               ['<Tab>'] = multi_tab, -- <Tab> to open as tab
