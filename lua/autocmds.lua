@@ -118,6 +118,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
+-- handle dashboard animation starting and stopping
 vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter' }, {
   pattern = '*',
   callback = function()
