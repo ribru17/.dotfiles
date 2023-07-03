@@ -42,6 +42,14 @@ return {
         Rule('(', ')')
         :with_pair(cond.after_text('$'))
       )
+
+      npairs.add_rule(
+        Rule('$', '$', 'markdown')
+        :with_move(function(opts)
+          return opts.next_char == opts.char
+        end)
+        :with_pair(cond.not_before_text('\\'))
+      )
     end,
   },
   {
