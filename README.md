@@ -11,9 +11,11 @@
 
 ## :package: Installation
 
-Run `git clone --depth 1 https://github.com/ribru17/nvim.git` in your
-`~/.config` directory (`~/AppData/Local` on Windows). Running `nvim` should
-install all plugins for you, no extra commands necessary.
+Make sure you have [Neovim](https://github.com/neovim/neovim) and
+[`nodejs`](https://nodejs.org/en) (with `npm`) installed. Then run
+`git clone --depth 1 https://github.com/ribru17/nvim.git` in your `~/.config`
+directory (`~/AppData/Local` on Windows). Running `nvim` should install all
+plugins for you, no extra commands necessary.
 
 ## :lock: Optional Prerequisites
 
@@ -26,14 +28,11 @@ install all plugins for you, no extra commands necessary.
   [wl-clipboard](https://archlinux.org/packages/extra/x86_64/wl-clipboard/) (or
   [build from source](https://github.com/bugaevc/wl-clipboard#building)) if
   using Wayland in order to support yanking to the system clipboard
-- Install [Deno](https://deno.land/manual@v1.31.1/getting_started/installation)
-  for `deno fmt` (formatting of Javascript-family files and Markdown)
 - Install [unzip](https://archlinux.org/packages/extra/x86_64/unzip/) to allow
-  Mason to unzip LSP packages
-- Install `prettierd` via Mason for formatting of files that `deno fmt` doesn't
-  support (CSS, HTML, etc.)
-- Install `clang_format` via Mason for C, C++ formatting (`clangd` enables
-  formatting but it's not extensible with `null-ls`)
+  Mason to unzip certain packages
+- Install [TypeScript](https://www.typescriptlang.org/download) globally to
+  allow the [typescript-tools](https://github.com/pmizio/typescript-tools.nvim)
+  plugin to work anywhere
 - Install `ghc` and `haskell-language-server` for Haskell development with
   [haskell-tools.nvim](https://github.com/mrcjkb/haskell-tools.nvim) (avoid
   installation of the Haskell Language Server with Mason due to compatibility

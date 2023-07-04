@@ -33,7 +33,9 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('mason').setup()
-      require('mason-lspconfig').setup()
+      require('mason-lspconfig').setup {
+        ensure_installed = { 'denols' },
+      }
 
       require('lspconfig.ui.windows').default_options.border = 'rounded'
       require('mason-lspconfig').setup_handlers {
@@ -189,6 +191,21 @@ return {
           orig_signs_handler.hide(ns, bufnr)
         end,
       }
+
+      -- auto-install some packages that cannot be handled by `ensure_installed`
+      local registry = require 'mason-registry'
+      local packages = {
+        'prettierd',
+        'clang-format',
+      }
+      registry.refresh(function()
+        for _, pkg_name in ipairs(packages) do
+          local pkg = registry.get_package(pkg_name)
+          if not pkg:is_installed() then
+            pkg:install()
+          end
+        end
+      end)
     end,
   },
   {
