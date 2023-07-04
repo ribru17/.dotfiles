@@ -9,9 +9,6 @@ return {
       local cond = require 'nvim-autopairs.conds'
 
       -- rule for: `(|)` -> Space -> `( | )` and associated deletion options
-      -- NOTE: this adds a rule to delete both spaces if the cursor is in
-      -- between two of them NO MATTER WHAT. if this gets annoying it may need
-      -- a change
       local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
       npairs.add_rules {
         Rule(' ', ' ')
@@ -24,31 +21,39 @@ return {
               }, pair)
             end),
       }
-      --> NOTE: uncomment to be able to delete, e.g., `{ | }`, in one keystroke
-      -- for _, bracket in pairs(brackets) do
-      --   npairs.add_rules {
-      --     Rule(bracket[1] .. ' ', ' ' .. bracket[2])
-      --         :with_pair(function() return false end)
-      --         :with_move(function(opts)
-      --           return opts.prev_char:match('.%' .. bracket[2]) ~= nil
-      --         end)
-      --         :use_key(bracket[2]),
-      --   }
-      -- end
 
-      -- add closing parenthesis even if next char is '$'
-      npairs.add_rule(
-      -- for markdown only, change to `Rule('(', ')', 'markdown')`
-        Rule('(', ')')
-        :with_pair(cond.after_text('$'))
-      )
+      for _, bracket in pairs(brackets) do
+        npairs.add_rules {
+          -- add move for brackets with pair of spaces inside
+          Rule(bracket[1] .. ' ', ' ' .. bracket[2])
+              :with_pair(function() return false end)
+              :with_del(function() return false end)
+              :with_move(function(opts)
+                return opts.prev_char:match('.%' .. bracket[2]) ~= nil
+              end)
+              :use_key(bracket[2]),
 
+          -- add closing brackets even if next char is '$'
+          Rule(bracket[1], bracket[2])
+              :with_pair(cond.after_text('$')),
+        }
+      end
+
+      -- add and delete pairs of dollar signs (if not escaped) in markdown
       npairs.add_rule(
         Rule('$', '$', 'markdown')
         :with_move(function(opts)
           return opts.next_char == opts.char
         end)
         :with_pair(cond.not_before_text('\\'))
+      )
+
+      -- automatically add brackets for arrow functions
+      npairs.add_rule(
+        Rule('%(.*%)%s*%=>$', ' {  }',
+          { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' })
+        :use_regex(true, '>')
+        :set_end_pair_length(2)
       )
     end,
   },
