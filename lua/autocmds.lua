@@ -21,8 +21,12 @@ vim.api.nvim_create_autocmd('VimLeave', {
 vim.api.nvim_create_autocmd('BufEnter',
   {
     callback = function()
-      vim.opt.formatoptions = vim.opt.formatoptions -
-          { 'c', 'r', 'o' }
+      -- allow <CR> to continue block comments only
+      -- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
+      vim.opt.comments:remove('://')
+      vim.opt.comments:remove(':--')
+      vim.opt.comments:remove(':#')
+      vim.opt.comments:remove(':%')
     end,
   })
 
