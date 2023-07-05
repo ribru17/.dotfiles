@@ -56,7 +56,12 @@ return {
         :set_end_pair_length(2)
       )
 
-      -- TODO: add rule for /**  */
+      npairs.add_rule(
+        Rule('/**', '  */')
+        -- only match if this is the last non-whitespace text on the line
+        :with_pair(cond.not_after_regex('%S+', -1))
+        :set_end_pair_length(3)
+      )
     end,
   },
   {
