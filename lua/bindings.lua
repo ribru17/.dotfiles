@@ -1,6 +1,12 @@
 --> MISCELLANEOUS KEYMAPS <--
 local map = vim.keymap.set
 
+-- prevent remapping of <C-i>; this is usually mapped to <Tab> which is the
+-- complement of <C-o>, however I want my tab to be different so I need to tell
+-- <C-i> to use the *default* <Tab> behavior rather than my own (to get the best
+-- of both worlds)
+map('n', '<C-i>', '<Tab>', { remap = false })
+
 local indent_opts = { remap = false, desc = 'VSCode-style block indentation' }
 map('x', '<Tab>', '>gv', indent_opts)
 map('x', '<S-Tab>', '<gv', indent_opts)

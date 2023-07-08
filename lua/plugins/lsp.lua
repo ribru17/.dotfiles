@@ -113,7 +113,7 @@ return {
           vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
           vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end,
             opts)
-          -- ^^ go back with <C-o>
+          -- ^^ go back with <C-o>, forth with <C-i>
           vim.keymap.set('n', 'gD',
             '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
           vim.keymap.set('n', '<leader>dk',
