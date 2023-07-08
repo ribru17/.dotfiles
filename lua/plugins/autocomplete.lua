@@ -36,6 +36,9 @@ return {
           -- add closing brackets even if next char is '$'
           Rule(bracket[1], bracket[2])
               :with_pair(cond.after_text('$')),
+
+          Rule(bracket[1] .. bracket[2], '')
+              :with_pair(function() return false end),
         }
       end
 
