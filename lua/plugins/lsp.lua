@@ -107,6 +107,8 @@ return {
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        -- to disable qflist opening, see
+        -- https://github.com/neovim/neovim/pull/19213
         callback = function(ev)
           local map = vim.keymap.set
           local opts = { buffer = ev.buf, remap = false, silent = true }
