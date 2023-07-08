@@ -56,10 +56,10 @@ return {
         :set_end_pair_length(2)
       )
 
+      -- see https://github.com/windwp/nvim-autopairs/pull/374
       npairs.add_rule(
         Rule('/**', '  */')
-        -- only match if this is the last non-whitespace text on the line
-        :with_pair(cond.not_after_regex('%S+', -1))
+        :with_pair(cond.not_after_regex('.-%*/', -1))
         :set_end_pair_length(3)
       )
     end,
