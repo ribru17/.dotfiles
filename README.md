@@ -85,13 +85,18 @@ WezTerm)
   - Use `<leader>gk` and `<leader>gj` to move up and down Git changes,
     respectively
 - Diagnostics
-  - Use `gd` to Go to Definition of current object
-  - Use `gD` to Go to Definition of current object in a new tab
+  - For the following keymaps, make the suffix capital to open in a new tab
+    (e.g. `gD` opens definition in new tab)
+    - Use `gd` to Go to Definition of current object
+    - Use `gt` to Go to Type definition of current object
+    - Use `gi` to Go to Implementation of current object
+    - Use `gc` to Go to deClaration of current object
   - Use `<leader>dj` and `<leader>dk` to go to next or previous Diagnostic,
     respectively
 - Insert mode
   - Prepend `Ctrl` to `h`, `j`, `k`, `l` to navigate as in Normal mode
     - This also works with `w`, `e`, and `b`
+  - Use `<M-BS>` to delete a word
   - Can use `Meta+i` as an alternative to `Esc` to exit Insert mode
 
 ### Editing

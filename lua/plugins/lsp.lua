@@ -108,33 +108,40 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
+          local map = vim.keymap.set
           local opts = { buffer = ev.buf, remap = false, silent = true }
-          vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
-          vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
-          vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end,
+          map('n', 'K', vim.lsp.buf.hover, opts)
+          map('n', '<leader>e', vim.diagnostic.open_float, opts)
+          -- go back with <C-o>, forth with <C-i>
+          map('n', 'gd', vim.lsp.buf.definition, opts)
+          map('n', 'gD', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>',
             opts)
-          -- ^^ go back with <C-o>, forth with <C-i>
-          vim.keymap.set('n', 'gD',
-            '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
-          vim.keymap.set('n', '<leader>dk',
-            function() vim.diagnostic.goto_prev() end,
+          map('n', 'gc', vim.lsp.buf.declaration, opts)
+          map('n', 'gC', '<cmd>tab split | lua vim.lsp.buf.declaration()<CR>',
             opts)
-          vim.keymap.set('n', '<leader>dj',
-            function() vim.diagnostic.goto_next() end,
+          map('n', 'gt', vim.lsp.buf.type_definition, opts)
+          map('n', 'gT', '<cmd>tab split | lua vim.lsp.buf.type_definition()<CR>',
             opts)
-          vim.keymap.set('n', '<leader>r', function()
+          map('n', 'gi', vim.lsp.buf.implementation, opts)
+          map('n', 'gI', '<cmd>tab split | lua vim.lsp.buf.implementation()<CR>',
+            opts)
+          map('n', '<leader>dk', vim.diagnostic.goto_prev, opts)
+          map('n', '<leader>dj', vim.diagnostic.goto_next, opts)
+          -- rename symbol starting with empty prompt
+          map('n', '<leader>r', function()
             local new_name = vim.fn.input { prompt = 'New name: ' }
             if #new_name == 0 then
               return
             end
             vim.lsp.buf.rename(new_name)
           end)
-          vim.keymap.set('n', '<leader>ca', function()
+          -- show code actions, executing if only 1
+          map('n', '<leader>ca', function()
             vim.lsp.buf.code_action {
               apply = true,
             }
           end, opts)
-          vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, opts)
+          map('n', '<leader>cl', vim.lsp.codelens.run, opts)
         end,
       })
 
