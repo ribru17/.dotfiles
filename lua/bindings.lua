@@ -96,6 +96,9 @@ map({ 'v', 'n' }, '<C-y>', '"+y',
 map({ 'v', 'n' }, '<C-x>', '"+x',
   { remap = true, desc = 'Cut to clipboard (Linux)' })
 
+map('x', '<leader>p', '"_dP',
+  { remap = false, desc = "Don't copy pasted-over text" })
+
 local insertnav_opts = { remap = false, desc = 'Navigation while typing' }
 map({ 'i', 'c' }, '<C-k>', '<Up>', insertnav_opts)
 map({ 'i', 'c' }, '<C-h>', '<Left>', insertnav_opts)
