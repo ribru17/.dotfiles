@@ -38,17 +38,23 @@ return {
       }
 
       require('lspconfig.ui.windows').default_options.border = 'rounded'
+
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       require('mason-lspconfig').setup_handlers {
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn't have
         -- a dedicated handler.
         function(server_name) -- default handler (optional)
-          require('lspconfig')[server_name].setup {}
+          require('lspconfig')[server_name].setup {
+            capabilities = capabilities,
+          }
         end,
         -- Next, you can provide a dedicated handler for specific servers.
         -- For example, set up `rust-tools` with `rust-analyzer`
         ['lua_ls'] = function()
           require 'lspconfig'.lua_ls.setup {
+            capabilities = capabilities,
             settings = {
               Lua = {
                 diagnostics = {
@@ -80,20 +86,22 @@ return {
           }
         end,
         ['clangd'] = function()
-          local capabilities = vim.lsp.protocol.make_client_capabilities()
-          capabilities.offsetEncoding = { 'utf-16' }
+          local custom_capabilities = require('cmp_nvim_lsp')
+              .default_capabilities()
+          custom_capabilities.offsetEncoding = { 'utf-16' }
           require('lspconfig').clangd.setup {
-            capabilities = capabilities,
+            capabilities = custom_capabilities,
             cmd = { 'clangd', '--header-insertion-decorators=false' },
           }
         end,
         ['cssls'] = function()
           --Enable (broadcasting) snippet capability for completion
-          local capabilities = vim.lsp.protocol.make_client_capabilities()
-          capabilities.textDocument.completion.completionItem.snippetSupport = true
+          local custom_capabilities = require('cmp_nvim_lsp')
+              .default_capabilities()
+          custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
           require 'lspconfig'.cssls.setup {
-            capabilities = capabilities,
+            capabilities = custom_capabilities,
           }
         end,
         ['hls'] = function()
