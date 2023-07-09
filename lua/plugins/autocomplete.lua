@@ -7,7 +7,6 @@ return {
       npairs.setup {}
       local Rule = require 'nvim-autopairs.rule'
       local cond = require 'nvim-autopairs.conds'
-      local ts_cond = require 'nvim-autopairs.ts-conds'
 
       -- rule for: `(|)` -> Space -> `( | )` and associated deletion options
       local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
