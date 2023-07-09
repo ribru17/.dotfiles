@@ -7,6 +7,7 @@ return {
       npairs.setup {}
       local Rule = require 'nvim-autopairs.rule'
       local cond = require 'nvim-autopairs.conds'
+      local ts_cond = require 'nvim-autopairs.ts-conds'
 
       -- rule for: `(|)` -> Space -> `( | )` and associated deletion options
       local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
@@ -64,6 +65,11 @@ return {
         Rule('/**', '  */')
         :with_pair(cond.not_after_regex('.-%*/', -1))
         :set_end_pair_length(3)
+      )
+
+      npairs.add_rule(
+        Rule('**', '**', 'markdown')
+        :with_move(cond.after_text('*'))
       )
     end,
   },
