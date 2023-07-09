@@ -161,7 +161,8 @@ that file). Save without formatting with `:W`.
     [nvim-surround](https://github.com/kylechui/nvim-surround) with some nice
     aliases
   - Use `f` postfix to surround with function call
-    - Capital `F` surrounds with a function definition in Lua files
+    - Capital `F` surrounds with a function definition in Lua and
+      Javascript-family files
 - Insert new lines in Normal mode with `Enter` (line(s) below) or `Shift+Enter`
   (line(s) above)
 

@@ -5,9 +5,9 @@ require('nvim-surround').buffer_setup {
         local result = require('nvim-surround.config').get_input(
           'Enter the function name: ')
         if result then
-          result = result == '' and result or ' ' .. result
+          result = result == '' and 'function' or 'local function ' .. result
           return {
-            { 'function' .. result .. '() ' },
+            { result .. '() ' },
             { ' end' },
           }
         end
