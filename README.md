@@ -6,7 +6,7 @@
   15pt
 - Theme: [Catppuccin](https://github.com/catppuccin/nvim)
 
-![output2](https://github.com/ribru17/nvim/assets/55766287/dff3a76c-c381-4a4f-9e11-0e507d73fbef)
+![nvimhome](https://github.com/ribru17/nvim/assets/55766287/dff3a76c-c381-4a4f-9e11-0e507d73fbef)
 
 ![nvimediting](https://github.com/ribru17/nvim/assets/55766287/b19ba9f7-eda1-40d7-bda6-d475bbb2a953)
 
