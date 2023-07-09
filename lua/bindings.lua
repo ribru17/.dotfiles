@@ -133,6 +133,11 @@ map('x', 'y', 'ygv<Esc>',
   { remap = false, desc = 'Cursor-in-place copy' })
 map('n', 'P', 'P`[', { remap = false, desc = 'Cursor-in-place paste' })
 
+map('i', '<C-p>', '<C-r>"',
+  { remap = false, desc = 'Paste from register in insert mode' })
+map('i', '<C-n>', '<Nop>',
+  { remap = false, desc = 'Disable default autocompletion menu' })
+
 local function NextClosedFold(dir)
   local cmd = 'norm!z' .. dir
   local view = vim.fn.winsaveview()
