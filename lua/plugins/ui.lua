@@ -426,7 +426,7 @@ return {
         callback = function()
           local stats = require('lazy').stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          dashboard.section.buttons.val[1].val = '⚡ Loaded ' ..
+          dashboard.section.buttons.val[1].val = '󱐋 Loaded ' ..
               stats.count .. ' plugins in ' .. ms .. 'ms'
           dashboard.section.buttons.val[1].opts.hl = '@alpha.header'
           pcall(vim.cmd.AlphaRedraw)
