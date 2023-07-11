@@ -82,6 +82,9 @@ WezTerm)
       the left and `p` is on the right on a keyboard
   - Use `Ctrl+h` and `Ctrl+l` to move tabs to the left of right, respectively
   - Use `Ctrl+t` to open a new tab
+- In-buffer
+  - Use `H` and `L` as aliases for `_` and `g_`, respectively (move to first and
+    last position of the line, respectively (excluding whitespace))
 - Git
   - Use `<leader>gk` and `<leader>gj` to move up and down Git changes,
     respectively
