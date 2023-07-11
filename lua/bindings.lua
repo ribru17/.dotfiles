@@ -1,11 +1,16 @@
 --> MISCELLANEOUS KEYMAPS <--
 local map = vim.keymap.set
 
--- prevent remapping of <C-i>; this is usually mapped to <Tab> which is the
--- complement of <C-o>, however I want my tab to be different so I need to tell
--- <C-i> to use the *default* <Tab> behavior rather than my own (to get the best
--- of both worlds)
-map('n', '<C-i>', '<Tab>', { remap = false })
+map('n', '<C-i>', '<Tab>',
+  {
+    remap = false,
+    desc = [[
+prevent remapping of <C-i>; this is usually mapped to <Tab> which is the
+complement of <C-o>, however I want my tab to be different so I need to tell
+<C-i> to use the *default* <Tab> behavior rather than my own (to get the best
+of both worlds)
+]],
+  })
 
 local indent_opts = { remap = false, desc = 'VSCode-style block indentation' }
 map('x', '<Tab>', '>gv', indent_opts)
@@ -43,6 +48,13 @@ local smartmove_opts = {
 }
 map('x', 'J', ":m '>+1<CR>gv=gv", smartmove_opts)
 map('x', 'K', ":m '<-2<CR>gv=gv", smartmove_opts)
+
+local nowhitespacejump_opts = {
+  remap = false,
+  desc = 'Better no-whitespace jumping',
+}
+map('n', 'H', '_', nowhitespacejump_opts)
+map('n', 'L', 'g_', nowhitespacejump_opts)
 
 local opsel_opts = { remap = false, desc = 'Easily move other end of selection' }
 map('x', '<C-h>', 'oho', opsel_opts)
