@@ -192,9 +192,9 @@ return {
         },
         sources = {
           { name = 'path' },
-          { name = 'luasnip' },
           { name = 'nvim_lua', ft = 'lua' },
           { name = 'nvim_lsp' },
+          { name = 'luasnip' },
           { name = 'buffer',   keyword_length = 3 },
         },
         formatting = {
