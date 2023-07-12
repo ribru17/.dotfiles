@@ -139,6 +139,8 @@ return {
           map('n', '<leader>dj', vim.diagnostic.goto_next, opts)
           -- rename symbol starting with empty prompt
           map('n', '<leader>r', function()
+            -- TODO: call vim.lsp.buf.document_highlight() before renaming
+            -- for clarity (and clear references after)
             local new_name = vim.fn.input { prompt = 'New name: ' }
             if #new_name == 0 then
               return

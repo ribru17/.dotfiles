@@ -53,8 +53,8 @@ local nowhitespacejump_opts = {
   remap = false,
   desc = 'Better no-whitespace jumping',
 }
-map('n', 'H', '_', nowhitespacejump_opts)
-map('n', 'L', 'g_', nowhitespacejump_opts)
+map({ 'n', 'x' }, 'H', '_', nowhitespacejump_opts)
+map({ 'n', 'x' }, 'L', 'g_', nowhitespacejump_opts)
 
 local opsel_opts = { remap = false, desc = 'Easily move other end of selection' }
 map('x', '<C-h>', 'oho', opsel_opts)
