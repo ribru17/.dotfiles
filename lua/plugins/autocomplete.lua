@@ -59,7 +59,6 @@ return {
         :set_end_pair_length(2)
       )
 
-      -- see https://github.com/windwp/nvim-autopairs/pull/374
       npairs.add_rule(
         Rule('/**', '  */')
         :with_pair(cond.not_after_regex('.-%*/'))
