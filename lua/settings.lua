@@ -25,6 +25,8 @@ vim.opt.foldenable = false -- start with all folds open
 vim.opt.splitright = true
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
+-- TODO: figure out a way to get code folding to work with treesitter without
+-- breaking on save. too buggy for now
 
 vim.g.mapleader = ' '
 vim.g.mkdp_echo_preview_url = 1
