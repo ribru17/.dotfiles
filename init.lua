@@ -12,8 +12,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
-
 -- settings and autocmds must load before plugins,
 -- but we can manually enable caching before both
 -- of these for optimal performance

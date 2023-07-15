@@ -61,7 +61,7 @@ return {
 
       npairs.add_rule(
         Rule('/**', '  */')
-        :with_pair(cond.not_after_regex('.-%*/'))
+        :with_pair(cond.not_after_regex('.-%*/', -1))
         :set_end_pair_length(3)
       )
 
