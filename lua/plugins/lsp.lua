@@ -138,7 +138,6 @@ return {
           map('n', '<leader>dk', vim.diagnostic.goto_prev, opts)
           map('n', '<leader>dj', vim.diagnostic.goto_next, opts)
           -- rename symbol starting with empty prompt, highlight references
-          -- TODO: make sure this works with LSPs that don't support doc_hl
           map('n', '<leader>r', function()
             vim.lsp.buf.document_highlight()
 
@@ -150,15 +149,29 @@ return {
                     semantic_tokens = false,
                   })
                 .extmarks
+            local i = 0
             timer:start(20, 20, function()
               vim.schedule(function()
+                i = i + 20
+                if i >= 500 then
+                  timer:stop()
+                  timer:close()
+                  vim.lsp.buf.clear_references()
+                  return
+                end
                 for _, value in ipairs(marks) do
+                  if value.opts.hl_group == 'LspReferenceText' then
+                    timer:stop()
+                    timer:close()
+                    vim.lsp.buf.clear_references()
+                    return
+                  end
                   if value.opts.hl_group == 'LspReferenceRead' and
                       value.ns == 'vim_lsp_references' then
                     timer:stop()
                     timer:close()
-                    vim.lsp.buf.clear_references()
                     local new_name = vim.fn.input { prompt = 'New name: ' }
+                    vim.lsp.buf.clear_references()
                     if #new_name == 0 then
                       return
                     end
