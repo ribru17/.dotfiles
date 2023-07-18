@@ -69,18 +69,4 @@ return {
       end, {})
     end,
   },
-  {
-    'windwp/nvim-ts-autotag',
-    ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact',
-      'typescriptreact', 'svelte', 'vue', 'tsx',
-      'jsx', 'rescript', 'php', 'glimmer', 'handlebars', 'hbs',
-      'markdown',
-    },
-  },
-  {
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-    opts = {},
-  },
 }

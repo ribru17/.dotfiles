@@ -1,5 +1,14 @@
 return {
   {
+    'windwp/nvim-ts-autotag',
+    ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact',
+      'typescriptreact', 'svelte', 'vue', 'tsx',
+      'jsx', 'rescript', 'php', 'glimmer', 'handlebars', 'hbs',
+      'markdown',
+    },
+    opts = { enable_close_on_slash = false },
+  },
+  {
     'windwp/nvim-autopairs',
     lazy = true,
     config = function()
@@ -91,6 +100,16 @@ return {
         vim.api.nvim_win_set_cursor(0, { row, col + 1 })
         ls.expand_auto()
       end, { remap = false })
+
+      vim.keymap.set('i', '/',
+        function()
+          local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+          vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { '/' })
+          autotag.close_slash_tag()
+          local new_row, new_col = unpack(vim.api.nvim_win_get_cursor(0))
+          vim.api.nvim_win_set_cursor(0, { new_row, new_col + 1 })
+          ls.expand_auto()
+        end, { remap = false })
     end,
   },
   {
