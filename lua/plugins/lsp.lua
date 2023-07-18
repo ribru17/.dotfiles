@@ -137,15 +137,43 @@ return {
             opts)
           map('n', '<leader>dk', vim.diagnostic.goto_prev, opts)
           map('n', '<leader>dj', vim.diagnostic.goto_next, opts)
-          -- rename symbol starting with empty prompt
+          -- rename symbol starting with empty prompt, highlight references
+          -- TODO: make sure this works with LSPs that don't support doc_hl
           map('n', '<leader>r', function()
-            -- TODO: call vim.lsp.buf.document_highlight() before renaming
-            -- for clarity (and clear references after)
-            local new_name = vim.fn.input { prompt = 'New name: ' }
-            if #new_name == 0 then
-              return
-            end
-            vim.lsp.buf.rename(new_name)
+            vim.lsp.buf.document_highlight()
+
+            local timer = vim.loop.new_timer()
+            local marks = vim.inspect_pos(nil, nil, nil,
+                  {
+                    syntax = false,
+                    treesitter = false,
+                    semantic_tokens = false,
+                  })
+                .extmarks
+            timer:start(20, 20, function()
+              vim.schedule(function()
+                for _, value in ipairs(marks) do
+                  if value.opts.hl_group == 'LspReferenceRead' and
+                      value.ns == 'vim_lsp_references' then
+                    timer:stop()
+                    timer:close()
+                    vim.lsp.buf.clear_references()
+                    local new_name = vim.fn.input { prompt = 'New name: ' }
+                    if #new_name == 0 then
+                      return
+                    end
+                    vim.lsp.buf.rename(new_name)
+                  end
+                end
+                marks = vim.inspect_pos(nil, nil, nil,
+                      {
+                        syntax = false,
+                        treesitter = false,
+                        semantic_tokens = false,
+                      })
+                    .extmarks
+              end)
+            end)
           end)
           -- show code actions, executing if only 1
           map('n', '<leader>ca', function()
