@@ -34,9 +34,7 @@ return {
     config = function()
       require('mason').setup()
       require('mason-lspconfig').setup {
-        -- TODO: get this to work, and make sure denols has no lsp capabilities
-        -- (only formatting)
-        -- ensure_installed = { 'denols' },
+        ensure_installed = { 'denols' },
       }
 
       require('lspconfig.ui.windows').default_options.border = 'rounded'
@@ -112,6 +110,9 @@ return {
         end,
         ['tsserver'] = function()
           -- don't set up, conflicts with typescript-tools.nvim
+        end,
+        ['denols'] = function()
+          -- don't set up LSP, we only want formatting
         end,
       }
 
