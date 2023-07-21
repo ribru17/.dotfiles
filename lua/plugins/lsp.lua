@@ -139,54 +139,40 @@ return {
           map('n', '<leader>dj', vim.diagnostic.goto_next, opts)
           -- rename symbol starting with empty prompt, highlight references
           map('n', '<leader>r', function()
-            vim.lsp.buf.document_highlight()
+            local bufnr = vim.api.nvim_get_current_buf()
+            local params = vim.lsp.util.make_position_params()
+            params.context = { includeDeclaration = true }
+            local client = vim.lsp.get_active_clients()[1]
+            local ns = vim.api.nvim_create_namespace('LspRenamespace')
 
-            local timer = vim.loop.new_timer()
-            local marks = vim.inspect_pos(nil, nil, nil,
-                  {
-                    syntax = false,
-                    treesitter = false,
-                    semantic_tokens = false,
-                  })
-                .extmarks
-            local i = 0
-            timer:start(20, 20, function()
-              vim.schedule(function()
-                i = i + 20
-                if i >= 500 then
-                  timer:stop()
-                  timer:close()
-                  vim.lsp.buf.clear_references()
+            client.request('textDocument/references', params,
+              function(_, result)
+                if not result then
+                  vim.print('Cannot rename.')
                   return
                 end
-                for _, value in ipairs(marks) do
-                  if value.opts.hl_group == 'LspReferenceText' then
-                    timer:stop()
-                    timer:close()
-                    vim.lsp.buf.clear_references()
-                    return
-                  end
-                  if value.opts.hl_group == 'LspReferenceRead' and
-                      value.ns == 'vim_lsp_references' then
-                    timer:stop()
-                    timer:close()
-                    local new_name = vim.fn.input { prompt = 'New name: ' }
-                    vim.lsp.buf.clear_references()
-                    if #new_name == 0 then
-                      return
+
+                for _, v in ipairs(result) do
+                  if v.range then
+                    local buf = vim.uri_to_bufnr(v.uri)
+                    local line = v.range.start.line
+                    local start_char = v.range.start.character
+                    local end_char = v.range['end'].character
+                    if buf == bufnr then
+                      print(line, start_char, end_char)
+                      vim.api.nvim_buf_add_highlight(bufnr, ns,
+                        'LspReferenceWrite', line, start_char, end_char)
                     end
-                    vim.lsp.buf.rename(new_name)
                   end
                 end
-                marks = vim.inspect_pos(nil, nil, nil,
-                      {
-                        syntax = false,
-                        treesitter = false,
-                        semantic_tokens = false,
-                      })
-                    .extmarks
-              end)
-            end)
+                vim.cmd('redraw')
+                local new_name = vim.fn.input { prompt = 'New name: ' }
+                vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+                if #new_name == 0 then
+                  return
+                end
+                vim.lsp.buf.rename(new_name)
+              end, bufnr)
           end)
           -- show code actions, executing if only 1
           map('n', '<leader>ca', function()
