@@ -43,7 +43,7 @@ return {
           enable_autocmd = false,
         },
         rainbow = {
-          enable = true,
+          enable = false,
           strategy = {
             -- disable this extension for all other filetypes
             function()
