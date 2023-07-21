@@ -31,6 +31,8 @@ plugins for you, no extra commands necessary.
   using Wayland in order to support yanking to the system clipboard
 - Install [unzip](https://archlinux.org/packages/extra/x86_64/unzip/) to allow
   Mason to unzip certain packages
+- Install [Deno](https://deno.land/manual@v1.35.2/getting_started/installation)
+  for formatting of Javascript-family files.
 - Install [TypeScript](https://www.typescriptlang.org/download) globally to
   allow the [typescript-tools](https://github.com/pmizio/typescript-tools.nvim)
   plugin to work anywhere

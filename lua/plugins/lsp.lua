@@ -34,7 +34,9 @@ return {
     config = function()
       require('mason').setup()
       require('mason-lspconfig').setup {
-        ensure_installed = { 'denols' },
+        -- TODO: get this to work, and make sure denols has no lsp capabilities
+        -- (only formatting)
+        -- ensure_installed = { 'denols' },
       }
 
       require('lspconfig.ui.windows').default_options.border = 'rounded'
@@ -284,7 +286,10 @@ return {
   },
   {
     'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig',
+      -- list null-ls as a dependency because typescript tools will not call
+      -- the LspAttach event, which would normally cause null-ls to load
+      'jose-elias-alvarez/null-ls.nvim', },
     ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
     opts = {},
   },
