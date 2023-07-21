@@ -144,7 +144,14 @@ return {
             local bufnr = vim.api.nvim_get_current_buf()
             local params = vim.lsp.util.make_position_params()
             params.context = { includeDeclaration = true }
-            local client = vim.lsp.get_active_clients()[1]
+            local clients = vim.lsp.get_active_clients()
+            local client = clients[1]
+            for _, value in ipairs(clients) do
+              vim.print(value.name)
+              if value.name ~= 'null-ls' then
+                client = value
+              end
+            end
             local ns = vim.api.nvim_create_namespace('LspRenamespace')
 
             client.request('textDocument/references', params,
