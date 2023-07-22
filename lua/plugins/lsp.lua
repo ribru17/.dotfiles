@@ -268,7 +268,7 @@ return {
     'jose-elias-alvarez/null-ls.nvim',
     event = { 'LspAttach' },
     -- other filetypes not covered by LspAttach (as they have no LSP)
-    ft = { 'markdown', 'css', 'html' },
+    ft = { 'markdown', 'css', 'html', 'json' },
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
@@ -283,7 +283,8 @@ return {
           null_ls.builtins.formatting.clang_format.with {
             -- https://clang.llvm.org/docs/ClangFormatStyleOptions.html
             extra_args = { '--style',
-              '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}', },
+              '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}' },
+            filetypes = { 'c', 'cpp' },
           },
           null_ls.builtins.formatting.prettierd.with {
             filetypes = { 'css', 'html' },
