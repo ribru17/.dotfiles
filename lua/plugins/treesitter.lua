@@ -42,21 +42,6 @@ return {
           enable = true,
           enable_autocmd = false,
         },
-        rainbow = {
-          enable = false,
-          strategy = {
-            -- disable this extension for all other filetypes
-            function()
-              return nil
-            end,
-            -- only enable it for files that would actually need it
-            commonlisp = require('ts-rainbow').strategy['global'],
-            scheme = require('ts-rainbow').strategy['global'],
-            query = require('ts-rainbow').strategy['global'],
-            clojure = require('ts-rainbow').strategy['global'],
-            html = require('ts-rainbow').strategy['global'],
-          },
-        },
       }
     end,
   },

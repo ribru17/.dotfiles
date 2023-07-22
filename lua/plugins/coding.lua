@@ -12,8 +12,20 @@ return {
     cmd = 'StartupTime',
   },
   {
-    'HiPhish/nvim-ts-rainbow2',
-    lazy = true,
+    'HiPhish/rainbow-delimiters.nvim',
+    config = function()
+      local rainbow_delimiters = require('rainbow-delimiters')
+      require 'rainbow-delimiters.setup' {
+        strategy = {
+          [''] = nil,
+          commonlisp = rainbow_delimiters.strategy['global'],
+          scheme = rainbow_delimiters.strategy['global'],
+          query = rainbow_delimiters.strategy['global'],
+          clojure = rainbow_delimiters.strategy['global'],
+          html = rainbow_delimiters.strategy['global'],
+        },
+      }
+    end,
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
