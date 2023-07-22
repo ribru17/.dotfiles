@@ -17,7 +17,7 @@ return {
       local rainbow_delimiters = require('rainbow-delimiters')
       require 'rainbow-delimiters.setup' {
         strategy = {
-          [''] = nil,
+          [''] = function() return nil end,
           commonlisp = rainbow_delimiters.strategy['global'],
           scheme = rainbow_delimiters.strategy['global'],
           query = rainbow_delimiters.strategy['global'],
