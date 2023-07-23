@@ -123,11 +123,23 @@ return {
         callback = function(ev)
           local map = vim.keymap.set
           local opts = { buffer = ev.buf, remap = false, silent = true }
+
+          -- if action opens up quickfix list, open the first item and close
+          -- the list
+          local function on_list(options)
+            vim.fn.setqflist({}, ' ', options)
+            vim.api.nvim_command('cfirst')
+          end
+
           map('n', 'K', vim.lsp.buf.hover, opts)
           map('n', '<leader>e', vim.diagnostic.open_float, opts)
           -- go back with <C-o>, forth with <C-i>
-          map('n', 'gd', vim.lsp.buf.definition, opts)
-          map('n', 'gD', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>',
+          map('n', 'gd',
+            function() vim.lsp.buf.definition { on_list = on_list } end, opts)
+          map('n', 'gD', function()
+              vim.cmd [[tab split]]
+              vim.lsp.buf.definition { on_list = on_list }
+            end,
             opts)
           map('n', 'gc', vim.lsp.buf.declaration, opts)
           map('n', 'gC', '<cmd>tab split | lua vim.lsp.buf.declaration()<CR>',
