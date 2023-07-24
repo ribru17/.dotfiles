@@ -48,7 +48,7 @@ This configuration extends all of the core functionality of Neovim. I use
 otherwise.
 
 For best results use a terminal that supports ligatures (I use Konsole and
-WezTerm)
+WezTerm).
 
 ### Basic
 
