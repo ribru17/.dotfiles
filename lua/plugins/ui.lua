@@ -307,6 +307,7 @@ return {
                 opts = { nowait = true, silent = true, noremap = true },
               },
               ['<C-l>'] = false, -- override telescope's default
+              ['<M-BS>'] = { '<C-s-w>', type = 'command' },
             },
           },
         },
