@@ -85,8 +85,8 @@ return {
       local api = require('Comment.api')
       vim.keymap.set('i', '<C-_>', function()
         api.toggle.linewise.current()
-        vim.cmd('normal! $')
-        vim.cmd([[startinsert!]])
+        vim.cmd.normal { '$', bang = true }
+        vim.cmd.startinsert { bang = true }
       end, {})
     end,
   },

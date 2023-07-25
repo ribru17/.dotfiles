@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
     vim.opt_local.foldexpr = 'NestedMarkdownFolds()'
 
     -- start with all folds open
-    vim.cmd [[silent exe "normal zR"]]
+    vim.cmd.normal { 'zR', mods = { silent = true } }
   end,
 })
 

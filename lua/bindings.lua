@@ -155,13 +155,13 @@ map('i', '<C-n>', '<Nop>',
   { remap = false, desc = 'Disable default autocompletion menu' })
 
 local function NextClosedFold(dir)
-  local cmd = 'norm!z' .. dir
+  local cmd = 'z' .. dir
   local view = vim.fn.winsaveview()
   local l0 = 0
   local l = view.lnum
   local open = true
   while l ~= l0 and open do
-    vim.cmd(cmd)
+    vim.cmd.normal { cmd, bang = true }
     l0 = l
     l = vim.api.nvim_win_get_cursor(0)[1]
     open = vim.fn.foldclosed(l) < 0

@@ -254,7 +254,7 @@ return {
 
       local function close_with_action(prompt_bufnr)
         require('telescope.actions').close(prompt_bufnr)
-        vim.cmd [[NvimTreeFindFileToggle]]
+        vim.cmd.NvimTreeFindFileToggle()
       end
 
       local putils = require('telescope.previewers.utils')

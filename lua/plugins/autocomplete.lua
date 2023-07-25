@@ -170,7 +170,7 @@ return {
           elseif escape_next() then
             move_right()
           elseif try_bullet_tab() then
-            vim.cmd [[BulletDemote]]
+            vim.cmd.BulletDemote()
             local row, col = unpack(vim.api.nvim_win_get_cursor(0))
             vim.api.nvim_win_set_cursor(0, { row, col + 1 })
           elseif has_words_before() then
@@ -185,7 +185,7 @@ return {
           elseif luasnip.jumpable(-1) then
             luasnip.jump(-1)
           elseif try_bullet_tab() then
-            vim.cmd [[BulletPromote]]
+            vim.cmd.BulletPromote()
             local row, col = unpack(vim.api.nvim_win_get_cursor(0))
             vim.api.nvim_win_set_cursor(0, { row, col + 1 })
           else

@@ -137,10 +137,9 @@ return {
           map('n', 'gd',
             function() vim.lsp.buf.definition { on_list = on_list } end, opts)
           map('n', 'gD', function()
-              vim.cmd [[tab split]]
-              vim.lsp.buf.definition { on_list = on_list }
-            end,
-            opts)
+            vim.cmd.split { mods = { tab = 1 } }
+            vim.lsp.buf.definition { on_list = on_list }
+          end, opts)
           map('n', 'gc', vim.lsp.buf.declaration, opts)
           map('n', 'gC', '<cmd>tab split | lua vim.lsp.buf.declaration()<CR>',
             opts)
@@ -187,7 +186,7 @@ return {
                     end
                   end
                 end
-                vim.cmd('redraw')
+                vim.cmd.redraw()
                 local new_name = vim.fn.input { prompt = 'New name: ' }
                 vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
                 if #new_name == 0 then

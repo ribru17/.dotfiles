@@ -1,2 +1,2 @@
 -- open help buffers in new tabs by default
-vim.cmd('wincmd T')
+vim.cmd.wincmd('T')

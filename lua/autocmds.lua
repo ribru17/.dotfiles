@@ -35,7 +35,7 @@ local lsp_formatting = function()
     filter = function(client)
       -- disable formatters that are already covered by null-ls to prevent conflicts
       local disabled_formatters = { 'clangd', 'tsserver', 'typescript-tools',
-        'html', }
+        'html' }
 
       for k = 1, #disabled_formatters do
         local v = disabled_formatters[k]
@@ -117,7 +117,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
     local layout = vim.api.nvim_call_function('winlayout', {})
     if layout[1] == 'leaf' and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), 'filetype') == 'NvimTree' and layout[3] == nil then
-      vim.cmd('confirm quit')
+      vim.cmd.quit { mods = { confirm = true } }
     end
   end,
 })
