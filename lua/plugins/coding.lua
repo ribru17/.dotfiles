@@ -37,9 +37,7 @@ return {
     version = '*', -- Use for stability; omit to use `main` branch for the latest features
     event = 'VeryLazy',
     config = function()
-      local ns = require('nvim-surround')
-      local buf = require('nvim-surround.buffer')
-      ns.setup {
+      require('nvim-surround').setup {
         -- Configuration here, or leave empty to use defaults
         aliases = {
           ['d'] = { '{', '[', '(', '<', '"', "'", '`' }, -- any delimiter
@@ -48,12 +46,6 @@ return {
         },
         move_cursor = false,
       }
-
-      -- fix dot repeat for nvim-surround
-      vim.keymap.set('n', '.', function()
-        ns.normal_curpos = buf.get_curpos()
-        vim.cmd.normal { '.', bang = true }
-      end)
     end,
   },
   {

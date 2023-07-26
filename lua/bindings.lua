@@ -79,8 +79,6 @@ map('t', '<Esc>', '<C-Bslash><C-n>',
   { remap = false, desc = 'Easily exit terminal mode' })
 
 map('n', 'Q', '<nop>', { desc = "Don't enter ex mode by accident" })
--- TODO: find a way to disable `q:` without causing a pause after typing `q`
-map('n', 'q:', '<nop>', { desc = "Don't view command history by accident" })
 
 map('n', '<leader>h',
   ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gIc<Left><Left><Left><Left>',

@@ -134,3 +134,16 @@ vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter' }, {
     end
   end,
 })
+
+-- disable `q:`
+local last_q = false
+vim.on_key(function(key)
+  if key == 'q' and vim.fn.reg_recording() == '' then
+    last_q = true
+  else
+    if key == ':' and last_q then
+      vim.schedule(function() vim.cmd.quit { mods = { confirm = true } } end)
+    end
+    last_q = false
+  end
+end)
