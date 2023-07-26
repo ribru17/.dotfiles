@@ -46,6 +46,15 @@ return {
         },
         move_cursor = false,
       }
+      local buffer = require('nvim-surround.buffer')
+      local nvim_surround = require('nvim-surround')
+      -- remember cursor position
+      -- NOTE: doesn't work when surrounding with `.`
+      vim.on_key(function(key)
+        if key == '.' then
+          nvim_surround.normal_curpos = buffer.get_curpos()
+        end
+      end)
     end,
   },
   {
