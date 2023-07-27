@@ -60,14 +60,6 @@ return {
         :with_pair(cond.not_before_text('\\'))
       )
 
-      -- automatically add brackets for arrow functions
-      npairs.add_rule(
-        Rule('%(.*%)%s*%=>$', ' {  }',
-          { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' })
-        :use_regex(true, '>')
-        :set_end_pair_length(2)
-      )
-
       npairs.add_rule(
         Rule('/**', '  */')
         :with_pair(cond.not_after_regex('.-%*/', -1))
