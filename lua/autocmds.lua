@@ -142,7 +142,10 @@ vim.on_key(function(key)
     last_q = true
   else
     if key == ':' and last_q then
-      vim.schedule(function() vim.cmd.quit { mods = { confirm = true } } end)
+      vim.schedule(function()
+        vim.cmd.quit { mods = { confirm = true } }
+        vim.api.nvim_feedkeys(':', 'n', true)
+      end)
     end
     last_q = false
   end
