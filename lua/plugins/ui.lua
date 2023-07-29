@@ -251,11 +251,6 @@ return {
         end
       end
 
-      local function close_with_action(prompt_bufnr)
-        require('telescope.actions').close(prompt_bufnr)
-        vim.cmd.NvimTreeFindFileToggle()
-      end
-
       local putils = require('telescope.previewers.utils')
       local telescope = require('telescope')
 
@@ -282,7 +277,6 @@ return {
           mappings = {
             n = {
               ['<Tab>'] = multi_tab, -- <Tab> to open as tab
-              ['<leader>t'] = close_with_action,
               ['<C-k>'] = actions.move_selection_previous,
               ['<C-j>'] = actions.move_selection_next,
               ['<Space>'] = {
