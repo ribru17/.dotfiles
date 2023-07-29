@@ -137,7 +137,7 @@ return {
           map('n', 'gd',
             function() vim.lsp.buf.definition { on_list = on_list } end, opts)
           map('n', 'gD', function()
-            vim.cmd.split { mods = { tab = 1 } }
+            vim.cmd.split { mods = { tab = vim.fn.tabpagenr() + 1 } }
             vim.lsp.buf.definition { on_list = on_list }
           end, opts)
           map('n', 'gc', vim.lsp.buf.declaration, opts)
