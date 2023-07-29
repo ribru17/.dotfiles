@@ -174,7 +174,6 @@ return {
     event = { 'VeryLazy' },
     config = function()
       require('gitsigns').setup {
-        preview_max_height = 20,
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
 
