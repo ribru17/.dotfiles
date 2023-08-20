@@ -150,3 +150,21 @@ vim.on_key(function(key)
     last_q = false
   end
 end)
+
+vim.api.nvim_create_autocmd('BufRead', {
+  callback = function()
+    vim.api.nvim_create_autocmd('BufWinEnter', {
+      once = true,
+      callback = function()
+        vim.cmd.normal { 'zx', bang = true }
+        vim.cmd.normal { 'zR', bang = true }
+      end,
+    })
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  callback = function()
+    vim.cmd.normal { 'zv', bang = true }
+  end,
+})

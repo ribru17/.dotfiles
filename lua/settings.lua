@@ -21,12 +21,15 @@ vim.opt.termguicolors = true
 vim.opt.mouse = ''
 vim.opt.pumheight = 10
 vim.opt.relativenumber = true
-vim.opt.foldenable = false -- start with all folds open
 vim.opt.splitright = true
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
+vim.opt.foldenable = true
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 -- TODO: figure out a way to get code folding to work with treesitter without
 -- breaking on save. too buggy for now
+-- NOTE: See nvim-ufo
 
 vim.g.mapleader = ' '
 vim.g.mkdp_echo_preview_url = 1
