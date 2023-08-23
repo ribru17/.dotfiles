@@ -17,6 +17,7 @@ return {
     config = function()
       require('ufo').setup {
         provider_selector = function(_, _, _)
+          -- we set the foldexpr manually in autocmds file
           return ''
         end,
       }

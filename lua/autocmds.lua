@@ -156,7 +156,10 @@ vim.api.nvim_create_autocmd('BufRead', {
     vim.api.nvim_create_autocmd('BufWinEnter', {
       once = true,
       callback = function()
-        vim.cmd.normal { 'zR', bang = true }
+        vim.schedule(function()
+          vim.cmd.normal { 'zR', bang = true }
+          vim.cmd.normal { 'zx', bang = true }
+        end)
       end,
     })
   end,

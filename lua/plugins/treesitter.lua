@@ -44,7 +44,6 @@ return {
         },
       }
       -- set foldexpr upon load to make folds work on first buffer
-      vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     end,
   },
 }
