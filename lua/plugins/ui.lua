@@ -327,9 +327,9 @@ return {
               if buflisted(buffer) == 1 then
                 len = len + 1
                 -- get relative name of buffer without leading slash
-                buffers[len] = '^' .. string.gsub(
-                  literalize(vim.api.nvim_buf_get_name(buffer)),
-                  literalize(vim.loop.cwd()), ''):sub(2) .. '$'
+                buffers[len] = '^' .. literalize(string.gsub(
+                  vim.api.nvim_buf_get_name(buffer),
+                  vim.loop.cwd(), ''):sub(2)) .. '$'
               end
             end
 
