@@ -156,15 +156,19 @@ vim.api.nvim_create_autocmd('BufRead', {
     vim.api.nvim_create_autocmd('BufWinEnter', {
       once = true,
       callback = function()
-        vim.cmd.normal { 'zx', bang = true }
-        vim.cmd.normal { 'zR', bang = true }
+        require('ufo').openAllFolds()
       end,
     })
   end,
 })
 
-vim.api.nvim_create_autocmd('BufWritePost', {
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
   callback = function()
-    vim.cmd.normal { 'zv', bang = true }
+    if vim.bo.filetype == 'markdown' then
+      vim.opt_local.foldexpr = 'NestedMarkdownFolds()'
+    else
+      vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    end
+    vim.opt_local.foldmethod = 'expr'
   end,
 })
