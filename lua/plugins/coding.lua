@@ -16,9 +16,19 @@ return {
     dependencies = { 'kevinhwang91/promise-async' },
     config = function()
       require('ufo').setup {
-        provider_selector = function(_, _, _)
-          -- we set the foldexpr manually in autocmds file
-          return ''
+        preview = {
+          win_config = {
+            border = 'none',
+            winhighlight = 'Normal:Folded',
+            winblend = 0,
+          },
+        },
+        provider_selector = function(_, filetype, _)
+          -- use nested markdown folding
+          if filetype == 'markdown' then
+            return ''
+          end
+          return { 'treesitter' }
         end,
       }
     end,

@@ -151,28 +151,14 @@ vim.on_key(function(key)
   end
 end)
 
-vim.api.nvim_create_autocmd('BufRead', {
-  callback = function()
-    vim.api.nvim_create_autocmd('BufWinEnter', {
-      once = true,
-      callback = function()
-        vim.schedule(function()
-          vim.cmd.normal { 'zR', bang = true }
-          vim.cmd.normal { 'zx', bang = true }
-        end)
-      end,
-    })
-  end,
-})
-
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
   callback = function()
     if vim.bo.filetype == 'markdown' then
+      -- override to ufo method
       vim.opt_local.foldexpr = 'NestedMarkdownFolds()'
     else
-      vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      -- revert to ufo method
+      vim.opt_local.foldexpr = '0'
     end
-    -- see https://stackoverflow.com/questions/61795798/recalculating-folds-in-vim-without-applying-foldlevel#comment111082546_61795798
-    vim.opt_local.foldmethod = 'expr'
   end,
 })

@@ -27,6 +27,9 @@ vim.opt.cursorlineopt = 'number'
 vim.opt.foldenable = true
 vim.opt.foldmethod = 'expr'
 vim.o.foldcolumn = '0'
+-- Ufo can't recognize zR on startup sadly.
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
 
 vim.g.mapleader = ' '
 vim.g.mkdp_echo_preview_url = 1

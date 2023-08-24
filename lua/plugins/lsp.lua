@@ -123,6 +123,7 @@ return {
         callback = function(ev)
           local map = vim.keymap.set
           local opts = { buffer = ev.buf, remap = false, silent = true }
+          local foldPreview = require('ufo').peekFoldedLinesUnderCursor
 
           -- if action opens up quickfix list, open the first item and close
           -- the list
@@ -132,6 +133,12 @@ return {
           end
 
           map('n', 'K', vim.lsp.buf.hover, opts)
+          map('n', 'K', function()
+            local winid = foldPreview()
+            if not winid then
+              vim.lsp.buf.hover()
+            end
+          end, opts)
           map('n', '<leader>e', vim.diagnostic.open_float, opts)
           -- go back with <C-o>, forth with <C-i>
           map('n', 'gd',
