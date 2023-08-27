@@ -329,7 +329,7 @@ return {
                 -- get relative name of buffer without leading slash
                 buffers[len] = '^' .. literalize(string.gsub(
                   vim.api.nvim_buf_get_name(buffer),
-                  vim.loop.cwd(), ''):sub(2)) .. '$'
+                  literalize(vim.loop.cwd()), ''):sub(2)) .. '$'
               end
             end
 
