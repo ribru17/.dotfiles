@@ -129,7 +129,7 @@ return {
           -- the list
           local function on_list(options)
             vim.fn.setqflist({}, ' ', options)
-            vim.api.nvim_command('cfirst')
+            vim.cmd.cfirst()
           end
 
           map('n', 'K', vim.lsp.buf.hover, opts)
