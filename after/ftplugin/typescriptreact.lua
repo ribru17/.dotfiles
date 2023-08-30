@@ -7,13 +7,14 @@ require('nvim-surround').buffer_setup {
           'Enter the function name: ')
         if result then
           result = result == '' and result or 'const ' .. result .. ' = '
+          return {
+            { result .. '() => {' },
+            { '}' },
+          }
         end
-        return {
-          { result .. '() => {' },
-          { '}' },
-        }
       end,
       find = function()
+        -- check for both named and unnamed arrow functions
         local named_match = config.get_selection('const [%w_]- = %(%) => {.-}')
         if named_match then
           return named_match
