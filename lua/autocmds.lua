@@ -172,7 +172,7 @@ end)
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
   callback = function()
     if vim.bo.filetype == 'markdown' then
-      -- override to ufo method
+      -- override ufo method
       vim.opt_local.foldexpr = 'NestedMarkdownFolds()'
     else
       -- revert to ufo method
