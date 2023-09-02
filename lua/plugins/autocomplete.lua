@@ -18,6 +18,7 @@ return {
       npairs.setup {}
       local Rule = require 'nvim-autopairs.rule'
       local cond = require 'nvim-autopairs.conds'
+      local ts_conds = require('nvim-autopairs.ts-conds')
 
       -- rule for: `(|)` -> Space -> `( | )` and associated deletion options
       local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
@@ -57,8 +58,13 @@ return {
       npairs.add_rule(
         Rule('$', '$', 'markdown')
         :with_move(function(opts)
-          return opts.next_char == opts.char
+          return opts.next_char == opts.char and
+              ts_conds.is_ts_node { 'inline_formula', 'displayed_equation',
+                'math_environment' } (
+                opts)
         end)
+        :with_pair(ts_conds.is_not_ts_node { 'inline_formula',
+          'displayed_equation', 'math_environment' })
         :with_pair(cond.not_before_text('\\'))
       )
 
