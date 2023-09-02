@@ -167,7 +167,8 @@ that file). Save without formatting with `:W`.
     - Capital `F` surrounds with a function definition in Lua and
       Javascript-family files
   - Use `g` postfix to surround with a generic instantiation
-    - E.g. `ysiwgArray<CR>` to surround a word with `Array<`, `>`
+    - E.g. `ysiwgArray<CR>` to surround a word with `Array<`, `>` (or `Array[`,
+      `]` in Go)
   - Use `b` postfix to make selection Bold (surround with `**`) in Markdown
 - Custom text object motions using Tree-sitter (all motions support `a` and `i`
   variants)
