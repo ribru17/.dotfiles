@@ -166,7 +166,6 @@ return {
             local clients = vim.lsp.get_active_clients()
             local client = clients[1]
             for _, value in ipairs(clients) do
-              vim.print(value.name)
               if value.name ~= 'null-ls' then
                 client = value
               end
