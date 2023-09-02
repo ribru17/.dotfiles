@@ -65,6 +65,7 @@ WezTerm).
 
 - Files
   - Use `<leader>ff` to fuzzy Find Files
+    - Files that are already opened are ignored
   - Use `<leader>fg` to Grep Files against a fixed input query (more performant,
     better for large projects)
   - Use `<leader>fs` to live Search for Files that contain a phrase (using
@@ -79,8 +80,6 @@ WezTerm).
 - Tabs
   - Use `Ctrl+n` and `Ctrl+p` to switch to one tab to the left or right,
     respectively
-    - I chose these directions because they make more sense to me as `n` is on
-      the left and `p` is on the right on a keyboard
   - Use `Ctrl+h` and `Ctrl+l` to move tabs to the left of right, respectively
   - Use `Ctrl+t` to open a new tab
 - In-buffer
@@ -167,7 +166,15 @@ that file). Save without formatting with `:W`.
   - Use `f` postfix to surround with function call
     - Capital `F` surrounds with a function definition in Lua and
       Javascript-family files
+  - Use `g` postfix to surround with a generic instantiation
+    - E.g. `ysiwgArray<CR>` to surround a word with `Array<`, `>`
   - Use `b` postfix to make selection Bold (surround with `**`) in Markdown
+- Custom text object motions using Tree-sitter (all motions support `a` and `i`
+  variants)
+  - `f`: function implementation
+  - `l`: loop
+  - `c`: conditional
+  - `C`: comment
 - Insert new lines in Normal mode with `Enter` (line(s) below) or `Shift+Enter`
   (line(s) above)
 
