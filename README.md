@@ -175,7 +175,7 @@ that file). Save without formatting with `:W`.
   - `f`: function implementation
   - `l`: loop
   - `c`: conditional
-  - `C`: comment
+  - `/`: comment
 - Insert new lines in Normal mode with `Enter` (line(s) below) or `Shift+Enter`
   (line(s) above)
 

@@ -51,8 +51,8 @@ return {
             enable = true,
             lookahead = true,
             keymaps = {
-              ['aC'] = '@comment.outer',
-              ['iC'] = '@comment.outer',
+              ['a/'] = '@comment.outer',
+              ['i/'] = '@comment.outer',
               ['ac'] = '@conditional.outer',
               ['ic'] = '@conditional.inner',
               ['af'] = '@function.outer',
