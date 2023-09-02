@@ -4,6 +4,9 @@ return {
     version = false,
     build = ':TSUpdate',
     event = { 'BufReadPost', 'BufNewFile' },
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
     config = function()
       require 'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all" (the first five parsers should always be installed)
@@ -42,8 +45,27 @@ return {
           enable = true,
           enable_autocmd = false,
         },
+
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ['aC'] = '@comment.outer',
+              ['iC'] = '@comment.outer',
+              ['ac'] = '@conditional.outer',
+              ['ic'] = '@conditional.inner',
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['al'] = '@loop.outer',
+              ['il'] = '@loop.inner',
+            },
+            selection_modes = {
+              ['@comment.outer'] = 'V',
+            },
+          },
+        },
       }
-      -- set foldexpr upon load to make folds work on first buffer
     end,
   },
 }
