@@ -8,6 +8,7 @@ local MATH_NODES = {
 }
 
 local in_mathzone = function()
+  -- redraw to make function wait for the main thread to finish tree-sitter parsing
   vim.cmd.redraw()
   local current_node = get_node { ignore_injections = false }
   while current_node do
@@ -280,8 +281,6 @@ return {
     { condition = in_mathzone }),
   s({ trig = 'perp', wordTrig = false }, fmt([[\perp]], {}),
     { condition = in_mathzone }),
-  s({ trig = 'int', wordTrig = false }, fmt([[\int]], {}),
-    { condition = in_mathzone }),
 
   --> IN MATH ZONE, WORD BOUNDARY
 
@@ -461,6 +460,8 @@ return {
   s({ trig = 'of' }, fmt([[\subseteq]], {}),
     { condition = in_mathzone }),
   s({ trig = 'implies' }, fmt([[\implies]], {}),
+    { condition = in_mathzone }),
+  s({ trig = 'text' }, fmt([[\text{{{}}}]], { i(1, '') }),
     { condition = in_mathzone }),
 
   --> NOT IN MATH ZONE <--
