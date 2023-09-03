@@ -31,6 +31,18 @@ return {
                 brackets[2][1] .. brackets[2][2],
                 brackets[3][1] .. brackets[3][2],
               }, pair)
+            end)
+            :with_move(cond.none())
+            :with_cr(cond.none())
+            :with_del(function(opts)
+              -- We only want to delete the pair of spaces when the cursor is as such: ( | )
+              local col = vim.api.nvim_win_get_cursor(0)[2]
+              local context = opts.line:sub(col - 1, col + 2)
+              return vim.tbl_contains({
+                brackets[1][1] .. '  ' .. brackets[1][2],
+                brackets[2][1] .. '  ' .. brackets[2][2],
+                brackets[3][1] .. '  ' .. brackets[3][2],
+              }, context)
             end),
       }
 
