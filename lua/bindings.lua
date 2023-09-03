@@ -121,7 +121,9 @@ map({ 'v', 'n' }, '<C-y>', '"+y',
 map({ 'v', 'n' }, '<C-x>', '"+x',
   { remap = true, desc = 'Cut to clipboard (Linux)' })
 
-map('x', '<leader>p', '"_dP',
+map('x', '<leader>p', function()
+    vim.cmd.normal { '"_dP', bang = true }
+  end,
   { remap = false, desc = "Don't copy pasted-over text" })
 
 local insertnav_opts = { remap = false, desc = 'Navigation while typing' }
@@ -159,7 +161,9 @@ map('x', 'zz', 'zf', { remap = true, desc = 'Fold selected lines' })
 
 map('x', 'y', 'ygv<Esc>',
   { remap = false, desc = 'Cursor-in-place copy' })
-map('n', 'P', 'P`[', { remap = false, desc = 'Cursor-in-place paste' })
+map('n', 'P', function()
+  vim.cmd.normal { 'P`[', bang = true }
+end, { remap = false, desc = 'Cursor-in-place paste' })
 
 map('i', '<C-p>', '<C-r>"',
   { remap = false, desc = 'Paste from register in insert mode' })
