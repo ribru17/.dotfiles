@@ -545,9 +545,7 @@ return {
         vim.keymap.set('n', '<C-r>', api.tree.reload, opts('Refresh'))
         vim.keymap.set('n', '<Tab>', tab_with_close, opts('Open: New Tab'))
         vim.keymap.set('n', 'd', api.fs.trash, opts('Trash'))
-        vim.keymap.set('n', 'D',
-          '<Cmd>lua require("nvim-tree.api").fs.create()<CR>/<Left>',
-          opts('Create Directory'))
+        vim.keymap.set('n', 'D', api.fs.remove, opts('Trash'))
         vim.keymap.set('n', '<Esc>', api.tree.close, opts('Close'))
         vim.keymap.set('n', 'z', api.node.navigate.parent_close,
           opts('Close Directory'))
