@@ -41,3 +41,4 @@ vim.g.mkdp_preview_options = {
 }
 vim.g.rustfmt_autosave = 1
 vim.g.bullets_outline_levels = { 'ROM', 'ABC', 'rom', 'abc', 'std-' }
+vim.g.bullets_checkbox_markers = ' x'
