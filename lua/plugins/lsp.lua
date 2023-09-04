@@ -22,11 +22,7 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
     },
-    branch = '1.x.x',
-    config = function()
-      local ht = require('haskell-tools')
-      ht.start_or_attach {}
-    end,
+    branch = '2.x.x',
   },
   {
     'neovim/nvim-lspconfig',
