@@ -23,7 +23,7 @@ return {
       -- rule for: `(|)` -> Space -> `( | )` and associated deletion options
       local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
       npairs.add_rules {
-        Rule(' ', ' ')
+        Rule(' ', ' ', '-markdown')
             :with_pair(function(opts)
               local pair = opts.line:sub(opts.col - 1, opts.col)
               return vim.tbl_contains({
