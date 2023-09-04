@@ -1,6 +1,8 @@
 vim.opt_local.shiftwidth = 2
 vim.opt_local.tabstop = 2
 vim.opt_local.softtabstop = 2
+-- Allow block comments to be continued when hitting enter
+vim.opt_local.formatoptions:append('qcro')
 
 -- NestedMarkdownFolds() doesn't refresh against telescope folding bug
 -- reference: https://github.com/nvim-treesitter/nvim-treesitter/issues/4754
