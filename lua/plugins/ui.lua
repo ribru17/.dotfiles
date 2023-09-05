@@ -560,6 +560,8 @@ return {
         },
         view = {
           side = 'right',
+          relativenumber = true,
+          number = true,
           float = {
             enable = FLOAT_ENABLED,
             open_win_config = function()
