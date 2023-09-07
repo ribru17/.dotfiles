@@ -41,7 +41,12 @@ map('n', '<CR>', function()
     lines[i] = ''
     i = i + 1
   end
-  vim.api.nvim_buf_set_lines(0, current_line, current_line, false, lines)
+  -- pcall suppresses annoying errors when trying to edit read-only buffer
+  pcall(
+    function()
+      vim.api.nvim_buf_set_lines(0, current_line, current_line, false, lines)
+    end
+  )
 end, { remap = false, desc = 'Add new lines in normal mode' })
 
 map('n', '<S-CR>', function()
@@ -53,7 +58,13 @@ map('n', '<S-CR>', function()
     lines[i] = ''
     i = i + 1
   end
-  vim.api.nvim_buf_set_lines(0, current_line - 1, current_line - 1, false, lines)
+  -- pcall suppresses annoying errors when trying to edit read-only buffer
+  pcall(
+    function()
+      vim.api.nvim_buf_set_lines(0, current_line - 1, current_line - 1, false,
+        lines)
+    end
+  )
 end, { remap = false, desc = 'Add new lines in normal mode (above)' })
 
 local smartmove_opts = {
