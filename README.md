@@ -203,7 +203,8 @@ Inherits all snippets provided by the LSP. Additionally...
 
 - `!`: snippet for HTML (Emmet style) that provides a generic HTML5 template
 - `lorem`: snippet for all filetypes that provides a long lorem ipsum string
-- Some Markdown Tex snippets inspired by [Gilles Castel](https://castel.dev/).
+- Many Markdown LaTex snippets inspired by [Gilles Castel](https://castel.dev/).
+- Custom Markdown tables with `tbl<row_num>x<col_num>`
 
 ### Debugging
 

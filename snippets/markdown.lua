@@ -90,6 +90,34 @@ return {
   ```
   ]], { i(1, 'Start'), i(2, 'End'), i(3, '') }),
     { condition = function() return false end, show_condition = in_text }),
+  s({ trig = 'tbl(%d+)x(%d+)', regTrig = true }, {
+    d(1, function(_, snip)
+      local nodes = {}
+      local i_counter = 0
+      local hlines = ''
+      for _ = 1, snip.captures[2] do
+        i_counter = i_counter + 1
+        table.insert(nodes, t('| '))
+        table.insert(nodes, i(i_counter, 'Column_' .. i_counter))
+        table.insert(nodes, t(' '))
+        hlines = hlines .. '| -------- '
+      end
+      table.insert(nodes, t { '|', '' })
+      hlines = hlines .. '|'
+      table.insert(nodes, t { hlines, '' })
+      for c_i = 1, snip.captures[1] do
+        for c_j = 1, snip.captures[2] do
+          i_counter = i_counter + 1
+          table.insert(nodes, t('| '))
+          table.insert(nodes, i(i_counter, 'Cell_' .. c_i .. '_' .. c_j))
+          table.insert(nodes, t(' '))
+        end
+        table.insert(nodes, t { '|', '' })
+      end
+      return sn(nil, nodes)
+    end
+    ),
+  }),
 }, {
   --->> AUTO-EXPAND <<---
 
