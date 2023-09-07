@@ -177,7 +177,7 @@ return {
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.confirm { select = true }
-          elseif luasnip.expand_or_jumpable() then
+          elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           elseif escape_next() then
             move_right()
@@ -223,9 +223,22 @@ return {
         sources = {
           { name = 'path' },
           { name = 'nvim_lua', ft = 'lua' },
-          { name = 'nvim_lsp' },
+          {
+            name = 'nvim_lsp',
+            entry_filter = function(entry)
+              -- don't show emmet snippets in cmp menu, it gets quite annoying
+              -- better to use a separate expansion keybind for emmet snips
+              if
+                  entry:get_kind() == require('cmp.types').lsp.CompletionItemKind.Snippet
+                  and entry.source:get_debug_name() == 'nvim_lsp:emmet_ls'
+              then
+                return false
+              end
+              return true
+            end,
+          },
           { name = 'luasnip' },
-          { name = 'buffer',   keyword_length = 3 },
+          { name = 'buffer', keyword_length = 3 },
         },
         formatting = {
           fields = { 'abbr', 'menu', 'kind' },

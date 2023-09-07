@@ -85,7 +85,7 @@ return {
           local custom_capabilities = require('cmp_nvim_lsp')
               .default_capabilities()
           custom_capabilities.offsetEncoding = { 'utf-16' }
-          require('lspconfig').clangd.setup {
+          require 'lspconfig'.clangd.setup {
             capabilities = custom_capabilities,
             cmd = { 'clangd', '--header-insertion-decorators=false' },
           }
@@ -109,6 +109,39 @@ return {
         end,
         ['denols'] = function()
           -- don't set up LSP, we only want formatting
+        end,
+        ['emmet_ls'] = function()
+          local ls = require('luasnip')
+          require 'lspconfig'.emmet_ls.setup {
+            capabilities = capabilities,
+            filetypes = { 'css', 'eruby', 'html', 'javascript',
+              'javascriptreact', 'less', 'sass', 'scss', 'svelte', 'pug',
+              'typescriptreact', 'vue' },
+            on_attach = function(client, bufnr)
+              vim.keymap.set('i', '<S-CR>', function()
+                client.request(
+                  'textDocument/completion',
+                  vim.lsp.util.make_position_params(),
+                  function(_, result)
+                    if #result == 0 then
+                      return
+                    end
+                    local textEdit = result[1].textEdit
+                    local snip_string = textEdit.newText
+                    textEdit.newText = ''
+                    vim.schedule(
+                      function()
+                        vim.lsp.util.apply_text_edits({ textEdit }, bufnr,
+                          client.offset_encoding)
+                        ls.lsp_expand(snip_string)
+                      end
+                    )
+                  end,
+                  bufnr
+                )
+              end, { buffer = bufnr })
+            end,
+          }
         end,
       }
 
@@ -281,7 +314,7 @@ return {
     'jose-elias-alvarez/null-ls.nvim',
     event = { 'LspAttach' },
     -- other filetypes not covered by LspAttach (as they have no LSP)
-    ft = { 'markdown', 'css', 'html', 'json' },
+    ft = { 'markdown', 'json' },
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
