@@ -82,10 +82,10 @@ map({ 'n', 'x' }, 'H', '_', nowhitespacejump_opts)
 map({ 'n', 'x' }, 'L', 'g_', nowhitespacejump_opts)
 
 local opsel_opts = { remap = false, desc = 'Easily move other end of selection' }
-map('x', '<C-h>', 'oho', opsel_opts)
-map('x', '<C-l>', 'olo', opsel_opts)
-map('x', '<C-k>', 'oko', opsel_opts)
-map('x', '<C-j>', 'ojo', opsel_opts)
+map('x', '<C-h>', function() vim.cmd.normal('oho') end, opsel_opts)
+map('x', '<C-l>', function() vim.cmd.normal('olo') end, opsel_opts)
+map('x', '<C-k>', function() vim.cmd.normal('oko') end, opsel_opts)
+map('x', '<C-j>', function() vim.cmd.normal('ojo') end, opsel_opts)
 
 local cursorstay_opts = { remap = false, desc = 'Keep cursor in place' }
 map('n', 'J', 'mzJ`z', cursorstay_opts)

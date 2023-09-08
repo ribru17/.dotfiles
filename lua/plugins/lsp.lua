@@ -118,7 +118,10 @@ return {
               'javascriptreact', 'less', 'sass', 'scss', 'svelte', 'pug',
               'typescriptreact', 'vue' },
             on_attach = function(client, bufnr)
+              -- https://github.com/aca/emmet-ls/issues/42
               vim.keymap.set('i', '<S-CR>', function()
+                -- necessary to allow snippet jumping when using the autocmd
+                -- that clears snippet jumps on type session end
                 vim.cmd.stopinsert()
                 client.request(
                   'textDocument/completion',
