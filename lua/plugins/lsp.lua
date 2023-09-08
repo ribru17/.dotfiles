@@ -119,6 +119,7 @@ return {
               'typescriptreact', 'vue' },
             on_attach = function(client, bufnr)
               vim.keymap.set('i', '<S-CR>', function()
+                vim.cmd.stopinsert()
                 client.request(
                   'textDocument/completion',
                   vim.lsp.util.make_position_params(),
@@ -131,13 +132,7 @@ return {
                     textEdit.newText = ''
                     vim.lsp.util.apply_text_edits({ textEdit }, bufnr,
                       client.offset_encoding)
-                    ls.lsp_expand(snip_string, {
-                      jump_into_func = function(snip)
-                        local node = snip:jump_into(1)
-                        node.isEmmet = true
-                        return node
-                      end,
-                    })
+                    ls.lsp_expand(snip_string)
                   end,
                   bufnr
                 )

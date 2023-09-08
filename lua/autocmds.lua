@@ -178,11 +178,7 @@ vim.api.nvim_create_autocmd('ModeChanged', {
         and cur_node
         and not ls.session.jump_active
     then
-      if not cur_node.isEmmet then
-        ls.unlink_current()
-      else
-        cur_node.isEmmet = false
-      end
+      ls.unlink_current()
     end
   end,
 })
