@@ -129,13 +129,15 @@ return {
                     local textEdit = result[1].textEdit
                     local snip_string = textEdit.newText
                     textEdit.newText = ''
-                    vim.schedule(
-                      function()
-                        vim.lsp.util.apply_text_edits({ textEdit }, bufnr,
-                          client.offset_encoding)
-                        ls.lsp_expand(snip_string)
-                      end
-                    )
+                    vim.lsp.util.apply_text_edits({ textEdit }, bufnr,
+                      client.offset_encoding)
+                    ls.lsp_expand(snip_string, {
+                      jump_into_func = function(snip)
+                        local node = snip:jump_into(1)
+                        node.isEmmet = true
+                        return node
+                      end,
+                    })
                   end,
                   bufnr
                 )

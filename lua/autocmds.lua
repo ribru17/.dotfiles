@@ -166,3 +166,23 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
     end
   end,
 })
+
+-- prevent weird snippet jumping behavior
+-- https://github.com/L3MON4D3/LuaSnip/issues/258
+vim.api.nvim_create_autocmd('ModeChanged', {
+  pattern = '*',
+  callback = function()
+    local ls = require('luasnip')
+    local cur_node = ls.session.current_nodes[vim.api.nvim_get_current_buf()]
+    if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+        and cur_node
+        and not ls.session.jump_active
+    then
+      if not cur_node.isEmmet then
+        ls.unlink_current()
+      else
+        cur_node.isEmmet = false
+      end
+    end
+  end,
+})
