@@ -19,18 +19,18 @@ map('n', '<Tab>', '>>', indent_opts)
 map('n', '<S-Tab>', '<<', indent_opts)
 
 -- NOTE: Look into mini.ai if this doesn't suit needs
-local text_obj_opts = {
+local math_obj_opts = {
   remap = false,
   desc = 'Custom text object to delete inside "$" delimiters',
 }
-map('x', 'i$', 'T$ot$', text_obj_opts)
-map('x', 'a$', 'F$of$', text_obj_opts)
+map('x', 'i$', function() vim.cmd.normal('T$ot$') end, math_obj_opts)
+map('x', 'a$', function() vim.cmd.normal('F$of$') end, math_obj_opts)
 map('o', 'i$', function()
   vim.cmd.normal { 'T$vt$', bang = true }
-end, text_obj_opts)
+end, math_obj_opts)
 map('o', 'a$', function()
   vim.cmd.normal { 'F$vf$', bang = true }
-end, text_obj_opts)
+end, math_obj_opts)
 
 map('n', '<CR>', function()
   local n = vim.v.count < 1 and 1 or vim.v.count
