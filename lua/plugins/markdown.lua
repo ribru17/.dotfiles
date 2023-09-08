@@ -8,7 +8,7 @@ return {
   },
   {
     'dkarter/bullets.vim',
-    ft = 'markdown',
+    ft = { 'markdown', 'text' },
     cmd = { 'InsertNewBullet' },
   },
   {
