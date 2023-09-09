@@ -122,7 +122,6 @@ return {
               vim.keymap.set('i', '<S-CR>', function()
                 -- necessary to allow snippet jumping when using the autocmd
                 -- that clears snippet jumps on type session end
-                vim.cmd.stopinsert()
                 client.request(
                   'textDocument/completion',
                   vim.lsp.util.make_position_params(),
@@ -135,10 +134,16 @@ return {
                     textEdit.newText = ''
                     vim.lsp.util.apply_text_edits({ textEdit }, bufnr,
                       client.offset_encoding)
-                    ls.lsp_expand(snip_string)
+                    ls.lsp_expand(snip_string, {
+                      jump_into_func = function(snip)
+                        ls.session.jump_active = true
+                        return snip:jump_into(1)
+                      end,
+                    })
                   end,
                   bufnr
                 )
+                ls.session.jump_active = false
               end, { buffer = bufnr })
             end,
           }
