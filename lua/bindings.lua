@@ -218,6 +218,9 @@ map('x', 'aa', function()
   local mode = vim.api.nvim_get_mode().mode == 'V' and '' or 'V'
   return 'ggoG' .. mode
 end, { expr = true, desc = 'Select entire buffer' })
+map('o', 'aa', function()
+  vim.cmd.normal('gg0vG$')
+end, { desc = 'Select entire buffer' })
 
 map('n', '<leader>w', function()
   vim.wo.wrap = not vim.wo.wrap
