@@ -120,30 +120,28 @@ return {
             on_attach = function(client, bufnr)
               -- https://github.com/aca/emmet-ls/issues/42
               vim.keymap.set('i', '<S-CR>', function()
-                -- necessary to allow snippet jumping when using the autocmd
-                -- that clears snippet jumps on type session end
-                client.request(
+                -- this request must be synchronous to allow for it to allow
+                -- luasnip session to end properly
+                local res = client.request_sync(
                   'textDocument/completion',
                   vim.lsp.util.make_position_params(),
-                  function(_, result)
-                    if #result == 0 then
-                      return
-                    end
-                    local textEdit = result[1].textEdit
-                    local snip_string = textEdit.newText
-                    textEdit.newText = ''
-                    vim.lsp.util.apply_text_edits({ textEdit }, bufnr,
-                      client.offset_encoding)
-                    ls.lsp_expand(snip_string, {
-                      jump_into_func = function(snip)
-                        ls.session.jump_active = true
-                        return snip:jump_into(1)
-                      end,
-                    })
-                  end,
+                  -- timeout for LSP call
+                  250,
                   bufnr
                 )
-                ls.session.jump_active = false
+                if not res or #res.result == 0 then
+                  vim.api.nvim_feedkeys(
+                    vim.api.nvim_replace_termcodes('<CR>', true, false, true),
+                    'n',
+                    false)
+                  return
+                end
+                local textEdit = res.result[1].textEdit
+                local snip_string = textEdit.newText
+                textEdit.newText = ''
+                vim.lsp.util.apply_text_edits({ textEdit }, bufnr,
+                  client.offset_encoding)
+                ls.lsp_expand(snip_string)
               end, { buffer = bufnr })
             end,
           }
