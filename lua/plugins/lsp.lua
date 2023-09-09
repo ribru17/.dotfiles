@@ -54,17 +54,26 @@ return {
             settings = {
               Lua = {
                 diagnostics = {
-                  -- Get the language server to recognize the `vim` global
-                  globals = { 'vim' },
+                  -- Uncomment to receive LSP formatting diagnostics.
+                  -- neededFileStatus = { ['codestyle-check'] = 'Any' },
                 },
                 telemetry = { enable = false },
                 runtime = {
                   version = 'LuaJIT',
                 },
+                workspace = {
+                  -- Make the server aware of Neovim runtime files
+                  library = {
+                    vim.fn.expand '$VIMRUNTIME',
+                    '${3rd}/luassert/library',
+                  },
+                },
                 -- see https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
                 format = {
                   enable = true,
                   defaultConfig = {
+                    indent_size = '2',
+                    indent_style = 'space',
                     quote_style = 'single',
                     max_line_length = '80',
                     trailing_table_separator = 'smart',
