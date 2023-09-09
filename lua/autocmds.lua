@@ -31,14 +31,12 @@ vim.api.nvim_create_autocmd('BufEnter',
   })
 
 local lsp_formatting = function()
-  local save_view = false
   vim.lsp.buf.format {
     filter = function(client)
       -- disable formatters that are already covered by null-ls to prevent conflicts
       local disabled_formatters = { 'clangd', 'tsserver', 'typescript-tools',
         'html' }
-      -- list of clients whose formatters do not preserve folds
-      local break_folds = { 'lua_ls', 'pylsp' }
+      -- NOTE: Some LSPs do not preserve folds on save unfortunately.
 
       for k = 1, #disabled_formatters do
         local v = disabled_formatters[k]
@@ -47,24 +45,9 @@ local lsp_formatting = function()
         end
       end
 
-      -- This is necessary because certain LSP formatters do not implement
-      -- proper range formatting, and thus wipe out all folds, extmarks, etc.
-      -- when formatting. This code will preserve them.
-      for k = 1, #break_folds do
-        local v = break_folds[k]
-        if client.name == v then
-          vim.cmd.mkview()
-          save_view = true
-          break
-        end
-      end
-
       return true
     end,
   }
-  if save_view then
-    vim.cmd.loadview()
-  end
 end
 
 -- Explicitly format on save: passing this through null-ls failed with
