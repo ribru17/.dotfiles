@@ -30,7 +30,7 @@ return {
     config = function()
       require('mason').setup()
       require('mason-lspconfig').setup {
-        ensure_installed = { 'denols' },
+        ensure_installed = { 'denols', 'emmet_ls', 'cssls' },
       }
 
       require('lspconfig.ui.windows').default_options.border = 'rounded'
