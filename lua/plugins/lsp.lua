@@ -99,6 +99,22 @@ return {
             cmd = { 'clangd', '--header-insertion-decorators=false' },
           }
         end,
+        ['pylsp'] = function()
+          require 'lspconfig'.pylsp.setup {
+            capabilities = capabilities,
+            settings = {
+              pylsp = {
+                -- Use better formatting that supports diff ranges. No need for
+                -- installing additional dependencies, the Mason package comes
+                -- with the yapf binary.
+                plugins = {
+                  autopep8 = { enabled = false },
+                  yapf = { enabled = true },
+                },
+              },
+            },
+          }
+        end,
         ['cssls'] = function()
           --Enable (broadcasting) snippet capability for completion
           local custom_capabilities = require('cmp_nvim_lsp')
