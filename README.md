@@ -176,9 +176,11 @@ that file). Save without formatting with `:W`.
   - `l`: loop
   - `c`: conditional
   - `/`: comment
-- Insert new lines in Normal mode with `Enter` (line(s) below) or `Shift+Enter`
-  (line(s) above)
-- Use `gq` with a motion for wrapping long comments in Python.
+- Miscellaneous niceties
+  - Insert new lines in Normal mode with `Enter` (line(s) below) or
+    `Shift+Enter` (line(s) above)
+  - Use `gq` with a motion for wrapping long comments in Python.
+  - Redo with `U`
 
 ### Viewing
 

@@ -226,6 +226,8 @@ map('n', '<leader>w', function()
   vim.wo.wrap = not vim.wo.wrap
 end, { remap = false, desc = 'Toggle word wrap' })
 
+map('n', 'U', '<C-r>', { remap = false, desc = 'Easier redo' })
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
