@@ -178,6 +178,7 @@ that file). Save without formatting with `:W`.
   - `/`: comment
 - Insert new lines in Normal mode with `Enter` (line(s) below) or `Shift+Enter`
   (line(s) above)
+- Use `gq` with a motion for wrapping long comments in Python.
 
 ### Viewing
 

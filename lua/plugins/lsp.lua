@@ -102,14 +102,20 @@ return {
         ['pylsp'] = function()
           require 'lspconfig'.pylsp.setup {
             capabilities = capabilities,
+            on_attach = function(_, _)
+              -- https://vi.stackexchange.com/questions/39200/wrapping-comment-in-visual-mode-not-working-with-gq
+              vim.opt_local.formatexpr = ''
+            end,
             settings = {
               pylsp = {
-                -- Use better formatting that supports diff ranges. No need for
-                -- installing additional dependencies, the Mason package comes
-                -- with the yapf binary.
                 plugins = {
+                  pycodestyle = {
+                    maxLineLength = 80,
+                  },
+                  -- Use yapf formatting which supports diff ranges. No need for
+                  -- installing additional dependencies, the Mason package comes
+                  -- with the yapf binary.
                   autopep8 = { enabled = false },
-                  yapf = { enabled = true },
                 },
               },
             },
