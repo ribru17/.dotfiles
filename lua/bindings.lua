@@ -2,7 +2,6 @@
 local map = vim.keymap.set
 
 map('n', '<C-i>', '<Tab>', {
-  remap = false,
   desc = [[
 Prevent remapping of <C-i>; this is usually mapped to <Tab> which is the
 complement of <C-o>, however I want my tab to be different so I need to tell
@@ -11,7 +10,7 @@ of both worlds).
 ]],
 })
 
-local indent_opts = { remap = false, desc = 'VSCode-style block indentation' }
+local indent_opts = { desc = 'VSCode-style block indentation' }
 map('x', '<Tab>', '>gv', indent_opts)
 map('x', '<S-Tab>', '<gv', indent_opts)
 map('n', '<Tab>', '>>', indent_opts)
@@ -19,7 +18,6 @@ map('n', '<S-Tab>', '<<', indent_opts)
 
 -- NOTE: Look into mini.ai if this doesn't suit needs
 local math_obj_opts = {
-  remap = false,
   desc = 'Custom text object to delete inside "$" delimiters',
 }
 map('x', 'i$', function()
@@ -48,7 +46,7 @@ map('n', '<CR>', function()
   pcall(function()
     vim.api.nvim_buf_set_lines(0, current_line, current_line, false, lines)
   end)
-end, { remap = false, desc = 'Add new lines in normal mode' })
+end, { desc = 'Add new lines in normal mode' })
 
 map('n', '<S-CR>', function()
   local n = vim.v.count < 1 and 1 or vim.v.count
@@ -69,7 +67,7 @@ map('n', '<S-CR>', function()
       lines
     )
   end)
-end, { remap = false, desc = 'Add new lines in normal mode (above)' })
+end, { desc = 'Add new lines in normal mode (above)' })
 
 local smartmove_opts = {
   desc = 'Move selection smartly, with indentation for `if` statements and such',
@@ -78,14 +76,12 @@ map('x', 'J', ":m '>+1<CR>gv=gv", smartmove_opts)
 map('x', 'K', ":m '<-2<CR>gv=gv", smartmove_opts)
 
 local nowhitespacejump_opts = {
-  remap = false,
   desc = 'Better no-whitespace jumping',
 }
 map({ 'n', 'x' }, 'H', '_', nowhitespacejump_opts)
 map({ 'n', 'x' }, 'L', 'g_', nowhitespacejump_opts)
 
-local opsel_opts =
-  { remap = false, desc = 'Easily move other end of selection' }
+local opsel_opts = { desc = 'Easily move other end of selection' }
 map('x', '<C-h>', function()
   vim.cmd.normal('oho')
 end, opsel_opts)
@@ -99,7 +95,7 @@ map('x', '<C-j>', function()
   vim.cmd.normal('ojo')
 end, opsel_opts)
 
-local cursorstay_opts = { remap = false, desc = 'Keep cursor in place' }
+local cursorstay_opts = { desc = 'Keep cursor in place' }
 map('n', 'J', 'mzJ`z', cursorstay_opts)
 map('n', '<C-d>', '<C-d>zz', cursorstay_opts)
 map('n', '<C-u>', '<C-u>zz', cursorstay_opts)
@@ -110,12 +106,7 @@ map('x', 's', 'S', { remap = true, desc = 'Surround visual selections' })
 
 map('n', '<Esc>', '<Cmd>noh<CR>', { desc = 'Clear search highlighting' })
 
-map(
-  't',
-  '<Esc>',
-  '<C-Bslash><C-n>',
-  { remap = false, desc = 'Easily exit terminal mode' }
-)
+map('t', '<Esc>', '<C-Bslash><C-n>', { desc = 'Easily exit terminal mode' })
 
 map('n', 'Q', '<nop>', { desc = "Don't enter ex mode by accident" })
 
@@ -133,7 +124,6 @@ map(
 )
 
 map('x', '<leader>h', '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>', {
-  remap = false,
   desc = [[Crude search & replace visual selection
                  (breaks on multiple lines & special chars)]],
 })
@@ -159,9 +149,9 @@ map(
 
 map('x', '<leader>p', function()
   vim.cmd.normal { '"_dP', bang = true }
-end, { remap = false, desc = "Don't copy pasted-over text" })
+end, { desc = "Don't copy pasted-over text" })
 
-local insertnav_opts = { remap = false, desc = 'Navigation while typing' }
+local insertnav_opts = { desc = 'Navigation while typing' }
 map({ 'i', 'c' }, '<C-k>', '<Up>', insertnav_opts)
 map({ 'i', 'c' }, '<C-h>', '<Left>', insertnav_opts)
 map({ 'i', 'c' }, '<C-j>', '<Down>', insertnav_opts)
@@ -170,12 +160,7 @@ map({ 'i', 'c' }, '<C-w>', '<C-Right>', insertnav_opts)
 map({ 'i', 'c' }, '<C-b>', '<C-Left>', insertnav_opts)
 map('i', '<C-e>', '<C-o>e<Right>', insertnav_opts)
 
-map(
-  { 'i', 'c' },
-  '<M-BS>',
-  '<C-w>',
-  { remap = false, desc = 'Delete word in insert mode' }
-)
+map({ 'i', 'c' }, '<M-BS>', '<C-w>', { desc = 'Delete word in insert mode' })
 
 map({ 'n', 'v', 'i' }, '<C-/>', '<C-_>', {
   remap = true,
@@ -188,32 +173,17 @@ map('n', '<leader>z', 'za', { remap = true, desc = 'Toggle current fold' })
 map('n', 'zz', 'za', { remap = true, desc = 'Toggle current fold' })
 map('n', 'zf', 'zMzv', { remap = true, desc = 'Fold all except current' })
 map('n', 'zO', 'zR', { remap = true, desc = 'Open all folds' })
-map(
-  'n',
-  'zo',
-  'zO',
-  { remap = false, desc = 'Open all folds descending from current line' }
-)
+map('n', 'zo', 'zO', { desc = 'Open all folds descending from current line' })
 map('x', '<leader>z', 'zf', { remap = true, desc = 'Fold selected lines' })
 map('x', 'zz', 'zf', { remap = true, desc = 'Fold selected lines' })
 
-map('x', 'y', 'ygv<Esc>', { remap = false, desc = 'Cursor-in-place copy' })
+map('x', 'y', 'ygv<Esc>', { desc = 'Cursor-in-place copy' })
 map('n', 'P', function()
   vim.cmd.normal { 'P`[', bang = true }
-end, { remap = false, desc = 'Cursor-in-place paste' })
+end, { desc = 'Cursor-in-place paste' })
 
-map(
-  'i',
-  '<C-p>',
-  '<C-r>"',
-  { remap = false, desc = 'Paste from register in insert mode' }
-)
-map(
-  'i',
-  '<C-n>',
-  '<Nop>',
-  { remap = false, desc = 'Disable default autocompletion menu' }
-)
+map('i', '<C-p>', '<C-r>"', { desc = 'Paste from register in insert mode' })
+map('i', '<C-n>', '<Nop>', { desc = 'Disable default autocompletion menu' })
 
 local function NextClosedFold(dir)
   local cmd = 'z' .. dir
@@ -240,7 +210,7 @@ local function RepeatFoldMove(dir)
   end
 end
 
-local fold_opts = { remap = false, desc = 'Only jump to *closed* folds' }
+local fold_opts = { desc = 'Only jump to *closed* folds' }
 map({ 'n', 'x' }, 'zj', function()
   RepeatFoldMove('j')
 end, fold_opts)
@@ -258,9 +228,20 @@ end, { desc = 'Select entire buffer' })
 
 map('n', '<leader>w', function()
   vim.wo.wrap = not vim.wo.wrap
-end, { remap = false, desc = 'Toggle word wrap' })
+end, { desc = 'Toggle word wrap' })
 
-map('n', 'U', '<C-r>', { remap = false, desc = 'Easier redo' })
+map('n', 'U', '<C-r>', { desc = 'Easier redo' })
+
+map('n', '<leader>bx', function()
+  local current_buf = vim.api.nvim_get_current_buf()
+  local all_bufs = vim.api.nvim_list_bufs()
+
+  for _, buf in ipairs(all_bufs) do
+    if buf ~= current_buf and vim.fn.getbufinfo(buf)[1].changed ~= 1 then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end
+end, { desc = 'Close all but the current buffer' })
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
