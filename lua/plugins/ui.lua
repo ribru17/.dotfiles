@@ -25,7 +25,10 @@ return {
           ['@text.math'] = { fg = '$blue' },
           -- markdown text modifier highlights
           ['@text.strong.markdown_inline'] = { fg = '$purple', fmt = 'bold' },
-          ['@text.emphasis.markdown_inline'] = { fg = '$purple', fmt = 'italic' },
+          ['@text.emphasis.markdown_inline'] = {
+            fg = '$purple',
+            fmt = 'italic',
+          },
           -- better match paren highlights
           ['MatchParen'] = { fg = '$orange', fmt = 'bold' },
           -- better dashboard styling
@@ -77,7 +80,11 @@ return {
             -- make cmp item text matching easier to spot
             ['CmpItemAbbr'] = { ctermbg = 0, fg = colors.text },
             ['CmpItemAbbrMatch'] = { ctermbg = 0, fg = colors.blue },
-            ['CmpItemAbbrMatchFuzzy'] = { ctermbg = 0, fg = colors.blue, underline = true },
+            ['CmpItemAbbrMatchFuzzy'] = {
+              ctermbg = 0,
+              fg = colors.blue,
+              underline = true,
+            },
             -- make popup windows blend with the background better
             ['NormalFloat'] = { ctermbg = 0, bg = colors.base },
             -- better dashboard styling
@@ -117,9 +124,11 @@ return {
       -- Custom statusline that shows total line number with current
       local function line_total()
         local curs = vim.api.nvim_win_get_cursor(0)
-        return curs[1] ..
-            '/' ..
-            vim.api.nvim_buf_line_count(vim.fn.winbufnr(0)) .. ',' .. curs[2]
+        return curs[1]
+          .. '/'
+          .. vim.api.nvim_buf_line_count(vim.fn.winbufnr(0))
+          .. ','
+          .. curs[2]
       end
 
       require('lualine').setup {
@@ -155,7 +164,7 @@ return {
         -- reduce indentation clutter
         -- https://www.reddit.com/r/neovim/comments/yiodnb/proper_configuration_for_indentblankline/
         max_indent_increase = 1,
-        char = CHAR,         -- comment this out to center align indent indicator
+        char = CHAR, -- comment this out to center align indent indicator
         context_char = CHAR, -- this is only needed if `show_current_context` is set to `true`
         --> Uncomment to get colored indent lines
         -- char_highlight_list = {
@@ -185,21 +194,31 @@ return {
 
           -- next/prev git changes
           map({ 'n', 'x' }, '<leader>gj', function()
-            if vim.wo.diff then return ']c' end
-            vim.schedule(function() gs.next_hunk() end)
+            if vim.wo.diff then
+              return ']c'
+            end
+            vim.schedule(function()
+              gs.next_hunk()
+            end)
             return '<Ignore>'
           end, { expr = true })
 
           map({ 'n', 'x' }, '<leader>gk', function()
-            if vim.wo.diff then return '[c' end
-            vim.schedule(function() gs.prev_hunk() end)
+            if vim.wo.diff then
+              return '[c'
+            end
+            vim.schedule(function()
+              gs.prev_hunk()
+            end)
             return '<Ignore>'
           end, { expr = true })
 
           -- git preview
           map('n', '<leader>gp', gs.preview_hunk)
           -- git blame
-          map('n', '<leader>gb', function() gs.blame_line { full = true } end)
+          map('n', '<leader>gb', function()
+            gs.blame_line { full = true }
+          end)
           -- undo git change
           map('n', '<leader>gu', gs.reset_hunk)
           -- undo all git changes
@@ -234,7 +253,7 @@ return {
 
       -- open selected buffers in new tabs
       local function multi_tab(prompt_bufnr)
-        local state = require 'telescope.actions.state'
+        local state = require('telescope.actions.state')
         local picker = state.get_current_picker(prompt_bufnr)
         local multi = picker:get_multi_selection()
         local str = ''
@@ -260,8 +279,11 @@ return {
             filetype_hook = function(_, bufnr, opts)
               -- don't display jank pdf previews
               if opts.ft == 'pdf' then
-                putils.set_preview_message(bufnr, opts.winid,
-                  'Not displaying ' .. opts.ft)
+                putils.set_preview_message(
+                  bufnr,
+                  opts.winid,
+                  'Not displaying ' .. opts.ft
+                )
                 return false
               end
               return true
@@ -309,12 +331,16 @@ return {
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', function()
         -- ignore opened buffers if not in dashboard or directory
-        if vim.fn.isdirectory(vim.fn.expand('%')) == 1 or vim.bo.filetype == 'alpha' then
+        if
+          vim.fn.isdirectory(vim.fn.expand('%')) == 1
+          or vim.bo.filetype == 'alpha'
+        then
           builtin.find_files()
         else
           local function literalize(str)
-            return str:gsub('[%(%)%.%%%+%-%*%?%[%]%^%$]',
-              function(c) return '%' .. c end)
+            return str:gsub('[%(%)%.%%%+%-%*%?%[%]%^%$]', function(c)
+              return '%' .. c
+            end)
           end
 
           local function get_open_buffers()
@@ -327,9 +353,17 @@ return {
               if buflisted(buffer) == 1 then
                 len = len + 1
                 -- get relative name of buffer without leading slash
-                buffers[len] = '^' .. literalize(string.gsub(
-                  vim.api.nvim_buf_get_name(buffer),
-                  literalize(vim.loop.cwd()), ''):sub(2)) .. '$'
+                buffers[len] = '^'
+                  .. literalize(
+                    string
+                      .gsub(
+                        vim.api.nvim_buf_get_name(buffer),
+                        literalize(vim.loop.cwd()),
+                        ''
+                      )
+                      :sub(2)
+                  )
+                  .. '$'
               end
             end
 
@@ -341,16 +375,16 @@ return {
           }
         end
       end, {})
-      vim.keymap.set('n', '<leader>fg',
-        function()
-          builtin.grep_string { search = vim.fn.input('Grep > ') }
-        end, {})
+      vim.keymap.set('n', '<leader>fg', function()
+        builtin.grep_string { search = vim.fn.input('Grep > ') }
+      end, {})
       vim.keymap.set('n', '<leader>fs', function()
         builtin.live_grep { initial_mode = 'insert' }
       end, {})
       vim.keymap.set('n', '<leader>fw', builtin.git_files, {})
-      vim.keymap.set('n', '<leader>fc',
-        function() builtin.colorscheme { enable_preview = true } end, {})
+      vim.keymap.set('n', '<leader>fc', function()
+        builtin.colorscheme { enable_preview = true }
+      end, {})
 
       telescope.load_extension('fzf')
     end,
@@ -381,14 +415,22 @@ return {
           },
         },
         { type = 'padding', val = 2 },
-        dashboard.button('f', ' ' .. ' Open file',
-          ":lua require('telescope.builtin').find_files()<CR>"),
-        dashboard.button('r', ' ' .. ' Open recent',
-          ":lua require('telescope.builtin').oldfiles()<CR>"),
-        dashboard.button('t', ' ' .. ' File tree',
-          ':NvimTreeToggle <CR>'),
-        dashboard.button('s', ' ' .. ' Search for text',
-          ":lua require('telescope.builtin').live_grep({initial_mode = 'insert'})<CR>"),
+        dashboard.button(
+          'f',
+          ' ' .. ' Open file',
+          ":lua require('telescope.builtin').find_files()<CR>"
+        ),
+        dashboard.button(
+          'r',
+          ' ' .. ' Open recent',
+          ":lua require('telescope.builtin').oldfiles()<CR>"
+        ),
+        dashboard.button('t', ' ' .. ' File tree', ':NvimTreeToggle <CR>'),
+        dashboard.button(
+          's',
+          ' ' .. ' Search for text',
+          ":lua require('telescope.builtin').live_grep({initial_mode = 'insert'})<CR>"
+        ),
         dashboard.button('l', ' ' .. " LSP's", ':Mason<CR>'),
         dashboard.button('p', ' ' .. ' Plugins', ':Lazy<CR>'),
         dashboard.button('q', ' ' .. ' Quit', ':qa<CR>'),
@@ -396,7 +438,7 @@ return {
       dashboard.opts.layout[1].val = 4
       dashboard.opts.layout[3].val = 0
       dashboard.section.footer.val =
-      'Now I will have less distraction.\n- Leonhard Euler'
+        'Now I will have less distraction.\n- Leonhard Euler'
       dashboard.section.footer.opts.hl = '@alpha.footer'
       table.insert(dashboard.config.layout, 5, {
         type = 'padding',
@@ -423,8 +465,11 @@ return {
         callback = function()
           local stats = require('lazy').stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          dashboard.section.buttons.val[1].val = '󱐋 Loaded ' ..
-              stats.count .. ' plugins in ' .. ms .. 'ms'
+          dashboard.section.buttons.val[1].val = '󱐋 Loaded '
+            .. stats.count
+            .. ' plugins in '
+            .. ms
+            .. 'ms'
           dashboard.section.buttons.val[1].opts.hl = '@alpha.header'
           pcall(vim.cmd.AlphaRedraw)
         end,
@@ -458,97 +503,206 @@ return {
 
         -- BEGIN_DEFAULT_ON_ATTACH
         vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
-        vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer,
-          opts('Open: In Place'))
+        vim.keymap.set(
+          'n',
+          '<C-e>',
+          api.node.open.replace_tree_buffer,
+          opts('Open: In Place')
+        )
         vim.keymap.set('n', '<C-k>', api.node.show_info_popup, opts('Info'))
-        vim.keymap.set('n', '<C-r>', api.fs.rename_sub,
-          opts('Rename: Omit Filename'))
+        vim.keymap.set(
+          'n',
+          '<C-r>',
+          api.fs.rename_sub,
+          opts('Rename: Omit Filename')
+        )
         vim.keymap.set('n', '<C-t>', api.node.open.tab, opts('Open: New Tab'))
-        vim.keymap.set('n', '<C-v>', api.node.open.vertical,
-          opts('Open: Vertical Split'))
-        vim.keymap.set('n', '<C-x>', api.node.open.horizontal,
-          opts('Open: Horizontal Split'))
-        vim.keymap.set('n', '<BS>', api.node.navigate.parent_close,
-          opts('Close Directory'))
+        vim.keymap.set(
+          'n',
+          '<C-v>',
+          api.node.open.vertical,
+          opts('Open: Vertical Split')
+        )
+        vim.keymap.set(
+          'n',
+          '<C-x>',
+          api.node.open.horizontal,
+          opts('Open: Horizontal Split')
+        )
+        vim.keymap.set(
+          'n',
+          '<BS>',
+          api.node.navigate.parent_close,
+          opts('Close Directory')
+        )
         vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
-        vim.keymap.set('n', '<Tab>', api.node.open.preview, opts('Open Preview'))
-        vim.keymap.set('n', '>', api.node.navigate.sibling.next,
-          opts('Next Sibling'))
-        vim.keymap.set('n', '<', api.node.navigate.sibling.prev,
-          opts('Previous Sibling'))
+        vim.keymap.set(
+          'n',
+          '<Tab>',
+          api.node.open.preview,
+          opts('Open Preview')
+        )
+        vim.keymap.set(
+          'n',
+          '>',
+          api.node.navigate.sibling.next,
+          opts('Next Sibling')
+        )
+        vim.keymap.set(
+          'n',
+          '<',
+          api.node.navigate.sibling.prev,
+          opts('Previous Sibling')
+        )
         vim.keymap.set('n', '.', api.node.run.cmd, opts('Run Command'))
         vim.keymap.set('n', '-', api.tree.change_root_to_parent, opts('Up'))
         vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
         vim.keymap.set('n', 'bmv', api.marks.bulk.move, opts('Move Bookmarked'))
-        vim.keymap.set('n', 'B', api.tree.toggle_no_buffer_filter,
-          opts('Toggle No Buffer'))
+        vim.keymap.set(
+          'n',
+          'B',
+          api.tree.toggle_no_buffer_filter,
+          opts('Toggle No Buffer')
+        )
         vim.keymap.set('n', 'c', api.fs.copy.node, opts('Copy'))
-        vim.keymap.set('n', 'C', api.tree.toggle_git_clean_filter,
-          opts('Toggle Git Clean'))
+        vim.keymap.set(
+          'n',
+          'C',
+          api.tree.toggle_git_clean_filter,
+          opts('Toggle Git Clean')
+        )
         vim.keymap.set('n', '[c', api.node.navigate.git.prev, opts('Prev Git'))
         vim.keymap.set('n', ']c', api.node.navigate.git.next, opts('Next Git'))
         vim.keymap.set('n', 'd', api.fs.remove, opts('Delete'))
         vim.keymap.set('n', 'D', api.fs.trash, opts('Trash'))
         vim.keymap.set('n', 'E', api.tree.expand_all, opts('Expand All'))
-        vim.keymap.set('n', 'e', api.fs.rename_basename, opts('Rename: Basename'))
-        vim.keymap.set('n', ']e', api.node.navigate.diagnostics.next,
-          opts('Next Diagnostic'))
-        vim.keymap.set('n', '[e', api.node.navigate.diagnostics.prev,
-          opts('Prev Diagnostic'))
+        vim.keymap.set(
+          'n',
+          'e',
+          api.fs.rename_basename,
+          opts('Rename: Basename')
+        )
+        vim.keymap.set(
+          'n',
+          ']e',
+          api.node.navigate.diagnostics.next,
+          opts('Next Diagnostic')
+        )
+        vim.keymap.set(
+          'n',
+          '[e',
+          api.node.navigate.diagnostics.prev,
+          opts('Prev Diagnostic')
+        )
         vim.keymap.set('n', 'F', api.live_filter.clear, opts('Clean Filter'))
         vim.keymap.set('n', 'f', api.live_filter.start, opts('Filter'))
         vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
-        vim.keymap.set('n', 'gy', api.fs.copy.absolute_path,
-          opts('Copy Absolute Path'))
-        vim.keymap.set('n', 'H', api.tree.toggle_hidden_filter,
-          opts('Toggle Dotfiles'))
-        vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter,
-          opts('Toggle Git Ignore'))
-        vim.keymap.set('n', 'J', api.node.navigate.sibling.last,
-          opts('Last Sibling'))
-        vim.keymap.set('n', 'K', api.node.navigate.sibling.first,
-          opts('First Sibling'))
+        vim.keymap.set(
+          'n',
+          'gy',
+          api.fs.copy.absolute_path,
+          opts('Copy Absolute Path')
+        )
+        vim.keymap.set(
+          'n',
+          'H',
+          api.tree.toggle_hidden_filter,
+          opts('Toggle Dotfiles')
+        )
+        vim.keymap.set(
+          'n',
+          'I',
+          api.tree.toggle_gitignore_filter,
+          opts('Toggle Git Ignore')
+        )
+        vim.keymap.set(
+          'n',
+          'J',
+          api.node.navigate.sibling.last,
+          opts('Last Sibling')
+        )
+        vim.keymap.set(
+          'n',
+          'K',
+          api.node.navigate.sibling.first,
+          opts('First Sibling')
+        )
         vim.keymap.set('n', 'm', api.marks.toggle, opts('Toggle Bookmark'))
         vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
-        vim.keymap.set('n', 'O', api.node.open.no_window_picker,
-          opts('Open: No Window Picker'))
+        vim.keymap.set(
+          'n',
+          'O',
+          api.node.open.no_window_picker,
+          opts('Open: No Window Picker')
+        )
         vim.keymap.set('n', 'p', api.fs.paste, opts('Paste'))
-        vim.keymap.set('n', 'P', api.node.navigate.parent,
-          opts('Parent Directory'))
+        vim.keymap.set(
+          'n',
+          'P',
+          api.node.navigate.parent,
+          opts('Parent Directory')
+        )
         vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
         vim.keymap.set('n', 'r', api.fs.rename, opts('Rename'))
         vim.keymap.set('n', 'R', api.tree.reload, opts('Refresh'))
         vim.keymap.set('n', 's', api.node.run.system, opts('Run System'))
         vim.keymap.set('n', 'S', api.tree.search_node, opts('Search'))
-        vim.keymap.set('n', 'U', api.tree.toggle_custom_filter,
-          opts('Toggle Hidden'))
+        vim.keymap.set(
+          'n',
+          'U',
+          api.tree.toggle_custom_filter,
+          opts('Toggle Hidden')
+        )
         vim.keymap.set('n', 'W', api.tree.collapse_all, opts('Collapse'))
         vim.keymap.set('n', 'x', api.fs.cut, opts('Cut'))
         vim.keymap.set('n', 'y', api.fs.copy.filename, opts('Copy Name'))
-        vim.keymap.set('n', 'Y', api.fs.copy.relative_path,
-          opts('Copy Relative Path'))
+        vim.keymap.set(
+          'n',
+          'Y',
+          api.fs.copy.relative_path,
+          opts('Copy Relative Path')
+        )
         vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
-        vim.keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node,
-          opts('CD'))
+        vim.keymap.set(
+          'n',
+          '<2-RightMouse>',
+          api.tree.change_root_to_node,
+          opts('CD')
+        )
         -- END_DEFAULT_ON_ATTACH
 
         local function tab_with_close()
-          if not FLOAT_ENABLED then vim.api.nvim_command('wincmd h') end
+          if not FLOAT_ENABLED then
+            vim.api.nvim_command('wincmd h')
+          end
           api.node.open.tab()
         end
 
-        vim.keymap.set('n', '.', api.tree.toggle_hidden_filter,
-          opts('Toggle Dotfiles'))
+        vim.keymap.set(
+          'n',
+          '.',
+          api.tree.toggle_hidden_filter,
+          opts('Toggle Dotfiles')
+        )
         vim.keymap.set('n', 'n', api.fs.create, opts('Create'))
-        vim.keymap.set('n', 'r', api.fs.rename_sub, opts('Rename: Omit Filename'))
+        vim.keymap.set(
+          'n',
+          'r',
+          api.fs.rename_sub,
+          opts('Rename: Omit Filename')
+        )
         vim.keymap.set('n', 'a', api.tree.change_root_to_node, opts('CD'))
         vim.keymap.set('n', '<C-r>', api.tree.reload, opts('Refresh'))
         vim.keymap.set('n', '<Tab>', tab_with_close, opts('Open: New Tab'))
         vim.keymap.set('n', 'd', api.fs.trash, opts('Trash'))
         vim.keymap.set('n', 'D', api.fs.remove, opts('Trash'))
         vim.keymap.set('n', '<Esc>', api.tree.close, opts('Close'))
-        vim.keymap.set('n', 'z', api.node.navigate.parent_close,
-          opts('Close Directory'))
+        vim.keymap.set(
+          'n',
+          'z',
+          api.node.navigate.parent_close,
+          opts('Close Directory')
+        )
         vim.keymap.set('n', '<leader>t', '<C-w>h', opts('Close'))
       end
 
@@ -573,8 +727,8 @@ return {
               local window_w_int = math.floor(window_w)
               local window_h_int = math.floor(window_h)
               local center_x = (screen_w - window_w) / 2
-              local center_y = ((vim.opt.lines:get() - window_h) / 2) -
-                  vim.opt.cmdheight:get()
+              local center_y = ((vim.opt.lines:get() - window_h) / 2)
+                - vim.opt.cmdheight:get()
 
               return {
                 relative = 'editor',

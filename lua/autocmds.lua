@@ -2,8 +2,19 @@
 vim.api.nvim_create_augroup('setIndent', { clear = true })
 vim.api.nvim_create_autocmd('Filetype', {
   group = 'setIndent',
-  pattern = { 'xml', 'html', 'xhtml', 'css', 'scss', 'javascript', 'typescript',
-    'yaml', 'javascriptreact', 'typescriptreact', 'markdown', 'lua',
+  pattern = {
+    'xml',
+    'html',
+    'xhtml',
+    'css',
+    'scss',
+    'javascript',
+    'typescript',
+    'yaml',
+    'javascriptreact',
+    'typescriptreact',
+    'markdown',
+    'lua',
   },
   command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2',
 })
@@ -18,24 +29,23 @@ vim.api.nvim_create_autocmd('VimLeave', {
 })
 
 -- prevent comment from being inserted when entering new line in existing comment
-vim.api.nvim_create_autocmd('BufEnter',
-  {
-    callback = function()
-      -- allow <CR> to continue block comments only
-      -- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
-      vim.opt.comments:remove('://')
-      vim.opt.comments:remove(':--')
-      vim.opt.comments:remove(':#')
-      vim.opt.comments:remove(':%')
-    end,
-  })
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    -- allow <CR> to continue block comments only
+    -- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
+    vim.opt.comments:remove('://')
+    vim.opt.comments:remove(':--')
+    vim.opt.comments:remove(':#')
+    vim.opt.comments:remove(':%')
+  end,
+})
 
 local lsp_formatting = function()
   vim.lsp.buf.format {
     filter = function(client)
       -- disable formatters that are already covered by null-ls to prevent conflicts
-      local disabled_formatters = { 'clangd', 'tsserver', 'typescript-tools',
-        'html' }
+      local disabled_formatters =
+        { 'clangd', 'tsserver', 'typescript-tools', 'html' }
       -- NOTE: Some LSPs do not preserve folds on save unfortunately.
 
       for k = 1, #disabled_formatters do
@@ -103,7 +113,14 @@ vim.api.nvim_create_autocmd('BufEnter', {
   pattern = 'NvimTree_*',
   callback = function()
     local layout = vim.api.nvim_call_function('winlayout', {})
-    if layout[1] == 'leaf' and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), 'filetype') == 'NvimTree' and layout[3] == nil then
+    if
+      layout[1] == 'leaf'
+      and vim.api.nvim_buf_get_option(
+        vim.api.nvim_win_get_buf(layout[2]),
+        'filetype'
+      ) == 'NvimTree'
+      and layout[3] == nil
+    then
       vim.cmd.quit { mods = { confirm = true } }
     end
   end,
@@ -140,8 +157,9 @@ vim.api.nvim_create_autocmd('ModeChanged', {
   pattern = { 's:n', 'i:*' },
   callback = function()
     local ls = require('luasnip')
-    if ls.session.current_nodes[vim.api.nvim_get_current_buf()]
-        and not ls.session.jump_active
+    if
+      ls.session.current_nodes[vim.api.nvim_get_current_buf()]
+      and not ls.session.jump_active
     then
       ls.unlink_current()
     end

@@ -1,9 +1,22 @@
 return {
   {
     'windwp/nvim-ts-autotag',
-    ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact',
-      'typescriptreact', 'svelte', 'vue', 'tsx',
-      'jsx', 'rescript', 'php', 'glimmer', 'handlebars', 'hbs',
+    ft = {
+      'html',
+      'xml',
+      'javascript',
+      'typescript',
+      'javascriptreact',
+      'typescriptreact',
+      'svelte',
+      'vue',
+      'tsx',
+      'jsx',
+      'rescript',
+      'php',
+      'glimmer',
+      'handlebars',
+      'hbs',
       'markdown',
     },
     -- disabled here because I have it overridden somewhere else in order to
@@ -14,81 +27,87 @@ return {
     'windwp/nvim-autopairs',
     lazy = true,
     config = function()
-      local npairs = require 'nvim-autopairs'
+      local npairs = require('nvim-autopairs')
       npairs.setup {}
-      local Rule = require 'nvim-autopairs.rule'
-      local cond = require 'nvim-autopairs.conds'
+      local Rule = require('nvim-autopairs.rule')
+      local cond = require('nvim-autopairs.conds')
       local ts_conds = require('nvim-autopairs.ts-conds')
 
       -- rule for: `(|)` -> Space -> `( | )` and associated deletion options
       local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
       npairs.add_rules {
         Rule(' ', ' ', '-markdown')
-            :with_pair(function(opts)
-              local pair = opts.line:sub(opts.col - 1, opts.col)
-              return vim.tbl_contains({
-                brackets[1][1] .. brackets[1][2],
-                brackets[2][1] .. brackets[2][2],
-                brackets[3][1] .. brackets[3][2],
-              }, pair)
-            end)
-            :with_move(cond.none())
-            :with_cr(cond.none())
-            :with_del(function(opts)
-              -- We only want to delete the pair of spaces when the cursor is as such: ( | )
-              local col = vim.api.nvim_win_get_cursor(0)[2]
-              local context = opts.line:sub(col - 1, col + 2)
-              return vim.tbl_contains({
-                brackets[1][1] .. '  ' .. brackets[1][2],
-                brackets[2][1] .. '  ' .. brackets[2][2],
-                brackets[3][1] .. '  ' .. brackets[3][2],
-              }, context)
-            end),
+          :with_pair(function(opts)
+            local pair = opts.line:sub(opts.col - 1, opts.col)
+            return vim.tbl_contains({
+              brackets[1][1] .. brackets[1][2],
+              brackets[2][1] .. brackets[2][2],
+              brackets[3][1] .. brackets[3][2],
+            }, pair)
+          end)
+          :with_move(cond.none())
+          :with_cr(cond.none())
+          :with_del(function(opts)
+            -- We only want to delete the pair of spaces when the cursor is as such: ( | )
+            local col = vim.api.nvim_win_get_cursor(0)[2]
+            local context = opts.line:sub(col - 1, col + 2)
+            return vim.tbl_contains({
+              brackets[1][1] .. '  ' .. brackets[1][2],
+              brackets[2][1] .. '  ' .. brackets[2][2],
+              brackets[3][1] .. '  ' .. brackets[3][2],
+            }, context)
+          end),
       }
 
       for _, bracket in pairs(brackets) do
         npairs.add_rules {
           -- add move for brackets with pair of spaces inside
           Rule(bracket[1] .. ' ', ' ' .. bracket[2])
-              :with_pair(function() return false end)
-              :with_del(function() return false end)
-              :with_move(function(opts)
-                return opts.prev_char:match('.%' .. bracket[2]) ~= nil
-              end)
-              :use_key(bracket[2]),
+            :with_pair(function()
+              return false
+            end)
+            :with_del(function()
+              return false
+            end)
+            :with_move(function(opts)
+              return opts.prev_char:match('.%' .. bracket[2]) ~= nil
+            end)
+            :use_key(bracket[2]),
 
           -- add closing brackets even if next char is '$'
-          Rule(bracket[1], bracket[2])
-              :with_pair(cond.after_text('$')),
+          Rule(bracket[1], bracket[2]):with_pair(cond.after_text('$')),
 
-          Rule(bracket[1] .. bracket[2], '')
-              :with_pair(function() return false end),
+          Rule(bracket[1] .. bracket[2], ''):with_pair(function()
+            return false
+          end),
         }
       end
 
       -- add and delete pairs of dollar signs (if not escaped) in markdown
-      npairs.add_rule(
-        Rule('$', '$', 'markdown')
+      npairs.add_rule(Rule('$', '$', 'markdown')
         :with_move(function(opts)
-          return opts.next_char == opts.char and
-              ts_conds.is_ts_node { 'inline_formula', 'displayed_equation',
-                'math_environment' } (
-                opts)
+          return opts.next_char == opts.char
+            and ts_conds.is_ts_node {
+              'inline_formula',
+              'displayed_equation',
+              'math_environment',
+            }(opts)
         end)
-        :with_pair(ts_conds.is_not_ts_node { 'inline_formula',
-          'displayed_equation', 'math_environment' })
-        :with_pair(cond.not_before_text('\\'))
-      )
+        :with_pair(ts_conds.is_not_ts_node {
+          'inline_formula',
+          'displayed_equation',
+          'math_environment',
+        })
+        :with_pair(cond.not_before_text('\\')))
 
       npairs.add_rule(
         Rule('/**', '  */')
-        :with_pair(cond.not_after_regex('.-%*/', -1))
-        :set_end_pair_length(3)
+          :with_pair(cond.not_after_regex('.-%*/', -1))
+          :set_end_pair_length(3)
       )
 
       npairs.add_rule(
-        Rule('**', '**', 'markdown')
-        :with_move(cond.after_text('*'))
+        Rule('**', '**', 'markdown'):with_move(cond.after_text('*'))
       )
     end,
   },
@@ -113,15 +132,14 @@ return {
         ls.expand_auto()
       end, { remap = false })
 
-      vim.keymap.set('i', '/',
-        function()
-          local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-          vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { '/' })
-          autotag.close_slash_tag()
-          local new_row, new_col = unpack(vim.api.nvim_win_get_cursor(0))
-          vim.api.nvim_win_set_cursor(0, { new_row, new_col + 1 })
-          ls.expand_auto()
-        end, { remap = false })
+      vim.keymap.set('i', '/', function()
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { '/' })
+        autotag.close_slash_tag()
+        local new_row, new_col = unpack(vim.api.nvim_win_get_cursor(0))
+        vim.api.nvim_win_set_cursor(0, { new_row, new_col + 1 })
+        ls.expand_auto()
+      end, { remap = false })
     end,
   },
   {
@@ -142,17 +160,24 @@ return {
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and
-            vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col)
-            :match('%s') == nil
+        return col ~= 0
+          and vim.api
+              .nvim_buf_get_lines(0, line - 1, line, true)[1]
+              :sub(col, col)
+              :match('%s')
+            == nil
       end
 
       local escape_next = function()
         local current_line = vim.api.nvim_get_current_line()
         local _, col = unpack(vim.api.nvim_win_get_cursor(0))
         local next_char = string.sub(current_line, col + 1, col + 1)
-        return next_char == ')' or next_char == '"' or next_char == "'" or
-            next_char == '`' or next_char == ']' or next_char == '}'
+        return next_char == ')'
+          or next_char == '"'
+          or next_char == "'"
+          or next_char == '`'
+          or next_char == ']'
+          or next_char == '}'
       end
 
       local move_right = function()
@@ -162,8 +187,8 @@ return {
 
       local try_bullet_tab = function()
         local line = vim.api.nvim_get_current_line()
-        return line:match('^%s*(.-)%s*$') == '-' and
-            vim.bo.filetype == 'markdown'
+        return line:match('^%s*(.-)%s*$') == '-'
+          and vim.bo.filetype == 'markdown'
       end
       -- supertab functionality
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -229,8 +254,9 @@ return {
               -- don't show emmet snippets in cmp menu, it gets quite annoying
               -- better to use a separate expansion keybind for emmet snips
               if
-                  entry:get_kind() == require('cmp.types').lsp.CompletionItemKind.Snippet
-                  and entry.source:get_debug_name() == 'nvim_lsp:emmet_ls'
+                entry:get_kind()
+                  == require('cmp.types').lsp.CompletionItemKind.Snippet
+                and entry.source:get_debug_name() == 'nvim_lsp:emmet_ls'
               then
                 return false
               end
@@ -265,12 +291,10 @@ return {
         },
         window = {
           completion = cmp.config.window.bordered {
-            winhighlight =
-            'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
           },
           documentation = cmp.config.window.bordered {
-            winhighlight =
-            'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
           },
         },
         experimental = {
@@ -280,10 +304,7 @@ return {
 
       -- Insert `(` after select function or method item
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-      )
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
       cmp.setup(cmp_config)
     end,

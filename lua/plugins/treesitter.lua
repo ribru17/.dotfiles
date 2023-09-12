@@ -8,11 +8,24 @@ return {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     config = function()
-      require 'nvim-treesitter.configs'.setup {
+      require('nvim-treesitter.configs').setup {
         -- A list of parser names, or "all" (the first five parsers should always be installed)
-        ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'javascript',
-          'typescript', 'rust', 'tsx', 'markdown', 'markdown_inline', 'latex',
-          'mermaid', 'comment' },
+        ensure_installed = {
+          'c',
+          'lua',
+          'vim',
+          'vimdoc',
+          'query',
+          'javascript',
+          'typescript',
+          'rust',
+          'tsx',
+          'markdown',
+          'markdown_inline',
+          'latex',
+          'mermaid',
+          'comment',
+        },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,

@@ -49,7 +49,7 @@ return {
         -- Next, you can provide a dedicated handler for specific servers.
         -- For example, set up `rust-tools` with `rust-analyzer`
         ['lua_ls'] = function()
-          require 'lspconfig'.lua_ls.setup {
+          require('lspconfig').lua_ls.setup {
             capabilities = capabilities,
             settings = {
               Lua = {
@@ -64,13 +64,13 @@ return {
                 workspace = {
                   -- Make the server aware of Neovim runtime files
                   library = {
-                    vim.fn.expand '$VIMRUNTIME',
+                    vim.fn.expand('$VIMRUNTIME'),
                     '${3rd}/luassert/library',
                   },
                 },
                 -- see https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
                 format = {
-                  enable = true,
+                  enable = false,
                   defaultConfig = {
                     indent_size = '2',
                     indent_style = 'space',
@@ -91,16 +91,16 @@ return {
           }
         end,
         ['clangd'] = function()
-          local custom_capabilities = require('cmp_nvim_lsp')
-              .default_capabilities()
+          local custom_capabilities =
+            require('cmp_nvim_lsp').default_capabilities()
           custom_capabilities.offsetEncoding = { 'utf-16' }
-          require 'lspconfig'.clangd.setup {
+          require('lspconfig').clangd.setup {
             capabilities = custom_capabilities,
             cmd = { 'clangd', '--header-insertion-decorators=false' },
           }
         end,
         ['pylsp'] = function()
-          require 'lspconfig'.pylsp.setup {
+          require('lspconfig').pylsp.setup {
             capabilities = capabilities,
             on_attach = function(_, _)
               -- https://vi.stackexchange.com/questions/39200/wrapping-comment-in-visual-mode-not-working-with-gq
@@ -123,11 +123,12 @@ return {
         end,
         ['cssls'] = function()
           --Enable (broadcasting) snippet capability for completion
-          local custom_capabilities = require('cmp_nvim_lsp')
-              .default_capabilities()
-          custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
+          local custom_capabilities =
+            require('cmp_nvim_lsp').default_capabilities()
+          custom_capabilities.textDocument.completion.completionItem.snippetSupport =
+            true
 
-          require 'lspconfig'.cssls.setup {
+          require('lspconfig').cssls.setup {
             capabilities = custom_capabilities,
           }
         end,
@@ -143,11 +144,22 @@ return {
         end,
         ['emmet_ls'] = function()
           local ls = require('luasnip')
-          require 'lspconfig'.emmet_ls.setup {
+          require('lspconfig').emmet_ls.setup {
             capabilities = capabilities,
-            filetypes = { 'css', 'eruby', 'html', 'javascript',
-              'javascriptreact', 'less', 'sass', 'scss', 'svelte', 'pug',
-              'typescriptreact', 'vue' },
+            filetypes = {
+              'css',
+              'eruby',
+              'html',
+              'javascript',
+              'javascriptreact',
+              'less',
+              'sass',
+              'scss',
+              'svelte',
+              'pug',
+              'typescriptreact',
+              'vue',
+            },
             on_attach = function(client, bufnr)
               -- https://github.com/aca/emmet-ls/issues/42
               vim.keymap.set('i', '<S-CR>', function()
@@ -164,14 +176,18 @@ return {
                   vim.api.nvim_feedkeys(
                     vim.api.nvim_replace_termcodes('<CR>', true, false, true),
                     'n',
-                    false)
+                    false
+                  )
                   return
                 end
                 local textEdit = res.result[1].textEdit
                 local snip_string = textEdit.newText
                 textEdit.newText = ''
-                vim.lsp.util.apply_text_edits({ textEdit }, bufnr,
-                  client.offset_encoding)
+                vim.lsp.util.apply_text_edits(
+                  { textEdit },
+                  bufnr,
+                  client.offset_encoding
+                )
                 ls.lsp_expand(snip_string)
               end, { buffer = bufnr })
             end,
@@ -204,21 +220,34 @@ return {
           end, opts)
           map('n', '<leader>e', vim.diagnostic.open_float, opts)
           -- go back with <C-o>, forth with <C-i>
-          map('n', 'gd',
-            function() vim.lsp.buf.definition { on_list = on_list } end, opts)
+          map('n', 'gd', function()
+            vim.lsp.buf.definition { on_list = on_list }
+          end, opts)
           map('n', 'gD', function()
             vim.cmd.split { mods = { tab = vim.fn.tabpagenr() + 1 } }
             vim.lsp.buf.definition { on_list = on_list }
           end, opts)
           map('n', 'gc', vim.lsp.buf.declaration, opts)
-          map('n', 'gC', '<cmd>tab split | lua vim.lsp.buf.declaration()<CR>',
-            opts)
+          map(
+            'n',
+            'gC',
+            '<cmd>tab split | lua vim.lsp.buf.declaration()<CR>',
+            opts
+          )
           map('n', 'gt', vim.lsp.buf.type_definition, opts)
-          map('n', 'gT', '<cmd>tab split | lua vim.lsp.buf.type_definition()<CR>',
-            opts)
+          map(
+            'n',
+            'gT',
+            '<cmd>tab split | lua vim.lsp.buf.type_definition()<CR>',
+            opts
+          )
           map('n', 'gi', vim.lsp.buf.implementation, opts)
-          map('n', 'gI', '<cmd>tab split | lua vim.lsp.buf.implementation()<CR>',
-            opts)
+          map(
+            'n',
+            'gI',
+            '<cmd>tab split | lua vim.lsp.buf.implementation()<CR>',
+            opts
+          )
           map('n', '<leader>dk', vim.diagnostic.goto_prev, opts)
           map('n', '<leader>dj', vim.diagnostic.goto_next, opts)
           -- rename symbol starting with empty prompt, highlight references
@@ -235,7 +264,9 @@ return {
             end
             local ns = vim.api.nvim_create_namespace('LspRenamespace')
 
-            client.request('textDocument/references', params,
+            client.request(
+              'textDocument/references',
+              params,
               function(_, result)
                 if not result then
                   vim.print('Cannot rename.')
@@ -250,8 +281,14 @@ return {
                     local end_char = v.range['end'].character
                     if buf == bufnr then
                       print(line, start_char, end_char)
-                      vim.api.nvim_buf_add_highlight(bufnr, ns,
-                        'LspReferenceWrite', line, start_char, end_char)
+                      vim.api.nvim_buf_add_highlight(
+                        bufnr,
+                        ns,
+                        'LspReferenceWrite',
+                        line,
+                        start_char,
+                        end_char
+                      )
                     end
                   end
                 end
@@ -262,7 +299,9 @@ return {
                   return
                 end
                 vim.lsp.buf.rename(new_name)
-              end, bufnr)
+              end,
+              bufnr
+            )
           end)
           -- show code actions, executing if only 1
           map('n', '<leader>ca', function()
@@ -283,16 +322,17 @@ return {
         float = { border = 'rounded' },
       }
 
-      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-        vim.lsp.handlers.hover, {
+      vim.lsp.handlers['textDocument/hover'] =
+        vim.lsp.with(vim.lsp.handlers.hover, {
           border = 'rounded',
         })
-      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-        vim.lsp.handlers.signature_help, {
+      vim.lsp.handlers['textDocument/signatureHelp'] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, {
           border = 'rounded',
         })
 
-      local signs = { Error = ' ', Warn = ' ', Hint = '󰌶 ', Info = ' ' }
+      local signs =
+        { Error = ' ', Warn = ' ', Hint = '󰌶 ', Info = ' ' }
       for type, icon in pairs(signs) do
         local hl = 'DiagnosticSign' .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -329,7 +369,7 @@ return {
       }
 
       -- auto-install some packages that cannot be handled by `ensure_installed`
-      local registry = require 'mason-registry'
+      local registry = require('mason-registry')
       local packages = {
         'prettierd',
         'clang-format',
@@ -362,12 +402,18 @@ return {
           },
           null_ls.builtins.formatting.clang_format.with {
             -- https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-            extra_args = { '--style',
-              '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}' },
+            extra_args = {
+              '--style',
+              '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}',
+            },
             filetypes = { 'c', 'cpp' },
           },
           null_ls.builtins.formatting.prettierd.with {
             filetypes = { 'css', 'html' },
+          },
+          null_ls.builtins.formatting.stylua.with {
+            -- use this directory's stylua.toml if none is found in the current
+            env = { XDG_CONFIG_HOME = vim.fn.expand('~/.config/nvim/') },
           },
         },
       }

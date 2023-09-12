@@ -39,9 +39,11 @@ return {
     ft = { 'html', 'clojure', 'query', 'scheme', 'commonlisp' },
     config = function()
       local rainbow_delimiters = require('rainbow-delimiters')
-      require 'rainbow-delimiters.setup' {
+      require('rainbow-delimiters.setup') {
         strategy = {
-          [''] = function() return nil end,
+          [''] = function()
+            return nil
+          end,
           commonlisp = rainbow_delimiters.strategy['global'],
           scheme = rainbow_delimiters.strategy['global'],
           query = rainbow_delimiters.strategy['global'],
@@ -64,14 +66,15 @@ return {
         -- Configuration here, or leave empty to use defaults
         aliases = {
           ['d'] = { '{', '[', '(', '<', '"', "'", '`' }, -- any delimiter
-          ['b'] = { '{', '[', '(', '<' },                -- bracket
+          ['b'] = { '{', '[', '(', '<' }, -- bracket
           ['p'] = { '(' },
         },
         surrounds = {
           ['g'] = {
             add = function()
               local result = require('nvim-surround.config').get_input(
-                'Enter the generic name: ')
+                'Enter the generic name: '
+              )
               if result then
                 return {
                   { result .. '<' },
@@ -85,7 +88,8 @@ return {
           ['G'] = {
             add = function()
               local result = require('nvim-surround.config').get_input(
-                'Enter the generic name: ')
+                'Enter the generic name: '
+              )
               if result then
                 return {
                   { result .. '<' },
@@ -122,8 +126,9 @@ return {
           end
           return nil
         end,
-        pre_hook = require('ts_context_commentstring.integrations.comment_nvim')
-            .create_pre_hook(),
+        pre_hook = require(
+          'ts_context_commentstring.integrations.comment_nvim'
+        ).create_pre_hook(),
       }
 
       -- toggle comment in insert mode

@@ -15,12 +15,13 @@ end
 
 local function isInReturn(s)
   local firstSeven = string.sub(trimBeg(s), 1, 7)
-  return firstSeven == 'return ' or firstSeven == 'return' or
-      firstSeven == 'return;'
+  return firstSeven == 'return '
+    or firstSeven == 'return'
+    or firstSeven == 'return;'
 end
 
-local disabled_filetypes = { 'markdown', 'text', 'scheme', 'clojure', 'lisp',
-  'query', 'lua', 'python' }
+local disabled_filetypes =
+  { 'markdown', 'text', 'scheme', 'clojure', 'lisp', 'query', 'lua', 'python' }
 
 vim.keymap.set('i', ';', function()
   for k = 1, #disabled_filetypes do
