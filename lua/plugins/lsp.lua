@@ -30,7 +30,14 @@ return {
     config = function()
       require('mason').setup()
       require('mason-lspconfig').setup {
-        ensure_installed = { 'denols', 'emmet_ls', 'cssls' },
+        ensure_installed = {
+          'denols',
+          'emmet_ls',
+          'cssls',
+          'lua_ls',
+          'pylsp',
+          'clangd',
+        },
       }
 
       require('lspconfig.ui.windows').default_options.border = 'rounded'
@@ -373,6 +380,7 @@ return {
       local packages = {
         'prettierd',
         'clang-format',
+        'stylua',
       }
       registry.refresh(function()
         for _, pkg_name in ipairs(packages) do
