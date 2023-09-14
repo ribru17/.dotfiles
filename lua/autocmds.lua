@@ -40,35 +40,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
-local lsp_formatting = function()
-  vim.lsp.buf.format {
-    filter = function(client)
-      -- disable formatters that are already covered by null-ls to prevent conflicts
-      local disabled_formatters =
-        { 'clangd', 'tsserver', 'typescript-tools', 'html' }
-      -- NOTE: Some LSPs do not preserve folds on save unfortunately.
-
-      for k = 1, #disabled_formatters do
-        local v = disabled_formatters[k]
-        if client.name == v then
-          return false
-        end
-      end
-
-      return true
-    end,
-  }
-end
-
--- Explicitly format on save: passing this through null-ls failed with
--- unsupported formatters, e.g. html-lsp
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*',
-  callback = function()
-    lsp_formatting()
-  end,
-})
-
 -- lazy load keymaps and user-defined commands
 vim.api.nvim_create_autocmd('User', {
   pattern = 'VeryLazy',

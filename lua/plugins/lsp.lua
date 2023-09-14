@@ -264,11 +264,6 @@ return {
             params.context = { includeDeclaration = true }
             local clients = vim.lsp.get_active_clients()
             local client = clients[1]
-            for _, value in ipairs(clients) do
-              if value.name ~= 'null-ls' then
-                client = value
-              end
-            end
             local ns = vim.api.nvim_create_namespace('LspRenamespace')
 
             client.request(
@@ -390,41 +385,6 @@ return {
           end
         end
       end)
-    end,
-  },
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    event = { 'LspAttach' },
-    -- other filetypes not covered by LspAttach (as they have no LSP)
-    ft = { 'markdown', 'json' },
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    config = function()
-      local null_ls = require('null-ls')
-
-      null_ls.setup {
-        sources = {
-          null_ls.builtins.formatting.deno_fmt.with {
-            extra_args = { '--single-quote' },
-          },
-          null_ls.builtins.formatting.clang_format.with {
-            -- https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-            extra_args = {
-              '--style',
-              '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}',
-            },
-            filetypes = { 'c', 'cpp' },
-          },
-          null_ls.builtins.formatting.prettierd.with {
-            filetypes = { 'css', 'html' },
-          },
-          null_ls.builtins.formatting.stylua.with {
-            -- use this directory's stylua.toml if none is found in the current
-            env = { XDG_CONFIG_HOME = vim.fn.expand('~/.config/nvim/') },
-          },
-        },
-      }
     end,
   },
   {

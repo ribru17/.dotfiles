@@ -140,4 +140,63 @@ return {
       end, {})
     end,
   },
+  {
+    'stevearc/conform.nvim',
+    event = { 'VeryLazy' },
+    config = function()
+      -- use this directory's stylua.toml if none is found in the current
+      require('conform.formatters.stylua').env = {
+        XDG_CONFIG_HOME = vim.fn.expand('~/.config/nvim/'),
+      }
+      vim.list_extend(require('conform.formatters.clang_format').args, {
+        '--style',
+        '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}',
+      })
+      local extensions = {
+        javascript = 'js',
+        javascriptreact = 'jsx',
+        json = 'json',
+        jsonc = 'jsonc',
+        markdown = 'md',
+        typescript = 'ts',
+        typescriptreact = 'tsx',
+      }
+      require('conform').setup {
+        format_on_save = {
+          timeout_ms = 1000,
+          lsp_fallback = true,
+        },
+        -- remove once deno_fmt PR merged
+        formatters = {
+          deno_fmt = {
+            command = 'deno',
+            args = function(ctx)
+              return {
+                'fmt',
+                '-',
+                '--ext',
+                extensions[vim.bo[ctx.buf].filetype],
+                '--single-quote',
+              }
+            end,
+          },
+        },
+        formatters_by_ft = {
+          lua = { 'stylua' },
+          luau = { 'stylua' },
+          css = { 'prettierd' },
+          html = { 'prettierd' },
+          c = { 'clang_format' },
+          cpp = { 'clang_format' },
+          javascript = { 'deno_fmt' },
+          typescript = { 'deno_fmt' },
+          javascriptreact = { 'deno_fmt' },
+          typescriptreact = { 'deno_fmt' },
+          markdown = { 'deno_fmt' },
+          json = { 'deno_fmt' },
+          jsonc = { 'deno_fmt' },
+        },
+      }
+    end,
+  },
 }
