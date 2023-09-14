@@ -161,25 +161,20 @@ return {
         typescript = 'ts',
         typescriptreact = 'tsx',
       }
+      require('conform.formatters.deno_fmt').args = function(ctx)
+        return {
+          'fmt',
+          '-',
+          '--ext',
+          extensions[vim.bo[ctx.buf].filetype],
+          '--single-quote',
+        }
+      end
+
       require('conform').setup {
         format_on_save = {
           timeout_ms = 1000,
           lsp_fallback = true,
-        },
-        -- remove once deno_fmt PR merged
-        formatters = {
-          deno_fmt = {
-            command = 'deno',
-            args = function(ctx)
-              return {
-                'fmt',
-                '-',
-                '--ext',
-                extensions[vim.bo[ctx.buf].filetype],
-                '--single-quote',
-              }
-            end,
-          },
         },
         formatters_by_ft = {
           lua = { 'stylua' },
