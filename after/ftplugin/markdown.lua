@@ -1,6 +1,8 @@
 vim.opt_local.shiftwidth = 2
 vim.opt_local.tabstop = 2
 vim.opt_local.softtabstop = 2
+vim.opt_local.conceallevel = 2
+vim.opt_local.concealcursor = 'n'
 -- Allow block comments to be continued when hitting enter
 vim.opt_local.formatoptions:append('qcro')
 
