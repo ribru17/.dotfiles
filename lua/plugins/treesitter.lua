@@ -1,7 +1,8 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    version = false,
+    -- breaking commit right after this one
+    commit = '15d327fe6324d8269451131ec34ad4f2a8ef1e01',
     build = ':TSUpdate',
     event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
@@ -75,6 +76,8 @@ return {
             },
             selection_modes = {
               ['@comment.outer'] = 'V',
+              ['@conditional.outer'] = 'V',
+              ['@conditional.inner'] = 'V',
             },
           },
         },

@@ -16,21 +16,36 @@ map('x', '<S-Tab>', '<gv', indent_opts)
 map('n', '<Tab>', '>>', indent_opts)
 map('n', '<S-Tab>', '<<', indent_opts)
 
--- NOTE: Look into mini.ai if this doesn't suit needs
 local math_obj_opts = {
   desc = 'Custom text object to delete inside "$" delimiters',
 }
 map('x', 'i$', function()
-  vim.cmd.normal('T$ot$')
+  require('nvim-treesitter.textobjects.select').select_textobject(
+    '@math.inner',
+    'textobjects',
+    'v'
+  )
 end, math_obj_opts)
 map('x', 'a$', function()
-  vim.cmd.normal('F$of$')
+  require('nvim-treesitter.textobjects.select').select_textobject(
+    '@math.outer',
+    'textobjects',
+    'v'
+  )
 end, math_obj_opts)
 map('o', 'i$', function()
-  vim.cmd.normal { 'T$vt$', bang = true }
+  require('nvim-treesitter.textobjects.select').select_textobject(
+    '@math.inner',
+    'textobjects',
+    'o'
+  )
 end, math_obj_opts)
 map('o', 'a$', function()
-  vim.cmd.normal { 'F$vf$', bang = true }
+  require('nvim-treesitter.textobjects.select').select_textobject(
+    '@math.outer',
+    'textobjects',
+    'o'
+  )
 end, math_obj_opts)
 
 map('n', '<CR>', function()
