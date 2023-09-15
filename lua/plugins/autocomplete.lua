@@ -287,6 +287,13 @@ return {
               end
               return vim_item
             end,
+            menu = {
+              buffer = '[Buf]',
+              nvim_lsp = '[LSP]',
+              nvim_lua = '[API]',
+              path = '[Path]',
+              luasnip = '[Snip]',
+            },
           },
         },
         window = {
