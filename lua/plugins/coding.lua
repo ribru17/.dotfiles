@@ -142,7 +142,8 @@ return {
   },
   {
     'stevearc/conform.nvim',
-    event = { 'VeryLazy' },
+    event = { 'BufWritePre' },
+    cmd = 'ConformInfo',
     config = function()
       -- use this directory's stylua.toml if none is found in the current
       require('conform.formatters.stylua').env = {
