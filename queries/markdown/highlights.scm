@@ -24,6 +24,23 @@
   )
 (block_quote
   (_
+    (_
+      (_
+        (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
+        )
+      ))
+  )
+(block_quote
+  (_
+    ((_
+       (_
+         (block_continuation) @punctuation.special (#set! conceal "▐")
+         )
+       )) .
+    )
+  )
+(block_quote
+  (_
     (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
     )
   )
