@@ -16,10 +16,25 @@
 
 ; Block quotes
 ((block_quote_marker) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐"))
-((block_quote
-  (paragraph (inline
-    (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
-  ))
-))
 (block_quote
-  (paragraph) @text.literal)
+  (_
+    (_
+      (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
+      ))
+  )
+(block_quote
+  (_
+    (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
+    )
+  )
+(block_quote
+  (_
+    (
+     (block_continuation) @punctuation.special (#set! conceal "▐") 
+     ) .
+    )
+  )
+(block_quote
+  (_)*
+  (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
+  )
