@@ -153,25 +153,15 @@ return {
         '--style',
         '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}',
       })
-      local extensions = {
-        javascript = 'js',
-        javascriptreact = 'jsx',
-        json = 'json',
-        jsonc = 'jsonc',
-        markdown = 'md',
-        typescript = 'ts',
-        typescriptreact = 'tsx',
-      }
-      require('conform.formatters.deno_fmt').args = function(ctx)
-        return {
-          'fmt',
-          '-',
-          '--ext',
-          extensions[vim.bo[ctx.buf].filetype],
-          '--single-quote',
-        }
-      end
-
+      local deno_fmt = require('conform.formatters.deno_fmt')
+      require('conform').formatters.deno_fmt =
+        vim.tbl_deep_extend('force', deno_fmt, {
+          args = require('conform.util').extend_args(
+            deno_fmt.args,
+            { '--single-quote' },
+            { append = true }
+          ),
+        })
       require('conform').setup {
         format_on_save = {
           timeout_ms = 1000,
