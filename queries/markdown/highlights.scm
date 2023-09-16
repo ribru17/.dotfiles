@@ -1,6 +1,6 @@
 ;; extends
 
-; bullet points
+; Bullet points
 ([(list_marker_minus) (list_marker_star)] @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "•"))
 
 ; Checkbox list items
@@ -8,7 +8,7 @@
 ((task_list_marker_checked) @text.todo.checked (#offset! @text.todo.checked 0 -2 0 0) (#set! conceal "✔"))
 (list_item (task_list_marker_checked)) @comment
 
-; Use box drawing characters for tables
+; Tables
 (pipe_table_header ("|") @punctuation.special @conceal (#set! conceal "┃"))
 (pipe_table_delimiter_row ("|") @punctuation.special @conceal (#set! conceal "┃"))
 (pipe_table_delimiter_cell ("-") @punctuation.special @conceal (#set! conceal "━"))
@@ -55,3 +55,11 @@
   (_)*
   (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
   )
+
+; Headers
+((atx_h1_marker) @text.title (#set! conceal "1"))
+((atx_h2_marker) @text.title (#set! conceal "2"))
+((atx_h3_marker) @text.title (#set! conceal "3"))
+((atx_h4_marker) @text.title (#set! conceal "4"))
+((atx_h5_marker) @text.title (#set! conceal "5"))
+((atx_h6_marker) @text.title (#set! conceal "6"))

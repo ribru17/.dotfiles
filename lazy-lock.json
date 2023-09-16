@@ -11,7 +11,7 @@
   "cmp-nvim-lua": { "branch": "main", "commit": "f12408bdb54c39c23e67cab726264c10db33ada8" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
-  "conform.nvim": { "branch": "master", "commit": "cb5f939ab27b2c2ef2e1d4ac6fe16c5ba6332f39" },
+  "conform.nvim": { "branch": "master", "commit": "705d36300138a6dc5eb902b336d8358bf500bebd" },
   "deadcolumn.nvim": { "branch": "master", "commit": "b9b5e237371ae5379e280e4df9ecf62e4bc8d7a5" },
   "gitsigns.nvim": { "branch": "main", "commit": "907ae8636016aab2f283576fc60d46ca3427e579" },
   "haskell-tools.nvim": { "branch": "2.x.x", "commit": "5809d0c4a15ae01bf7621f59704c542352015760" },
