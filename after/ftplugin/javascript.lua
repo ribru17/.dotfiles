@@ -6,37 +6,36 @@ require('nvim-surround').buffer_setup {
         local result =
           require('nvim-surround.config').get_input('Enter the function name: ')
         if result then
-          result = result == '' and result or 'const ' .. result .. ' = '
-          return {
-            { result .. '() => {' },
-            { '}' },
-          }
+          if result == '' then
+            return {
+              { '() => {' },
+              { '}' },
+            }
+          else
+            return {
+              { 'function ' .. result .. '() {' },
+              { '}' },
+            }
+          end
         end
       end,
       find = function()
-        -- check for both named and unnamed arrow functions
-        local named_match = config.get_selection('const [%w_]- = %(%) => {.-}')
-        if named_match then
-          return named_match
-        else
-          return config.get_selection('%(%) => {.-}')
-        end
-      end,
-      delete = function()
-        local named_match = config.get_selection {
-          pattern = 'const [%w_]- = %(%) => {',
+        return require('nvim-surround.config').get_selection {
+          query = { capture = '@function.outer', type = 'textobjects' },
         }
-        if not named_match then
-          named_match = config.get_selection {
-            pattern = '%(%) => {',
+      end,
+      delete = function(char)
+        local match = config.get_selections {
+          char = char,
+          pattern = '^(function%s+[%w_]-%s-%(.-%).-{)().-(})()$',
+        }
+        if not match then
+          match = config.get_selections {
+            char = char,
+            pattern = '^(%(.-%)%s-=>%s-{)().-(})()$',
           }
         end
-        return {
-          left = named_match,
-          right = config.get_selection {
-            pattern = '}',
-          },
-        }
+        return match
       end,
     },
   },

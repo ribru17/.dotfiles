@@ -12,8 +12,12 @@ require('nvim-surround').buffer_setup {
           }
         end
       end,
-      find = 'function.-%(%) .- end',
-      delete = '^(function.-%(%) )().-( end)()$',
+      find = function()
+        return require('nvim-surround.config').get_selection {
+          query = { capture = '@function.outer', type = 'textobjects' },
+        }
+      end,
+      delete = '^(.-function.-%(.-%))().-(end)()$',
     },
   },
 }
