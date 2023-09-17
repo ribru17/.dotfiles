@@ -37,6 +37,7 @@ return {
           'lua_ls',
           'pylsp',
           'clangd',
+          'gopls',
         },
       }
 
@@ -198,6 +199,19 @@ return {
                 ls.lsp_expand(snip_string)
               end, { buffer = bufnr })
             end,
+          }
+        end,
+        ['gopls'] = function()
+          require('lspconfig').gopls.setup {
+            capabilities = capabilities,
+            settings = {
+              gopls = {
+                analyses = {
+                  unusedparams = true,
+                },
+                staticcheck = true,
+              },
+            },
           }
         end,
       }
