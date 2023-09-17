@@ -184,12 +184,10 @@ map({ 'n', 'v', 'i' }, '<C-/>', '<C-_>', {
 
 map('i', '<C-f>', '<C-t>', { remap = true, desc = 'Easier bullet formatting' })
 
-map('n', '<leader>z', 'za', { remap = true, desc = 'Toggle current fold' })
 map('n', 'zz', 'za', { remap = true, desc = 'Toggle current fold' })
 map('n', 'zf', 'zMzv', { remap = true, desc = 'Fold all except current' })
 map('n', 'zO', 'zR', { remap = true, desc = 'Open all folds' })
 map('n', 'zo', 'zO', { desc = 'Open all folds descending from current line' })
-map('x', '<leader>z', 'zf', { remap = true, desc = 'Fold selected lines' })
 map('x', 'zz', 'zf', { remap = true, desc = 'Fold selected lines' })
 
 map('x', 'y', 'ygv<Esc>', { desc = 'Cursor-in-place copy' })

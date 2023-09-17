@@ -236,6 +236,7 @@ return {
     branch = '0.1.x',
     keys = {
       { '<leader>ff' },
+      -- TODO: make ripgrep search preserve cursor pos when opening in new tabs
       { '<leader>fs' },
       { '<leader>fg' },
       { '<leader>fw' },
@@ -770,14 +771,16 @@ return {
   },
   {
     'Bekaboo/deadcolumn.nvim',
-    event = { 'VeryLazy' },
-    opts = {
-      blending = {
-        threshold = 0.75,
-      },
-      warning = {
-        colorcode = '#ED8796',
-      },
-    },
+    event = { 'InsertEnter' },
+    config = function()
+      require('deadcolumn').setup {
+        blending = {
+          threshold = 0.75,
+        },
+      }
+      vim.schedule(function()
+        vim.o.colorcolumn = '80'
+      end)
+    end,
   },
 }

@@ -14,7 +14,11 @@ return {
   {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
-    event = { 'VeryLazy' },
+    keys = {
+      { 'z', mode = { 'n', 'x' } },
+      { '<leader>z', 'za', mode = { 'n' }, desc = 'Toggle current fold' },
+      { '<leader>z', 'zf', mode = { 'x' }, desc = 'Fold selected lines' },
+    },
     config = function()
       require('ufo').setup {
         preview = {
@@ -60,7 +64,17 @@ return {
   {
     'kylechui/nvim-surround',
     version = '*', -- Use for stability; omit to use `main` branch for the latest features
-    event = 'VeryLazy',
+    keys = {
+      'ys',
+      'yS',
+      'cs',
+      'ds',
+      { 's', mode = { 'x' } },
+      { 'S', mode = { 'x' } },
+      { 'gS', mode = { 'x' } },
+      { '<C-g>s', mode = { 'i' } },
+      { '<C-g>S', mode = { 'i' } },
+    },
     config = function()
       require('nvim-surround').setup {
         -- Configuration here, or leave empty to use defaults
