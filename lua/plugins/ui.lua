@@ -657,6 +657,7 @@ return {
             for _, node in pairs(api.marks.list()) do
               api.node.open.tab(node)
             end
+            api.marks.clear()
           end
         end
 
