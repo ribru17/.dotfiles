@@ -111,6 +111,9 @@ that file). Save without formatting with `:W`.
 - File Tree
   - Use `<leader>t` to open the file Tree
   - Create new files or directories with `n` and trash them with `d`
+  - Mark files with `m` or `<Space>` to perform bulk operations
+    - E.g., open multiple files in new tabs with `<Tab>` (also works without a
+      selection)
   - Other mappings can be found in the `lua/plugins/ui.lua` file
 - LSP
   - Use `<leader>ca` to run Code Actions through the LSP
