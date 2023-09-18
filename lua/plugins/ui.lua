@@ -236,7 +236,6 @@ return {
     branch = '0.1.x',
     keys = {
       { '<leader>ff' },
-      -- TODO: make ripgrep search preserve cursor pos when opening in new tabs
       { '<leader>fs' },
       { '<leader>fg' },
       { '<leader>fw' },
@@ -251,23 +250,67 @@ return {
     },
     config = function()
       local actions = require('telescope.actions')
+      local action_state = require('telescope.actions.state')
 
       -- open selected buffers in new tabs
       local function multi_tab(prompt_bufnr)
-        local state = require('telescope.actions.state')
-        local picker = state.get_current_picker(prompt_bufnr)
-        local multi = picker:get_multi_selection()
-        local str = ''
-        if #multi > 0 then
-          for _, j in pairs(multi) do
-            str = str .. 'tabe ' .. j.filename .. ' | '
+        local picker = action_state.get_current_picker(prompt_bufnr)
+        local multi_selection = picker:get_multi_selection()
+
+        if #multi_selection > 1 then
+          require('telescope.pickers').on_close_prompt(prompt_bufnr)
+          pcall(vim.api.nvim_set_current_win, picker.original_win_id)
+
+          for _, entry in ipairs(multi_selection) do
+            local filename, row, col
+
+            if entry.path or entry.filename then
+              filename = entry.path or entry.filename
+
+              row = entry.row or entry.lnum
+              col = vim.F.if_nil(entry.col, 1)
+            elseif not entry.bufnr then
+              local value = entry.value
+              if not value then
+                return
+              end
+
+              if type(value) == 'table' then
+                value = entry.display
+              end
+
+              local sections = vim.split(value, ':')
+
+              filename = sections[1]
+              row = tonumber(sections[2])
+              col = tonumber(sections[3])
+            end
+
+            local entry_bufnr = entry.bufnr
+
+            if entry_bufnr then
+              if not vim.api.nvim_buf_get_option(entry_bufnr, 'buflisted') then
+                vim.api.nvim_buf_set_option(entry_bufnr, 'buflisted', true)
+              end
+              pcall(vim.cmd.sbuffer, {
+                filename,
+                mods = {
+                  tab = 1,
+                },
+              })
+            else
+              filename = require('plenary.path')
+                :new(vim.fn.fnameescape(filename))
+                :normalize(vim.loop.cwd())
+              pcall(vim.cmd.tabedit, filename)
+            end
+
+            if row and col then
+              pcall(vim.api.nvim_win_set_cursor, 0, { row, col - 1 })
+            end
           end
-          -- To avoid populating qf or doing ":edit! file", close the prompt first
-          actions.close(prompt_bufnr)
-          vim.api.nvim_command(str)
         else
-          -- only open selected buffer in new tab if selection is empty
-          require('telescope.actions').select_tab(prompt_bufnr)
+          actions.select_tab(prompt_bufnr)
         end
       end
 
