@@ -20,6 +20,7 @@ vim.opt.termguicolors = true
 vim.opt.mouse = ''
 vim.opt.pumheight = 10
 vim.opt.relativenumber = true
+vim.opt.colorcolumn = '80'
 vim.opt.splitright = true
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'

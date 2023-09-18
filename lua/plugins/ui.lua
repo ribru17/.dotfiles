@@ -814,16 +814,16 @@ return {
   },
   {
     'Bekaboo/deadcolumn.nvim',
-    event = { 'InsertEnter' },
+    event = { 'VeryLazy' },
     config = function()
       require('deadcolumn').setup {
         blending = {
           threshold = 0.75,
         },
+        warning = {
+          alpha = 0.2,
+        },
       }
-      vim.schedule(function()
-        vim.o.colorcolumn = '80'
-      end)
     end,
   },
 }
