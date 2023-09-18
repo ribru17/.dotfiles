@@ -76,6 +76,7 @@ WezTerm).
     - Use `Tab` to open selected file(s) in new tab
     - Use `<Space>` (`<C-Space>` in Insert mode) to toggle whether a file is
       selected
+    - Use `<C-l>` and `<C-h>` to scroll the preview right and left, respectively
     - Use `q` to quit
 - Tabs
   - Use `Ctrl+n` and `Ctrl+p` to switch to one tab to the left or right,

@@ -233,7 +233,6 @@ return {
   },
   {
     'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
     keys = {
       { '<leader>ff' },
       { '<leader>fs' },
@@ -355,6 +354,8 @@ return {
                 type = 'action',
                 opts = { nowait = true, silent = true, noremap = true },
               },
+              ['<C-l>'] = actions.preview_scrolling_right,
+              ['<C-h>'] = actions.preview_scrolling_left,
             },
             i = {
               ['<Tab>'] = multi_tab, -- <Tab> to open as tab
