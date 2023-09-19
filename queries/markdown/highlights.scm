@@ -53,10 +53,59 @@
 ; Block quotes
 ((block_quote_marker) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐"))
 (block_quote
+  (_)*
+  (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
+  )
+(block_quote
+  (_
+    (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
+    )
+  )
+(block_quote
+  (_
+    ((block_continuation) @punctuation.special (#set! conceal "▐"))
+    .
+    )
+  )
+(block_quote
   (_
     (_
       (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
-      ))
+      )
+    )
+  )
+(block_quote
+  (section
+    (_
+      ((block_continuation) @punctuation.special (#set! conceal "▐"))
+      .
+      )
+    )
+  )
+; list
+(block_quote
+  (section
+    (_
+      (_
+        (_
+          (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
+          )
+        )
+      )
+    )
+  )
+(block_quote
+  (section
+    (_
+      (
+       (_
+         (_
+           (block_continuation) @punctuation.special (#set! conceal "▐")
+           )
+         )
+       ) .
+      )
+    )
   )
 (block_quote
   (_
@@ -64,7 +113,8 @@
       (_
         (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
         )
-      ))
+      )
+    )
   )
 (block_quote
   (_
@@ -74,22 +124,6 @@
          )
        )) .
     )
-  )
-(block_quote
-  (_
-    (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
-    )
-  )
-(block_quote
-  (_
-    (
-     (block_continuation) @punctuation.special (#set! conceal "▐") 
-     ) .
-    )
-  )
-(block_quote
-  (_)*
-  (block_continuation) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐")
   )
 
 ; Headers
