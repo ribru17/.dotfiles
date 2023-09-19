@@ -48,6 +48,8 @@
 (pipe_table_header ("|") @punctuation.special @conceal (#set! conceal "┃"))
 (pipe_table_delimiter_row ("|") @punctuation.special @conceal (#set! conceal "┃"))
 (pipe_table_delimiter_cell ("-") @punctuation.special @conceal (#set! conceal "━"))
+((pipe_table_align_left) @punctuation.special @conceal (#set! conceal "┣"))
+((pipe_table_align_right) @punctuation.special @conceal (#set! conceal "┫"))
 (pipe_table_row ("|") @punctuation.special @conceal (#set! conceal "┃"))
 
 ; Block quotes
