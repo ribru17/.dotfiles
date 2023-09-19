@@ -63,13 +63,13 @@ return {
   },
   {
     'kylechui/nvim-surround',
-    version = '*', -- Use for stability; omit to use `main` branch for the latest features
+    version = '*',
     keys = {
       'ys',
       'yS',
       'cs',
       'ds',
-      { 's', mode = { 'x' } },
+      { 's', 'S', remap = true, mode = { 'x' } },
       { 'S', mode = { 'x' } },
       { 'gS', mode = { 'x' } },
       { '<C-g>s', mode = { 'i' } },

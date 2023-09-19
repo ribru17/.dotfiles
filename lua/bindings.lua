@@ -117,8 +117,6 @@ map('n', '<C-u>', '<C-u>zz', cursorstay_opts)
 map('n', 'n', 'nzzzv', cursorstay_opts)
 map('n', 'N', 'Nzzzv', cursorstay_opts)
 
-map('x', 's', 'S', { remap = true, desc = 'Surround visual selections' })
-
 map('n', '<Esc>', '<Cmd>noh<CR>', { desc = 'Clear search highlighting' })
 
 map('t', '<Esc>', '<C-Bslash><C-n>', { desc = 'Easily exit terminal mode' })
