@@ -1,5 +1,15 @@
 return {
   {
+    -- lazy-load netrw for `gx` functionality
+    dir = vim.env.VIMRUNTIME .. '/runtime/netrwPlugin.vim',
+    keys = {
+      'gx',
+    },
+    config = function()
+      vim.cmd.source(vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim')
+    end,
+  },
+  {
     'tpope/vim-fugitive',
     cmd = 'Git',
   },
