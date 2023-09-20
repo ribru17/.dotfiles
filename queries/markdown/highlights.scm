@@ -53,9 +53,21 @@
 (pipe_table_row ("|") @punctuation.special @conceal (#set! conceal "┃"))
 
 ; Block quotes
-((block_quote_marker) @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐"))
-((block_continuation) @punctuation.special (#eq? @punctuation.special "> ") (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "▐"))
-((block_continuation) @punctuation.special (#eq? @punctuation.special ">") (#set! conceal "▐"))
+((block_quote_marker) @punctuation.special
+                      (#offset! @punctuation.special 0 0 0 -1)
+                      (#set! conceal "▐"))
+((block_continuation) @punctuation.special
+                      (#eq? @punctuation.special ">")
+                      (#set! conceal "▐"))
+((block_continuation) @punctuation.special
+                      (#eq? @punctuation.special "> ")
+                      (#offset! @punctuation.special 0 0 0 -1)
+                      (#set! conceal "▐"))
+((block_continuation) @punctuation.special
+                      ; for indented code blocks
+                      (#eq? @punctuation.special ">     ")
+                      (#offset! @punctuation.special 0 0 0 -5)
+                      (#set! conceal "▐"))
 
 ; Headers
 ((atx_h1_marker) @text.title (#set! conceal "1"))
