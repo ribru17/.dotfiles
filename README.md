@@ -8,7 +8,9 @@
 
 ![nvimhome](https://github.com/ribru17/nvim/assets/55766287/dff3a76c-c381-4a4f-9e11-0e507d73fbef)
 
-![nvimediting](https://github.com/ribru17/nvim/assets/55766287/b19ba9f7-eda1-40d7-bda6-d475bbb2a953)
+![nvimnotetaking](https://github.com/ribru17/nvim/assets/55766287/07bb57a7-3a48-4ac1-a944-420af08b0e04)
+
+![nvimediting](https://github.com/ribru17/nvim/assets/55766287/35f0f7f5-2042-4b59-9d8e-407c6f0b2c12)
 
 ## :package: Installation
 
