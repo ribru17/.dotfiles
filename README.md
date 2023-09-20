@@ -4,7 +4,7 @@
 
 - Font: [Iosevka](https://github.com/ribru17/iosevka-config), Custom Extended
   15pt
-- Theme: [Catppuccin](https://github.com/catppuccin/nvim)
+- Theme: [Bamboo](https://github.com/ribru17/bamboo.nvim)
 
 ![nvimhome](https://github.com/ribru17/nvim/assets/55766287/dff3a76c-c381-4a4f-9e11-0e507d73fbef)
 
