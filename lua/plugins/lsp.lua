@@ -58,48 +58,6 @@ return {
         end,
         -- Next, you can provide a dedicated handler for specific servers.
         -- For example, set up `rust-tools` with `rust-analyzer`
-        ['lua_ls'] = function()
-          require('lspconfig').lua_ls.setup {
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                diagnostics = {
-                  -- Uncomment to receive LSP formatting diagnostics.
-                  -- neededFileStatus = { ['codestyle-check'] = 'Any' },
-                },
-                telemetry = { enable = false },
-                runtime = {
-                  version = 'LuaJIT',
-                },
-                workspace = {
-                  -- Make the server aware of Neovim runtime files
-                  library = {
-                    vim.fn.expand('$VIMRUNTIME'),
-                    '${3rd}/luassert/library',
-                  },
-                },
-                -- see https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
-                format = {
-                  enable = false,
-                  defaultConfig = {
-                    indent_size = '2',
-                    indent_style = 'space',
-                    quote_style = 'single',
-                    max_line_length = '80',
-                    trailing_table_separator = 'smart',
-                    -- NOTE: some options break some formatting properties? :(
-                    -- in fact a lot of things are buggy (removing `quote_style`
-                    -- property allows trailing table separators to be more
-                    -- comprehensive) but... good enough :)
-                    -- break_all_list_when_line_exceed = true, --breaks things sadly
-                    call_arg_parentheses = 'remove_table_only',
-                    -- align_call_args = true, -- breaks things sadly
-                  },
-                },
-              },
-            },
-          }
-        end,
         ['clangd'] = function()
           local custom_capabilities =
             require('cmp_nvim_lsp').default_capabilities()
@@ -107,28 +65,6 @@ return {
           require('lspconfig').clangd.setup {
             capabilities = custom_capabilities,
             cmd = { 'clangd', '--header-insertion-decorators=false' },
-          }
-        end,
-        ['pylsp'] = function()
-          require('lspconfig').pylsp.setup {
-            capabilities = capabilities,
-            on_attach = function(_, _)
-              -- https://vi.stackexchange.com/questions/39200/wrapping-comment-in-visual-mode-not-working-with-gq
-              vim.opt_local.formatexpr = ''
-            end,
-            settings = {
-              pylsp = {
-                plugins = {
-                  pycodestyle = {
-                    maxLineLength = 80,
-                  },
-                  -- Use yapf formatting which supports diff ranges. No need for
-                  -- installing additional dependencies, the Mason package comes
-                  -- with the yapf binary.
-                  autopep8 = { enabled = false },
-                },
-              },
-            },
           }
         end,
         ['cssls'] = function()
@@ -142,26 +78,8 @@ return {
             capabilities = custom_capabilities,
           }
         end,
-        ['hls'] = function()
-          -- do nothing in case user installed lsp with Mason
-          -- this prevents conflicts with the haskell tools plugin
-        end,
-        ['tsserver'] = function()
-          -- don't set up, conflicts with typescript-tools.nvim
-        end,
         ['denols'] = function()
           -- don't set up LSP, we only want formatting
-        end,
-        ['eslint'] = function()
-          require('lspconfig').eslint.setup {
-            capabilities = capabilities,
-            on_attach = function(_, bufnr)
-              vim.api.nvim_create_autocmd('BufWritePre', {
-                buffer = bufnr,
-                command = 'EslintFixAll',
-              })
-            end,
-          }
         end,
         ['emmet_ls'] = function()
           local ls = require('luasnip')
@@ -214,6 +132,17 @@ return {
             end,
           }
         end,
+        ['eslint'] = function()
+          require('lspconfig').eslint.setup {
+            capabilities = capabilities,
+            on_attach = function(_, bufnr)
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                buffer = bufnr,
+                command = 'EslintFixAll',
+              })
+            end,
+          }
+        end,
         ['gopls'] = function()
           require('lspconfig').gopls.setup {
             capabilities = capabilities,
@@ -226,6 +155,77 @@ return {
               },
             },
           }
+        end,
+        ['hls'] = function()
+          -- do nothing in case user installed lsp with Mason
+          -- this prevents conflicts with the haskell tools plugin
+        end,
+        ['lua_ls'] = function()
+          require('lspconfig').lua_ls.setup {
+            capabilities = capabilities,
+            settings = {
+              Lua = {
+                diagnostics = {
+                  -- Uncomment to receive LSP formatting diagnostics.
+                  -- neededFileStatus = { ['codestyle-check'] = 'Any' },
+                },
+                telemetry = { enable = false },
+                runtime = {
+                  version = 'LuaJIT',
+                },
+                workspace = {
+                  -- Make the server aware of Neovim runtime files
+                  library = {
+                    vim.fn.expand('$VIMRUNTIME'),
+                    '${3rd}/luassert/library',
+                  },
+                },
+                -- see https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
+                format = {
+                  enable = false,
+                  defaultConfig = {
+                    indent_size = '2',
+                    indent_style = 'space',
+                    quote_style = 'single',
+                    max_line_length = '80',
+                    trailing_table_separator = 'smart',
+                    -- NOTE: some options break some formatting properties? :(
+                    -- in fact a lot of things are buggy (removing `quote_style`
+                    -- property allows trailing table separators to be more
+                    -- comprehensive) but... good enough :)
+                    -- break_all_list_when_line_exceed = true, --breaks things sadly
+                    call_arg_parentheses = 'remove_table_only',
+                    -- align_call_args = true, -- breaks things sadly
+                  },
+                },
+              },
+            },
+          }
+        end,
+        ['pylsp'] = function()
+          require('lspconfig').pylsp.setup {
+            capabilities = capabilities,
+            on_attach = function(_, _)
+              -- https://vi.stackexchange.com/questions/39200/wrapping-comment-in-visual-mode-not-working-with-gq
+              vim.opt_local.formatexpr = ''
+            end,
+            settings = {
+              pylsp = {
+                plugins = {
+                  pycodestyle = {
+                    maxLineLength = 80,
+                  },
+                  -- Use yapf formatting which supports diff ranges. No need for
+                  -- installing additional dependencies, the Mason package comes
+                  -- with the yapf binary.
+                  autopep8 = { enabled = false },
+                },
+              },
+            },
+          }
+        end,
+        ['tsserver'] = function()
+          -- don't set up, conflicts with typescript-tools.nvim
         end,
       }
 
