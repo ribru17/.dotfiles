@@ -1,7 +1,7 @@
 return {
   {
     'navarasu/onedark.nvim',
-    event = { 'VeryLazy' },
+    keys = { '<leader>fc' },
     config = function()
       require('onedark').setup {
         style = 'warmer',
@@ -66,7 +66,7 @@ return {
   {
     'catppuccin/nvim',
     name = 'catppuccin',
-    event = { 'VeryLazy' },
+    keys = { '<leader>fc' },
     config = function()
       require('catppuccin').setup {
         integrations = {
@@ -95,6 +95,10 @@ return {
         end,
       }
     end,
+  },
+  {
+    'folke/tokyonight.nvim',
+    keys = { '<leader>fc' },
   },
   {
     'akinsho/bufferline.nvim',
