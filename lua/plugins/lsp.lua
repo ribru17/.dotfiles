@@ -38,6 +38,7 @@ return {
           'pylsp',
           'clangd',
           'gopls',
+          'eslint',
         },
       }
 
@@ -150,6 +151,17 @@ return {
         end,
         ['denols'] = function()
           -- don't set up LSP, we only want formatting
+        end,
+        ['eslint'] = function()
+          require('lspconfig').eslint.setup {
+            capabilities = capabilities,
+            on_attach = function(_, bufnr)
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                buffer = bufnr,
+                command = 'EslintFixAll',
+              })
+            end,
+          }
         end,
         ['emmet_ls'] = function()
           local ls = require('luasnip')
