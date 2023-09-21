@@ -80,6 +80,15 @@ return {
         ['denols'] = function()
           -- don't set up LSP, we only want formatting
         end,
+        ['emmet_language_server'] = function()
+          require('lspconfig').emmet_language_server.setup {
+            init_options = {
+              preferences = {
+                ['caniuse.enabled'] = false,
+              },
+            },
+          }
+        end,
         ['eslint'] = function()
           require('lspconfig').eslint.setup {
             capabilities = capabilities,
