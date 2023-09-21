@@ -248,21 +248,7 @@ return {
         sources = {
           { name = 'path' },
           { name = 'nvim_lua', ft = 'lua' },
-          {
-            name = 'nvim_lsp',
-            entry_filter = function(entry)
-              -- don't show emmet snippets in cmp menu, it gets quite annoying
-              -- better to use a separate expansion keybind for emmet snips
-              if
-                entry:get_kind()
-                  == require('cmp.types').lsp.CompletionItemKind.Snippet
-                and entry.source:get_debug_name() == 'nvim_lsp:emmet_ls'
-              then
-                return false
-              end
-              return true
-            end,
-          },
+          { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'buffer', keyword_length = 3 },
         },

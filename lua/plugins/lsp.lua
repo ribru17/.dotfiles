@@ -32,7 +32,7 @@ return {
       require('mason-lspconfig').setup {
         ensure_installed = {
           'denols',
-          'emmet_ls',
+          'emmet_language_server',
           'cssls',
           'lua_ls',
           'pylsp',
@@ -46,7 +46,6 @@ return {
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      -- TODO: setup eslint for things like prefer-const for typescript
       require('mason-lspconfig').setup_handlers {
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn't have
@@ -80,57 +79,6 @@ return {
         end,
         ['denols'] = function()
           -- don't set up LSP, we only want formatting
-        end,
-        ['emmet_ls'] = function()
-          local ls = require('luasnip')
-          require('lspconfig').emmet_ls.setup {
-            capabilities = capabilities,
-            filetypes = {
-              'css',
-              'eruby',
-              'html',
-              'javascript',
-              'javascriptreact',
-              'less',
-              'sass',
-              'scss',
-              'svelte',
-              'pug',
-              'typescriptreact',
-              'vue',
-            },
-            on_attach = function(client, bufnr)
-              -- https://github.com/aca/emmet-ls/issues/42
-              vim.keymap.set('i', '<S-CR>', function()
-                -- this request must be synchronous to allow for it to allow
-                -- luasnip session to end properly
-                local res = client.request_sync(
-                  'textDocument/completion',
-                  vim.lsp.util.make_position_params(),
-                  -- timeout for LSP call
-                  250,
-                  bufnr
-                )
-                if not res or #res.result == 0 then
-                  vim.api.nvim_feedkeys(
-                    vim.api.nvim_replace_termcodes('<CR>', true, false, true),
-                    'n',
-                    false
-                  )
-                  return
-                end
-                local textEdit = res.result[1].textEdit
-                local snip_string = textEdit.newText
-                textEdit.newText = ''
-                vim.lsp.util.apply_text_edits(
-                  { textEdit },
-                  bufnr,
-                  client.offset_encoding
-                )
-                ls.lsp_expand(snip_string)
-              end, { buffer = bufnr })
-            end,
-          }
         end,
         ['eslint'] = function()
           require('lspconfig').eslint.setup {

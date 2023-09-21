@@ -212,7 +212,8 @@ that file). Save without formatting with `:W`.
 Inherits all snippets provided by the LSP. Additionally...
 
 - Emmet snippets for HTML and other filetypes (expand with `<S-CR>`)
-- `lorem`: snippet for all filetypes that provides a long lorem ipsum string
+- `lorem`: snippet for Markdown and Emmet-supported filetypes that provides a
+  long `lorem ipsum...` string
 - Many Markdown LaTex snippets inspired by [Gilles Castel](https://castel.dev/).
 - Custom Markdown tables with `tbl<row_num>x<col_num>`
 
