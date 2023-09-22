@@ -112,8 +112,18 @@ end, opsel_opts)
 
 local cursorstay_opts = { desc = 'Keep cursor in place' }
 map('n', 'J', 'mzJ`z', cursorstay_opts)
-map('n', '<C-d>', '<C-d>zz', cursorstay_opts)
-map('n', '<C-u>', '<C-u>zz', cursorstay_opts)
+map('n', '<C-d>', function()
+  vim.cmd.normal {
+    vim.api.nvim_replace_termcodes('<C-d>', true, false, true) .. 'zz',
+    bang = true,
+  }
+end, cursorstay_opts)
+map('n', '<C-u>', function()
+  vim.cmd.normal {
+    vim.api.nvim_replace_termcodes('<C-u>', true, false, true) .. 'zz',
+    bang = true,
+  }
+end, cursorstay_opts)
 map('n', 'n', 'nzzzv', cursorstay_opts)
 map('n', 'N', 'Nzzzv', cursorstay_opts)
 
