@@ -1,3 +1,3 @@
 ;; extends
 
-(text_mode content: (curly_group (text) @text))
+(text_mode content: (curly_group (_) @text))

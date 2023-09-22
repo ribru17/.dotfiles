@@ -5,6 +5,7 @@ return {
     keys = {
       'gx',
     },
+    cmd = 'Explore',
     config = function()
       vim.cmd.source(vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim')
     end,
