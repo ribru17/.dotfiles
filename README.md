@@ -200,7 +200,7 @@ that file). Save without formatting with `:W`.
   - Use `<leader>gp` to Preview a Git change that the cursor is on
   - Use `<leader>gb` to Git-Blame the current line
 - Folding
-  - Use `<leader>z` or `zz` to toggle current fold
+  - Use `<leader>z` to toggle current fold
     - Performing these operations in Visual mode will create a fold of the
       selected lines
   - Use `zf` to Focus (close all folds except) the current fold
