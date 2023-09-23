@@ -25,11 +25,7 @@ return {
   {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
-    keys = {
-      { 'z', mode = { 'n', 'x' } },
-      { '<leader>z', 'za', mode = { 'n' }, desc = 'Toggle current fold' },
-      { '<leader>z', 'zf', mode = { 'x' }, desc = 'Fold selected lines' },
-    },
+    event = { 'VeryLazy' },
     config = function()
       require('ufo').setup {
         preview = {
