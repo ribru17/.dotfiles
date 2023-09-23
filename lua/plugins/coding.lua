@@ -39,11 +39,7 @@ return {
             winblend = 0,
           },
         },
-        provider_selector = function(_, filetype, _)
-          -- use nested markdown folding
-          if filetype == 'markdown' then
-            return ''
-          end
+        provider_selector = function(_, _, _)
           return { 'treesitter' }
         end,
       }

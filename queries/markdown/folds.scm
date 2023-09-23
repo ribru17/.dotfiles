@@ -1,0 +1,6 @@
+(
+  [
+    (section)
+  ] @fold
+  (#trim! @fold)
+)

@@ -110,18 +110,6 @@ vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter' }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
-  callback = function()
-    if vim.bo.filetype == 'markdown' then
-      -- override ufo method
-      vim.opt_local.foldexpr = 'NestedMarkdownFolds()'
-    else
-      -- revert to ufo method
-      vim.opt_local.foldexpr = '0'
-    end
-  end,
-})
-
 -- prevent weird snippet jumping behavior
 -- https://github.com/L3MON4D3/LuaSnip/issues/258
 vim.api.nvim_create_autocmd('ModeChanged', {

@@ -11,8 +11,4 @@ return {
     ft = { 'markdown', 'text' },
     cmd = { 'InsertNewBullet' },
   },
-  {
-    'mikeboiko/vim-markdown-folding',
-    ft = 'markdown',
-  },
 }
