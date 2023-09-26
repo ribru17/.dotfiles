@@ -273,6 +273,16 @@ map('o', 'aa', function()
   vim.cmd.normal('gg0vG$')
 end, { desc = 'Select entire buffer' })
 
+map('x', 'il', '_og_', { desc = 'Select text content of current line' })
+map('o', 'il', function()
+  vim.cmd.normal('_vg_')
+end, { desc = 'Select text content of current line' })
+
+map('x', 'al', '0o$h', { desc = 'Select current line' })
+map('o', 'al', function()
+  vim.cmd.normal('0v$h')
+end, { desc = 'Select current line' })
+
 map('n', '<leader>w', function()
   vim.wo.wrap = not vim.wo.wrap
 end, { desc = 'Toggle word wrap' })

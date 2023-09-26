@@ -164,7 +164,6 @@ that file). Save without formatting with `:W`.
       `( surround ) here`
     - **NOTE:** Surround with HTML-style tag using `T`
   - Use `Ctrl+y` and `Ctrl+x` to copy or cut to system clipboard, respectively
-  - Use `aa` to select the entire buffer
 - Other useful surround operations
   - All defaults provided in
     [nvim-surround](https://github.com/kylechui/nvim-surround) with some nice
@@ -179,9 +178,11 @@ that file). Save without formatting with `:W`.
 - Custom text object motions using Tree-sitter (all motions support `a` and `i`
   variants)
   - `f`: function implementation
-  - `l`: loop
+  - `L`: loop
+  - `l`: line
   - `c`: conditional
   - `/`: comment
+- Additionally, use `aa` motion to select entire buffer
 - Miscellaneous niceties
   - Insert new lines in Normal mode with `Enter` (line(s) below) or
     `Shift+Enter` (line(s) above)

@@ -71,8 +71,8 @@ return {
               ['ic'] = '@conditional.inner',
               ['af'] = '@function.outer',
               ['if'] = '@function.inner',
-              ['al'] = '@loop.outer',
-              ['il'] = '@loop.inner',
+              ['aL'] = '@loop.outer',
+              ['iL'] = '@loop.inner',
             },
             selection_modes = {
               ['@comment.outer'] = 'V',
