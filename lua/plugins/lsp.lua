@@ -202,7 +202,6 @@ return {
             vim.cmd.cfirst()
           end
 
-          map('n', 'K', vim.lsp.buf.hover, opts)
           map('n', 'K', function()
             local winid = foldPreview()
             if not winid then
