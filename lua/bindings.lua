@@ -206,6 +206,32 @@ end, { desc = 'Cursor-in-place paste' })
 map('i', '<C-p>', '<C-r>"', { desc = 'Paste from register in insert mode' })
 map('i', '<C-n>', '<Nop>', { desc = 'Disable default autocompletion menu' })
 
+vim.keymap.set('x', '<leader>t', function()
+  local win = vim.api.nvim_get_current_win()
+  local cur = vim.api.nvim_win_get_cursor(win)
+  local vstart = vim.fn.getpos('v')[2]
+  local current_line = vim.fn.line('.')
+  local set_cur = vim.api.nvim_win_set_cursor
+  if vstart == current_line then
+    vim.cmd.yank()
+    require('Comment.api').toggle.linewise.current()
+    vim.cmd.put()
+    set_cur(win, { cur[1] + 1, cur[2] })
+  else
+    if vstart < current_line then
+      vim.cmd(':' .. vstart .. ',' .. current_line .. 'y')
+      vim.cmd.put()
+      set_cur(win, { vim.fn.line('.'), cur[2] })
+    else
+      vim.cmd(':' .. current_line .. ',' .. vstart .. 'y')
+      set_cur(win, { vstart, cur[2] })
+      vim.cmd.put()
+      set_cur(win, { vim.fn.line('.'), cur[2] })
+    end
+    require('Comment.api').toggle.linewise(vim.fn.visualmode())
+  end
+end, { silent = true, desc = 'Comment and duplicate selected lines' })
+
 local function NextClosedFold(dir)
   local cmd = 'z' .. dir
   local view = vim.fn.winsaveview()

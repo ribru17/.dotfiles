@@ -187,6 +187,7 @@ that file). Save without formatting with `:W`.
     `Shift+Enter` (line(s) above)
   - Use `gq` with a motion for wrapping long comments in Python.
   - Redo with `U`
+  - Duplicate and comment selected lines with `<leader>t`
 
 ### Viewing
 
