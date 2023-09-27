@@ -26,6 +26,8 @@ return {
     'kevinhwang91/nvim-ufo',
     dependencies = {
       'kevinhwang91/promise-async',
+      -- remove digits from fold column
+      -- https://github.com/kevinhwang91/nvim-ufo/issues/4
       {
         'luukvbaal/statuscol.nvim',
         config = function()
