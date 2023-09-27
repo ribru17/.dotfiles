@@ -230,19 +230,14 @@ return {
       require('conform.formatters.stylua').env = {
         XDG_CONFIG_HOME = vim.fn.expand('~/.config/nvim/'),
       }
-      vim.list_extend(require('conform.formatters.clang_format').args, {
+      local util = require('conform.util')
+      local deno_fmt = require('conform.formatters.deno_fmt')
+      local clang_format = require('conform.formatters.clang_format')
+      util.add_formatter_args(deno_fmt, { '--single-quote' }, { append = true })
+      util.add_formatter_args(clang_format, {
         '--style',
         '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}',
       })
-      local deno_fmt = require('conform.formatters.deno_fmt')
-      require('conform').formatters.deno_fmt =
-        vim.tbl_deep_extend('force', deno_fmt, {
-          args = require('conform.util').extend_args(
-            deno_fmt.args,
-            { '--single-quote' },
-            { append = true }
-          ),
-        })
       require('conform').setup {
         format_on_save = {
           timeout_ms = 1000,
