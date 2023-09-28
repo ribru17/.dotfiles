@@ -53,7 +53,7 @@ map('o', 'a$', function()
 end, math_obj_opts)
 
 map('n', '<CR>', function()
-  local n = vim.v.count < 1 and 1 or vim.v.count
+  local n = vim.v.count1
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
   local lines = {}
   local i = 1
@@ -68,7 +68,7 @@ map('n', '<CR>', function()
 end, { desc = 'Add new lines in normal mode' })
 
 map('n', '<S-CR>', function()
-  local n = vim.v.count < 1 and 1 or vim.v.count
+  local n = vim.v.count1
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
   local lines = {}
   local i = 1
@@ -254,7 +254,7 @@ local function NextClosedFold(dir)
 end
 
 local function RepeatFoldMove(dir)
-  local n = vim.v.count < 1 and 1 or vim.v.count
+  local n = vim.v.count1
   while n > 0 do
     NextClosedFold(dir)
     n = n - 1
