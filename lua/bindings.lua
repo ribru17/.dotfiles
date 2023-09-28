@@ -11,8 +11,12 @@ of both worlds).
 })
 
 local indent_opts = { desc = 'VSCode-style block indentation' }
-map('x', '<Tab>', '>gv', indent_opts)
-map('x', '<S-Tab>', '<gv', indent_opts)
+map('x', '<Tab>', function()
+  vim.cmd.normal(vim.v.count1 .. '>gv')
+end, indent_opts)
+map('x', '<S-Tab>', function()
+  vim.cmd.normal(vim.v.count1 .. '<gv')
+end, indent_opts)
 map('n', '<Tab>', '>>', indent_opts)
 map('n', '<S-Tab>', '<<', indent_opts)
 
