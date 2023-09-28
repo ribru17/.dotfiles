@@ -262,10 +262,10 @@ local function RepeatFoldMove(dir)
 end
 
 local fold_opts = { desc = 'Only jump to *closed* folds' }
-map({ 'n', 'x' }, 'zj', function()
+map({ 'n', 'x' }, 'zn', function()
   RepeatFoldMove('j')
 end, fold_opts)
-map({ 'n', 'x' }, 'zk', function()
+map({ 'n', 'x' }, 'zp', function()
   RepeatFoldMove('k')
 end, fold_opts)
 
