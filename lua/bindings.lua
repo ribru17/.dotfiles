@@ -304,6 +304,10 @@ map('n', '<leader>bx', function()
   end
 end, { desc = 'Close all but the current buffer' })
 
+map('n', 'gf', function()
+  vim.cmd.drop { vim.fn.expand('<cfile>'), mods = { tab = 1 } }
+end, { desc = 'Smarter Goto File functionality' })
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
