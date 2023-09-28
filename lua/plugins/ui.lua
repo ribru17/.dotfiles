@@ -161,26 +161,17 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = { 'BufReadPost', 'BufNewFile' },
-    config = function()
-      local CHAR = '🭰'
-      require('indent_blankline').setup {
-        -- reduce indentation clutter
-        -- https://www.reddit.com/r/neovim/comments/yiodnb/proper_configuration_for_indentblankline/
-        max_indent_increase = 1,
-        char = CHAR, -- comment this out to center align indent indicator
-        context_char = CHAR, -- this is only needed if `show_current_context` is set to `true`
-        --> Uncomment to get colored indent lines
-        -- char_highlight_list = {
-        --   'IndentBlanklineIndent1',
-        --   'IndentBlanklineIndent2',
-        --   'IndentBlanklineIndent3',
-        --   'IndentBlanklineIndent4',
-        --   'IndentBlanklineIndent5',
-        --   'IndentBlanklineIndent6',
-        -- },
-      }
-    end,
+    event = { 'VeryLazy' },
+    main = 'ibl',
+    opts = {
+      indent = {
+        char = '│',
+        smart_indent_cap = true,
+      },
+      scope = {
+        enabled = false,
+      },
+    },
   },
   {
     'lewis6991/gitsigns.nvim',
