@@ -198,6 +198,7 @@ that file). Save without formatting with `:W`.
 - Use `<leader>bx` to close all buffers except the current
 - Use `:M` (or `:MarkdownPreview`) to preview a markdown file
 - Use `<leader>w` to toggle line Wrap for the current buffer
+- Use `<leader>c` to toggle normal mode Conceal cursor for the current buffer
 - Git
   - Use `<leader>gp` to Preview a Git change that the cursor is on
   - Use `<leader>gb` to Git-Blame the current line
