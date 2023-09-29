@@ -31,14 +31,15 @@ return {
       require('mason').setup()
       require('mason-lspconfig').setup {
         ensure_installed = {
+          'clangd',
+          'cssls',
           'denols',
           'emmet_language_server',
-          'cssls',
-          'lua_ls',
-          'pylsp',
-          'clangd',
-          'gopls',
           'eslint',
+          'gopls',
+          'lua_ls',
+          'marksman',
+          'pylsp',
         },
       }
 
