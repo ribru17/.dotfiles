@@ -189,6 +189,10 @@ that file). Save without formatting with `:W`.
   - Use `gq` with a motion for wrapping long comments in Python.
   - Redo with `U`
   - Duplicate and comment selected lines with `<leader>t`
+  - Use `gw` and a motion (or in Visual mode) to wrap text (useful for Python
+    comments)
+    - This is default Vim functionality, this bullet is essentially a
+      note-to-self
 
 ### Viewing
 
