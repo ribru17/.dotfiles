@@ -193,6 +193,7 @@ that file). Save without formatting with `:W`.
     comments)
     - This is default Vim functionality, this bullet is essentially a
       note-to-self
+  - Use `<leader>s` to correct the Spelling of the word under the cursor
 
 ### Viewing
 

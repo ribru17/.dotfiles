@@ -318,6 +318,8 @@ map('n', 'gf', function()
   end)
 end, { desc = 'Smarter Goto File functionality' })
 
+map('n', '<leader>s', '1z=', { desc = 'Correct spelling of word under cursor' })
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
