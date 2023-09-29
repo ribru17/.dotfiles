@@ -314,6 +314,7 @@ return {
       telescope.setup {
         defaults = {
           preview = {
+            filesize_limit = 0.5,
             filetype_hook = function(_, bufnr, opts)
               -- don't display jank pdf previews
               if opts.ft == 'pdf' then
