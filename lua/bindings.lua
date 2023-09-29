@@ -291,7 +291,7 @@ map('n', '<leader>w', function()
   vim.wo.wrap = not vim.wo.wrap
 end, { desc = 'Toggle word wrap' })
 
-map('n', '<leader>c', function()
+map('n', '<leader>cc', function()
   if vim.wo.concealcursor:find('n') then
     vim.wo.concealcursor = vim.wo.concealcursor:gsub('n', '')
   else
