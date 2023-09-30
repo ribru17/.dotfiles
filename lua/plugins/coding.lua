@@ -54,15 +54,16 @@ return {
           truncate
         )
           local newVirtText = {}
-          local totalLines = vim.api.nvim_buf_line_count(0)
+          local totalLines = vim.api.nvim_buf_line_count(0) - 1
           local foldedLines = endLnum - lnum
-          local suffix = (' 󰘖  %d %d%%'):format(
+          local suffix = (' ⤶ %d %d%%'):format(
             foldedLines,
             foldedLines / totalLines * 100
           )
           local sufWidth = vim.fn.strdisplaywidth(suffix)
           local targetWidth = width - sufWidth
           local curWidth = 0
+          table.insert(virtText, { ' …', 'NonText' })
           for _, chunk in ipairs(virtText) do
             local chunkText = chunk[1]
             local chunkWidth = vim.fn.strdisplaywidth(chunkText)
