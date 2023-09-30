@@ -204,7 +204,7 @@ map('n', 'zo', 'zO', { desc = 'Open all folds descending from current line' })
 
 map('x', 'y', 'ygv<Esc>', { desc = 'Cursor-in-place copy' })
 map('n', 'P', function()
-  vim.cmd.normal { 'P`[', bang = true }
+  vim.cmd.normal { vim.v.count1 .. 'P`[', bang = true }
 end, { desc = 'Cursor-in-place paste' })
 
 map('i', '<C-p>', '<C-r>"', { desc = 'Paste from register in insert mode' })
