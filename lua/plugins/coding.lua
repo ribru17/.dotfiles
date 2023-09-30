@@ -63,7 +63,7 @@ return {
           local sufWidth = vim.fn.strdisplaywidth(suffix)
           local targetWidth = width - sufWidth
           local curWidth = 0
-          table.insert(virtText, { ' …', 'NonText' })
+          table.insert(virtText, { ' …', 'Comment' })
           for _, chunk in ipairs(virtText) do
             local chunkText = chunk[1]
             local chunkWidth = vim.fn.strdisplaywidth(chunkText)
@@ -95,8 +95,8 @@ return {
         end,
         preview = {
           win_config = {
-            border = 'none',
-            winhighlight = 'Normal:Folded',
+            border = 'rounded',
+            winhighlight = 'Normal:Normal',
             winblend = 0,
           },
         },
