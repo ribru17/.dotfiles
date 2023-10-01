@@ -25,7 +25,7 @@ local function hexToRgb(hex_str)
   return { tonumber(r, 16), tonumber(g, 16), tonumber(b, 16) }
 end
 
-local function blend(fg, bg, alpha)
+function M.blend(fg, bg, alpha)
   bg = hexToRgb(bg)
   fg = hexToRgb(fg)
 
@@ -75,7 +75,7 @@ function M.color_fade_start()
       if sat >= 40 or sat <= 0 then
         inc = -1 * inc
       end
-      local blended = blend(color, background, sat / 40)
+      local blended = M.blend(color, background, sat / 40)
       vim.api.nvim_set_hl(0, '@alpha.title', { fg = blended })
     end)
   )

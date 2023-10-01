@@ -27,7 +27,7 @@ vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
 vim.opt.foldenable = true
 vim.opt.foldmethod = 'expr'
-vim.o.foldcolumn = '0'
+vim.o.foldcolumn = '1'
 vim.o.fillchars = [[eob: ,fold: ,foldopen:▽,foldsep: ,foldclose:▷]]
 -- Ufo can't recognize zR on startup sadly.
 vim.o.foldlevel = 99

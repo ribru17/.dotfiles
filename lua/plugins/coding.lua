@@ -32,12 +32,37 @@ return {
         'luukvbaal/statuscol.nvim',
         config = function()
           local builtin = require('statuscol.builtin')
+          local c = require('statuscol.ffidef').C
           require('statuscol').setup {
             relculright = true,
             segments = {
-              { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
               { text = { '%s' }, click = 'v:lua.ScSa' },
               { text = { builtin.lnumfunc, ' ' }, click = 'v:lua.ScLa' },
+              {
+                text = {
+                  function(args)
+                    local foldinfo = c.fold_info(args.wp, args.lnum)
+                    local level = foldinfo.level
+                    local width = c.compute_foldcolumn(args.wp, 0)
+                    if width == 0 then
+                      return ''
+                    end
+                    local hl = '%#FoldCol' .. level .. '#'
+                    if level == 0 then
+                      hl = '%#Normal#'
+                    end
+                    if level > 8 then
+                      hl = '%#FoldCol8#'
+                    end
+                    return hl .. ' '
+                  end,
+                },
+                click = 'v:lua.ScFa',
+              },
+              {
+                text = { ' ' },
+                hl = 'Normal',
+              },
             },
           }
         end,

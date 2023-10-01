@@ -124,3 +124,19 @@ vim.api.nvim_create_autocmd('ModeChanged', {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    local util = require('utils')
+    for i = 1, 8, 1 do
+      vim.api.nvim_set_hl(0, 'FoldCol' .. i, {
+        bg = util.blend(
+          string.format('#%06x', vim.api.nvim_get_hl(0, { name = 'Normal' }).fg),
+          string.format('#%06x', vim.api.nvim_get_hl(0, { name = 'Normal' }).bg),
+          0.125 * i
+        ),
+        fg = vim.api.nvim_get_hl(0, { name = 'Function' }).fg,
+      })
+    end
+  end,
+})
