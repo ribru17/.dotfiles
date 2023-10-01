@@ -54,14 +54,10 @@ return {
                     if level > 8 then
                       hl = '%#FoldCol8#'
                     end
-                    return hl .. ' '
+                    return hl .. ' %#Normal# '
                   end,
                 },
                 click = 'v:lua.ScFa',
-              },
-              {
-                text = { ' ' },
-                hl = 'Normal',
               },
             },
           }
