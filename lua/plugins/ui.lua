@@ -314,8 +314,7 @@ return {
       telescope.setup {
         defaults = {
           preview = {
-            filesize_limit = 0.5,
-            filetype_hook = function(_, bufnr, opts)
+            filetype_hook = function(filepath, bufnr, opts)
               -- don't display jank pdf previews
               if opts.ft == 'pdf' then
                 putils.set_preview_message(
@@ -324,6 +323,14 @@ return {
                   'Not displaying ' .. opts.ft
                 )
                 return false
+              end
+              -- don't syntax highlight minified js
+              if
+                filepath:find('[-.]min%.js$') or filepath:find('app/out.*js$')
+              then
+                vim.schedule(function()
+                  vim.treesitter.stop(bufnr)
+                end)
               end
               return true
             end,
