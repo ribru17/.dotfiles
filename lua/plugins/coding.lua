@@ -280,7 +280,7 @@ return {
           typescript = { 'deno_fmt' },
           javascriptreact = { 'deno_fmt' },
           typescriptreact = { 'deno_fmt' },
-          markdown = { 'deno_fmt' },
+          markdown = { 'deno_fmt', 'injected' },
           json = { 'deno_fmt' },
           jsonc = { 'deno_fmt' },
         },
