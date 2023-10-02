@@ -672,6 +672,13 @@ return {
   s({ trig = 'subseteq' }, fmt([[\subseteq]], {}), { condition = in_mathzone }),
   s({ trig = 'of' }, fmt([[\subseteq]], {}), { condition = in_mathzone }),
   s({ trig = 'implies' }, fmt([[\implies]], {}), { condition = in_mathzone }),
+  s({ trig = 'langle' }, fmt([[\langle]], {}), { condition = in_mathzone }),
+  s({ trig = 'rangle' }, fmt([[\rangle]], {}), { condition = in_mathzone }),
+  s(
+    { trig = 'set' },
+    fmt([[\langle {1} \rangle]], { i(1, '') }),
+    { condition = in_mathzone }
+  ),
   s(
     { trig = 'text' },
     fmt([[\text{{{}}}]], { i(1, '') }),
