@@ -112,7 +112,7 @@ By default this configuration formats text on save (if a formatter is found for
 that file). Save without formatting with `:W`.
 
 - File Tree
-  - Use `<leader>t` to open the file Tree
+  - Use `<leader>ft` to open the file Tree
   - Create new files or directories with `n` and trash them with `d`
   - Mark files with `m` or `<Space>` to perform bulk operations
     - E.g., open multiple files in new tabs with `<Tab>` (also works without a
@@ -188,7 +188,8 @@ that file). Save without formatting with `:W`.
     `Shift+Enter` (line(s) above)
   - Use `gq` with a motion for wrapping long comments in Python.
   - Redo with `U`
-  - Duplicate and comment selected lines with `<leader>t`
+  - Duplicate and comment selected lines or current line for Testing with
+    `<leader>t`
   - Use `gw` and a motion (or in Visual mode) to wrap text (useful for Python
     comments)
     - This is default Vim functionality, this bullet is essentially a

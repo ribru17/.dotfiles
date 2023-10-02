@@ -521,7 +521,7 @@ return {
     'nvim-tree/nvim-tree.lua',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     keys = {
-      { '<leader>t', '<Cmd>NvimTreeFindFile<CR>' },
+      { '<leader>ft', '<Cmd>NvimTreeFindFile<CR>' },
     },
     cmd = { 'NvimTreeFindFileToggle', 'NvimTreeToggle' },
     config = function()
@@ -668,7 +668,6 @@ return {
         map('n', 'D', api.fs.remove, opts('Trash'))
         map('n', '<Esc>', api.tree.close, opts('Close'))
         map('n', 'z', api.node.navigate.parent_close, opts('Close Directory'))
-        map('n', '<leader>t', '<C-w>h', opts('Close'))
         map('n', '<Space>', api.marks.toggle, opts('Toggle Bookmark'))
       end
 
