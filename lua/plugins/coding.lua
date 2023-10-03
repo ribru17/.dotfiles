@@ -23,6 +23,8 @@ return {
     cmd = 'StartupTime',
   },
   {
+    -- BUG: sometimes folds are always re-closed (even after `zR`); this bug
+    -- does not exist when disabling bufferline.nvim
     'kevinhwang91/nvim-ufo',
     dependencies = {
       'kevinhwang91/promise-async',
