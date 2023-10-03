@@ -40,7 +40,8 @@ require('lazy').setup('plugins', {
       reset = true,
       disabled_plugins = {
         'gzip',
-        'matchit',
+        -- TODO: figure out a way to lazy load matchit
+        -- 'matchit',
         -- 'matchparen',
         'netrwPlugin',
         'tarPlugin',
