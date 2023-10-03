@@ -53,7 +53,6 @@ return {
         },
         indent = {
           enable = true,
-          disable = { 'html' },
         },
         context_commentstring = {
           enable = true,
