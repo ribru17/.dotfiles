@@ -116,8 +116,6 @@ return {
   {
     'L3MON4D3/LuaSnip',
     lazy = true,
-    -- TODO: unpin once unbroken with snippet session exiting
-    commit = '6085dfd',
     config = function()
       local ls = require('luasnip')
       ls.config.set_config {
