@@ -14,8 +14,7 @@ vim.schedule(function()
     if pair == vim.api.nvim_replace_termcodes('<CR>', true, false, true) then
       vim.cmd.InsertNewBullet()
     else
-      -- FIX: doesn't work properly when using ```lua|``` -> <CR> in blockquote
-      vim.cmd.normal { 'i' .. pair, bang = true }
+      vim.api.nvim_feedkeys(pair, 'n', false)
     end
   end, {
     buffer = 0,
