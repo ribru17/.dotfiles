@@ -462,6 +462,18 @@ return {
   ),
   s(
     {
+      trig = '%((%a+)%)bar',
+      wordTrig = false,
+      regTrig = true,
+      priority = 100,
+    },
+    f(function(_, snip)
+      return string.format('\\overline{%s}', snip.captures[1])
+    end, {}),
+    { condition = in_mathzone }
+  ),
+  s(
+    {
       trig = '(%a)hat',
       wordTrig = false,
       regTrig = true,
@@ -552,6 +564,11 @@ return {
   s(
     { trig = 'perp', wordTrig = false },
     fmt([[\perp]], {}),
+    { condition = in_mathzone }
+  ),
+  s(
+    { trig = 'abs', wordTrig = false },
+    fmt([[|{1}|]], { i(1, '') }),
     { condition = in_mathzone }
   ),
 
@@ -684,6 +701,7 @@ return {
     fmt([[\text{{{}}}]], { i(1, '') }),
     { condition = in_mathzone }
   ),
+  s({ trig = 'circ' }, fmt([[\circ]], {}), { condition = in_mathzone }),
 
   --> NOT IN MATH ZONE <--
 
