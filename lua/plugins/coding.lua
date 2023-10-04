@@ -1,13 +1,30 @@
 return {
   {
     -- lazy-load netrw for `gx` functionality
-    dir = vim.env.VIMRUNTIME .. '/runtime/netrwPlugin.vim',
+    dir = vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim',
     keys = {
       'gx',
     },
     cmd = 'Explore',
     config = function()
       vim.cmd.source(vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim')
+    end,
+  },
+  {
+    -- lazy-load matchit
+    dir = vim.env.VIMRUNTIME .. '/plugin/matchit.vim',
+    keys = {
+      '%',
+      'g%',
+      ']%',
+      '[%',
+      { 'a%', mode = { 'x' } },
+    },
+    config = function()
+      vim.cmd.packadd('matchit')
+      -- after packadd, buffers do not know we have matchit so we must tell them
+      -- https://www.reddit.com/r/vim/comments/5jasry/clean_reloading_of_buffers_after_packadd/
+      vim.cmd.doautoall('BufRead')
     end,
   },
   {
