@@ -16,7 +16,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "7f6f1565ac0d9f4e26d87135c6cbe0b9fdcf70b3" },
   "haskell-tools.nvim": { "branch": "2.x.x", "commit": "b19df600da8ef5fb4fb280815415ebd2a4228f0f" },
   "indent-blankline.nvim": { "branch": "master", "commit": "da789082a43e2bb8930c7be0e265ce37768394d8" },
-  "lazy.nvim": { "branch": "main", "commit": "82da5a004867be2cc96c345430d9381f991cf2e6" },
+  "lazy.nvim": { "branch": "main", "commit": "64cb9b16f6d4f1c395de4ec672d9d79fffb5c3b4" },
   "lspkind-nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
   "lualine.nvim": { "branch": "master", "commit": "45e27ca739c7be6c49e5496d14fcf45a303c3a63" },
   "markdown-preview.nvim": { "branch": "master", "commit": "3e8eb8f9d7587ed807e0ac7af420d657d2ccfea0" },
