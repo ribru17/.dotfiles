@@ -122,6 +122,7 @@ return {
       ls.config.set_config {
         enable_autosnippets = true,
         history = true,
+        updateevents = 'TextChanged,TextChangedI',
       }
       require('luasnip.loaders.from_lua').lazy_load { paths = './snippets' }
 
