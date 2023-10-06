@@ -142,7 +142,9 @@ return {
           },
         },
         provider_selector = function(_, _, _)
-          return { 'treesitter' }
+          -- use default tree-sitter foldexpr instead of ufo one
+          -- https://github.com/kevinhwang91/nvim-ufo/issues/167
+          return { '' }
         end,
       }
 
