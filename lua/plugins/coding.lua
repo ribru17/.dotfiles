@@ -85,7 +85,8 @@ return {
     },
     event = { 'VeryLazy' },
     config = function()
-      require('ufo').setup {
+      local ufo = require('ufo')
+      ufo.setup {
         fold_virt_text_handler = function(
           virtText,
           lnum,
@@ -145,8 +146,9 @@ return {
         end,
       }
 
-      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+      vim.keymap.set('n', 'zR', ufo.openAllFolds)
+      vim.keymap.set('n', 'zM', ufo.closeAllFolds)
+      vim.keymap.set('n', 'zk', ufo.goPreviousStartFold)
     end,
   },
   {
