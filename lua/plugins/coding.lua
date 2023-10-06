@@ -276,6 +276,7 @@ return {
       require('conform.formatters.stylua').env = {
         XDG_CONFIG_HOME = vim.fn.expand('~/.config/nvim/'),
       }
+      require('conform.formatters.injected').options.ignore_errors = true
       local util = require('conform.util')
       local deno_fmt = require('conform.formatters.deno_fmt')
       local clang_format = require('conform.formatters.clang_format')
