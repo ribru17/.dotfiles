@@ -131,11 +131,17 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     for i = 1, 8, 1 do
       vim.api.nvim_set_hl(0, 'FoldCol' .. i, {
         bg = util.blend(
-          string.format('#%06x', vim.api.nvim_get_hl(0, { name = 'Normal' }).fg),
-          string.format('#%06x', vim.api.nvim_get_hl(0, { name = 'Normal' }).bg),
+          string.format(
+            '#%06x',
+            vim.api.nvim_get_hl(0, { name = 'Normal' }).fg or 0
+          ),
+          string.format(
+            '#%06x',
+            vim.api.nvim_get_hl(0, { name = 'Normal' }).bg or 0
+          ),
           0.125 * i
         ),
-        fg = vim.api.nvim_get_hl(0, { name = 'Function' }).fg,
+        fg = vim.api.nvim_get_hl(0, { name = 'Function' }).fg or 0,
       })
     end
   end,
