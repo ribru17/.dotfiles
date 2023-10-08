@@ -149,9 +149,11 @@ return {
   {
     'hrsh7th/nvim-cmp',
     event = { 'InsertEnter' },
+    keys = { ':' },
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-cmdline' },
       { 'hrsh7th/cmp-path' },
       { 'saadparwaiz1/cmp_luasnip' },
       { 'hrsh7th/cmp-nvim-lua' },
@@ -198,11 +200,17 @@ return {
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local luasnip = require('luasnip')
       local cmp_mappings = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-p>'] = cmp.mapping(
+          cmp.mapping.select_prev_item(cmp_select),
+          { 'i', 'c' }
+        ),
+        ['<C-n>'] = cmp.mapping(
+          cmp.mapping.select_next_item(cmp_select),
+          { 'i', 'c' }
+        ),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-e>'] = cmp.mapping.abort(),
+        ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.confirm { select = true }
@@ -219,7 +227,7 @@ return {
           else
             fallback()
           end
-        end, { 'i', 's' }),
+        end, { 'i', 's', 'c' }),
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -232,11 +240,11 @@ return {
           else
             fallback()
           end
-        end, { 'i', 's' }),
-        ['<C-Space>'] = cmp.mapping.complete(),
+        end, { 'i', 's', 'c' }),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<CR>'] = cmp.mapping(function(fallback)
           fallback()
-        end),
+        end, { 'i', 'c' }),
       }
 
       local cmp_config = {
@@ -303,6 +311,21 @@ return {
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
+      -- `:` cmdline setup.
+      cmp.setup.cmdline(':', {
+        mapping = cmp_mappings,
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          {
+            name = 'cmdline',
+            keyword_length = 3,
+            option = {
+              ignore_cmds = { 'Man', '!' },
+            },
+          },
+        }),
+      })
       cmp.setup(cmp_config)
     end,
   },
