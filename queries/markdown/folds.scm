@@ -2,5 +2,4 @@
   [
     (section)
   ] @fold
-  (#trim! @fold)
 )
