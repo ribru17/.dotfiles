@@ -240,39 +240,6 @@ vim.keymap.set({ 'x', 'n' }, '<leader>t', function()
   end
 end, { silent = true, desc = 'Comment and duplicate selected lines' })
 
-local function NextClosedFold(dir)
-  local cmd = 'z' .. dir
-  local view = vim.fn.winsaveview()
-  local l0 = 0
-  local l = view.lnum
-  local open = true
-  while l ~= l0 and open do
-    vim.cmd.normal { cmd, bang = true }
-    l0 = l
-    l = vim.api.nvim_win_get_cursor(0)[1]
-    open = vim.fn.foldclosed(l) < 0
-  end
-  if open then
-    vim.fn.winrestview(view)
-  end
-end
-
-local function RepeatFoldMove(dir)
-  local n = vim.v.count1
-  while n > 0 do
-    NextClosedFold(dir)
-    n = n - 1
-  end
-end
-
-local fold_opts = { desc = 'Only jump to *closed* folds' }
-map({ 'n', 'x' }, 'zn', function()
-  RepeatFoldMove('j')
-end, fold_opts)
-map({ 'n', 'x' }, 'zp', function()
-  RepeatFoldMove('k')
-end, fold_opts)
-
 map('x', 'aa', function()
   local mode = vim.api.nvim_get_mode().mode == 'V' and '' or 'V'
   return 'ggoG' .. mode

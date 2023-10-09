@@ -40,8 +40,6 @@ return {
     cmd = 'StartupTime',
   },
   {
-    -- BUG: sometimes folds are always re-closed (even after `zR`); this bug
-    -- does not exist when disabling bufferline.nvim
     'kevinhwang91/nvim-ufo',
     dependencies = {
       'kevinhwang91/promise-async',
@@ -142,15 +140,20 @@ return {
           },
         },
         provider_selector = function(_, _, _)
+          -- BUG: sometimes folds are always re-closed (even after `zR`); this bug
+          -- does not exist when disabling bufferline.nvim
           -- use default tree-sitter foldexpr instead of ufo one
           -- https://github.com/kevinhwang91/nvim-ufo/issues/167
           return { '' }
         end,
       }
 
-      vim.keymap.set('n', 'zR', ufo.openAllFolds)
-      vim.keymap.set('n', 'zM', ufo.closeAllFolds)
-      vim.keymap.set('n', 'zk', ufo.goPreviousStartFold)
+      local map = vim.keymap.set
+      map('n', 'zR', ufo.openAllFolds)
+      map('n', 'zM', ufo.closeAllFolds)
+      map('n', 'zk', ufo.goPreviousStartFold)
+      map('n', 'zn', ufo.goNextClosedFold)
+      map('n', 'zp', ufo.goPreviousClosedFold)
     end,
   },
   {
