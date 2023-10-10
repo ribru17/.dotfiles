@@ -128,6 +128,9 @@ return {
       end
       return sn(nil, nodes)
     end),
+  }, {
+    condition = in_text,
+    show_condition = in_text,
   }),
   s(
     {
