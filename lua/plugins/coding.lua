@@ -144,7 +144,7 @@ return {
           -- does not exist when disabling bufferline.nvim
           -- use default tree-sitter foldexpr instead of ufo one
           -- https://github.com/kevinhwang91/nvim-ufo/issues/167
-          return { '' }
+          return { 'treesitter' }
         end,
       }
 

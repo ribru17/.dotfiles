@@ -146,10 +146,3 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     end
   end,
 })
-
-vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
-  pattern = '*',
-  callback = function()
-    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-  end,
-})
