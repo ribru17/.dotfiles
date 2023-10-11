@@ -1,6 +1,11 @@
 ---@diagnostic disable: undefined-global
 local get_node = vim.treesitter.get_node
 
+-- TODO: maybe in the future make it so some math snippets are expanded only
+-- when they are not already following a backslash
+-- TODO: also make it so that surrounding with a function `f` in latex mode uses
+-- `\f{}` syntax instead of `f()`
+
 local MATH_NODES = {
   displayed_equation = true,
   inline_formula = true,
