@@ -12,9 +12,12 @@ local MATH_NODES = {
   math_environment = true,
 }
 
-local in_mathzone = function()
-  -- redraw to make function wait for the main thread to finish tree-sitter parsing
-  vim.cmd.redraw()
+local in_mathzone = function(_, matched_trigger)
+  if matched_trigger and matched_trigger:len() == 1 then
+    -- redraw on single-character triggers to make function wait for the main
+    -- thread to finish tree-sitter parsing
+    vim.cmd.redraw()
+  end
   local current_node = get_node { ignore_injections = false }
   while current_node do
     if current_node:type() == 'text_mode' then
