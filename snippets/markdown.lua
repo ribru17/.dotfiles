@@ -1,8 +1,6 @@
 ---@diagnostic disable: undefined-global
 local get_node = vim.treesitter.get_node
 
--- TODO: maybe in the future make it so some math snippets are expanded only
--- when they are not already following a backslash
 -- TODO: also make it so that surrounding with a function `f` in latex mode uses
 -- `\f{}` syntax instead of `f()`
 
@@ -13,6 +11,27 @@ local MATH_NODES = {
 }
 
 local in_mathzone = function(_, matched_trigger)
+  if matched_trigger and matched_trigger:len() == 1 then
+    -- redraw on single-character triggers to make function wait for the main
+    -- thread to finish tree-sitter parsing
+    vim.cmd.redraw()
+  end
+  local current_node = get_node { ignore_injections = false }
+  while current_node do
+    if current_node:type() == 'text_mode' then
+      return false
+    elseif MATH_NODES[current_node:type()] then
+      return true
+    end
+    current_node = current_node:parent()
+  end
+  return false
+end
+
+local in_mathzone_ignore_backslash = function(line_to_cursor, matched_trigger)
+  if line_to_cursor and line_to_cursor:match('.*\\[%a_]+$') then
+      return false
+  end
   if matched_trigger and matched_trigger:len() == 1 then
     -- redraw on single-character triggers to make function wait for the main
     -- thread to finish tree-sitter parsing
@@ -169,7 +188,7 @@ return {
   s(
     { trig = 'ast', wordTrig = false },
     fmt([[\ast]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = '^', wordTrig = false },
@@ -229,7 +248,7 @@ return {
   s(
     { trig = 'nabla', wordTrig = false },
     fmt([[\nabla]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = '//', wordTrig = false },
@@ -244,7 +263,7 @@ return {
   s(
     { trig = 'exists', wordTrig = false },
     fmt([[\exists]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'AA', wordTrig = false },
@@ -254,10 +273,10 @@ return {
   s(
     { trig = 'forall', wordTrig = false },
     fmt([[\forall]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
-    { trig = 'notin', wordTrig = false },
+    { trig = '\\lnotin', wordTrig = false },
     fmt([[\not\in]], {}),
     { condition = in_mathzone }
   ),
@@ -279,7 +298,7 @@ return {
   s(
     { trig = 'iff', wordTrig = false },
     fmt([[\iff]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = '\\le>', wordTrig = false },
@@ -294,7 +313,7 @@ return {
   s(
     { trig = 'to', wordTrig = false },
     fmt([[\to]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = '|', wordTrig = false },
@@ -304,10 +323,10 @@ return {
   s(
     { trig = 'sqrt', wordTrig = false },
     fmt([[\sqrt{{{1}}}]], { i(1, '') }),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
-    { trig = 'inf', wordTrig = false },
+    { trig = '\\inf', wordTrig = false },
     fmt([[\infty]], {}),
     { condition = in_mathzone }
   ),
@@ -419,22 +438,22 @@ return {
   s(
     { trig = 'empty', wordTrig = false },
     fmt([[\emptyset]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'ell', wordTrig = false },
     fmt([[\ell]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'times', wordTrig = false },
     fmt([[\times]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'therefore', wordTrig = false },
     fmt([[\therefore]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'ddx', wordTrig = false },
@@ -447,12 +466,12 @@ return {
   s(
     { trig = 'sum', wordTrig = false },
     fmt([[\sum_{{n={1}}}^{{{2}}}]], { i(1, '1'), i(2, [[\infty]]) }),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'prod', wordTrig = false },
     fmt([[\prod_{{n={1}}}^{{{2}}}]], { i(1, '1'), i(2, [[\infty]]) }),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'partial', wordTrig = false },
@@ -462,7 +481,7 @@ return {
   s(
     { trig = 'lim', wordTrig = false },
     fmt([[\lim_{{{1} \to {2}}}]], { i(1, 'n'), i(2, [[\infty]]) }),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     {
@@ -515,72 +534,72 @@ return {
   s(
     { trig = 'sin', wordTrig = false },
     fmt([[\sin]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'cos', wordTrig = false },
     fmt([[\cos]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'tan', wordTrig = false },
     fmt([[\tan]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
-    { trig = 'asin', wordTrig = false },
+    { trig = 'asin', wordTrig = false, priority = 1001 },
     fmt([[\arcsin]], {}),
     { condition = in_mathzone }
   ),
   s(
-    { trig = 'acos', wordTrig = false },
+    { trig = 'acos', wordTrig = false, priority = 1001 },
     fmt([[\arccos]], {}),
     { condition = in_mathzone }
   ),
   s(
-    { trig = 'atan', wordTrig = false },
+    { trig = 'atan', wordTrig = false, priority = 1001 },
     fmt([[\arctan]], {}),
     { condition = in_mathzone }
   ),
   s(
     { trig = 'csc', wordTrig = false },
     fmt([[\csc]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'sec', wordTrig = false },
     fmt([[\sec]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'cot', wordTrig = false },
     fmt([[\cot]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'ln', wordTrig = false },
     fmt([[\ln]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'log', wordTrig = false },
     fmt([[\log]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'exp', wordTrig = false },
     fmt([[\exp]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'star', wordTrig = false },
     fmt([[\star]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'perp', wordTrig = false },
     fmt([[\perp]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'abs', wordTrig = false },
@@ -643,70 +662,298 @@ return {
     condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
 
-  s({ trig = 'in' }, fmt([[\in]], {}), { condition = in_mathzone }),
-  s({ trig = 'alpha' }, fmt([[\alpha]], {}), { condition = in_mathzone }),
-  s({ trig = 'Alpha' }, fmt([[\Alpha]], {}), { condition = in_mathzone }),
-  s({ trig = 'beta' }, fmt([[\beta]], {}), { condition = in_mathzone }),
-  s({ trig = 'Beta' }, fmt([[\Beta]], {}), { condition = in_mathzone }),
-  s({ trig = 'gamma' }, fmt([[\gamma]], {}), { condition = in_mathzone }),
-  s({ trig = 'Gamma' }, fmt([[\Gamma]], {}), { condition = in_mathzone }),
-  s({ trig = 'delta' }, fmt([[\delta]], {}), { condition = in_mathzone }),
-  s({ trig = 'Delta' }, fmt([[\Delta]], {}), { condition = in_mathzone }),
-  s({ trig = 'epsilon' }, fmt([[\epsilon]], {}), { condition = in_mathzone }),
-  s({ trig = 'Epsilon' }, fmt([[\Epsilon]], {}), { condition = in_mathzone }),
-  s({ trig = 'zeta' }, fmt([[\zeta]], {}), { condition = in_mathzone }),
-  s({ trig = 'Zeta' }, fmt([[\Zeta]], {}), { condition = in_mathzone }),
-  s({ trig = 'eta' }, fmt([[\eta]], {}), { condition = in_mathzone }),
-  s({ trig = 'Eta' }, fmt([[\Eta]], {}), { condition = in_mathzone }),
-  s({ trig = 'theta' }, fmt([[\theta]], {}), { condition = in_mathzone }),
-  s({ trig = 'Theta' }, fmt([[\Theta]], {}), { condition = in_mathzone }),
-  s({ trig = 'iota' }, fmt([[\iota]], {}), { condition = in_mathzone }),
-  s({ trig = 'Iota' }, fmt([[\Iota]], {}), { condition = in_mathzone }),
-  s({ trig = 'kappa' }, fmt([[\kappa]], {}), { condition = in_mathzone }),
-  s({ trig = 'Kappa' }, fmt([[\Kappa]], {}), { condition = in_mathzone }),
-  s({ trig = 'lambda' }, fmt([[\lambda]], {}), { condition = in_mathzone }),
-  s({ trig = 'Lambda' }, fmt([[\Lambda]], {}), { condition = in_mathzone }),
-  s({ trig = 'mu' }, fmt([[\mu]], {}), { condition = in_mathzone }),
-  s({ trig = 'Mu' }, fmt([[\Mu]], {}), { condition = in_mathzone }),
-  s({ trig = 'nu' }, fmt([[\nu]], {}), { condition = in_mathzone }),
-  s({ trig = 'Nu' }, fmt([[\Nu]], {}), { condition = in_mathzone }),
-  s({ trig = 'xi ' }, fmt([[\xi ]], {}), { condition = in_mathzone }),
-  s({ trig = 'Xi ' }, fmt([[\Xi ]], {}), { condition = in_mathzone }),
-  s({ trig = 'omicron' }, fmt([[\omicron]], {}), { condition = in_mathzone }),
-  s({ trig = 'Omicron' }, fmt([[\Omicron]], {}), { condition = in_mathzone }),
-  s({ trig = 'pi' }, fmt([[\pi]], {}), { condition = in_mathzone }),
-  s({ trig = 'Pi' }, fmt([[\Pi]], {}), { condition = in_mathzone }),
-  s({ trig = 'rho' }, fmt([[\rho]], {}), { condition = in_mathzone }),
-  s({ trig = 'Rho' }, fmt([[\Rho]], {}), { condition = in_mathzone }),
-  s({ trig = 'sigma' }, fmt([[\sigma]], {}), { condition = in_mathzone }),
-  s({ trig = 'Sigma' }, fmt([[\Sigma]], {}), { condition = in_mathzone }),
-  s({ trig = 'tau' }, fmt([[\tau]], {}), { condition = in_mathzone }),
-  s({ trig = 'Tau' }, fmt([[\Tau]], {}), { condition = in_mathzone }),
-  s({ trig = 'upsilon' }, fmt([[\upsilon]], {}), { condition = in_mathzone }),
-  s({ trig = 'Upsilon' }, fmt([[\Upsilon]], {}), { condition = in_mathzone }),
-  s({ trig = 'phi' }, fmt([[\phi]], {}), { condition = in_mathzone }),
-  s({ trig = 'Phi' }, fmt([[\Phi]], {}), { condition = in_mathzone }),
-  s({ trig = 'chi' }, fmt([[\chi]], {}), { condition = in_mathzone }),
-  s({ trig = 'Chi' }, fmt([[\Chi]], {}), { condition = in_mathzone }),
-  s({ trig = 'psi' }, fmt([[\psi]], {}), { condition = in_mathzone }),
-  s({ trig = 'Psi' }, fmt([[\Psi]], {}), { condition = in_mathzone }),
-  s({ trig = 'omega' }, fmt([[\omega]], {}), { condition = in_mathzone }),
-  s({ trig = 'Omega' }, fmt([[\Omega]], {}), { condition = in_mathzone }),
-  s({ trig = 'and' }, fmt([[\land]], {}), { condition = in_mathzone }),
-  s({ trig = 'or' }, fmt([[\lor]], {}), { condition = in_mathzone }),
-  s({ trig = 'not' }, fmt([[\lnot]], {}), { condition = in_mathzone }),
+  s(
+    { trig = 'in' },
+    fmt([[\in]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'alpha' },
+    fmt([[\alpha]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Alpha' },
+    fmt([[\Alpha]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'beta' },
+    fmt([[\beta]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Beta' },
+    fmt([[\Beta]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'gamma' },
+    fmt([[\gamma]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Gamma' },
+    fmt([[\Gamma]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'delta' },
+    fmt([[\delta]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Delta' },
+    fmt([[\Delta]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'epsilon' },
+    fmt([[\epsilon]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Epsilon' },
+    fmt([[\Epsilon]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'zeta' },
+    fmt([[\zeta]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Zeta' },
+    fmt([[\Zeta]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'eta' },
+    fmt([[\eta]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Eta' },
+    fmt([[\Eta]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'theta' },
+    fmt([[\theta]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Theta' },
+    fmt([[\Theta]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'iota' },
+    fmt([[\iota]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Iota' },
+    fmt([[\Iota]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'kappa' },
+    fmt([[\kappa]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Kappa' },
+    fmt([[\Kappa]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'lambda' },
+    fmt([[\lambda]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Lambda' },
+    fmt([[\Lambda]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'mu' },
+    fmt([[\mu]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Mu' },
+    fmt([[\Mu]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'nu' },
+    fmt([[\nu]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Nu' },
+    fmt([[\Nu]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'xi ' },
+    fmt([[\xi ]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Xi ' },
+    fmt([[\Xi ]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'omicron' },
+    fmt([[\omicron]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Omicron' },
+    fmt([[\Omicron]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'pi' },
+    fmt([[\pi]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Pi' },
+    fmt([[\Pi]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'rho' },
+    fmt([[\rho]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Rho' },
+    fmt([[\Rho]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'sigma' },
+    fmt([[\sigma]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Sigma' },
+    fmt([[\Sigma]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'tau' },
+    fmt([[\tau]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Tau' },
+    fmt([[\Tau]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'upsilon' },
+    fmt([[\upsilon]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Upsilon' },
+    fmt([[\Upsilon]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'phi' },
+    fmt([[\phi]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Phi' },
+    fmt([[\Phi]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'chi' },
+    fmt([[\chi]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Chi' },
+    fmt([[\Chi]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'psi' },
+    fmt([[\psi]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Psi' },
+    fmt([[\Psi]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'omega' },
+    fmt([[\omega]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'Omega' },
+    fmt([[\Omega]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s({ trig = 'and' }, fmt([[\land]], {}), { condition = in_mathzone_ignore_backslash }),
+  s({ trig = 'or' }, fmt([[\lor]], {}), { condition = in_mathzone_ignore_backslash }),
+  s({ trig = 'not' }, fmt([[\lnot]], {}), { condition = in_mathzone_ignore_backslash }),
   s({ trig = 'xor' }, fmt([[\oplus]], {}), { condition = in_mathzone }),
   s({ trig = 'satisfies' }, fmt([[\vDash]], {}), { condition = in_mathzone }),
   s({ trig = 'entails' }, fmt([[\vDash]], {}), { condition = in_mathzone }),
-  s({ trig = 'vDash' }, fmt([[\vDash]], {}), { condition = in_mathzone }),
-  s({ trig = 'nvDash' }, fmt([[\nvDash]], {}), { condition = in_mathzone }),
-  s({ trig = 'vdash' }, fmt([[\vdash]], {}), { condition = in_mathzone }),
-  s({ trig = 'nvdash' }, fmt([[\nvdash]], {}), { condition = in_mathzone }),
-  s({ trig = 'subseteq' }, fmt([[\subseteq]], {}), { condition = in_mathzone }),
+  s(
+    { trig = 'vDash' },
+    fmt([[\vDash]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'nvDash' },
+    fmt([[\nvDash]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'vdash' },
+    fmt([[\vdash]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'nvdash' },
+    fmt([[\nvdash]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'subseteq' },
+    fmt([[\subseteq]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
   s({ trig = 'of' }, fmt([[\subseteq]], {}), { condition = in_mathzone }),
-  s({ trig = 'implies' }, fmt([[\implies]], {}), { condition = in_mathzone }),
-  s({ trig = 'langle' }, fmt([[\langle]], {}), { condition = in_mathzone }),
-  s({ trig = 'rangle' }, fmt([[\rangle]], {}), { condition = in_mathzone }),
+  s(
+    { trig = 'implies' },
+    fmt([[\implies]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'langle' },
+    fmt([[\langle]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'rangle' },
+    fmt([[\rangle]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
   s(
     { trig = 'set' },
     fmt([[\langle {1} \rangle]], { i(1, '') }),
@@ -715,9 +962,13 @@ return {
   s(
     { trig = 'text' },
     fmt([[\text{{{}}}]], { i(1, '') }),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
-  s({ trig = 'circ' }, fmt([[\circ]], {}), { condition = in_mathzone }),
+  s(
+    { trig = 'circ' },
+    fmt([[\circ]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
 
   --> NOT IN MATH ZONE <--
 
