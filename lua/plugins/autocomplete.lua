@@ -211,6 +211,8 @@ return {
             vim.cmd.BulletDemote()
             local row, col = unpack(vim.api.nvim_win_get_cursor(0))
             vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+          elseif vim.api.nvim_get_mode()['mode'] == 'c' then
+            cmp.complete()
           else
             fallback()
           end
@@ -224,6 +226,8 @@ return {
             vim.cmd.BulletPromote()
             local row, col = unpack(vim.api.nvim_win_get_cursor(0))
             vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+          elseif vim.api.nvim_get_mode()['mode'] == 'c' then
+            cmp.complete()
           else
             fallback()
           end
