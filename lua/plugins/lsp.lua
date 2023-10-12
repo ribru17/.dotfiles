@@ -1,5 +1,9 @@
 return {
   {
+    'p00f/clangd_extensions.nvim',
+    lazy = true,
+  },
+  {
     'williamboman/mason.nvim',
     cmd = { 'Mason' },
     lazy = true,
@@ -56,17 +60,42 @@ return {
             capabilities = capabilities,
           }
         end,
-        -- Next, you can provide a dedicated handler for specific servers.
-        -- For example, set up `rust-tools` with `rust-analyzer`
-        -- TODO: figure out how to get working with clang-tidy (or just warn on
-        -- unused includes in general)
         ['clangd'] = function()
           local custom_capabilities =
             require('cmp_nvim_lsp').default_capabilities()
           custom_capabilities.offsetEncoding = { 'utf-16' }
+          require('clangd_extensions').setup {}
           require('lspconfig').clangd.setup {
+            on_attach = function()
+              require('clangd_extensions.inlay_hints').setup_autocmd()
+              require('clangd_extensions.inlay_hints').set_inlay_hints()
+            end,
             capabilities = custom_capabilities,
-            cmd = { 'clangd', '--header-insertion-decorators=false' },
+            -- NOTE: to achieve LSP warnings on unused includes, add a `.clangd`
+            -- file to the project directory containing:
+            -- ```
+            -- Diagnostics:
+            -- UnusedIncludes: Strict
+            -- MissingIncludes: Strict
+            -- ```
+            cmd = {
+              'clangd',
+              '--header-insertion-decorators=false',
+              '--enable-config',
+              '--completion-style=detailed',
+              '--background-index',
+              '--clang-tidy',
+              '--include-cleaner-stdlib',
+              '--header-insertion=iwyu',
+              '--completion-style=detailed',
+              '--function-arg-placeholders',
+              '--fallback-style=llvm',
+            },
+            init_options = {
+              usePlaceholders = true,
+              completeUnimported = true,
+              clangdFileStatus = true,
+            },
           }
         end,
         ['cssls'] = function()
