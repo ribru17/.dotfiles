@@ -140,10 +140,6 @@ return {
           },
         },
         provider_selector = function(_, _, _)
-          -- BUG: sometimes folds are always re-closed (even after `zR`); this bug
-          -- does not exist when disabling bufferline.nvim
-          -- use default tree-sitter foldexpr instead of ufo one
-          -- https://github.com/kevinhwang91/nvim-ufo/issues/167
           return { 'treesitter' }
         end,
       }

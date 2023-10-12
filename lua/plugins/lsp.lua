@@ -58,6 +58,8 @@ return {
         end,
         -- Next, you can provide a dedicated handler for specific servers.
         -- For example, set up `rust-tools` with `rust-analyzer`
+        -- TODO: figure out how to get working with clang-tidy (or just warn on
+        -- unused includes in general)
         ['clangd'] = function()
           local custom_capabilities =
             require('cmp_nvim_lsp').default_capabilities()
