@@ -674,6 +674,8 @@ return {
         map('n', '<Tab>', tab_with_close, opts('Open: New Tab'))
         map('n', 'd', api.fs.trash, opts('Trash'))
         map('n', 'D', api.fs.remove, opts('Trash'))
+        -- TODO: make it so that this mapping does nothing when the only buffer
+        -- open is nvim-tree (such as when opening a directory)
         map('n', '<Esc>', api.tree.close, opts('Close'))
         map('n', 'z', api.node.navigate.parent_close, opts('Close Directory'))
         map('n', '<Space>', api.marks.toggle, opts('Toggle Bookmark'))

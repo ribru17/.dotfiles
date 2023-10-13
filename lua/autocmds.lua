@@ -35,6 +35,8 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     -- allow <CR> to continue block comments only
     -- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
     vim.schedule(function()
+      -- TODO: find a way for this to work without changing comment format, to
+      -- allow for automatic comment wrapping when hitting textwidth
       vim.opt_local.comments:remove('://')
       vim.opt_local.comments:remove(':--')
       vim.opt_local.comments:remove(':#')
