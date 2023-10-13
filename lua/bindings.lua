@@ -285,7 +285,9 @@ end, { desc = 'Close all but the current buffer' })
 
 map('n', 'gf', function()
   pcall(function()
-    vim.cmd.drop { vim.fn.expand('<cfile>'), mods = { tab = 1 } }
+    if vim.fn.filereadable(vim.fn.expand('<cfile>')) == 1 then
+      vim.cmd.drop { vim.fn.expand('<cfile>'), mods = { tab = 1 } }
+    end
   end)
 end, { desc = 'Smarter Goto File functionality' })
 
