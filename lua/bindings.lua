@@ -289,7 +289,11 @@ map('n', 'gf', function()
   end)
 end, { desc = 'Smarter Goto File functionality' })
 
-map('n', '<leader>s', '1z=', { desc = 'Correct spelling of word under cursor' })
+map('n', '<leader>s', function()
+  local cur_pos = vim.api.nvim_win_get_cursor(0)
+  vim.cmd.normal { '1z=', bang = true }
+  vim.api.nvim_win_set_cursor(0, cur_pos)
+end, { desc = 'Correct spelling of word under cursor' })
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
