@@ -550,6 +550,20 @@ return {
           }
         end
 
+        local function smart_close_q()
+          if #vim.fn.tabpagebuflist() == 1 then
+            vim.cmd.quit { mods = { confirm = true } }
+          end
+          api.tree.close()
+        end
+
+        local function smart_close_esc()
+          if #vim.fn.tabpagebuflist() == 1 then
+            return
+          end
+          api.tree.close()
+        end
+
         local map = vim.keymap.set
         -- BEGIN_DEFAULT_ON_ATTACH
         map('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
@@ -637,7 +651,7 @@ return {
         )
         map('n', 'p', api.fs.paste, opts('Paste'))
         map('n', 'P', api.node.navigate.parent, opts('Parent Directory'))
-        map('n', 'q', api.tree.close, opts('Close'))
+        map('n', 'q', smart_close_q, opts('Close'))
         map('n', 'r', api.fs.rename, opts('Rename'))
         map('n', 'R', api.tree.reload, opts('Refresh'))
         map('n', 's', api.node.run.system, opts('Run System'))
@@ -674,9 +688,7 @@ return {
         map('n', '<Tab>', tab_with_close, opts('Open: New Tab'))
         map('n', 'd', api.fs.trash, opts('Trash'))
         map('n', 'D', api.fs.remove, opts('Trash'))
-        -- TODO: make it so that this mapping does nothing when the only buffer
-        -- open is nvim-tree (such as when opening a directory)
-        map('n', '<Esc>', api.tree.close, opts('Close'))
+        map('n', '<Esc>', smart_close_esc, opts('Close'))
         map('n', 'z', api.node.navigate.parent_close, opts('Close Directory'))
         map('n', '<Space>', api.marks.toggle, opts('Toggle Bookmark'))
       end
