@@ -18,6 +18,8 @@ vim.schedule(function()
   })
 end)
 
+local config = require('nvim-surround.config')
+local in_mathzone = require('utils').in_mathzone_broad
 require('nvim-surround').buffer_setup {
   aliases = {
     ['b'] = { '{', '[', '(', '<', 'b' },
@@ -27,6 +29,72 @@ require('nvim-surround').buffer_setup {
       add = { '**', '**' },
       find = '%*%*.-%*%*',
       delete = '^(%*%*)().-(%*%*)()$',
+    },
+    -- recognize latex-style functions when in latex snippets
+    ['f'] = {
+      add = function()
+        local result = config.get_input('Enter the function name: ')
+        if result then
+          if in_mathzone() then
+            return { { '\\' .. result .. '{' }, { '}' } }
+          end
+          return { { result .. '(' }, { ')' } }
+        end
+      end,
+      find = function()
+        if in_mathzone() then
+          return config.get_selection {
+            pattern = '\\[%w_]+{.-}',
+          }
+        end
+        if vim.g.loaded_nvim_treesitter then
+          local selection = config.get_selection {
+            query = { capture = '@call.outer', type = 'textobjects' },
+          }
+          if selection then
+            return selection
+          end
+        end
+        return config.get_selection {
+          pattern = '[^=%s%(%){}]+%b()',
+        }
+      end,
+      delete = function(char)
+        local match
+        if in_mathzone() then
+          match = config.get_selections {
+            char = char,
+            pattern = '^(\\[%w_]+{)().-(})()$',
+          }
+        else
+          match = config.get_selections {
+            char = char,
+            pattern = '^(.-%()().-(%))()$',
+          }
+        end
+        return match
+      end,
+      change = {
+        target = function(char)
+          if in_mathzone() then
+            return config.get_selections {
+              char = char,
+              pattern = '^.-\\([%w_]+)(){.-}()()$',
+            }
+          else
+            return config.get_selections {
+              char = char,
+              pattern = '^.-([%w_]+)()%(.-%)()()$',
+            }
+          end
+        end,
+        replacement = function()
+          local result = config.get_input('Enter the function name: ')
+          if result then
+            return { { result }, { '' } }
+          end
+        end,
+      },
     },
   },
 }

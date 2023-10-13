@@ -1,57 +1,14 @@
 ---@diagnostic disable: undefined-global
-local get_node = vim.treesitter.get_node
+local utils = require('utils')
 
 -- TODO: also make it so that surrounding with a function `f` in latex mode uses
 -- `\f{}` syntax instead of `f()`
 
-local MATH_NODES = {
-  displayed_equation = true,
-  inline_formula = true,
-  math_environment = true,
-}
+local in_mathzone = utils.in_mathzone
 
-local in_mathzone = function(_, matched_trigger)
-  if matched_trigger and matched_trigger:len() == 1 then
-    -- redraw on single-character triggers to make function wait for the main
-    -- thread to finish tree-sitter parsing
-    vim.cmd.redraw()
-  end
-  local current_node = get_node { ignore_injections = false }
-  while current_node do
-    if current_node:type() == 'text_mode' then
-      return false
-    elseif MATH_NODES[current_node:type()] then
-      return true
-    end
-    current_node = current_node:parent()
-  end
-  return false
-end
+local in_mathzone_ignore_backslash = utils.in_mathzone_ignore_backslash
 
-local in_mathzone_ignore_backslash = function(line_to_cursor, matched_trigger)
-  if line_to_cursor and line_to_cursor:match('.*\\[%a_]+$') then
-    return false
-  end
-  if matched_trigger and matched_trigger:len() == 1 then
-    -- redraw on single-character triggers to make function wait for the main
-    -- thread to finish tree-sitter parsing
-    vim.cmd.redraw()
-  end
-  local current_node = get_node { ignore_injections = false }
-  while current_node do
-    if current_node:type() == 'text_mode' then
-      return false
-    elseif MATH_NODES[current_node:type()] then
-      return true
-    end
-    current_node = current_node:parent()
-  end
-  return false
-end
-
-local in_text = function()
-  return not in_mathzone()
-end
+local in_text = utils.in_text
 
 local frac_no_parens = {
   f(function(_, snip)
