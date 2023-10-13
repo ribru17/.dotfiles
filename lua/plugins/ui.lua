@@ -440,6 +440,7 @@ return {
   {
     'goolord/alpha-nvim',
     event = 'VimEnter',
+    cmd = { 'Alpha' },
     opts = function()
       local dashboard = require('alpha.themes.dashboard')
       local logo = [[

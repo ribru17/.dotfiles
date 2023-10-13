@@ -28,15 +28,19 @@ vim.api.nvim_create_autocmd('VimLeave', {
   command = 'set guicursor=a:ver10-blinkon1',
 })
 
+-->> "RUN ONCE" ON FILE OPEN COMMANDS <<--
 -- prevent comment from being inserted when entering new line in existing comment
-vim.api.nvim_create_autocmd('BufEnter', {
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   callback = function()
     -- allow <CR> to continue block comments only
     -- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
-    vim.opt.comments:remove('://')
-    vim.opt.comments:remove(':--')
-    vim.opt.comments:remove(':#')
-    vim.opt.comments:remove(':%')
+    vim.schedule(function()
+      vim.opt_local.comments:remove('://')
+      vim.opt_local.comments:remove(':--')
+      vim.opt_local.comments:remove(':#')
+      vim.opt_local.comments:remove(':%')
+    end)
+    vim.opt_local.bufhidden = 'delete'
   end,
 })
 
@@ -62,19 +66,8 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
     if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
-      require('alpha')
-      vim.cmd.Alpha()
+      vim.cmd.NvimTreeToggle(vim.fn.expand('%'))
     end
-  end,
-})
-
--- delete buffers that are hidden/remain opened when closing a tab
--- allows file tree and fuzzy finder to have updated/correct information
--- on which buffers are still in use
-vim.api.nvim_create_autocmd('BufEnter', {
-  pattern = '*',
-  callback = function()
-    vim.opt_local.bufhidden = 'delete'
   end,
 })
 
