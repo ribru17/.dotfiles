@@ -201,7 +201,11 @@ return {
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
         ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
+          local entry = cmp.get_selected_entry()
+          if
+            cmp.visible()
+            and not (entry.source.name == 'buffer' and entry.exact)
+          then
             cmp.confirm { select = true }
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
