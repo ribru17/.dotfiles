@@ -30,7 +30,7 @@ end
 
 local in_mathzone_ignore_backslash = function(line_to_cursor, matched_trigger)
   if line_to_cursor and line_to_cursor:match('.*\\[%a_]+$') then
-      return false
+    return false
   end
   if matched_trigger and matched_trigger:len() == 1 then
     -- redraw on single-character triggers to make function wait for the main
@@ -281,7 +281,7 @@ return {
     { condition = in_mathzone }
   ),
   s(
-    { trig = 'cc', wordTrig = false },
+    { trig = '\\?cc', regTrig = true, wordTrig = false },
     fmt([[\subset]], {}),
     { condition = in_mathzone }
   ),
@@ -376,17 +376,17 @@ return {
     { condition = in_mathzone }
   ),
   s(
-    { trig = 'dint', wordTrig = false },
+    { trig = '\\?dint', regTrig = true, wordTrig = false },
     fmt([[\int_{{{1}}}^{{{2}}}]], { i(1, [[-\infty]]), i(2, [[\infty]]) }),
     { condition = in_mathzone }
   ),
   s(
-    { trig = 'ceil', wordTrig = false },
-    fmt([[\lceil {1}\rceil]], { i(1, '') }),
+    { trig = '\\?ceil', regTrig = true, wordTrig = false },
+    fmt([[\lceil {1} \rceil]], { i(1, '') }),
     { condition = in_mathzone }
   ),
   s(
-    { trig = 'floor', wordTrig = false },
+    { trig = '\\?floor', regTrig = true, wordTrig = false },
     fmt([[\lfloor {1}\rfloor]], { i(1, '') }),
     { condition = in_mathzone }
   ),
@@ -474,7 +474,7 @@ return {
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
-    { trig = 'partial', wordTrig = false },
+    { trig = '\\?partial', regTrig = true, wordTrig = false },
     fmt([[\frac{{\partial {1}}}{{\partial {2}}}]], { i(1, 'V'), i(2, 'x') }),
     { condition = in_mathzone }
   ),
@@ -547,17 +547,17 @@ return {
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
-    { trig = 'asin', wordTrig = false, priority = 1001 },
+    { trig = '\\?asin', regTrig = true, wordTrig = false, priority = 1001 },
     fmt([[\arcsin]], {}),
     { condition = in_mathzone }
   ),
   s(
-    { trig = 'acos', wordTrig = false, priority = 1001 },
+    { trig = '\\?acos', regTrig = true, wordTrig = false, priority = 1001 },
     fmt([[\arccos]], {}),
     { condition = in_mathzone }
   ),
   s(
-    { trig = 'atan', wordTrig = false, priority = 1001 },
+    { trig = '\\?atan', regTrig = true, wordTrig = false, priority = 1001 },
     fmt([[\arctan]], {}),
     { condition = in_mathzone }
   ),
@@ -907,12 +907,36 @@ return {
     fmt([[\Omega]], {}),
     { condition = in_mathzone_ignore_backslash }
   ),
-  s({ trig = 'and' }, fmt([[\land]], {}), { condition = in_mathzone_ignore_backslash }),
-  s({ trig = 'or' }, fmt([[\lor]], {}), { condition = in_mathzone_ignore_backslash }),
-  s({ trig = 'not' }, fmt([[\lnot]], {}), { condition = in_mathzone_ignore_backslash }),
-  s({ trig = 'xor' }, fmt([[\oplus]], {}), { condition = in_mathzone }),
-  s({ trig = 'satisfies' }, fmt([[\vDash]], {}), { condition = in_mathzone }),
-  s({ trig = 'entails' }, fmt([[\vDash]], {}), { condition = in_mathzone }),
+  s(
+    { trig = 'and' },
+    fmt([[\land]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'or' },
+    fmt([[\lor]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'not' },
+    fmt([[\lnot]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = '\\?xor', regTrig = true },
+    fmt([[\oplus]], {}),
+    { condition = in_mathzone }
+  ),
+  s(
+    { trig = '\\?satisfies', regTrig = true },
+    fmt([[\vDash]], {}),
+    { condition = in_mathzone }
+  ),
+  s(
+    { trig = '\\?entails', regTrig = true },
+    fmt([[\vDash]], {}),
+    { condition = in_mathzone }
+  ),
   s(
     { trig = 'vDash' },
     fmt([[\vDash]], {}),
@@ -938,7 +962,11 @@ return {
     fmt([[\subseteq]], {}),
     { condition = in_mathzone_ignore_backslash }
   ),
-  s({ trig = 'of' }, fmt([[\subseteq]], {}), { condition = in_mathzone }),
+  s(
+    { trig = '\\?of', regTrig = true },
+    fmt([[\subseteq]], {}),
+    { condition = in_mathzone }
+  ),
   s(
     { trig = 'implies' },
     fmt([[\implies]], {}),
@@ -955,7 +983,7 @@ return {
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
-    { trig = 'set' },
+    { trig = '\\?set', regTrig = true },
     fmt([[\langle {1} \rangle]], { i(1, '') }),
     { condition = in_mathzone }
   ),
