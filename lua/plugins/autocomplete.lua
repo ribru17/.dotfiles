@@ -222,10 +222,10 @@ return {
           end
         end, { 'i', 's', 'c' }),
         ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
+          if luasnip.jumpable(-1) then
             luasnip.jump(-1)
+          elseif cmp.visible() then
+            cmp.select_prev_item()
           elseif try_bullet_tab() then
             vim.cmd.BulletPromote()
             local row, col = unpack(vim.api.nvim_win_get_cursor(0))
