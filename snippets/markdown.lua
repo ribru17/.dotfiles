@@ -1,9 +1,6 @@
 ---@diagnostic disable: undefined-global
 local utils = require('utils')
 
--- TODO: also make it so that surrounding with a function `f` in latex mode uses
--- `\f{}` syntax instead of `f()`
-
 local in_mathzone = utils.in_mathzone
 
 local in_mathzone_ignore_backslash = utils.in_mathzone_ignore_backslash
