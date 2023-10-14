@@ -32,9 +32,6 @@ return {
           -- better match paren highlights
           ['MatchParen'] = { fg = '$orange', fmt = 'bold' },
           -- better dashboard styling
-          ['@alpha.title'] = { fg = '$green' },
-          ['@alpha.header'] = { fg = '$yellow', fmt = 'bold' },
-          ['@alpha.footer'] = { fg = '$red', fmt = 'italic' },
         },
         diagnostics = {
           darker = false,
@@ -51,11 +48,6 @@ return {
     config = function()
       require('bamboo').setup {
         toggle_style_key = '<leader><leader>',
-        highlights = {
-          ['@alpha.title'] = { fg = '$green' },
-          ['@alpha.header'] = { fg = '$yellow', fmt = 'bold' },
-          ['@alpha.footer'] = { fg = '$orange', fmt = 'italic' },
-        },
         diagnostics = {
           undercurl = false,
         },
@@ -88,9 +80,6 @@ return {
             -- make popup windows blend with the background better
             ['NormalFloat'] = { ctermbg = 0, bg = colors.base },
             -- better dashboard styling
-            ['@alpha.title'] = { fg = colors.green },
-            ['@alpha.header'] = { fg = colors.yellow, style = { 'bold' } },
-            ['@alpha.footer'] = { fg = colors.peach, style = { 'italic' } },
           }
         end,
       }
@@ -442,6 +431,7 @@ return {
     event = 'VimEnter',
     cmd = { 'Alpha' },
     opts = function()
+      require('utils').update_colors()
       local dashboard = require('alpha.themes.dashboard')
       local logo = [[
       ███████████   ████ █████      ██
@@ -455,6 +445,12 @@ return {
 
       dashboard.section.header.val = vim.split(logo, '\n')
       dashboard.section.header.opts.hl = '@alpha.title'
+      -- highlight button icon
+      local function newButton(...)
+        local button = dashboard.button(...)
+        button.opts.hl = { { 'Special', 0, 4 } }
+        return button
+      end
       dashboard.section.buttons.val = {
         {
           type = 'text',
@@ -464,25 +460,25 @@ return {
           },
         },
         { type = 'padding', val = 2 },
-        dashboard.button(
+        newButton(
           'f',
           ' ' .. ' Open file',
           ":lua require('telescope.builtin').find_files()<CR>"
         ),
-        dashboard.button(
+        newButton(
           'r',
           ' ' .. ' Open recent',
           ":lua require('telescope.builtin').oldfiles()<CR>"
         ),
-        dashboard.button('t', ' ' .. ' File tree', ':NvimTreeToggle <CR>'),
-        dashboard.button(
+        newButton('t', ' ' .. ' File tree', ':NvimTreeToggle <CR>'),
+        newButton(
           's',
           ' ' .. ' Search for text',
           ":lua require('telescope.builtin').live_grep({initial_mode = 'insert'})<CR>"
         ),
-        dashboard.button('l', ' ' .. " LSP's", ':Mason<CR>'),
-        dashboard.button('p', ' ' .. ' Plugins', ':Lazy<CR>'),
-        dashboard.button('q', ' ' .. ' Quit', ':qa<CR>'),
+        newButton('l', ' ' .. " LSP's", ':Mason<CR>'),
+        newButton('p', ' ' .. ' Plugins', ':Lazy<CR>'),
+        newButton('q', ' ' .. ' Quit', ':qa<CR>'),
       }
       dashboard.opts.layout[1].val = 4
       dashboard.opts.layout[3].val = 0

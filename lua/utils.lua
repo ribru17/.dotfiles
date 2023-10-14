@@ -42,23 +42,40 @@ function M.blend(fg, bg, alpha)
   )
 end
 
+M.update_colors = function()
+  vim.api.nvim_set_hl(
+    0,
+    '@alpha.title',
+    { link = 'Structure', default = false }
+  )
+  vim.api.nvim_set_hl(
+    0,
+    '@alpha.header',
+    { fg = vim.api.nvim_get_hl(0, { name = 'String' }).fg, bold = true }
+  )
+  vim.api.nvim_set_hl(
+    0,
+    '@alpha.footer',
+    { fg = vim.api.nvim_get_hl(0, { name = 'Constant' }).fg, italic = true }
+  )
+  background = string.format(
+    '#%x',
+    vim.api.nvim_get_hl_by_name('Normal', true).background or 0
+  )
+  color = string.format(
+    '#%x',
+    vim.api.nvim_get_hl_by_name('@alpha.title', true).foreground or 0
+  )
+  if background:len() ~= 7 then
+    background = '#ffffff'
+  end
+  if color:len() ~= 7 then
+    color = '#ffffff'
+  end
+end
+
 vim.api.nvim_create_autocmd('ColorScheme', {
-  callback = function()
-    background = string.format(
-      '#%x',
-      vim.api.nvim_get_hl_by_name('Normal', true).background or 0
-    )
-    color = string.format(
-      '#%x',
-      vim.api.nvim_get_hl_by_name('@alpha.title', true).foreground or 0
-    )
-    if background:len() ~= 7 then
-      background = '#ffffff'
-    end
-    if color:len() ~= 7 then
-      color = '#ffffff'
-    end
-  end,
+  callback = M.update_colors,
 })
 
 function M.color_fade_start()
