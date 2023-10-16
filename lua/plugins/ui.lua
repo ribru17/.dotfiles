@@ -52,7 +52,7 @@ return {
           undercurl = false,
         },
       }
-      require('bamboo').load()
+      vim.cmd.colorscheme { args = { 'bamboo' } }
     end,
   },
   {
