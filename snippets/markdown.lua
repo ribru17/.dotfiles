@@ -150,6 +150,11 @@ return {
     { condition = in_mathzone }
   ),
   s(
+    { trig = '_', wordTrig = false },
+    fmt([[_{{{1}}}]], { i(1, '') }),
+    { condition = in_mathzone }
+  ),
+  s(
     { trig = '<=', wordTrig = false },
     fmt([[\le]], {}),
     { condition = in_mathzone }
