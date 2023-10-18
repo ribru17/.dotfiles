@@ -56,6 +56,11 @@ return {
     end,
   },
   {
+    'rebelot/kanagawa.nvim',
+    keys = { '<leader>fc' },
+    lazy = true,
+  },
+  {
     'catppuccin/nvim',
     name = 'catppuccin',
     keys = { '<leader>fc' },
