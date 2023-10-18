@@ -30,6 +30,8 @@ vim.opt.foldenable = true
 vim.opt.foldmethod = 'expr'
 vim.o.foldcolumn = '1'
 vim.o.fillchars = [[eob: ,fold: ,foldopen:▽,foldsep: ,foldclose:▷]]
+vim.opt.list = true
+vim.opt.listchars = { tab = '<->', nbsp = '⍽' }
 -- Ufo can't recognize zR on startup sadly.
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99

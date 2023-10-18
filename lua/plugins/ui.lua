@@ -159,7 +159,7 @@ return {
     main = 'ibl',
     opts = {
       indent = {
-        char = '│',
+        char = '┊',
         smart_indent_cap = true,
       },
       scope = {
