@@ -1,5 +1,8 @@
 ;; extends
 
+; TODO: prevent conceals in table cells (to preserve table formatting) (may be
+; impossible because both nodes are handled by different parsers)
+
 ; Bullet points
 ([(list_marker_minus) (list_marker_star)] @punctuation.special (#offset! @punctuation.special 0 0 0 -1) (#set! conceal "•"))
 (list
@@ -42,7 +45,7 @@
 ; Checkbox list items
 ((task_list_marker_unchecked) @text.todo.unchecked (#offset! @text.todo.unchecked 0 -2 0 0) (#set! conceal "✗"))
 ((task_list_marker_checked) @text.todo.checked (#offset! @text.todo.checked 0 -2 0 0) (#set! conceal "✔"))
-(list_item (task_list_marker_checked)) @comment
+(list_item (task_list_marker_checked) (_) @comment)
 
 ; Tables
 (pipe_table_header ("|") @punctuation.special @conceal (#set! conceal "┃"))
