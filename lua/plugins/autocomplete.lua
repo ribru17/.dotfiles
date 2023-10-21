@@ -186,17 +186,24 @@ return {
           and vim.bo.filetype == 'markdown'
       end
       -- supertab functionality
-      local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local luasnip = require('luasnip')
       local cmp_mappings = {
-        ['<C-p>'] = cmp.mapping(
-          cmp.mapping.select_prev_item(cmp_select),
-          { 'i', 'c' }
-        ),
-        ['<C-n>'] = cmp.mapping(
-          cmp.mapping.select_next_item(cmp_select),
-          { 'i', 'c' }
-        ),
+        ['<C-p>'] = cmp.mapping(function()
+          local cmp_select = {
+            behavior = vim.api.nvim_get_mode()['mode'] == 'c'
+                and cmp.SelectBehavior.Insert
+              or cmp.SelectBehavior.Select,
+          }
+          cmp.mapping.select_prev_item(cmp_select)()
+        end, { 'i', 'c' }),
+        ['<C-n>'] = cmp.mapping(function()
+          local cmp_select = {
+            behavior = vim.api.nvim_get_mode()['mode'] == 'c'
+                and cmp.SelectBehavior.Insert
+              or cmp.SelectBehavior.Select,
+          }
+          cmp.mapping.select_next_item(cmp_select)()
+        end, { 'i', 'c' }),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
@@ -216,7 +223,14 @@ return {
             local row, col = unpack(vim.api.nvim_win_get_cursor(0))
             vim.api.nvim_win_set_cursor(0, { row, col + 1 })
           elseif vim.api.nvim_get_mode()['mode'] == 'c' then
+            -- When in command mode, insert the selection when hitting tab.
+            -- This is a weird/bad way to do this (select next then previous)
+            -- but the alternative is to pass weird config options into the
+            -- `complete` function and it becomes much slower. sucks but this
+            -- solution isn't too slow and sort of makes sense...
             cmp.complete()
+            cmp.select_next_item()
+            cmp.select_prev_item { behavior = cmp.SelectBehavior.Insert }
           else
             fallback()
           end
