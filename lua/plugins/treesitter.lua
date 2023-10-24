@@ -1,7 +1,6 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    -- breaking commit right after this one
     build = ':TSUpdate',
     event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
