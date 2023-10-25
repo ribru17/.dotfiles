@@ -145,6 +145,11 @@ return {
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
+    { trig = 'div', wordTrig = false },
+    fmt([[\div]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
     { trig = '^', wordTrig = false },
     fmt([[^{{{1}}}]], { i(1, '') }),
     { condition = in_mathzone }
