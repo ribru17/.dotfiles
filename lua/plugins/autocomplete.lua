@@ -108,9 +108,9 @@ return {
           :set_end_pair_length(3)
       )
 
-      npairs.add_rule(
-        Rule('**', '**', 'markdown'):with_move(cond.after_text('*'))
-      )
+      npairs.add_rule(Rule('**', '**', 'markdown'):with_move(function(opts)
+        return cond.after_text('*')(opts) and cond.not_before_text('\\')(opts)
+      end))
     end,
   },
   {
