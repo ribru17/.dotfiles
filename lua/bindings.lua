@@ -97,8 +97,8 @@ map('x', 'K', ":m '<-2<CR>gv=gv", smartmove_opts)
 local nowhitespacejump_opts = {
   desc = 'Better no-whitespace jumping',
 }
-map({ 'n', 'x' }, 'H', '_', nowhitespacejump_opts)
-map({ 'n', 'x' }, 'L', 'g_', nowhitespacejump_opts)
+map({ 'n', 'x', 'o' }, 'H', '^', nowhitespacejump_opts)
+map({ 'n', 'x', 'o' }, 'L', 'g_', nowhitespacejump_opts)
 
 local opsel_opts = { desc = 'Easily move other end of selection' }
 map('x', '<C-h>', function()
