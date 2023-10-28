@@ -174,10 +174,6 @@ map(
   { remap = true, desc = 'Cut to clipboard (Linux)' }
 )
 
-map('x', '<leader>p', function()
-  vim.cmd.normal { '"_dP', bang = true }
-end, { desc = "Don't copy pasted-over text" })
-
 local insertnav_opts = { desc = 'Navigation while typing' }
 map({ 'i', 'c' }, '<C-k>', '<Up>', insertnav_opts)
 map({ 'i', 'c' }, '<C-h>', '<Left>', insertnav_opts)
