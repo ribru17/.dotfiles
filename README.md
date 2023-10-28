@@ -88,6 +88,8 @@ WezTerm).
 - In-buffer
   - Use `H` and `L` as aliases for `_` and `g_`, respectively (move to first and
     last position of the line, respectively (excluding whitespace))
+  - Use `<leader>k` and `<leader>j` to the beginning and end of the current
+    indent scope, respectively.
 - Git
   - Use `<leader>gk` and `<leader>gj` to move up and down Git changes,
     respectively

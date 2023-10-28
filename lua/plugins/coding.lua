@@ -1,5 +1,25 @@
 return {
   {
+    'echasnovski/mini.nvim',
+    version = '*',
+    main = 'mini.indentscope',
+    opts = {
+      symbol = '┊',
+      mappings = {
+        goto_top = '<leader>k',
+        goto_bottom = '<leader>j',
+      },
+      options = {
+        try_as_border = true,
+      },
+      draw = {
+        animation = function()
+          return 0
+        end,
+      },
+    },
+  },
+  {
     -- lazy-load netrw for `gx` functionality
     dir = vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim',
     keys = {
