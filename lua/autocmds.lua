@@ -1,6 +1,6 @@
 -- specify different tab widths on certain files
 vim.api.nvim_create_augroup('setIndent', { clear = true })
-vim.api.nvim_create_autocmd('Filetype', {
+vim.api.nvim_create_autocmd('FileType', {
   group = 'setIndent',
   pattern = {
     'xml',
@@ -17,6 +17,26 @@ vim.api.nvim_create_autocmd('Filetype', {
     'lua',
   },
   command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2',
+})
+
+---> filetype configuration for miniindentscope
+-- bottom whitespace trimming
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'python', 'markdown' },
+  callback = function()
+    vim.b.miniindentscope_config = {
+      options = {
+        border = 'top',
+      },
+    }
+  end,
+})
+-- disabling
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'alpha' },
+  callback = function()
+    vim.b.miniindentscope_disable = true
+  end,
 })
 
 -- where applicable, reset cursor to blinking I-beam after closing Neovim
