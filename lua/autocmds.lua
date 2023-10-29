@@ -33,7 +33,18 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 -- disabling
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'alpha', 'lazy', 'mason', 'lspinfo' },
+  pattern = {
+    'alpha',
+    'lazy',
+    'mason',
+    'lspinfo',
+    'help',
+    'checkhealth',
+    'man',
+    'gitcommit',
+    'TelescopePrompt',
+    'TelescopeResults',
+  },
   callback = function()
     vim.b.miniindentscope_disable = true
   end,
