@@ -1,8 +1,9 @@
 return {
   {
-    'echasnovski/mini.nvim',
+    'echasnovski/mini.indentscope',
     version = '*',
     main = 'mini.indentscope',
+    event = { 'VeryLazy' },
     opts = {
       symbol = '┊',
       mappings = {
@@ -16,6 +17,20 @@ return {
         animation = function()
           return 0
         end,
+      },
+    },
+  },
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    event = { 'VeryLazy' },
+    main = 'ibl',
+    opts = {
+      indent = {
+        char = '┊',
+        smart_indent_cap = true,
+      },
+      scope = {
+        enabled = false,
       },
     },
   },

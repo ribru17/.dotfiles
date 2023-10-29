@@ -154,20 +154,6 @@ return {
     lazy = true,
   },
   {
-    'lukas-reineke/indent-blankline.nvim',
-    event = { 'VeryLazy' },
-    main = 'ibl',
-    opts = {
-      indent = {
-        char = '┊',
-        smart_indent_cap = true,
-      },
-      scope = {
-        enabled = false,
-      },
-    },
-  },
-  {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
