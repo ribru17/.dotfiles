@@ -150,7 +150,7 @@ return {
     end,
   },
   {
-    'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons',
     lazy = true,
   },
   {
@@ -514,7 +514,7 @@ return {
   },
   {
     'nvim-tree/nvim-tree.lua',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '<leader>ft', '<Cmd>NvimTreeFindFile<CR>' },
     },
