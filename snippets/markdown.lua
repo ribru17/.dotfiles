@@ -902,6 +902,11 @@ return {
     { condition = in_mathzone }
   ),
   s(
+    { trig = 'vdots' },
+    fmt([[\vdots]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
     { trig = 'vDash' },
     fmt([[\vDash]], {}),
     { condition = in_mathzone_ignore_backslash }
