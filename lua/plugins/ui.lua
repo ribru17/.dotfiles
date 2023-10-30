@@ -681,6 +681,11 @@ return {
       end
 
       require('nvim-tree').setup {
+        ui = {
+          confirm = {
+            default_yes = true,
+          },
+        },
         on_attach = on_attach,
         hijack_cursor = true,
         update_focused_file = {
