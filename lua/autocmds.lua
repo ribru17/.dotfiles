@@ -44,6 +44,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'gitcommit',
     'TelescopePrompt',
     'TelescopeResults',
+    'NvimTree',
   },
   callback = function()
     vim.b.miniindentscope_disable = true
