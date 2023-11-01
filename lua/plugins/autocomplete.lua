@@ -152,7 +152,7 @@ return {
     keys = { ':' },
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-buffer' }, -- TODO: make this source only for markdown and text files
+      { 'f3fora/cmp-spell' },
       { 'hrsh7th/cmp-cmdline' },
       { 'hrsh7th/cmp-path' },
       { 'saadparwaiz1/cmp_luasnip' },
@@ -211,7 +211,7 @@ return {
           local entry = cmp.get_selected_entry()
           if
             cmp.visible()
-            and not (entry.source.name == 'buffer' and entry.exact)
+            and not (entry.source.name == 'spell' and entry.exact)
           then
             cmp.confirm { select = true }
           elseif luasnip.expand_or_jumpable() then
@@ -256,6 +256,7 @@ return {
         end, { 'i', 'c' }),
       }
 
+      local in_ts_cap = require('cmp.config.context').in_treesitter_capture
       local cmp_config = {
         mapping = cmp_mappings,
         completion = {
@@ -271,7 +272,15 @@ return {
           { name = 'nvim_lua', ft = 'lua' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
-          { name = 'buffer', keyword_length = 3 },
+          {
+            name = 'spell',
+            keyword_length = 3,
+            option = {
+              enable_in_context = function()
+                return not in_ts_cap('nospell')
+              end,
+            },
+          },
         },
         formatting = {
           fields = { 'abbr', 'menu', 'kind' },
@@ -295,7 +304,7 @@ return {
               return vim_item
             end,
             menu = {
-              buffer = '[Buf]',
+              spell = '[Dict]',
               nvim_lsp = '[LSP]',
               nvim_lua = '[API]',
               path = '[Path]',
