@@ -68,13 +68,36 @@ return {
     },
     fmt(
       [[
-  ```mermaid
-  flowchart LR
+      ```mermaid
+      flowchart LR
 
-  A({1}) --> B({2}){3}
-  ```
-  ]],
+      A({1}) --> B({2}){3}
+      ```
+      ]],
       { i(1, 'Start'), i(2, 'End'), i(3, '') }
+    ),
+    {
+      condition = function()
+        return false
+      end,
+      show_condition = in_text,
+    }
+  ),
+  s(
+    {
+      trig = 'sequence',
+      name = 'Mermaid Sequence Diagram',
+      dscr = 'Generates a basic Mermaid sequence diagram.',
+    },
+    fmt(
+      [[
+      ```mermaid
+      sequenceDiagram
+
+      {1} ->> {2}: {3}
+      ```
+      ]],
+      { i(1, 'From'), i(2, 'To'), i(3, 'Arrow text') }
     ),
     {
       condition = function()
