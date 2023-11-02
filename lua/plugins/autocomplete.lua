@@ -211,7 +211,14 @@ return {
           local entry = cmp.get_selected_entry()
           if
             cmp.visible()
-            and not (entry.source.name == 'spell' and entry.exact)
+            -- if tabbing on an entry that already matches what we have, just
+            -- skip and fall through to the next action
+            and not (
+              entry.source.name == 'spell'
+              and entry.context.cursor_before_line:match(
+                entry:get_word() .. '$'
+              )
+            )
           then
             cmp.confirm { select = true }
           elseif luasnip.expand_or_jumpable() then
@@ -281,11 +288,14 @@ return {
           { name = 'luasnip' },
           {
             name = 'spell',
-            keyword_length = 3,
-            entry_filter = function (entry, _)
+            keyword_length = 2,
+            -- help filter out the unhelpful words
+            max_item_count = 4,
+            entry_filter = function(entry, _)
               return not entry:get_completion_item().label:find(' ')
             end,
             option = {
+              keep_all_entries = true,
               enable_in_context = function()
                 return not in_ts_cap('nospell')
               end,
