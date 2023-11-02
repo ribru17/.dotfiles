@@ -257,7 +257,7 @@ return {
       }
 
       local in_ts_cap = require('cmp.config.context').in_treesitter_capture
-      local types = require('cmp.types')
+      local kinds = require('cmp.types').lsp.CompletionItemKind
       local cmp_config = {
         mapping = cmp_mappings,
         completion = {
@@ -275,14 +275,16 @@ return {
             name = 'nvim_lsp',
             entry_filter = function(entry, _)
               -- filter out text entries from LSP suggestions
-              local kind = types.lsp.CompletionItemKind[entry:get_kind()]
-              return kind ~= 'Text'
+              return kinds[entry:get_kind()] ~= 'Text'
             end,
           },
           { name = 'luasnip' },
           {
             name = 'spell',
             keyword_length = 3,
+            entry_filter = function (entry, _)
+              return not entry:get_completion_item().label:find(' ')
+            end,
             option = {
               enable_in_context = function()
                 return not in_ts_cap('nospell')
