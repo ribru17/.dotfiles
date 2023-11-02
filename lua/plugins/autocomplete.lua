@@ -288,7 +288,7 @@ return {
           { name = 'luasnip' },
           {
             name = 'spell',
-            keyword_length = 2,
+            keyword_length = 3,
             -- help filter out the unhelpful words
             max_item_count = 4,
             entry_filter = function(entry, _)
