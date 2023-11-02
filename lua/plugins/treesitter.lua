@@ -85,6 +85,23 @@ return {
           },
         },
       }
+
+      -- HACK: Remove bad Tree-sitter builtin conceals. Change upon merge of:
+      -- https://github.com/nvim-treesitter/nvim-treesitter/issues/2825
+      local queries = {}
+      for _, file in
+        ipairs(vim.treesitter.query.get_files('markdown', 'highlights'))
+      do
+        for _, line in ipairs(vim.fn.readfile(file)) do
+          local line_sub = line:gsub([[%(#set! conceal ""%)]], '')
+          table.insert(queries, line_sub)
+        end
+      end
+      vim.treesitter.query.set(
+        'markdown',
+        'highlights',
+        table.concat(queries, '\n')
+      )
     end,
   },
 }
