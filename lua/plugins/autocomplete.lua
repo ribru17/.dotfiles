@@ -257,6 +257,7 @@ return {
       }
 
       local in_ts_cap = require('cmp.config.context').in_treesitter_capture
+      local types = require('cmp.types')
       local cmp_config = {
         mapping = cmp_mappings,
         completion = {
@@ -270,7 +271,14 @@ return {
         sources = {
           { name = 'path' },
           { name = 'nvim_lua', ft = 'lua' },
-          { name = 'nvim_lsp' },
+          {
+            name = 'nvim_lsp',
+            entry_filter = function(entry, _)
+              -- filter out text entries from LSP suggestions
+              local kind = types.lsp.CompletionItemKind[entry:get_kind()]
+              return kind ~= 'Text'
+            end,
+          },
           { name = 'luasnip' },
           {
             name = 'spell',
