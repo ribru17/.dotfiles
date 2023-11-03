@@ -61,7 +61,6 @@ return {
           local custom_capabilities =
             require('cmp_nvim_lsp').default_capabilities()
           custom_capabilities.offsetEncoding = { 'utf-16' }
-          require('clangd_extensions').setup {}
           require('lspconfig').clangd.setup {
             on_attach = function()
               require('clangd_extensions.inlay_hints').setup_autocmd()
