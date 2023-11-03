@@ -188,22 +188,22 @@ return {
       -- supertab functionality
       local luasnip = require('luasnip')
       local cmp_mappings = {
-        ['<C-p>'] = cmp.mapping(function(fallback)
-          local cmp_select = {
-            behavior = vim.api.nvim_get_mode()['mode'] == 'c'
-                and cmp.SelectBehavior.Insert
-              or cmp.SelectBehavior.Select,
-          }
-          cmp.mapping.select_prev_item(cmp_select)(fallback)
-        end, { 'i', 'c' }),
-        ['<C-n>'] = cmp.mapping(function(fallback)
-          local cmp_select = {
-            behavior = vim.api.nvim_get_mode()['mode'] == 'c'
-                and cmp.SelectBehavior.Insert
-              or cmp.SelectBehavior.Select,
-          }
-          cmp.mapping.select_next_item(cmp_select)(fallback)
-        end, { 'i', 'c' }),
+        ['<C-p>'] = {
+          i = cmp.mapping.select_prev_item {
+            behavior = cmp.SelectBehavior.Select,
+          },
+          c = cmp.mapping.select_prev_item {
+            behavior = cmp.SelectBehavior.Insert,
+          },
+        },
+        ['<C-n>'] = {
+          i = cmp.mapping.select_next_item {
+            behavior = cmp.SelectBehavior.Select,
+          },
+          c = cmp.mapping.select_next_item {
+            behavior = cmp.SelectBehavior.Insert,
+          },
+        },
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
