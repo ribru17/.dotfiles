@@ -180,13 +180,53 @@ return {
         vim.api.nvim_win_set_cursor(0, { row, col + 1 })
       end
 
-      local try_bullet_tab = function()
+      local is_in_bullet = function()
         local line = vim.api.nvim_get_current_line()
         return line:match('^%s*(.-)%s*$') == '-'
-          and vim.bo.filetype == 'markdown'
+          and (vim.bo.filetype == 'markdown' or vim.bo.filetype == 'text')
       end
+
       -- supertab functionality
       local luasnip = require('luasnip')
+      local function ins_tab_mapping(fallback)
+        local entry = cmp.get_selected_entry()
+        if
+          cmp.visible()
+          -- if tabbing on an entry that already matches what we have, just
+          -- skip and fall through to the next action
+          and not (
+            entry.source.name == 'spell'
+            and entry.context.cursor_before_line:match(entry:get_word() .. '$')
+          )
+        then
+          cmp.confirm { select = true }
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif escape_next() then
+          move_right()
+        elseif is_in_bullet() then
+          vim.cmd.BulletDemote()
+          local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+          vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+        else
+          fallback()
+        end
+      end
+
+      local function ins_s_tab_mapping(fallback)
+        if luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        elseif cmp.visible() then
+          cmp.select_prev_item()
+        elseif is_in_bullet() then
+          vim.cmd.BulletPromote()
+          local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+          vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+        else
+          fallback()
+        end
+      end
+
       local cmp_mappings = {
         ['<C-p>'] = {
           i = cmp.mapping.select_prev_item {
@@ -207,56 +247,30 @@ return {
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          local entry = cmp.get_selected_entry()
-          if
-            cmp.visible()
-            -- if tabbing on an entry that already matches what we have, just
-            -- skip and fall through to the next action
-            and not (
-              entry.source.name == 'spell'
-              and entry.context.cursor_before_line:match(
-                entry:get_word() .. '$'
-              )
-            )
-          then
-            cmp.confirm { select = true }
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif escape_next() then
-            move_right()
-          elseif try_bullet_tab() then
-            vim.cmd.BulletDemote()
-            local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-            vim.api.nvim_win_set_cursor(0, { row, col + 1 })
-          elseif vim.api.nvim_get_mode()['mode'] == 'c' then
-            -- When in command mode, insert the selection when hitting tab.
-            -- This is a weird/bad way to do this (select next then previous)
-            -- but the alternative is to pass weird config options into the
-            -- `complete` function and it becomes much slower. sucks but this
-            -- solution isn't too slow and sort of makes sense...
-            cmp.complete()
-            cmp.select_next_item()
-            cmp.select_prev_item { behavior = cmp.SelectBehavior.Insert }
-          else
-            fallback()
-          end
-        end, { 'i', 's', 'c' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          elseif cmp.visible() then
-            cmp.select_prev_item()
-          elseif try_bullet_tab() then
-            vim.cmd.BulletPromote()
-            local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-            vim.api.nvim_win_set_cursor(0, { row, col + 1 })
-          elseif vim.api.nvim_get_mode()['mode'] == 'c' then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, { 'i', 's', 'c' }),
+        ['<Tab>'] = {
+          i = ins_tab_mapping,
+          s = ins_tab_mapping,
+          c = function()
+            if cmp.visible() then
+              cmp.confirm { select = true }
+            else
+              cmp.complete()
+              cmp.select_next_item()
+              cmp.select_prev_item { behavior = cmp.SelectBehavior.Insert }
+            end
+          end,
+        },
+        ['<S-Tab>'] = {
+          i = ins_s_tab_mapping,
+          s = ins_s_tab_mapping,
+          c = function()
+            if cmp.visible() then
+              cmp.select_prev_item { behavior = cmp.SelectBehavior.Insert }
+            else
+              cmp.complete()
+            end
+          end,
+        },
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<CR>'] = cmp.mapping(function(fallback)
           fallback()
