@@ -6,14 +6,11 @@ return {
   {
     'williamboman/mason.nvim',
     cmd = { 'Mason' },
-    lazy = true,
-    config = function()
-      require('mason').setup {
-        ui = {
-          border = 'rounded',
-        },
-      }
-    end,
+    opts = {
+      ui = {
+        border = 'rounded',
+      },
+    },
   },
   {
     'williamboman/mason-lspconfig.nvim',
