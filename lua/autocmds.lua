@@ -152,6 +152,7 @@ vim.api.nvim_create_autocmd('ModeChanged', {
   end,
 })
 
+-- update foldcolumn ribbon colors
 vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
     local util = require('utils')
