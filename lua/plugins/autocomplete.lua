@@ -272,9 +272,6 @@ return {
           end,
         },
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<CR>'] = cmp.mapping(function(fallback)
-          fallback()
-        end, { 'i', 'c' }),
       }
 
       local in_ts_cap = require('cmp.config.context').in_treesitter_capture
