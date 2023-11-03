@@ -28,6 +28,9 @@ require('lazy').setup('plugins', {
   ui = {
     border = 'rounded',
   },
+  install = {
+    colorscheme = { 'bamboo' },
+  },
   change_detection = {
     notify = false,
   },
