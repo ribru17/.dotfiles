@@ -120,13 +120,13 @@ map('n', 'J', function()
   vim.cmd.normal { vim.v.count1 + 1 .. 'J', bang = true }
   vim.api.nvim_win_set_cursor(0, cur)
 end, cursorstay_opts)
-map('n', '<C-d>', function()
+map({ 'n', 'x' }, '<C-d>', function()
   vim.cmd.normal {
     vim.api.nvim_replace_termcodes('<C-d>', true, false, true) .. 'zz',
     bang = true,
   }
 end, cursorstay_opts)
-map('n', '<C-u>', function()
+map({ 'n', 'x' }, '<C-u>', function()
   vim.cmd.normal {
     vim.api.nvim_replace_termcodes('<C-u>', true, false, true) .. 'zz',
     bang = true,
