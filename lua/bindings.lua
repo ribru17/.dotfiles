@@ -115,7 +115,11 @@ map('x', '<C-j>', function()
 end, opsel_opts)
 
 local cursorstay_opts = { desc = 'Keep cursor in place' }
-map('n', 'J', 'mzJ`z', cursorstay_opts)
+map('n', 'J', function()
+  local cur = vim.api.nvim_win_get_cursor(0)
+  vim.cmd.normal { vim.v.count1 + 1 .. 'J', bang = true }
+  vim.api.nvim_win_set_cursor(0, cur)
+end, cursorstay_opts)
 map('n', '<C-d>', function()
   vim.cmd.normal {
     vim.api.nvim_replace_termcodes('<C-d>', true, false, true) .. 'zz',
