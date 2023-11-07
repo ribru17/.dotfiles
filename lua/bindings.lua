@@ -135,7 +135,7 @@ end, cursorstay_opts)
 map('n', 'n', 'nzzzv', cursorstay_opts)
 map('n', 'N', 'Nzzzv', cursorstay_opts)
 
-map('n', '<Esc>', '<Cmd>noh<CR>', { desc = 'Clear search highlighting' })
+map('n', '<Esc>', vim.cmd.noh, { desc = 'Clear search highlighting' })
 
 map('t', '<Esc>', '<C-Bslash><C-n>', { desc = 'Easily exit terminal mode' })
 
