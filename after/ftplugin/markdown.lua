@@ -19,7 +19,7 @@ vim.schedule(function()
 end)
 
 local config = require('nvim-surround.config')
-local in_mathzone = require('utils').in_mathzone_broad
+local in_latex_zone = require('utils').in_latex_zone
 require('nvim-surround').buffer_setup {
   aliases = {
     ['b'] = { '{', '[', '(', '<', 'b' },
@@ -35,14 +35,14 @@ require('nvim-surround').buffer_setup {
       add = function()
         local result = config.get_input('Enter the function name: ')
         if result then
-          if in_mathzone() then
+          if in_latex_zone() then
             return { { '\\' .. result .. '{' }, { '}' } }
           end
           return { { result .. '(' }, { ')' } }
         end
       end,
       find = function()
-        if in_mathzone() then
+        if in_latex_zone() then
           return config.get_selection {
             pattern = '\\[%w_]+{.-}',
           }
@@ -61,7 +61,7 @@ require('nvim-surround').buffer_setup {
       end,
       delete = function(char)
         local match
-        if in_mathzone() then
+        if in_latex_zone() then
           match = config.get_selections {
             char = char,
             pattern = '^(\\[%w_]+{)().-(})()$',
@@ -76,7 +76,7 @@ require('nvim-surround').buffer_setup {
       end,
       change = {
         target = function(char)
-          if in_mathzone() then
+          if in_latex_zone() then
             return config.get_selections {
               char = char,
               pattern = '^.-\\([%w_]+)(){.-}()()$',

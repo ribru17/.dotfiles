@@ -134,7 +134,7 @@ M.in_mathzone = function(_, matched_trigger)
   return false
 end
 
-M.in_mathzone_broad = function()
+M.in_latex_zone = function()
   local current_node = get_node { ignore_injections = false }
   while current_node do
     if MATH_NODES[current_node:type()] then
