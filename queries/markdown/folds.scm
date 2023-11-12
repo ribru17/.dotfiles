@@ -1,5 +1,1 @@
-(
-  [
-    (section)
-  ] @fold
-)
+(section) @fold
