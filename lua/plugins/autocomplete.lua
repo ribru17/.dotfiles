@@ -292,8 +292,13 @@ return {
           {
             name = 'nvim_lsp',
             entry_filter = function(entry, _)
-              -- filter out text entries from LSP suggestions
+              -- filter out text entries from LSP suggestions (except for Emmet LSP)
               return kinds[entry:get_kind()] ~= 'Text'
+                or (
+                  entry.source.source.client
+                  and entry.source.source.client.name
+                    == 'emmet_language_server'
+                )
             end,
           },
           { name = 'luasnip' },
