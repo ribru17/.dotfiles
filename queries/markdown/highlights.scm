@@ -4,7 +4,7 @@
 ; impossible because both nodes are handled by different parsers)
 
 ; Bullet points
-([(list_marker_minus) (list_marker_star)]
+([(list_marker_minus) (list_marker_plus) (list_marker_star)]
  @punctuation.special
  (#offset! @punctuation.special 0 0 0 -1)
  (#set! conceal "•"))
@@ -12,7 +12,7 @@
   (list_item
     (list
       (list_item
-        ([(list_marker_minus) (list_marker_star)]
+        ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
          @punctuation.special
          (#offset! @punctuation.special 0 0 0 -1)
          (#set! conceal "⭘"))))))
@@ -22,7 +22,7 @@
       (list_item
         (list
           (list_item
-            ([(list_marker_minus) (list_marker_star)]
+            ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
              @punctuation.special
              (#offset! @punctuation.special 0 0 0 -1)
              (#set! conceal "◼"))))))))
@@ -34,7 +34,7 @@
           (list_item
             (list
               (list_item
-                ([(list_marker_minus) (list_marker_star)]
+                ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
                  @punctuation.special
                  (#offset! @punctuation.special 0 0 0 -1)
                  (#set! conceal "◻"))))))))))
@@ -48,7 +48,7 @@
               (list_item
                 (list
                   (list_item
-                    ([(list_marker_minus) (list_marker_star)]
+                    ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
                      @punctuation.special
                      (#offset! @punctuation.special 0 0 0 -1)
                      (#set! conceal "→"))))))))))))
