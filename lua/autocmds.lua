@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd('FileType', {
 ---> filetype configuration for miniindentscope
 -- bottom whitespace trimming
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'python', 'markdown' },
+  pattern = { 'python', 'markdown', 'scheme', 'query' },
   callback = function()
     vim.b.miniindentscope_config = {
       options = {
@@ -45,6 +45,8 @@ vim.api.nvim_create_autocmd('FileType', {
     'TelescopePrompt',
     'TelescopeResults',
     'NvimTree',
+    'NeogitPopup',
+    'NeogitStatus',
   },
   callback = function()
     vim.b.miniindentscope_disable = true
