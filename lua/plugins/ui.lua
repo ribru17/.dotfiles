@@ -1,3 +1,4 @@
+local BORDER_STYLE = require('settings').border
 return {
   {
     'navarasu/onedark.nvim',
@@ -201,7 +202,7 @@ return {
         end,
         sign_priority = 0,
         preview_config = {
-          border = 'rounded',
+          border = BORDER_STYLE,
         },
       }
     end,
@@ -315,6 +316,14 @@ return {
               return true
             end,
           },
+          borderchars = ({
+            none = { '', '', '', '', '', '', '', '' },
+            single = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+            double = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
+            rounded = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+            solid = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+            shadow = { '', '', '', '', '', '', '', '' },
+          })[BORDER_STYLE],
           layout_config = {
             horizontal = {
               preview_cutoff = 0,
@@ -712,7 +721,7 @@ return {
 
               return {
                 relative = 'editor',
-                border = 'rounded',
+                border = BORDER_STYLE,
                 row = center_y,
                 col = center_x,
                 width = window_w_int,

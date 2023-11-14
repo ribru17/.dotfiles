@@ -169,7 +169,7 @@ return {
         end,
         preview = {
           win_config = {
-            border = 'rounded',
+            border = require('settings').border,
             winhighlight = 'Normal:Normal',
             winblend = 0,
           },

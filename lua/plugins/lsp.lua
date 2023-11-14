@@ -1,3 +1,5 @@
+local BORDER_STYLE = require('settings').border
+
 return {
   {
     'p00f/clangd_extensions.nvim',
@@ -8,7 +10,7 @@ return {
     cmd = { 'Mason' },
     opts = {
       ui = {
-        border = 'rounded',
+        border = BORDER_STYLE,
       },
     },
   },
@@ -44,7 +46,7 @@ return {
         },
       }
 
-      require('lspconfig.ui.windows').default_options.border = 'rounded'
+      require('lspconfig.ui.windows').default_options.border = BORDER_STYLE
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -331,16 +333,16 @@ return {
         update_in_insert = false,
         underline = true,
         severity_sort = true,
-        float = { border = 'rounded' },
+        float = { border = BORDER_STYLE },
       }
 
       vim.lsp.handlers['textDocument/hover'] =
         vim.lsp.with(vim.lsp.handlers.hover, {
-          border = 'rounded',
+          border = BORDER_STYLE,
         })
       vim.lsp.handlers['textDocument/signatureHelp'] =
         vim.lsp.with(vim.lsp.handlers.signature_help, {
-          border = 'rounded',
+          border = BORDER_STYLE,
         })
 
       local signs =

@@ -26,7 +26,7 @@ require('lazy').setup('plugins', {
   -- defaults = { lazy = true },
   -- checker = { enabled = true },
   ui = {
-    border = 'rounded',
+    border = require('settings').border,
   },
   install = {
     colorscheme = { 'bamboo' },
@@ -44,7 +44,6 @@ require('lazy').setup('plugins', {
       disabled_plugins = {
         'gzip',
         'matchit',
-        -- 'matchparen',
         'netrwPlugin',
         'tarPlugin',
         'tohtml',
