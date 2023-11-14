@@ -1,54 +1,60 @@
-vim.opt.compatible = false
-vim.opt.encoding = 'utf-8'
-vim.opt.filetype = 'on'
-vim.opt.signcolumn = 'yes:2'
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 5
-vim.opt.number = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.completeopt = { 'menu', 'menuone', 'preview', 'noselect', 'noinsert' }
-vim.opt.wrap = false
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undofile = true
-vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.termguicolors = true
-vim.opt.mouse = ''
-vim.opt.pumheight = 10
-vim.opt.relativenumber = true
-vim.opt.colorcolumn = '80'
-vim.opt.textwidth = 80
-vim.opt.splitright = true
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = 'number'
-vim.opt.foldenable = true
-vim.opt.foldmethod = 'expr'
-vim.o.foldcolumn = '1'
-vim.o.fillchars = [[eob: ,fold: ,foldopen:▽,foldsep: ,foldclose:▷]]
-vim.opt.list = true
-vim.opt.listchars = { tab = '<->', nbsp = '␣' }
-vim.opt.indentkeys:append('!0<Tab>')
--- Ufo can't recognize zR on startup sadly.
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
+local function apply()
+  local opt = vim.opt
+  local o = vim.o
+  local g = vim.g
 
-vim.g.mapleader = ' '
-vim.g.mkdp_echo_preview_url = 1
-vim.g.mkdp_theme = 'dark'
-vim.g.mkdp_preview_options = {
-  maid = {
-    theme = 'dark',
-  },
-}
-vim.g.rustfmt_autosave = 1
-vim.g.bullets_outline_levels = { 'ROM', 'ABC', 'rom', 'abc', 'std-' }
-vim.g.bullets_checkbox_markers = ' x'
+  opt.compatible = false
+  opt.encoding = 'utf-8'
+  opt.filetype = 'on'
+  opt.signcolumn = 'yes:2'
+  opt.scrolloff = 8
+  opt.sidescrolloff = 5
+  opt.number = true
+  opt.tabstop = 4
+  opt.softtabstop = 4
+  opt.shiftwidth = 4
+  opt.expandtab = true
+  opt.completeopt = { 'menu', 'menuone', 'preview', 'noselect', 'noinsert' }
+  opt.wrap = false
+  opt.swapfile = false
+  opt.backup = false
+  opt.undofile = true
+  opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
+  opt.ignorecase = true
+  opt.smartcase = true
+  opt.termguicolors = true
+  opt.mouse = ''
+  opt.pumheight = 10
+  opt.relativenumber = true
+  opt.colorcolumn = '80'
+  opt.textwidth = 80
+  opt.splitright = true
+  opt.cursorline = true
+  opt.cursorlineopt = 'number'
+  opt.foldenable = true
+  opt.foldmethod = 'expr'
+  opt.list = true
+  opt.listchars = { tab = '<->', nbsp = '␣' }
+  opt.indentkeys:append('!0<Tab>')
+  o.foldcolumn = '1'
+  o.fillchars = [[eob: ,fold: ,foldopen:▽,foldsep: ,foldclose:▷]]
+  o.foldlevel = 99
+  o.foldlevelstart = 99
+
+  g.mapleader = ' '
+  g.mkdp_echo_preview_url = 1
+  g.mkdp_theme = 'dark'
+  g.mkdp_preview_options = {
+    maid = {
+      theme = 'dark',
+    },
+  }
+  g.rustfmt_autosave = 1
+  g.bullets_outline_levels = { 'ROM', 'ABC', 'rom', 'abc', 'std-' }
+  g.bullets_checkbox_markers = ' x'
+end
 
 return {
   border = 'rounded',
+  apply = apply,
 }

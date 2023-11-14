@@ -18,7 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy.core.cache').enable()
 
 -- load opt settings and auto commands
-require('settings')
+require('settings').apply()
 require('autocmds')
 
 -- load installed plugins and their configurations
