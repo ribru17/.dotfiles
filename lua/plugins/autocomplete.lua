@@ -307,7 +307,7 @@ return {
             name = 'spell',
             keyword_length = 3,
             -- help filter out the unhelpful words
-            max_item_count = 4,
+            max_item_count = 1,
             entry_filter = function(entry, _)
               return not entry:get_completion_item().label:find(' ')
             end,
