@@ -1,4 +1,3 @@
--- TODO: inject vim parser to modeline comments (e.g. vim: set spell:)?
 return {
   {
     'nvim-treesitter/nvim-treesitter',
