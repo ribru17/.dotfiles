@@ -1,3 +1,5 @@
+-- TODO: investigate speed of setting this with iterating through a table, vs.
+-- like this. also switching all compatible `opt` to `o`
 local function apply()
   local opt = vim.opt
   local o = vim.o

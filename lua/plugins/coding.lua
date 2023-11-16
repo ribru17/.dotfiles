@@ -339,6 +339,7 @@ return {
           typescript = { 'deno_fmt' },
           javascriptreact = { 'deno_fmt' },
           typescriptreact = { 'deno_fmt' },
+          -- TODO: investigate `injected` formatter making things slow
           markdown = { 'deno_fmt', 'injected' },
           json = { 'deno_fmt' },
           jsonc = { 'deno_fmt' },
