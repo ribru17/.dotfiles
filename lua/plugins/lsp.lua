@@ -271,6 +271,7 @@ return {
           map('n', '<leader>dj', vim.diagnostic.goto_next, opts)
           -- rename symbol starting with empty prompt, highlight references
           map('n', '<leader>r', function()
+            -- TODO: refactor to use sync request for symbol highlighting?
             local bufnr = vim.api.nvim_get_current_buf()
             local params = vim.lsp.util.make_position_params()
             params.context = { includeDeclaration = true }

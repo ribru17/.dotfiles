@@ -1,59 +1,65 @@
--- TODO: investigate speed of setting this with iterating through a table, vs.
--- like this. also switching all compatible `opt` to `o`
 local function apply()
-  local opt = vim.opt
-  local o = vim.o
-  local g = vim.g
-
-  opt.compatible = false
-  opt.encoding = 'utf-8'
-  opt.filetype = 'on'
-  opt.signcolumn = 'yes:2'
-  opt.scrolloff = 8
-  opt.sidescrolloff = 5
-  opt.number = true
-  opt.tabstop = 4
-  opt.softtabstop = 4
-  opt.shiftwidth = 4
-  opt.expandtab = true
-  opt.completeopt = { 'menu', 'menuone', 'preview', 'noselect', 'noinsert' }
-  opt.wrap = false
-  opt.swapfile = false
-  opt.backup = false
-  opt.undofile = true
-  opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
-  opt.ignorecase = true
-  opt.smartcase = true
-  opt.termguicolors = true
-  opt.mouse = ''
-  opt.pumheight = 10
-  opt.relativenumber = true
-  opt.colorcolumn = '80'
-  opt.textwidth = 80
-  opt.splitright = true
-  opt.cursorline = true
-  opt.cursorlineopt = 'number'
-  opt.foldenable = true
-  opt.foldmethod = 'expr'
-  opt.list = true
-  opt.listchars = { tab = '<->', nbsp = '␣' }
-  opt.indentkeys:append('!0<Tab>')
-  o.foldcolumn = '1'
-  o.fillchars = [[eob: ,fold: ,foldopen:▽,foldsep: ,foldclose:▷]]
-  o.foldlevel = 99
-  o.foldlevelstart = 99
-
-  g.mapleader = ' '
-  g.mkdp_echo_preview_url = 1
-  g.mkdp_theme = 'dark'
-  g.mkdp_preview_options = {
-    maid = {
-      theme = 'dark',
+  local settings = {
+    g = {
+      bullets_checkbox_markers = ' x',
+      bullets_outline_levels = { 'ROM', 'ABC', 'rom', 'abc', 'std-' },
+      mapleader = ' ',
+      mkdp_echo_preview_url = 1,
+      mkdp_preview_options = {
+        maid = {
+          theme = 'dark',
+        },
+      },
+      mkdp_theme = 'dark',
+      rustfmt_autosave = 1,
+    },
+    o = {
+      backup = false,
+      colorcolumn = '80',
+      compatible = false,
+      cursorline = true,
+      cursorlineopt = 'number',
+      encoding = 'utf-8',
+      expandtab = true,
+      filetype = 'on',
+      fillchars = [[eob: ,fold: ,foldopen:▽,foldsep: ,foldclose:▷]],
+      foldcolumn = '1',
+      foldenable = true,
+      foldlevel = 99,
+      foldlevelstart = 99,
+      foldmethod = 'expr',
+      ignorecase = true,
+      list = true,
+      mouse = '',
+      number = true,
+      pumheight = 10,
+      relativenumber = true,
+      scrolloff = 8,
+      shiftwidth = 4,
+      sidescrolloff = 5,
+      signcolumn = 'yes:2',
+      smartcase = true,
+      softtabstop = 4,
+      splitright = true,
+      swapfile = false,
+      tabstop = 4,
+      termguicolors = true,
+      textwidth = 80,
+      undodir = os.getenv('HOME') .. '/.vim/undodir',
+      undofile = true,
+      wrap = false,
+    },
+    opt = {
+      completeopt = { 'menu', 'menuone', 'preview', 'noselect', 'noinsert' },
+      listchars = { tab = '<->', nbsp = '␣' },
     },
   }
-  g.rustfmt_autosave = 1
-  g.bullets_outline_levels = { 'ROM', 'ABC', 'rom', 'abc', 'std-' }
-  g.bullets_checkbox_markers = ' x'
+
+  for scope, ops in pairs(settings) do
+    for op_key, op_value in pairs(ops) do
+      vim[scope][op_key] = op_value
+    end
+  end
 end
 
 return {
