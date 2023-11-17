@@ -96,22 +96,26 @@ return {
             },
           }
         end,
-        ['cssls'] = function()
-          --Enable (broadcasting) snippet capability for completion
-          local custom_capabilities =
-            require('cmp_nvim_lsp').default_capabilities()
-          custom_capabilities.textDocument.completion.completionItem.snippetSupport =
-            true
-
-          require('lspconfig').cssls.setup {
-            capabilities = custom_capabilities,
-          }
-        end,
         ['denols'] = function()
           -- don't set up LSP, we only want formatting
         end,
         ['emmet_language_server'] = function()
           require('lspconfig').emmet_language_server.setup {
+            -- These are the default filetypes less the ones that are covered by
+            -- `cssls`. The two (sort of) conflict, and `cssls` is better. I
+            -- don't use Emmet CSS abbreviations anyway.
+            filetypes = {
+              'astro',
+              'eruby',
+              'html',
+              'htmldjango',
+              'javascriptreact',
+              'pug',
+              'sass',
+              'svelte',
+              'typescriptreact',
+              'vue',
+            },
             init_options = {
               preferences = {
                 ['caniuse.enabled'] = false,
