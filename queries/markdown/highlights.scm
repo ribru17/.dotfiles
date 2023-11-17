@@ -137,6 +137,16 @@
                       (#offset! @punctuation.special 0 0 0 -5)
                       (#set! conceal "▐"))
 
+; Thematic breaks
+((thematic_break) @punctuation.special
+                  (#offset! @punctuation.special 0 2 0 0)
+                  (#set! conceal "━"))
+((thematic_break) @punctuation.special
+                  (#offset! @punctuation.special 0 1 0 0)
+                  (#set! conceal "━"))
+((thematic_break) @punctuation.special
+                  (#set! conceal "━"))
+
 ; Headers
 ((atx_h1_marker) @text.title (#set! conceal "1"))
 ((atx_h2_marker) @text.title (#set! conceal "2"))
