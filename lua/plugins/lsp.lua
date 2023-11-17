@@ -276,14 +276,21 @@ return {
             params.context = { includeDeclaration = true }
             local clients = vim.lsp.get_active_clients()
             local client = clients[1]
+            local no_renames = { 'eslint', 'emmet_language_server' }
+            for _, possible_client in pairs(clients) do
+              if not vim.tbl_contains(no_renames, possible_client.name) then
+                client = possible_client
+                break
+              end
+            end
             local ns = vim.api.nvim_create_namespace('LspRenamespace')
 
             client.request(
               'textDocument/references',
               params,
               function(_, result)
-                if not result then
-                  vim.print('Cannot rename.')
+                if not result or vim.tbl_isempty(result) then
+                  vim.notify('Nothing to rename.')
                   return
                 end
 

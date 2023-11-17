@@ -294,11 +294,14 @@ return {
             name = 'nvim_lsp',
             entry_filter = function(entry, _)
               -- filter out text entries from LSP suggestions (except for Emmet LSP)
+              local keep_text_entries = { 'emmet_language_server', 'marksman' }
               return kinds[entry:get_kind()] ~= 'Text'
                 or (
                   entry.source.source.client
-                  and entry.source.source.client.name
-                    == 'emmet_language_server'
+                  and vim.tbl_contains(
+                    keep_text_entries,
+                    entry.source.source.client.name
+                  )
                 )
             end,
           },
