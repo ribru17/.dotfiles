@@ -24,8 +24,8 @@ return {
     opts = { enable_close_on_slash = false },
   },
   {
-    -- TODO: replace with ultimate-autopair after the following issue is fixed:
-    -- https://github.com/altermo/ultimate-autopair.nvim/issues/5
+    -- NOTE: Maybe replace with ultimate-autopair after the following issue is
+    -- fixed: https://github.com/altermo/ultimate-autopair.nvim/issues/5.
     'windwp/nvim-autopairs',
     lazy = true,
     config = function()
