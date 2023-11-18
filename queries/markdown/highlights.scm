@@ -8,11 +8,7 @@
 ; Bullet points
 ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
  @punctuation.special
- (#offset! @punctuation.special 0 0 0 -1)
- (#set! conceal "•"))
-([(list_marker_minus) (list_marker_plus) (list_marker_star)]
- @punctuation.special
- (#any-of? @punctuation.special "-" "+" "*")
+ (#offset-first-n! @punctuation.special 1)
  (#set! conceal "•"))
 (list
   (list_item
@@ -20,15 +16,7 @@
       (list_item
         ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
          @punctuation.special
-         (#offset! @punctuation.special 0 0 0 -1)
-         (#set! conceal "⭘"))))))
-(list
-  (list_item
-    (list
-      (list_item
-        ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
-         @punctuation.special
-         (#any-of? @punctuation.special "-" "+" "*")
+         (#offset-first-n! @punctuation.special 1)
          (#set! conceal "⭘"))))))
 (list
   (list_item
@@ -38,17 +26,7 @@
           (list_item
             ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
              @punctuation.special
-             (#offset! @punctuation.special 0 0 0 -1)
-             (#set! conceal "◼"))))))))
-(list
-  (list_item
-    (list
-      (list_item
-        (list
-          (list_item
-            ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
-             @punctuation.special
-             (#any-of? @punctuation.special "-" "+" "*")
+             (#offset-first-n! @punctuation.special 1)
              (#set! conceal "◼"))))))))
 (list
   (list_item
@@ -60,19 +38,7 @@
               (list_item
                 ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
                  @punctuation.special
-                 (#offset! @punctuation.special 0 0 0 -1)
-                 (#set! conceal "◻"))))))))))
-(list
-  (list_item
-    (list
-      (list_item
-        (list
-          (list_item
-            (list
-              (list_item
-                ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
-                 @punctuation.special
-                 (#any-of? @punctuation.special "-" "+" "*")
+                 (#offset-first-n! @punctuation.special 1)
                  (#set! conceal "◻"))))))))))
 (list
   (list_item
@@ -86,21 +52,7 @@
                   (list_item
                     ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
                      @punctuation.special
-                     (#offset! @punctuation.special 0 0 0 -1)
-                     (#set! conceal "→"))))))))))))
-(list
-  (list_item
-    (list
-      (list_item
-        (list
-          (list_item
-            (list
-              (list_item
-                (list
-                  (list_item
-                    ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
-                     @punctuation.special
-                     (#any-of? @punctuation.special "-" "+" "*")
+                     (#offset-first-n! @punctuation.special 1)
                      (#set! conceal "→"))))))))))))
 
 ; Checkbox list items
