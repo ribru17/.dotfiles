@@ -305,7 +305,6 @@ return {
   },
   {
     'stevearc/conform.nvim',
-    commit = 'e76ad83e4a3e303ccf50104a251118613162f8a8',
     event = { 'BufWritePre' },
     cmd = 'ConformInfo',
     config = function()
@@ -339,7 +338,7 @@ return {
           typescript = { 'deno_fmt' },
           javascriptreact = { 'deno_fmt' },
           typescriptreact = { 'deno_fmt' },
-          markdown = { 'deno_fmt' },
+          markdown = { 'deno_fmt', 'injected' },
           json = { 'deno_fmt' },
           jsonc = { 'deno_fmt' },
         },
