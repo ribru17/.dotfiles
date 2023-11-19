@@ -47,7 +47,7 @@ return {
   },
   {
     'andymass/vim-matchup',
-    event = { 'BufReadPost' },
+    event = { 'BufReadPost', 'BufNewFile' },
   },
   {
     'tpope/vim-fugitive',
