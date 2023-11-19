@@ -52,6 +52,9 @@ return {
         diagnostics = {
           undercurl = false,
         },
+        highlights = {
+          ['@comment.syntax'] = { link = 'Comment' },
+        },
       }
       vim.cmd.colorscheme { args = { 'bamboo' } }
     end,

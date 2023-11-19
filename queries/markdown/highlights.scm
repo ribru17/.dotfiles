@@ -64,7 +64,7 @@
  @text.todo.checked
  (#offset! @text.todo.checked 0 -2 0 0)
  (#set! conceal "✔"))
-(list_item (task_list_marker_checked) (_) @comment)
+(list_item (task_list_marker_checked) (_) @comment.syntax)
 
 ; Tables
 (pipe_table_header ("|") @punctuation.special (#set! conceal "┃"))
