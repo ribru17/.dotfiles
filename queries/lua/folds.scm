@@ -1,3 +1,0 @@
-;; extends
-
-[(arguments) (parameters)] @fold

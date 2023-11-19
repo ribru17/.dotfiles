@@ -46,21 +46,8 @@ return {
     end,
   },
   {
-    -- lazy-load matchit
-    dir = vim.env.VIMRUNTIME .. '/plugin/matchit.vim',
-    keys = {
-      '%',
-      'g%',
-      ']%',
-      '[%',
-      { 'a%', mode = { 'x' } },
-    },
-    config = function()
-      vim.cmd.packadd('matchit')
-      -- after packadd, buffers do not know we have matchit so we must tell them
-      -- https://www.reddit.com/r/vim/comments/5jasry/clean_reloading_of_buffers_after_packadd/
-      vim.cmd.doautoall('BufRead')
-    end,
+    'andymass/vim-matchup',
+    event = { 'BufReadPost' },
   },
   {
     'tpope/vim-fugitive',
