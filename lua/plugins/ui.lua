@@ -162,6 +162,14 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('gitsigns').setup {
+        signs = {
+          change = { text = '┇' },
+          delete = { text = '' },
+        },
+        sign_priority = 0,
+        preview_config = {
+          border = BORDER_STYLE,
+        },
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
 
@@ -203,10 +211,6 @@ return {
           -- undo all git changes
           map('n', '<leader>gr', gs.reset_buffer)
         end,
-        sign_priority = 0,
-        preview_config = {
-          border = BORDER_STYLE,
-        },
       }
     end,
   },
