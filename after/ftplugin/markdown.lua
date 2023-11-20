@@ -3,6 +3,7 @@ vim.opt_local.concealcursor = 'nc'
 vim.opt_local.foldcolumn = '0'
 -- Allow block comments to be continued when hitting enter.
 vim.opt_local.formatoptions:append('qcro')
+vim.b.matchup_matchparen_enabled = false
 
 -- Allow bullets.vim and nvim-autopairs to coexist.
 vim.schedule(function()
