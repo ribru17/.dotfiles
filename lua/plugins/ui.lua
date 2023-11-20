@@ -164,7 +164,7 @@ return {
       require('gitsigns').setup {
         signs = {
           change = { text = '┇' },
-          delete = { text = '' },
+          delete = { text = '▶' },
         },
         sign_priority = 0,
         preview_config = {
