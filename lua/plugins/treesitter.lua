@@ -26,6 +26,7 @@ return {
           'markdown_inline',
           'mermaid',
           'query',
+          'regex',
           'rust',
           'tsx',
           'typescript',
