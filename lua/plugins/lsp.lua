@@ -42,6 +42,8 @@ return {
           'gopls',
           'lua_ls',
           'marksman',
+          -- TODO: modify mason registry so that `[all]` packages aren't
+          -- installed. this will take work...
           'pylsp',
         },
       }

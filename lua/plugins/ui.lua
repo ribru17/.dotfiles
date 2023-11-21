@@ -163,7 +163,7 @@ return {
     config = function()
       require('gitsigns').setup {
         signs = {
-          change = { text = '┇' },
+          change = { text = '┋' },
           delete = { text = '▶' },
         },
         sign_priority = 0,
