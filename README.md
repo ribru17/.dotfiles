@@ -99,7 +99,7 @@ WezTerm).
     - Use `gd` to Go to Definition of current object
     - Use `gt` to Go to Type definition of current object
     - Use `gi` to Go to Implementation of current object
-    - Use `gc` to Go to deClaration of current object
+    - Use `<leader>gd` to Go to Declaration of current object
   - Use `<leader>dj` and `<leader>dk` to go to next or previous Diagnostic,
     respectively
 - Insert mode

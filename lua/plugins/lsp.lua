@@ -252,10 +252,10 @@ return {
             vim.cmd.split { mods = { tab = vim.fn.tabpagenr() + 1 } }
             vim.lsp.buf.definition { on_list = on_list }
           end, opts)
-          map('n', 'gc', vim.lsp.buf.declaration, opts)
+          map('n', '<leader>gd', vim.lsp.buf.declaration, opts)
           map(
             'n',
-            'gC',
+            '<leader>gD',
             '<cmd>tab split | lua vim.lsp.buf.declaration()<CR>',
             opts
           )
