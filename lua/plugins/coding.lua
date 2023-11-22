@@ -254,16 +254,17 @@ return {
   {
     'numToStr/Comment.nvim',
     keys = {
-      { mode = { 'i', 'n', 'x' }, '<C-_>' },
-      'gb',
+      { '<leader>c', mode = { 'n', 'x' } },
+      { 'gb', mode = { 'n', 'x' } },
+      { '<C-_>', mode = { 'i', 'x', 'n' } },
     },
     config = function()
       require('Comment').setup {
         toggler = {
-          line = '<C-_>',
+          line = '<leader>cc',
         },
         opleader = {
-          line = '<C-_>',
+          line = '<leader>c',
         },
         ignore = function()
           local mode = vim.api.nvim_get_mode()['mode']
@@ -275,12 +276,14 @@ return {
       }
 
       -- toggle comment in insert mode
-      local api = require('Comment.api')
+      local comment_line = require('Comment.api').toggle.linewise.current
       vim.keymap.set('i', '<C-_>', function()
-        api.toggle.linewise.current()
+        comment_line()
         vim.cmd.normal { '$', bang = true }
         vim.cmd.startinsert { bang = true }
       end, {})
+      vim.keymap.set({ 'n' }, '<C-_>', comment_line, {})
+      vim.keymap.set({ 'x' }, '<C-_>', '<leader>c', { remap = true })
     end,
   },
   {
