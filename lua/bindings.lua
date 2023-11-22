@@ -279,6 +279,8 @@ map('n', 'gf', function()
   pcall(function()
     if vim.fn.filereadable(vim.fn.expand('<cfile>')) == 1 then
       vim.cmd.drop { vim.fn.expand('<cfile>'), mods = { tab = 1 } }
+    else
+      vim.notify("Can't find file " .. vim.fn.expand('<cfile>') .. ' in path')
     end
   end)
 end, { desc = 'Smarter Goto File functionality' })
