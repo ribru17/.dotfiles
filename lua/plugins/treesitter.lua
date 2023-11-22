@@ -60,10 +60,6 @@ return {
         indent = {
           enable = true,
         },
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
-        },
         matchup = {
           enable = true,
           disable_virtual_text = true,

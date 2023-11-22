@@ -194,14 +194,6 @@ return {
     end,
   },
   {
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    lazy = true,
-    main = 'ts_context_commentstring',
-    opts = {
-      enable_autocmd = false,
-    },
-  },
-  {
     'kylechui/nvim-surround',
     version = '*',
     keys = {
@@ -280,9 +272,6 @@ return {
           end
           return nil
         end,
-        pre_hook = require(
-          'ts_context_commentstring.integrations.comment_nvim'
-        ).create_pre_hook(),
       }
 
       -- toggle comment in insert mode

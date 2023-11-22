@@ -12,7 +12,6 @@ local function apply()
       },
       mkdp_theme = 'dark',
       rustfmt_autosave = 1,
-      skip_ts_context_commentstring_module = true,
     },
     o = {
       backup = false,
