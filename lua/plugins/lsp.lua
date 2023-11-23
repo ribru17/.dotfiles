@@ -297,6 +297,9 @@ return {
             '<cmd>tab split | lua vim.lsp.buf.implementation()<CR>',
             opts
           )
+          map('n', 'gr', function()
+            vim.cmd.Telescope('lsp_references')
+          end, opts)
           map('n', '<leader>dk', vim.diagnostic.goto_prev, opts)
           map('n', '<leader>dj', vim.diagnostic.goto_next, opts)
           -- rename symbol starting with empty prompt, highlight references

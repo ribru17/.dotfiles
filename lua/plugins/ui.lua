@@ -233,6 +233,7 @@ return {
       { '<leader>fw' },
       { '<leader>fc' },
     },
+    cmd = 'Telescope',
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
       {
