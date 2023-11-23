@@ -18,6 +18,7 @@ return {
           'gitattributes',
           'gitcommit',
           'gitignore',
+          'haskell',
           'html',
           'javascript',
           'latex',
