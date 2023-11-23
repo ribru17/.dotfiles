@@ -63,6 +63,7 @@ return {
   },
   {
     'kevinhwang91/nvim-ufo',
+    commit = 'b687962b6fee4eba2caba57a7078037fc27438fd',
     dependencies = {
       'kevinhwang91/promise-async',
       -- remove digits from fold column
