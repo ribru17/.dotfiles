@@ -12,6 +12,14 @@ local function apply()
       },
       mkdp_theme = 'dark',
       rustfmt_autosave = 1,
+      haskell_tools = {
+        tools = {
+          codeLens = {
+            -- we already set up this autocmd ourselves
+            autoRefresh = false,
+          },
+        },
+      },
     },
     o = {
       backup = false,

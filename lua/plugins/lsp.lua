@@ -20,12 +20,12 @@ return {
   },
   {
     'mrcjkb/haskell-tools.nvim',
-    ft = 'haskell',
+    ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
     },
-    branch = '2.x.x',
+    version = '^3',
   },
   {
     'neovim/nvim-lspconfig',
