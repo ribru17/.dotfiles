@@ -158,6 +158,14 @@ return {
             capabilities = capabilities,
             settings = {
               Lua = {
+                codeLens = { enable = true },
+                doc = {
+                  privateName = { '^_' },
+                },
+                completion = {
+                  keywordSnippet = 'Replace',
+                  callSnippet = 'Replace',
+                },
                 diagnostics = {
                   -- Uncomment to receive LSP formatting diagnostics.
                   -- neededFileStatus = { ['codestyle-check'] = 'Any' },
@@ -167,6 +175,7 @@ return {
                   version = 'LuaJIT',
                 },
                 workspace = {
+                  checkThirdParty = false,
                   -- Make the server aware of Neovim runtime files
                   library = {
                     vim.fn.expand('$VIMRUNTIME'),
