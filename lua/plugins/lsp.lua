@@ -242,6 +242,7 @@ return {
             vim.api.nvim_create_autocmd(
               { 'InsertLeave', 'BufWritePost', 'TextChanged' },
               {
+                buffer = 0,
                 group = vim.api.nvim_create_augroup(
                   'CodelensRefresh',
                   { clear = true }
