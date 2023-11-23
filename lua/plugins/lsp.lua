@@ -236,6 +236,20 @@ return {
         -- to disable qflist opening, see
         -- https://github.com/neovim/neovim/pull/19213
         callback = function(ev)
+          local attached_client = vim.lsp.get_client_by_id(ev.data.client_id)
+          if attached_client.server_capabilities.codeLensProvider then
+            vim.lsp.codelens.refresh()
+            vim.api.nvim_create_autocmd(
+              { 'InsertLeave', 'BufWritePost', 'TextChanged' },
+              {
+                group = vim.api.nvim_create_augroup(
+                  'CodelensRefresh',
+                  { clear = true }
+                ),
+                callback = vim.lsp.codelens.refresh,
+              }
+            )
+          end
           local map = vim.keymap.set
           local opts = { buffer = ev.buf, remap = false, silent = true }
 
