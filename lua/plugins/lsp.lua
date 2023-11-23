@@ -241,7 +241,7 @@ return {
 
           -- if action opens up quickfix list, open the first item and close
           -- the list
-          local function on_list(options)
+          local function choose_list_first(options)
             vim.fn.setqflist({}, ' ', options)
             vim.cmd.cfirst()
           end
@@ -255,11 +255,11 @@ return {
           map('n', '<leader>e', vim.diagnostic.open_float, opts)
           -- go back with <C-o>, forth with <C-i>
           map('n', 'gd', function()
-            vim.lsp.buf.definition { on_list = on_list }
+            vim.lsp.buf.definition { on_list = choose_list_first }
           end, opts)
           map('n', 'gD', function()
             vim.cmd.split { mods = { tab = vim.fn.tabpagenr() + 1 } }
-            vim.lsp.buf.definition { on_list = on_list }
+            vim.lsp.buf.definition { on_list = choose_list_first }
           end, opts)
           map('n', '<leader>gd', vim.lsp.buf.declaration, opts)
           map(
