@@ -210,6 +210,10 @@ return {
           map('n', '<leader>gu', gs.reset_hunk)
           -- undo all git changes
           map('n', '<leader>gr', gs.reset_buffer)
+          -- stage git changes
+          map('n', '<leader>gs', gs.stage_hunk)
+          -- unstage git changes
+          map('n', '<leader>gU', gs.undo_stage_hunk)
         end,
       }
     end,
