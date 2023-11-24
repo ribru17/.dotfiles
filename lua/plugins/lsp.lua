@@ -9,6 +9,10 @@ return {
     'williamboman/mason.nvim',
     cmd = { 'Mason' },
     opts = {
+      registries = {
+        'lua:plugins.mason.registry',
+        'github:mason-org/mason-registry',
+      },
       ui = {
         border = BORDER_STYLE,
       },
@@ -42,8 +46,6 @@ return {
           'gopls',
           'lua_ls',
           'marksman',
-          -- TODO: modify mason registry so that `[all]` packages aren't
-          -- installed. this will take work...
           'pylsp',
         },
       }
