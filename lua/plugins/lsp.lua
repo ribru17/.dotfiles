@@ -427,9 +427,10 @@ return {
       -- auto-install some packages that cannot be handled by `ensure_installed`
       local registry = require('mason-registry')
       local packages = {
-        'prettierd',
         'clang-format',
+        'prettierd',
         'stylua',
+        'yapf',
       }
       registry.refresh(function()
         for _, pkg_name in ipairs(packages) do
