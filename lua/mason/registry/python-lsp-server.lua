@@ -9,5 +9,8 @@ return Pkg.new {
   homepage = 'https://github.com/python-lsp/python-lsp-server',
   categories = { Pkg.Cat.LSP },
   languages = { Pkg.Lang.Python },
-  install = pip3.packages { 'python-lsp-server', bin = { 'pylsp' } },
+  install = pip3.packages {
+    'python-lsp-server[pyflakes,pycodestyle]',
+    bin = { 'pylsp' },
+  },
 }
