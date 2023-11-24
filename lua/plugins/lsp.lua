@@ -10,7 +10,7 @@ return {
     cmd = { 'Mason' },
     opts = {
       registries = {
-        'lua:plugins.mason.registry',
+        'lua:mason.registry',
         'github:mason-org/mason-registry',
       },
       ui = {
