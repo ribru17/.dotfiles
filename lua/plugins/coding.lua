@@ -279,6 +279,12 @@ return {
       -- toggle comment in insert mode
       local comment_line = require('Comment.api').toggle.linewise.current
       vim.keymap.set('i', '<C-_>', function()
+        if vim.api.nvim_get_current_line() == '' then
+          local esc =
+            vim.api.nvim_replace_termcodes('<Esc>gcA', true, false, true)
+          vim.api.nvim_feedkeys(esc, 'm', false)
+          return
+        end
         comment_line()
         vim.cmd.normal { '$', bang = true }
         vim.cmd.startinsert { bang = true }

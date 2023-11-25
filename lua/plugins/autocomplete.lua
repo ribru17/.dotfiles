@@ -129,6 +129,7 @@ return {
       -- allow ts-autotag to coexist with luasnip
       local autotag = require('nvim-ts-autotag.internal')
       vim.keymap.set('i', '>', function()
+        -- TODO: get this to work so that `>` works with dot repeat inserts
         local row, col = unpack(vim.api.nvim_win_get_cursor(0))
         vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { '>' })
         autotag.close_tag()
