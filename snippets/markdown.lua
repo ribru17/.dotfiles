@@ -111,7 +111,7 @@ return {
       local nodes = {}
       local i_counter = 0
       local hlines = ''
-      for _ = 1, snip.captures[2] do
+      for _ = 1, snip.captures[1] do
         i_counter = i_counter + 1
         table.insert(nodes, t('| '))
         table.insert(nodes, i(i_counter, 'Column_' .. i_counter))
@@ -121,8 +121,8 @@ return {
       table.insert(nodes, t { '|', '' })
       hlines = hlines .. '|'
       table.insert(nodes, t { hlines, '' })
-      for c_i = 1, snip.captures[1] do
-        for c_j = 1, snip.captures[2] do
+      for c_i = 1, snip.captures[2] do
+        for c_j = 1, snip.captures[1] do
           i_counter = i_counter + 1
           table.insert(nodes, t('| '))
           table.insert(nodes, i(i_counter, 'Cell_' .. c_i .. '_' .. c_j))
