@@ -25,10 +25,6 @@ return {
   {
     'mrcjkb/haskell-tools.nvim',
     ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-    },
     version = '^3',
   },
   {
