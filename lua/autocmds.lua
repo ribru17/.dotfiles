@@ -41,6 +41,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'help',
     'checkhealth',
     'man',
+    'make',
     'gitcommit',
     'TelescopePrompt',
     'TelescopeResults',
