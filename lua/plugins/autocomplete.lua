@@ -149,8 +149,7 @@ return {
   },
   {
     'hrsh7th/nvim-cmp',
-    event = { 'InsertEnter' },
-    keys = { ':' },
+    event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'f3fora/cmp-spell' },
@@ -372,6 +371,7 @@ return {
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
+      -- TODO: make it so that you can still autocomplete with `:!`
       -- `:` cmdline setup.
       cmp.setup.cmdline(':', {
         mapping = cmp_mappings,
