@@ -251,6 +251,14 @@ return {
           i = ins_tab_mapping,
           s = ins_tab_mapping,
           c = function()
+            if vim.fn.getcmdline():sub(1, 1) == '!' then
+              vim.api.nvim_feedkeys(
+                vim.api.nvim_replace_termcodes('<C-z>', true, false, true),
+                'n',
+                false
+              )
+              return
+            end
             if cmp.visible() then
               cmp.confirm { select = true }
             else
@@ -371,7 +379,6 @@ return {
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
-      -- TODO: make it so that you can still autocomplete with `:!`
       -- `:` cmdline setup.
       cmp.setup.cmdline(':', {
         mapping = cmp_mappings,
