@@ -256,6 +256,9 @@ return {
     keys = {
       { '<leader>c', mode = { 'n', 'x' } },
       { 'gb', mode = { 'n', 'x' } },
+      { 'gco' },
+      { 'gcO' },
+      { 'gcA' },
       { '<C-_>', mode = { 'i', 'x', 'n' } },
     },
     config = function()
