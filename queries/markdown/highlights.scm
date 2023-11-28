@@ -108,3 +108,6 @@
 ((atx_h4_marker) @text.title (#set! conceal "4"))
 ((atx_h5_marker) @text.title (#set! conceal "5"))
 ((atx_h6_marker) @text.title (#set! conceal "6"))
+
+; Ease fenced code block conceals a bit
+((fenced_code_block_delimiter) @punctuation.delimiter (#set! conceal "~"))
