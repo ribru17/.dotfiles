@@ -1,9 +1,9 @@
 ;; extends
 
 ; NOTE: It would be nice to prevent conceals in table cells (because they can
-; mess up pipe alignment) but this is currently impossible since base conceals
-; are handled internally, and there is no way to detect if other inline conceals
-; are within table cells because detection is split among the parsers.
+; mess up pipe alignment) but this is currently impossible since there is no way
+; to detect if other inline conceals are within table cells because detection is
+; split among the parsers.
 
 ; Bullet points
 ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
