@@ -100,19 +100,18 @@ return {
           -- don't set up LSP, we only want formatting
         end,
         ['emmet_language_server'] = function()
+          -- These are the default filetypes less the ones that are covered by
+          -- `cssls`. The two (sort of) conflict, and `cssls` is better. I
+          -- don't use Emmet CSS abbreviations anyway.
+          local emmet_fts =
+            require('lspconfig').emmet_language_server.document_config.default_config.filetypes
+          local cssls_fts =
+            require('lspconfig').cssls.document_config.default_config.filetypes
+          local filtered_fts = vim.tbl_filter(function(value)
+            return not vim.tbl_contains(cssls_fts, value)
+          end, emmet_fts)
           require('lspconfig').emmet_language_server.setup {
-            -- These are the default filetypes less the ones that are covered by
-            -- `cssls`. The two (sort of) conflict, and `cssls` is better. I
-            -- don't use Emmet CSS abbreviations anyway.
-            filetypes = {
-              'eruby',
-              'html',
-              'htmldjango',
-              'javascriptreact',
-              'pug',
-              'sass',
-              'typescriptreact',
-            },
+            filetypes = filtered_fts,
             init_options = {
               preferences = {
                 ['caniuse.enabled'] = false,
