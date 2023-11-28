@@ -288,6 +288,12 @@ return {
       local BORDER_STYLE = require('settings').border
       local in_ts_cap = require('cmp.config.context').in_treesitter_capture
       local kinds = require('cmp.types').lsp.CompletionItemKind
+
+      local cmp_info_style = cmp.config.window.bordered {
+        border = BORDER_STYLE,
+        winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+      }
+
       local cmp_config = {
         mapping = cmp_mappings,
         completion = {
@@ -337,19 +343,20 @@ return {
           fields = { 'abbr', 'menu', 'kind' },
           format = lspkind.cmp_format {
             mode = 'symbol_text',
-            -- The function below will be called before any actual modifications from lspkind
-            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            -- The function below will be called before any actual modifications
+            -- from lspkind so that you can provide more controls on popup
+            -- customization.
+            -- (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
             before = function(_, vim_item)
               -- set fixed width of cmp window
-              local min_width = 30
-              local max_width = 30
+              local width = 30
               local ellipses_char = '…'
               local label = vim_item.abbr
-              local truncated_label = vim.fn.strcharpart(label, 0, max_width)
+              local truncated_label = vim.fn.strcharpart(label, 0, width)
               if truncated_label ~= label then
                 vim_item.abbr = truncated_label .. ellipses_char
-              elseif string.len(label) < min_width then
-                local padding = string.rep(' ', min_width - string.len(label))
+              elseif string.len(label) < width then
+                local padding = string.rep(' ', width - string.len(label))
                 vim_item.abbr = label .. padding
               end
               return vim_item
@@ -364,14 +371,8 @@ return {
           },
         },
         window = {
-          completion = cmp.config.window.bordered {
-            border = BORDER_STYLE,
-            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
-          },
-          documentation = cmp.config.window.bordered {
-            border = BORDER_STYLE,
-            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
-          },
+          completion = cmp_info_style,
+          documentation = cmp_info_style,
         },
         experimental = {
           ghost_text = true,
