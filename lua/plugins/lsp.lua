@@ -105,16 +105,13 @@ return {
             -- `cssls`. The two (sort of) conflict, and `cssls` is better. I
             -- don't use Emmet CSS abbreviations anyway.
             filetypes = {
-              'astro',
               'eruby',
               'html',
               'htmldjango',
               'javascriptreact',
               'pug',
               'sass',
-              'svelte',
               'typescriptreact',
-              'vue',
             },
             init_options = {
               preferences = {
