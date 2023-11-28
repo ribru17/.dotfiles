@@ -1,6 +1,6 @@
 ; inherits: quote
 
-; Don't use `return` states for function matching in Lua.
+; Don't use `return` statements for function matching in Lua.
 
 (for_statement
   "do" @open.loop
