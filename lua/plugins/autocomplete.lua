@@ -129,7 +129,8 @@ return {
       -- allow ts-autotag to coexist with luasnip
       local autotag = require('nvim-ts-autotag.internal')
       vim.keymap.set('i', '>', function()
-        -- TODO: get this to work so that `>` works with dot repeat inserts
+        -- NOTE: this function makes it so that inserted `>` characters are not
+        -- dot-repeatable...
         local row, col = unpack(vim.api.nvim_win_get_cursor(0))
         vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { '>' })
         autotag.close_tag()
@@ -137,14 +138,16 @@ return {
         ls.expand_auto()
       end, { remap = false })
 
-      vim.keymap.set('i', '/', function()
-        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-        vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { '/' })
-        autotag.close_slash_tag()
-        local new_row, new_col = unpack(vim.api.nvim_win_get_cursor(0))
-        vim.api.nvim_win_set_cursor(0, { new_row, new_col + 1 })
-        ls.expand_auto()
-      end, { remap = false })
+      -- NOTE: Uncomment the following to achieve auto tag closing upon entering
+      -- a slash character.
+      -- vim.keymap.set('i', '/', function()
+      --   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+      --   vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { '/' })
+      --   autotag.close_slash_tag()
+      --   local new_row, new_col = unpack(vim.api.nvim_win_get_cursor(0))
+      --   vim.api.nvim_win_set_cursor(0, { new_row, new_col + 1 })
+      --   ls.expand_auto()
+      -- end, { remap = false })
     end,
   },
   {
