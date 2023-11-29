@@ -128,6 +128,7 @@ that file). Save without formatting with `:W`.
 - Use `Ctrl+/` to toggle comments
   - In Normal and Insert mode, toggles current line
   - In Visual mode, toggles selected lines (or text if only one line selected)
+  - For advanced uses with motions, use `gc` for line and `gb` for block
 - Autocompletion
   - Use `Tab` to select current item, jump to next snippet position (VS Code
     functionality)

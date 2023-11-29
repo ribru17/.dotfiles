@@ -254,21 +254,12 @@ return {
   {
     'numToStr/Comment.nvim',
     keys = {
-      { '<leader>c', mode = { 'n', 'x' } },
+      { 'gc', mode = { 'n', 'x' } },
       { 'gb', mode = { 'n', 'x' } },
-      { 'gco' },
-      { 'gcO' },
-      { 'gcA' },
       { '<C-_>', mode = { 'i', 'x', 'n' } },
     },
     config = function()
       require('Comment').setup {
-        toggler = {
-          line = '<leader>cc',
-        },
-        opleader = {
-          line = '<leader>c',
-        },
         ignore = function()
           local mode = vim.api.nvim_get_mode()['mode']
           if mode == 'n' then
