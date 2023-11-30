@@ -264,16 +264,12 @@ end, { desc = 'Toggle word wrap' })
 
 map('n', 'U', '<C-r>', { desc = 'Easier redo' })
 
-map('n', '<leader>bx', function()
-  local current_buf = vim.api.nvim_get_current_buf()
-  local all_bufs = vim.api.nvim_list_bufs()
-
-  for _, buf in ipairs(all_bufs) do
-    if buf ~= current_buf and vim.fn.getbufinfo(buf)[1].changed ~= 1 then
-      vim.api.nvim_buf_delete(buf, { force = true })
-    end
-  end
-end, { desc = 'Close all but the current buffer' })
+map(
+  'n',
+  '<leader>bx',
+  '<Cmd>tabo<CR>',
+  { desc = 'Close all but the current tab' }
+)
 
 map('n', 'gf', function()
   pcall(function()

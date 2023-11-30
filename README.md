@@ -206,7 +206,7 @@ that file). Save without formatting with `:W`.
 - Use `Esc` to clear search highlighting
 - Use `K` to hover over the current object, showing LSP information
 - Use `<leader>e` to show current error information
-- Use `<leader>bx` to close all buffers except the current
+- Use `<leader>bx` to close all tabs except the current
 - Use `:M` (or `:MarkdownPreview`) to preview a markdown file
 - Use `<leader>w` to toggle line Wrap for the current buffer
 - Git
