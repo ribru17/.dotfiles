@@ -276,13 +276,13 @@ return {
             '<cmd>tab split | lua vim.lsp.buf.type_definition()<CR>',
             opts
           )
-          map('n', 'gi', vim.lsp.buf.implementation, opts)
-          map(
-            'n',
-            'gI',
-            '<cmd>tab split | lua vim.lsp.buf.implementation()<CR>',
-            opts
-          )
+          map('n', 'gi', function()
+            vim.cmd.Telescope('lsp_implementations')
+          end, opts)
+          map('n', 'gI', function()
+            vim.cmd.split { mods = { tab = vim.fn.tabpagenr() + 1 } }
+            vim.lsp.buf.implementation { on_list = choose_list_first }
+          end, opts)
           map('n', 'gr', function()
             vim.cmd.Telescope('lsp_references')
           end, opts)
