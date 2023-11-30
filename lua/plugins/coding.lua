@@ -283,7 +283,7 @@ return {
         vim.cmd.startinsert { bang = true }
       end, {})
       vim.keymap.set({ 'n' }, '<C-_>', comment_line, {})
-      vim.keymap.set({ 'x' }, '<C-_>', '<leader>c', { remap = true })
+      vim.keymap.set({ 'x' }, '<C-_>', 'gc', { remap = true })
     end,
   },
   {
