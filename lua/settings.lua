@@ -20,6 +20,8 @@ local function apply()
           },
         },
       },
+      -- Recognize `.typ` filetype as `typst`. Only works on nightly as of now.
+      filetype_typ = 'typst',
     },
     o = {
       backup = false,
