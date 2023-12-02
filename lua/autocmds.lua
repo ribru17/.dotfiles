@@ -185,3 +185,11 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.treesitter.start(args.buf, 'markdown')
   end,
 })
+
+-- filetypes that should not have a foldcolumn that takes up lots of space
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'markdown', 'text' },
+  callback = function()
+    vim.opt_local.foldcolumn = '0'
+  end,
+})
