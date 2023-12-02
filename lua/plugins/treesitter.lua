@@ -21,6 +21,7 @@ return {
           'haskell',
           'html',
           'javascript',
+          'json',
           'latex',
           'lua',
           'markdown',
