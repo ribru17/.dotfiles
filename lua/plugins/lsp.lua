@@ -213,6 +213,9 @@ return {
             },
           }
         end,
+        ['rust_analyzer'] = function()
+          -- don't set up, this will be done by rustaceanvim
+        end,
         ['tsserver'] = function()
           -- don't set up, conflicts with typescript-tools.nvim
         end,

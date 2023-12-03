@@ -1,5 +1,10 @@
 return {
   {
+    'mrcjkb/rustaceanvim',
+    version = '^3',
+    ft = { 'rust' },
+  },
+  {
     'echasnovski/mini.indentscope',
     version = '*',
     main = 'mini.indentscope',
