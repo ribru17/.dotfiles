@@ -310,7 +310,7 @@ return {
           {
             name = 'nvim_lsp',
             entry_filter = function(entry, _)
-              -- filter out text entries from LSP suggestions (except for Emmet LSP)
+              -- filter out most text entries from LSP suggestions
               local keep_text_entries = { 'emmet_language_server', 'marksman' }
               return kinds[entry:get_kind()] ~= 'Text'
                 or (
