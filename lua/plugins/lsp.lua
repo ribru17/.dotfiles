@@ -230,9 +230,9 @@ return {
           if attached_client.server_capabilities.codeLensProvider then
             vim.lsp.codelens.refresh()
             vim.api.nvim_create_autocmd(
-              { 'InsertLeave', 'BufWritePost', 'TextChanged' },
+              { 'InsertLeave', 'TextChanged', 'CursorHold' },
               {
-                buffer = 0,
+                buffer = ev.buf,
                 group = vim.api.nvim_create_augroup(
                   'CodelensRefresh',
                   { clear = true }
