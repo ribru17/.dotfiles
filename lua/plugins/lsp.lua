@@ -299,9 +299,8 @@ return {
             params.context = { includeDeclaration = true }
             local clients = vim.lsp.get_active_clients()
             local client = clients[1]
-            local no_renames = { 'eslint', 'emmet_language_server' }
             for _, possible_client in pairs(clients) do
-              if not vim.tbl_contains(no_renames, possible_client.name) then
+              if possible_client.server_capabilities.renameProvider then
                 client = possible_client
                 break
               end
