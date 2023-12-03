@@ -135,6 +135,7 @@ return {
             capabilities = capabilities,
             settings = {
               gopls = {
+                semanticTokens = true,
                 analyses = {
                   unusedparams = true,
                 },
