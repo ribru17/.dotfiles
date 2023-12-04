@@ -713,7 +713,19 @@ return {
         map('n', 'D', api.fs.remove, opts('Trash'))
         map('n', '<Esc>', smart_close_esc, opts('Close'))
         map('n', 'z', api.node.navigate.parent_close, opts('Close Directory'))
-        map('n', '<Space>', api.marks.toggle, opts('Toggle Bookmark'))
+        map('n', 't', api.marks.toggle, opts('Toggle Bookmark'))
+        map(
+          'n',
+          '<leader>dj',
+          api.node.navigate.diagnostics.next,
+          opts('Next Diagnostic')
+        )
+        map(
+          'n',
+          '<leader>dk',
+          api.node.navigate.diagnostics.prev,
+          opts('Prev Diagnostic')
+        )
       end
 
       require('nvim-tree').setup {
