@@ -67,8 +67,9 @@ local function apply()
   }
 
   for scope, ops in pairs(settings) do
+    local op_group = vim[scope]
     for op_key, op_value in pairs(ops) do
-      vim[scope][op_key] = op_value
+      op_group[op_key] = op_value
     end
   end
 end

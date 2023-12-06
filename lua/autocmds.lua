@@ -1,7 +1,6 @@
+local create_autocmd = vim.api.nvim_create_autocmd
 -- specify different tab widths on certain files
-vim.api.nvim_create_augroup('setIndent', { clear = true })
-vim.api.nvim_create_autocmd('FileType', {
-  group = 'setIndent',
+create_autocmd('FileType', {
   pattern = {
     'xml',
     'html',
@@ -16,12 +15,17 @@ vim.api.nvim_create_autocmd('FileType', {
     'markdown',
     'lua',
   },
-  command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2',
+  callback = function()
+    local setlocal = vim.opt_local
+    setlocal.shiftwidth = 2
+    setlocal.tabstop = 2
+    setlocal.softtabstop = 2
+  end,
 })
 
 ---> filetype configuration for miniindentscope
 -- bottom whitespace trimming
-vim.api.nvim_create_autocmd('FileType', {
+create_autocmd('FileType', {
   pattern = { 'python', 'markdown', 'scheme', 'query' },
   callback = function()
     vim.b.miniindentscope_config = {
@@ -32,7 +36,7 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 -- disabling
-vim.api.nvim_create_autocmd('FileType', {
+create_autocmd('FileType', {
   pattern = {
     'alpha',
     'lazy',
@@ -54,18 +58,9 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- where applicable, reset cursor to blinking I-beam after closing Neovim
--- https://github.com/neovim/neovim/issues/4867
-vim.api.nvim_create_augroup('resetCursor', { clear = true })
-vim.api.nvim_create_autocmd('VimLeave', {
-  group = 'resetCursor',
-  pattern = '*',
-  command = 'set guicursor=a:ver10-blinkon1',
-})
-
 -->> "RUN ONCE" ON FILE OPEN COMMANDS <<--
 -- prevent comment from being inserted when entering new line in existing comment
-vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+create_autocmd({ 'BufRead', 'BufNewFile' }, {
   callback = function()
     -- allow <CR> to continue block comments only
     -- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
@@ -82,7 +77,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 })
 
 -- lazy load keymaps and user-defined commands
-vim.api.nvim_create_autocmd('User', {
+create_autocmd('User', {
   pattern = 'VeryLazy',
   once = true,
   callback = function()
@@ -91,7 +86,7 @@ vim.api.nvim_create_autocmd('User', {
 })
 
 -- load EZ-Semicolon upon entering insert mode
-vim.api.nvim_create_autocmd('InsertEnter', {
+create_autocmd('InsertEnter', {
   pattern = '*',
   once = true,
   callback = function()
@@ -100,7 +95,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 })
 
 -- open dashboard when in a directory
-vim.api.nvim_create_autocmd('BufEnter', {
+create_autocmd('BufEnter', {
   callback = function()
     if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
       vim.cmd.NvimTreeToggle(vim.fn.expand('%'))
@@ -109,8 +104,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 })
 
 -- close nvim tree if last buffer of tab/window
-vim.api.nvim_create_autocmd('BufEnter', {
-  group = vim.api.nvim_create_augroup('NvimTreeClose', { clear = true }),
+create_autocmd('BufEnter', {
   pattern = 'NvimTree_*',
   callback = function()
     local layout = vim.api.nvim_call_function('winlayout', {})
@@ -128,7 +122,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 })
 
 -- handle dashboard animation starting and stopping
-vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter' }, {
+create_autocmd({ 'FileType', 'BufEnter' }, {
   pattern = '*',
   callback = function()
     local ft = vim.bo.filetype
@@ -142,7 +136,7 @@ vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter' }, {
 
 -- prevent weird snippet jumping behavior
 -- https://github.com/L3MON4D3/LuaSnip/issues/258
-vim.api.nvim_create_autocmd('ModeChanged', {
+create_autocmd('ModeChanged', {
   pattern = { 's:n', 'i:*' },
   callback = function()
     local ls = require('luasnip')
@@ -156,7 +150,7 @@ vim.api.nvim_create_autocmd('ModeChanged', {
 })
 
 -- update foldcolumn ribbon colors
-vim.api.nvim_create_autocmd('ColorScheme', {
+create_autocmd('ColorScheme', {
   callback = function()
     local util = require('utils')
     for i = 1, 8, 1 do
@@ -179,7 +173,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 })
 
 -- nicer cmp docs highlights for Nvim 0.10
-vim.api.nvim_create_autocmd('FileType', {
+create_autocmd('FileType', {
   pattern = 'cmp_docs',
   callback = function(args)
     vim.treesitter.start(args.buf, 'markdown')
@@ -187,7 +181,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- filetypes that should not have a foldcolumn that takes up lots of space
-vim.api.nvim_create_autocmd('FileType', {
+create_autocmd('FileType', {
   pattern = { 'markdown', 'text' },
   callback = function()
     vim.opt_local.foldcolumn = '0'
