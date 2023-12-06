@@ -79,16 +79,8 @@
                       (#offset! @punctuation.special 0 0 0 -1)
                       (#set! conceal "▐"))
 ((block_continuation) @punctuation.special
-                      (#eq? @punctuation.special ">")
-                      (#set! conceal "▐"))
-((block_continuation) @punctuation.special
-                      (#eq? @punctuation.special "> ")
-                      (#offset! @punctuation.special 0 0 0 -1)
-                      (#set! conceal "▐"))
-((block_continuation) @punctuation.special
-                      ; for indented code blocks
-                      (#eq? @punctuation.special ">     ")
-                      (#offset! @punctuation.special 0 0 0 -5)
+                      (#lua-match? @punctuation.special "^>")
+                      (#offset-first-n! @punctuation.special 1)
                       (#set! conceal "▐"))
 
 ; Thematic breaks
