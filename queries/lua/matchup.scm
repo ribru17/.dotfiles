@@ -2,10 +2,10 @@
 
 ; Don't use `return` statements for function matching in Lua.
 
+; Allow `for` and `while` keywords to be jumpable.
 (for_statement
   ["for" "do"] @open.loop
   "end" @close.loop) @scope.loop
-
 (while_statement
   ["while" "do"] @open.loop
   "end" @close.loop) @scope.loop
