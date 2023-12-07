@@ -75,8 +75,10 @@ return {
               ['i/'] = '@comment.outer',
               ['ac'] = '@conditional.outer',
               ['ic'] = '@conditional.inner',
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
+              ['af'] = '@call.outer',
+              ['if'] = '@call.inner',
+              ['aF'] = '@function.outer',
+              ['iF'] = '@function.inner',
               ['aL'] = '@loop.outer',
               ['iL'] = '@loop.inner',
             },
@@ -109,6 +111,39 @@ return {
         offset_first_n,
         true
       )
+
+      local map = vim.keymap.set
+      local math_obj_opts = {
+        desc = 'Custom text object to delete inside "$" delimiters',
+      }
+      map('x', 'i$', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@math.inner',
+          'textobjects',
+          'v'
+        )
+      end, math_obj_opts)
+      map('x', 'a$', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@math.outer',
+          'textobjects',
+          'v'
+        )
+      end, math_obj_opts)
+      map('o', 'i$', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@math.inner',
+          'textobjects',
+          'o'
+        )
+      end, math_obj_opts)
+      map('o', 'a$', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@math.outer',
+          'textobjects',
+          'o'
+        )
+      end, math_obj_opts)
     end,
   },
 }

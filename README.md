@@ -181,11 +181,14 @@ that file). Save without formatting with `:W`.
   - Use `b` postfix to make selection Bold (surround with `**`) in Markdown
 - Custom text object motions using Tree-sitter (all motions support `a` and `i`
   variants)
-  - `f`: function implementation
-  - `L`: loop
-  - `l`: line
-  - `c`: conditional
-  - `/`: comment
+  - `f`: Function call
+  - `F`: Function implementation
+  - `L`: Loop
+  - `l`: Line
+  - `c`: Conditional
+  - `/`: Comment
+  - `$`: LaTeX blocks (in Markdown)
+  - `i`: Current indentation level
 - Additionally, use `aa` motion to select entire buffer
 - Miscellaneous niceties
   - Insert new lines in Normal mode with `Enter` (line(s) below) or
@@ -228,7 +231,7 @@ Inherits all snippets provided by the LSP. Additionally...
 - Emmet snippets for HTML and other filetypes (expand with `<S-CR>`)
 - `lorem`: snippet for Markdown and Emmet-supported filetypes that provides a
   long `lorem ipsum...` string
-- Many Markdown LaTex snippets inspired by [Gilles Castel](https://castel.dev/).
+- Many Markdown LaTeX snippets inspired by [Gilles Castel](https://castel.dev/).
 - Custom Markdown tables with `tbl<row_num>x<col_num>`
 
 ### Debugging
