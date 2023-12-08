@@ -10,6 +10,18 @@ of both worlds).
 ]],
 })
 
+map('n', 'gx', function()
+  vim.cmd['!'] {
+    args = {
+      'xdg-open',
+      vim.fn.shellescape(vim.fn.expand('<cfile>'), 1),
+    },
+    mods = {
+      silent = true,
+    },
+  }
+end, { desc = 'Netrw-like link opening', silent = true })
+
 local indent_opts = { desc = 'VSCode-style block indentation' }
 map('x', '<Tab>', function()
   vim.cmd.normal { vim.v.count1 .. '>gv', bang = true }

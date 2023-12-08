@@ -40,17 +40,6 @@ return {
     },
   },
   {
-    -- lazy-load netrw for `gx` functionality
-    dir = vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim',
-    keys = {
-      'gx',
-    },
-    cmd = 'Explore',
-    config = function()
-      vim.cmd.source(vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim')
-    end,
-  },
-  {
     'andymass/vim-matchup',
     event = { 'BufReadPost', 'BufNewFile' },
   },
