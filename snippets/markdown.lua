@@ -303,9 +303,9 @@ return {
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
-    { trig = '|', wordTrig = false },
+    { trig = 'mid', wordTrig = false },
     fmt([[\mid]], {}),
-    { condition = in_mathzone }
+    { condition = in_mathzone_ignore_backslash }
   ),
   s(
     { trig = 'sqrt', wordTrig = false },
