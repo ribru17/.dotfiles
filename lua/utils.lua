@@ -109,6 +109,13 @@ function M.color_fade_stop()
 end
 
 local get_node = vim.treesitter.get_node
+local cur_pos = vim.api.nvim_win_get_cursor
+local get_node_insert_mode = function()
+  local ins_curs = cur_pos(0)
+  ins_curs[1] = ins_curs[1] - 1
+  ins_curs[2] = ins_curs[2] - 1
+  return get_node { ignore_injections = false, pos = ins_curs }
+end
 
 local MATH_NODES = {
   displayed_equation = true,
@@ -122,7 +129,7 @@ M.in_mathzone = function(_, matched_trigger)
     -- thread to finish tree-sitter parsing
     vim.cmd.redraw()
   end
-  local current_node = get_node { ignore_injections = false }
+  local current_node = get_node_insert_mode()
   while current_node do
     if current_node:type() == 'text_mode' then
       return false
@@ -135,7 +142,7 @@ M.in_mathzone = function(_, matched_trigger)
 end
 
 M.in_latex_zone = function()
-  local current_node = get_node { ignore_injections = false }
+  local current_node = get_node_insert_mode()
   while current_node do
     if MATH_NODES[current_node:type()] then
       return true
@@ -154,7 +161,7 @@ M.in_mathzone_ignore_backslash = function(line_to_cursor, matched_trigger)
     -- thread to finish tree-sitter parsing
     vim.cmd.redraw()
   end
-  local current_node = get_node { ignore_injections = false }
+  local current_node = get_node_insert_mode()
   while current_node do
     if current_node:type() == 'text_mode' then
       return false
