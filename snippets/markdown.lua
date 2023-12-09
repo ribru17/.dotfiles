@@ -308,6 +308,11 @@ return {
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
+    { trig = 'ket', wordTrig = false },
+    fmt([[| {1} \rangle]], { i(1, '0') }),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
     { trig = 'sqrt', wordTrig = false },
     fmt([[\sqrt{{{1}}}]], { i(1, '') }),
     { condition = in_mathzone_ignore_backslash }
