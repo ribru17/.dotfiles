@@ -142,7 +142,7 @@ M.in_mathzone = function(_, matched_trigger)
 end
 
 M.in_latex_zone = function()
-  local current_node = get_node_insert_mode()
+  local current_node = get_node { ignore_injections = false }
   while current_node do
     if MATH_NODES[current_node:type()] then
       return true
