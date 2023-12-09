@@ -10,17 +10,21 @@ of both worlds).
 ]],
 })
 
-map('n', 'gx', function()
-  vim.cmd['!'] {
-    args = {
-      'xdg-open',
-      vim.fn.shellescape(vim.fn.expand('<cfile>'), 1),
-    },
-    mods = {
-      silent = true,
-    },
-  }
-end, { desc = 'Netrw-like link opening', silent = true })
+-- Only set this mapping if `xdg-open` is found. If not, we will bite the bullet
+-- and load all of the netrw plugin to get this functionality.
+if vim.fn.executable('xdg-open') == 1 then
+  map('n', 'gx', function()
+    vim.cmd['!'] {
+      args = {
+        'xdg-open',
+        vim.fn.shellescape(vim.fn.expand('<cfile>'), 1),
+      },
+      mods = {
+        silent = true,
+      },
+    }
+  end, { desc = 'Netrw-like link opening', silent = true })
+end
 
 local indent_opts = { desc = 'VSCode-style block indentation' }
 map('x', '<Tab>', function()

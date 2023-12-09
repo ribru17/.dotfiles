@@ -40,6 +40,21 @@ return {
     },
   },
   {
+    -- Lazy-load netrw for `gx` functionality, *only* if `xdg-open` is not found
+    -- (in which case we will create a regular keymapping for `gx` using it)
+    dir = vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim',
+    enabled = function()
+      return vim.fn.executable('xdg-open') == 0
+    end,
+    keys = {
+      'gx',
+    },
+    cmd = 'Explore',
+    config = function()
+      vim.cmd.source(vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim')
+    end,
+  },
+  {
     'andymass/vim-matchup',
     event = { 'BufReadPost', 'BufNewFile' },
   },

@@ -42,8 +42,6 @@ plugins for you, no extra commands necessary.
   installation of the Haskell Language Server with Mason due to compatibility
   troubles with GHC, see [Troubleshooting](#question-troubleshooting) for
   details)
-- Install [xdg-utils](https://archlinux.org/packages/extra/any/xdg-utils/) for
-  `gx` functionality (can also just use `netrw` instead)
 
 ## :rocket: Usage
 
