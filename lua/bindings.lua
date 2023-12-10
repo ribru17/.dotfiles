@@ -195,7 +195,12 @@ map('n', 'P', function()
   vim.cmd.normal { vim.v.count1 .. 'P`[', bang = true }
 end, { desc = 'Cursor-in-place paste' })
 
-map('i', '<C-p>', '<C-r>"', { desc = 'Paste from register in insert mode' })
+map(
+  'i',
+  '<C-p>',
+  '<C-r>0',
+  { desc = 'Paste from YANK register in insert mode' }
+)
 map('i', '<C-n>', '<Nop>', { desc = 'Disable default autocompletion menu' })
 
 vim.keymap.set({ 'x', 'n' }, '<leader>t', function()
