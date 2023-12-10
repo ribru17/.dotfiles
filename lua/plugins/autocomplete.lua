@@ -291,7 +291,6 @@ return {
 
       local cmp_info_style = cmp.config.window.bordered {
         border = BORDER_STYLE,
-        winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
       }
 
       local cmp_config = {
