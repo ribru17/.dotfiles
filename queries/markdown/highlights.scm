@@ -106,3 +106,8 @@
 
 ; Awesome fenced code block language conceals using Nerd icons
 (info_string (language) @label (#ft-conceal! @label))
+; Make icons bigger, except in the case of a one-character language string...
+; this hack can be removed after https://github.com/neovim/neovim/pull/9496
+(info_string (language) @label
+             (#offset! @label 0 1 0 0)
+             (#set! conceal " "))
