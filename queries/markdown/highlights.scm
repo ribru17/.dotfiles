@@ -103,3 +103,6 @@
 
 ; Ease fenced code block conceals a bit
 ((fenced_code_block_delimiter) @punctuation.delimiter (#set! conceal "~"))
+
+; Awesome fenced code block language conceals using Nerd icons
+(info_string (language) @label (#ft-conceal! @label))
