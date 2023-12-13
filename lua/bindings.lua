@@ -234,7 +234,7 @@ map('x', 'aa', function()
   return 'ggoG' .. mode
 end, { expr = true, desc = 'Select entire buffer' })
 map('o', 'aa', function()
-  vim.cmd.normal('gg0vG$')
+  vim.cmd.normal('ggVG')
 end, { desc = 'Select entire buffer' })
 
 map('x', 'il', '_og_', { desc = 'Select text content of current line' })
