@@ -155,6 +155,16 @@ return {
   },
   {
     'nvim-tree/nvim-web-devicons',
+    opts = {
+      override_by_extension = {
+        ['scm'] = {
+          icon = '',
+          color = '#90a850',
+          cterm_color = '107',
+          name = 'Query',
+        },
+      },
+    },
     lazy = true,
   },
   {
