@@ -17,7 +17,7 @@
         ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
          @punctuation.special
          (#offset-first-n! @punctuation.special 1)
-         (#set! conceal "⭘"))))))
+         (#set! conceal "◦"))))))
 (list
   (list_item
     (list
@@ -27,7 +27,7 @@
             ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
              @punctuation.special
              (#offset-first-n! @punctuation.special 1)
-             (#set! conceal "◼"))))))))
+             (#set! conceal "▪"))))))))
 (list
   (list_item
     (list
@@ -39,7 +39,7 @@
                 ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
                  @punctuation.special
                  (#offset-first-n! @punctuation.special 1)
-                 (#set! conceal "◻"))))))))))
+                 (#set! conceal "▫"))))))))))
 (list
   (list_item
     (list
@@ -53,17 +53,17 @@
                     ([(list_marker_minus) (list_marker_plus) (list_marker_star)]
                      @punctuation.special
                      (#offset-first-n! @punctuation.special 1)
-                     (#set! conceal "→"))))))))))))
+                     (#set! conceal "🠢"))))))))))))
 
 ; Checkbox list items
 ((task_list_marker_unchecked)
  @text.todo.unchecked
  (#offset! @text.todo.unchecked 0 -2 0 0)
- (#set! conceal "✘"))
+ (#set! conceal "✗")) ; Alt: ✘
 ((task_list_marker_checked)
  @text.todo.checked
  (#offset! @text.todo.checked 0 -2 0 0)
- (#set! conceal "✔"))
+ (#set! conceal "✓")) ; Alt: ✔
 (list_item (task_list_marker_checked) (_) @comment.syntax)
 
 ; Tables

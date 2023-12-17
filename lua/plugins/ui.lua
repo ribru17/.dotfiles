@@ -109,7 +109,7 @@ return {
           color_icons = true,
           show_close_icon = false,
           show_buffer_close_icons = false,
-          modified_icon = '●',
+          modified_icon = '•',
           diagnostics = 'nvim_lsp',
           diagnostics_indicator = function(count, level)
             local icon = level:match('error') and '' or ''
@@ -164,7 +164,7 @@ return {
       require('gitsigns').setup {
         signs = {
           change = { text = '┋' },
-          delete = { text = '▶' },
+          delete = { text = '🢒' },
         },
         sign_priority = 0,
         preview_config = {
