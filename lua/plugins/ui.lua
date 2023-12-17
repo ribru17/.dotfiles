@@ -155,16 +155,16 @@ return {
   },
   {
     'nvim-tree/nvim-web-devicons',
-    opts = {
-      override_by_extension = {
-        ['scm'] = {
-          icon = '',
-          color = '#90a850',
-          cterm_color = '107',
-          name = 'Query',
+    config = function()
+      local devicons = require('nvim-web-devicons')
+      local icons = devicons.get_icons()
+      devicons.setup {
+        override_by_extension = {
+          ['scm'] = icons['query'],
+          ['ss'] = icons['scm'],
         },
-      },
-    },
+      }
+    end,
     lazy = true,
   },
   {
