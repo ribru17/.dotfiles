@@ -113,3 +113,7 @@
 ((fenced_code_block_delimiter) @label 
                                (#offset! @label 0 2 0 0)
                                (#set! conceal " "))
+
+; Spell checking for table content
+(pipe_table_header (pipe_table_cell) @nospell)
+(pipe_table_row (pipe_table_cell) @spell)
