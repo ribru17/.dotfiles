@@ -231,19 +231,20 @@ Inherits all snippets provided by the LSP. Additionally...
 - Emmet snippets for HTML and other filetypes (expand with `<S-CR>`)
 - `lorem`: snippet for Markdown and Emmet-supported filetypes that provides a
   long `lorem ipsum...` string
-- Many Markdown LaTeX snippets inspired by [Gilles Castel](https://castel.dev/).
+- Many Markdown LaTeX snippets inspired by [Gilles Castel](https://castel.dev/)
 - Custom Markdown tables with `tbl<row_num>x<col_num>`
 
 ### Debugging
 
 - Check base startup time with `:StartupTime`
 - Check plugin loading information with `:Lazy profile`
+- Use `:I` and `:IT` aliases for `:Inspect` and `:InspectTree`, respectively
 
 ## :question: Troubleshooting
 
 - **NOTE:** To support `<S-CR>` on Konsole, go to
   `Settings>Edit Current Profile>Keyboard` and change the `Return+Shift` mapping
-  keycode from `\EOM` (or whatever the current value is) to `\E[13;2u`
+  keycode from `\EOM` (or whatever the current value is) to `\E[13;2u`.
 - If the post install hook doesn't work when first installing `tree-sitter`, run
   `:TSUpdate` manually and it should work.
 - If you get an error when opening a certain file type:
@@ -256,7 +257,7 @@ Inherits all snippets provided by the LSP. Additionally...
   when opening Rust files, this may be because Mason's installed version cannot
   be executed due to shared library issues(?) and if this is the case it may be
   best to just keep the Mason installation (for compatibility reasons) and
-  install the `rust-analyzer` binary on your machine regularly
+  install the `rust-analyzer` binary on your machine regularly.
 - If you get errors related to the Haskell Language Server not being found even
   after you have installed `ghc` and `hls`, this is because the version of `ghc`
   is not yet working in tandem with `hls`. In the `ghcup tui`, make sure your

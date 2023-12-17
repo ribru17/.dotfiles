@@ -298,6 +298,10 @@ create_command(
   { desc = 'Easier Markdown preview alias' }
 )
 
+create_command('I', 'Inspect', { desc = 'Easier Markdown preview alias' })
+
+create_command('IT', 'InspectTree', { desc = 'Easier Markdown preview alias' })
+
 create_command('DiffFormat', function()
   local lines = vim.fn.system('git diff --unified=0'):gmatch('[^\n\r]+')
   local ranges = {}
