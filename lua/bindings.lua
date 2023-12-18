@@ -16,7 +16,7 @@ of both worlds).
 if vim.fn.executable('xdg-open') == 1 then
   map('n', 'gx', function()
     if in_link() then
-      -- workaround to move to the next link text; movement doesn't work with
+      -- HACK to move to the next link text; movement doesn't work with
       -- injected text objects for some reason... see:
       -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/479
       require('nvim-treesitter.textobjects.select').select_textobject(
