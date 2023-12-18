@@ -239,6 +239,7 @@ Inherits all snippets provided by the LSP. Additionally...
 - Check base startup time with `:StartupTime`
 - Check plugin loading information with `:Lazy profile`
 - Use `:I` and `:IT` aliases for `:Inspect` and `:InspectTree`, respectively
+- Use `gh` to Get Help under the current word or selection
 
 ## :question: Troubleshooting
 

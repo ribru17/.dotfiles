@@ -270,6 +270,14 @@ map('n', 'gf', function()
   end)
 end, { desc = 'Smarter Goto File functionality' })
 
+map('n', 'gh', function()
+  vim.cmd.h(vim.fn.expand('<cword>'))
+end, { desc = 'Get Help under current word' })
+map('x', 'gh', function()
+  vim.cmd.normal('y')
+  vim.cmd.h(vim.fn.getreg('0'))
+end, { desc = 'Get Help under current selection' })
+
 map('n', '<leader>s', function()
   local cur_pos = vim.api.nvim_win_get_cursor(0)
   vim.cmd.normal { '1z=', bang = true }
