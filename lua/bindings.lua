@@ -398,6 +398,9 @@ create_command('ClearSem', function()
   clear('@lsp.typemod.variable.mutable.rust')
   clear('@lsp.typemod.variable.static')
   clear('@lsp.typemod.variable.static.rust')
+  clear('@lsp.type.builtinAttribute')
+  clear('@lsp.type.derive')
+  clear('@lsp.typemod.generic.attribute')
 end, { desc = 'Clear LSP semantic highlights' })
 
 --> END OF MISCELLANEOUS USER COMMANDS <--
