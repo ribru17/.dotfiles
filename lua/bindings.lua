@@ -1,3 +1,4 @@
+local in_link = require('utils').in_md_link_text
 --> MISCELLANEOUS KEYMAPS <--
 local map = vim.keymap.set
 
@@ -14,6 +15,17 @@ of both worlds).
 -- and load all of the netrw plugin to get this functionality.
 if vim.fn.executable('xdg-open') == 1 then
   map('n', 'gx', function()
+    if in_link() then
+      -- workaround to move to the next link text; movement doesn't work with
+      -- injected text objects for some reason... see:
+      -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/479
+      require('nvim-treesitter.textobjects.select').select_textobject(
+        '@link',
+        'textobjects',
+        'v'
+      )
+      vim.api.nvim_input('<Esc>')
+    end
     vim.cmd['!'] {
       args = {
         'xdg-open',

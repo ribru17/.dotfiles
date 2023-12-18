@@ -123,17 +123,17 @@ local MATH_NODES = {
   math_environment = true,
 }
 
-M.in_mathzone = function(_, matched_trigger)
-  if matched_trigger and matched_trigger:len() == 1 then
-    -- redraw on single-character triggers to make function wait for the main
-    -- thread to finish tree-sitter parsing
-    vim.cmd.redraw()
-  end
-  local current_node = get_node_insert_mode()
+local LINK_NODES = {
+  image = true,
+  image_description = true,
+  inline_link = true,
+  link_text = true,
+}
+
+M.in_md_link_text = function()
+  local current_node = get_node { ignore_injections = false }
   while current_node do
-    if current_node:type() == 'text_mode' then
-      return false
-    elseif MATH_NODES[current_node:type()] then
+    if LINK_NODES[current_node:type()] then
       return true
     end
     current_node = current_node:parent()
@@ -145,6 +145,24 @@ M.in_latex_zone = function()
   local current_node = get_node { ignore_injections = false }
   while current_node do
     if MATH_NODES[current_node:type()] then
+      return true
+    end
+    current_node = current_node:parent()
+  end
+  return false
+end
+
+M.in_mathzone = function(_, matched_trigger)
+  if matched_trigger and matched_trigger:len() == 1 then
+    -- redraw on single-character triggers to make function wait for the main
+    -- thread to finish tree-sitter parsing
+    vim.cmd.redraw()
+  end
+  local current_node = get_node_insert_mode()
+  while current_node do
+    if current_node:type() == 'text_mode' then
+      return false
+    elseif MATH_NODES[current_node:type()] then
       return true
     end
     current_node = current_node:parent()
