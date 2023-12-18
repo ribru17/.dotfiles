@@ -187,3 +187,12 @@ create_autocmd('FileType', {
     vim.opt_local.foldcolumn = '0'
   end,
 })
+
+-- cool yank highlighting
+create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank {
+      higroup = 'Search',
+    }
+  end,
+})
