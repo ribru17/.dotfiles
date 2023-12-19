@@ -1,20 +1,8 @@
+local settings = require('settings')
 local create_autocmd = vim.api.nvim_create_autocmd
 -- specify different tab widths on certain files
 create_autocmd('FileType', {
-  pattern = {
-    'xml',
-    'html',
-    'xhtml',
-    'css',
-    'scss',
-    'javascript',
-    'typescript',
-    'yaml',
-    'javascriptreact',
-    'typescriptreact',
-    'markdown',
-    'lua',
-  },
+  pattern = settings.two_space_indents,
   callback = function()
     local setlocal = vim.opt_local
     setlocal.shiftwidth = 2
@@ -26,7 +14,7 @@ create_autocmd('FileType', {
 ---> filetype configuration for miniindentscope
 -- bottom whitespace trimming
 create_autocmd('FileType', {
-  pattern = { 'python', 'markdown', 'scheme', 'query' },
+  pattern = settings.mini_indent_scope.ignore_bottom_whitespace,
   callback = function()
     vim.b.miniindentscope_config = {
       options = {
@@ -37,22 +25,7 @@ create_autocmd('FileType', {
 })
 -- disabling
 create_autocmd('FileType', {
-  pattern = {
-    'alpha',
-    'lazy',
-    'mason',
-    'lspinfo',
-    'help',
-    'checkhealth',
-    'man',
-    'make',
-    'gitcommit',
-    'TelescopePrompt',
-    'TelescopeResults',
-    'NvimTree',
-    'NeogitPopup',
-    'NeogitStatus',
-  },
+  pattern = settings.mini_indent_scope.disabled,
   callback = function()
     vim.b.miniindentscope_disable = true
   end,
@@ -182,7 +155,7 @@ create_autocmd('FileType', {
 
 -- filetypes that should not have a foldcolumn that takes up lots of space
 create_autocmd('FileType', {
-  pattern = { 'markdown', 'text' },
+  pattern = settings.hide_foldcolumn,
   callback = function()
     vim.opt_local.foldcolumn = '0'
   end,

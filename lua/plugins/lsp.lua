@@ -32,18 +32,9 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('mason').setup()
+      local settings = require('settings')
       require('mason-lspconfig').setup {
-        ensure_installed = {
-          'clangd',
-          'cssls',
-          'denols',
-          'emmet_language_server',
-          'eslint',
-          'gopls',
-          'lua_ls',
-          'marksman',
-          'pylsp',
-        },
+        ensure_installed = settings.ensure_installed_lsps,
       }
 
       require('lspconfig.ui.windows').default_options.border = BORDER_STYLE
@@ -229,23 +220,19 @@ return {
           local attached_client = vim.lsp.get_client_by_id(ev.data.client_id)
           if attached_client.server_capabilities.codeLensProvider then
             vim.lsp.codelens.refresh()
-            vim.api.nvim_create_autocmd(
-              { 'InsertLeave', 'TextChanged', 'CursorHold' },
-              {
-                buffer = ev.buf,
-                group = vim.api.nvim_create_augroup(
-                  'CodelensRefresh',
-                  { clear = true }
-                ),
-                callback = vim.lsp.codelens.refresh,
-              }
-            )
+            vim.api.nvim_create_autocmd(settings.codelens_refresh_events, {
+              buffer = ev.buf,
+              group = vim.api.nvim_create_augroup(
+                'CodelensRefresh',
+                { clear = true }
+              ),
+              callback = vim.lsp.codelens.refresh,
+            })
           end
           local map = vim.keymap.set
           local opts = { buffer = ev.buf, remap = false, silent = true }
 
-          -- if action opens up quickfix list, open the first item and close
-          -- the list
+          -- if action opens up qf list, open the first item and close the list
           local function choose_list_first(options)
             vim.fn.setqflist({}, ' ', options)
             vim.cmd.cfirst()
@@ -413,14 +400,9 @@ return {
 
       -- auto-install some packages that cannot be handled by `ensure_installed`
       local registry = require('mason-registry')
-      local packages = {
-        'clang-format',
-        'prettierd',
-        'stylua',
-        'yapf',
-      }
+      local ensured_formatters = settings.ensure_installed_formatters
       registry.refresh(function()
-        for _, pkg_name in ipairs(packages) do
+        for _, pkg_name in ipairs(ensured_formatters) do
           local pkg = registry.get_package(pkg_name)
           if not pkg:is_installed() then
             pkg:install()

@@ -1,4 +1,96 @@
-local function apply()
+local M = {
+  border = 'rounded',
+  hide_foldcolumn = { 'markdown', 'text' },
+  codelens_refresh_events = { 'InsertLeave', 'TextChanged', 'CursorHold' },
+  ensure_installed_ts_parsers = {
+    'c',
+    'comment',
+    'diff',
+    'git_config',
+    'git_rebase',
+    'gitattributes',
+    'gitcommit',
+    'gitignore',
+    'haskell',
+    'html',
+    'javascript',
+    'json',
+    'latex',
+    'lua',
+    'markdown',
+    'markdown_inline',
+    'mermaid',
+    'query',
+    'regex',
+    'rust',
+    'tsx',
+    'typescript',
+    'vim',
+    'vimdoc',
+  },
+  ensure_installed_lsps = {
+    'clangd',
+    'cssls',
+    'denols',
+    'emmet_language_server',
+    'eslint',
+    'gopls',
+    'lua_ls',
+    'marksman',
+    'pylsp',
+  },
+  ensure_installed_formatters = {
+    'clang-format',
+    'prettierd',
+    'stylua',
+    'yapf',
+  },
+  unloaded_default_plugins = {
+    'gzip',
+    'matchit',
+    'matchparen',
+    'netrwPlugin',
+    'tarPlugin',
+    'tohtml',
+    'tutor',
+    'zipPlugin',
+  },
+  two_space_indents = {
+    'xml',
+    'html',
+    'xhtml',
+    'css',
+    'scss',
+    'javascript',
+    'typescript',
+    'yaml',
+    'javascriptreact',
+    'typescriptreact',
+    'markdown',
+    'lua',
+  },
+  mini_indent_scope = {
+    ignore_bottom_whitespace = { 'python', 'markdown', 'scheme', 'query' },
+    disabled = {
+      'alpha',
+      'lazy',
+      'mason',
+      'lspinfo',
+      'help',
+      'checkhealth',
+      'man',
+      'make',
+      'gitcommit',
+      'TelescopePrompt',
+      'TelescopeResults',
+      'NvimTree',
+      'NeogitPopup',
+      'NeogitStatus',
+    },
+  },
+}
+
+M.apply = function()
   local settings = {
     g = {
       bullets_checkbox_markers = ' x',
@@ -74,7 +166,4 @@ local function apply()
   end
 end
 
-return {
-  border = 'rounded',
-  apply = apply,
-}
+return M

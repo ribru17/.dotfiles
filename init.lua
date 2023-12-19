@@ -18,7 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy.core.cache').enable()
 
 -- load opt settings and auto commands
-require('settings').apply()
+local settings = require('settings')
+settings.apply()
 require('autocmds')
 
 -- load installed plugins and their configurations
@@ -41,16 +42,7 @@ require('lazy').setup('plugins', {
     reset_packpath = true,
     rtp = {
       reset = true,
-      disabled_plugins = {
-        'gzip',
-        'matchit',
-        'matchparen',
-        'netrwPlugin',
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'zipPlugin',
-      },
+      disabled_plugins = settings.unloaded_default_plugins,
     },
   },
   -- debug = true,

@@ -9,32 +9,7 @@ return {
     config = function()
       require('nvim-treesitter.configs').setup {
         -- A list of parser names, or "all" (the first five parsers should always be installed)
-        ensure_installed = {
-          'c',
-          'comment',
-          'diff',
-          'git_config',
-          'git_rebase',
-          'gitattributes',
-          'gitcommit',
-          'gitignore',
-          'haskell',
-          'html',
-          'javascript',
-          'json',
-          'latex',
-          'lua',
-          'markdown',
-          'markdown_inline',
-          'mermaid',
-          'query',
-          'regex',
-          'rust',
-          'tsx',
-          'typescript',
-          'vim',
-          'vimdoc',
-        },
+        ensure_installed = require('settings').ensure_installed_ts_parsers,
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
