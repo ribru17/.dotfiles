@@ -123,7 +123,6 @@ M.apply = function()
       cursorlineopt = 'number',
       encoding = 'utf-8',
       expandtab = true,
-      filetype = 'on',
       fillchars = [[eob: ,fold: ,foldopen:▽,foldsep: ,foldclose:▷]],
       foldcolumn = '1',
       foldenable = true,
@@ -164,6 +163,13 @@ M.apply = function()
       op_group[op_key] = op_value
     end
   end
+
+  -- properly recognize `conf` filetype
+  vim.filetype.add {
+    extension = {
+      conf = 'conf',
+    },
+  }
 end
 
 return M
