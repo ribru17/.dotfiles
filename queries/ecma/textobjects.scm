@@ -1,6 +1,7 @@
 ;; extends
 
-; TODO: Make a PR for this in the textobjects repo.
+; TODO: Remove upon merging of the following PR:
+; https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/534
 
 ; Text object `call` for constructors
 ((new_expression

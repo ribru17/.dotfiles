@@ -217,6 +217,7 @@ return {
       { '<C-g>S', mode = { 'i' } },
     },
     config = function()
+      local input = require('nvim-surround.input').get_input
       require('nvim-surround').setup {
         -- Configuration here, or leave empty to use defaults
         aliases = {
@@ -225,6 +226,17 @@ return {
           ['p'] = { '(' },
         },
         surrounds = {
+          ['f'] = {
+            change = {
+              target = '^.-([%w_.]+!?)()%(.-%)()()$',
+              replacement = function()
+                local result = input('Enter the function name: ')
+                if result then
+                  return { { result }, { '' } }
+                end
+              end,
+            },
+          },
           ['g'] = {
             add = function()
               local result = require('nvim-surround.config').get_input(
