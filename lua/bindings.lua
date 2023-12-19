@@ -171,7 +171,7 @@ map(
 )
 map(
   { 'x', 'n' },
-  '<C-d>',
+  '<C-x>',
   '"+d',
   { remap = true, desc = 'Delete to clipboard (Linux)' }
 )
