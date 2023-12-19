@@ -17,6 +17,7 @@ local M = {
     'json',
     'latex',
     'lua',
+    'luap',
     'markdown',
     'markdown_inline',
     'mermaid',
