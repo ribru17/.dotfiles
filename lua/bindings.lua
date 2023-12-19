@@ -164,16 +164,16 @@ map('n', '<C-h>', '<Cmd>tabmove -1<CR>', { desc = 'Move tab left' })
 map('n', '<C-t>', '<Cmd>tabnew<CR>', { desc = 'New tab' })
 
 map(
-  { 'v', 'n' },
+  { 'x', 'n' },
   '<C-y>',
   '"+y',
   { remap = true, desc = 'Copy to clipboard (Linux)' }
 )
 map(
-  { 'v', 'n' },
-  '<C-x>',
-  '"+x',
-  { remap = true, desc = 'Cut to clipboard (Linux)' }
+  { 'x', 'n' },
+  '<C-d>',
+  '"+d',
+  { remap = true, desc = 'Delete to clipboard (Linux)' }
 )
 
 local insertnav_opts = { desc = 'Navigation while typing' }
