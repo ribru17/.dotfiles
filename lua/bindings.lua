@@ -15,6 +15,7 @@ of both worlds).
 -- and load all of the netrw plugin to get this functionality.
 if vim.fn.executable('xdg-open') == 1 then
   map('n', 'gx', function()
+    local curpos = vim.api.nvim_win_get_cursor(0)
     if in_link() then
       -- HACK to move to the next link text; movement doesn't work with
       -- injected text objects for some reason... see:
@@ -35,6 +36,7 @@ if vim.fn.executable('xdg-open') == 1 then
         silent = true,
       },
     }
+    vim.api.nvim_win_set_cursor(0, curpos)
   end, { desc = 'Netrw-like link opening', silent = true })
 end
 

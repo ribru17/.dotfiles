@@ -133,7 +133,9 @@ local LINK_NODES = {
 M.in_md_link_text = function()
   local current_node = get_node { ignore_injections = false }
   while current_node do
-    if LINK_NODES[current_node:type()] then
+    if current_node:type() == 'link_destination' then
+      return false
+    elseif LINK_NODES[current_node:type()] then
       return true
     end
     current_node = current_node:parent()
