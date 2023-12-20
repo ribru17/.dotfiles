@@ -1,4 +1,4 @@
-local settings = require('settings')
+local settings = require('rileybruins.settings')
 local create_autocmd = vim.api.nvim_create_autocmd
 -- specify different tab widths on certain files
 create_autocmd('FileType', {
@@ -54,7 +54,7 @@ create_autocmd('User', {
   pattern = 'VeryLazy',
   once = true,
   callback = function()
-    require('bindings')
+    require('rileybruins.bindings')
   end,
 })
 
@@ -63,7 +63,7 @@ create_autocmd('InsertEnter', {
   pattern = '*',
   once = true,
   callback = function()
-    require('ezsemicolon')
+    require('rileybruins.ezsemicolon')
   end,
 })
 
@@ -100,9 +100,9 @@ create_autocmd({ 'FileType', 'BufEnter' }, {
   callback = function()
     local ft = vim.bo.filetype
     if ft == 'alpha' then
-      require('utils').color_fade_start()
+      require('rileybruins.utils').color_fade_start()
     else
-      require('utils').color_fade_stop()
+      require('rileybruins.utils').color_fade_stop()
     end
   end,
 })
@@ -125,7 +125,7 @@ create_autocmd('ModeChanged', {
 -- update foldcolumn ribbon colors
 create_autocmd('ColorScheme', {
   callback = function()
-    local util = require('utils')
+    local util = require('rileybruins.utils')
     for i = 1, 8, 1 do
       vim.api.nvim_set_hl(0, 'FoldCol' .. i, {
         bg = util.blend(

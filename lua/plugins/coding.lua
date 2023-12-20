@@ -165,7 +165,7 @@ return {
         end,
         preview = {
           win_config = {
-            border = require('settings').border,
+            border = require('rileybruins.settings').border,
             winhighlight = 'Normal:Normal',
             winblend = 0,
           },

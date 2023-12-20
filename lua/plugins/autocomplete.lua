@@ -288,7 +288,7 @@ return {
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       }
 
-      local BORDER_STYLE = require('settings').border
+      local BORDER_STYLE = require('rileybruins.settings').border
       local in_ts_cap = require('cmp.config.context').in_treesitter_capture
       local kinds = require('cmp.types').lsp.CompletionItemKind
 

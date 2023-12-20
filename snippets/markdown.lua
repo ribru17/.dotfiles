@@ -1,5 +1,5 @@
 ---@diagnostic disable: undefined-global
-local utils = require('utils')
+local utils = require('rileybruins.utils')
 
 local in_mathzone = utils.in_mathzone
 

@@ -1,4 +1,4 @@
-local in_link = require('utils').in_md_link_text
+local in_link = require('rileybruins.utils').in_md_link_text
 --> MISCELLANEOUS KEYMAPS <--
 local map = vim.keymap.set
 

@@ -1,4 +1,4 @@
-local BORDER_STYLE = require('settings').border
+local BORDER_STYLE = require('rileybruins.settings').border
 
 return {
   {
@@ -32,7 +32,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('mason').setup()
-      local settings = require('settings')
+      local settings = require('rileybruins.settings')
       require('mason-lspconfig').setup {
         ensure_installed = settings.ensure_installed_lsps,
       }

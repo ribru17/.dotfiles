@@ -1,4 +1,4 @@
-local BORDER_STYLE = require('settings').border
+local BORDER_STYLE = require('rileybruins.settings').border
 return {
   {
     'navarasu/onedark.nvim',
@@ -459,7 +459,7 @@ return {
     event = 'VimEnter',
     cmd = { 'Alpha' },
     opts = function()
-      require('utils').update_colors()
+      require('rileybruins.utils').update_colors()
       local dashboard = require('alpha.themes.dashboard')
       local logo = {
         '      ███████████   ████ █████      ██',

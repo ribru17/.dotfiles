@@ -19,7 +19,7 @@ vim.schedule(function()
 end)
 
 local config = require('nvim-surround.config')
-local in_latex_zone = require('utils').in_latex_zone
+local in_latex_zone = require('rileybruins.utils').in_latex_zone
 require('nvim-surround').buffer_setup {
   aliases = {
     ['b'] = { '{', '[', '(', '<', 'b' },
