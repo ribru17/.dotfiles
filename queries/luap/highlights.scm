@@ -1,14 +1,13 @@
 ;; extends
 
 [
- "."
  (anchor_begin)
  (anchor_end)
+ "."
 ] @variable.builtin
 
-((character "." @constant)
- (#has-ancestor? @constant set negated_set)
- )
+((character "." @constant) @_
+ (#has-parent? @_ set negated_set))
 
 (class (escape_char)) @string.escape
 
