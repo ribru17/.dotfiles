@@ -6,7 +6,9 @@
  (anchor_end)
 ] @variable.builtin
 
-(set (character "." @constant))
+((character "." @constant)
+ (#has-ancestor? @constant set negated_set)
+ )
 
 (class (escape_char)) @string.escape
 
