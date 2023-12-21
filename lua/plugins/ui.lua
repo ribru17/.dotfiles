@@ -488,7 +488,6 @@ return {
             position = 'center',
           },
         },
-        { type = 'padding', val = 2 },
         newButton(
           'f',
           ' ' .. ' Open file',
@@ -509,7 +508,6 @@ return {
         newButton('p', ' ' .. ' Plugins', ':Lazy<CR>'),
         newButton('q', ' ' .. ' Quit', ':qa<CR>'),
       }
-      dashboard.opts.layout[1].val = 4
       dashboard.opts.layout[3].val = 0
       dashboard.section.footer.val =
         'Now I will have less distraction.\n- Leonhard Euler'
