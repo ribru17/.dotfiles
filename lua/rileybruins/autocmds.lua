@@ -1,5 +1,6 @@
 local settings = require('rileybruins.settings')
 local create_autocmd = vim.api.nvim_create_autocmd
+
 -- specify different tab widths on certain files
 create_autocmd('FileType', {
   pattern = settings.two_space_indents,
@@ -215,5 +216,13 @@ create_autocmd('FileType', {
         },
       },
     }
+  end,
+})
+
+-- automatically regenerate spell file after editing dictionary
+create_autocmd('BufWritePost', {
+  pattern = '*/spell/*.add',
+  callback = function()
+    vim.cmd.mkspell { '%', bang = true, mods = { silent = true } }
   end,
 })
