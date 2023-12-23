@@ -50,12 +50,35 @@ create_autocmd({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
+local function populate_spellfile()
+  local spell_files =
+    vim.fn.glob(vim.fn.stdpath('config') .. '/spell/*.add', true, true)
+
+  for _, add_file in ipairs(spell_files) do
+    local spl_file = add_file .. '.spl'
+    if
+      vim.fn.filereadable(add_file)
+      and (
+        not vim.fn.filereadable(spl_file)
+        or vim.fn.getftime(add_file) > vim.fn.getftime(spl_file)
+      )
+    then
+      vim.cmd.mkspell {
+        vim.fn.fnameescape(add_file),
+        bang = true,
+        mods = { silent = true },
+      }
+    end
+  end
+end
+
 -- lazy load keymaps and user-defined commands
 create_autocmd('User', {
   pattern = 'VeryLazy',
   once = true,
   callback = function()
     require('rileybruins.bindings')
+    populate_spellfile()
   end,
 })
 
