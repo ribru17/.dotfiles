@@ -165,10 +165,12 @@ M.apply = function()
     end
   end
 
-  -- properly recognize `conf` filetype
+  -- properly recognize more filetypes
+  -- NOTE: This can be removed after a future Neovim version
   vim.filetype.add {
     extension = {
       conf = 'conf',
+      luau = 'luau',
     },
   }
 end
