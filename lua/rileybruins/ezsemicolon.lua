@@ -20,8 +20,17 @@ local function isInReturn(s)
     or firstSeven == 'return;'
 end
 
-local disabled_filetypes =
-  { 'markdown', 'text', 'scheme', 'clojure', 'lisp', 'query', 'lua', 'python' }
+local disabled_filetypes = {
+  'markdown',
+  'text',
+  'scheme',
+  'clojure',
+  'lisp',
+  'query',
+  'lua',
+  'python',
+  'bash',
+}
 
 vim.keymap.set('i', ';', function()
   for k = 1, #disabled_filetypes do
