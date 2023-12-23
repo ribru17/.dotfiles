@@ -185,19 +185,30 @@ return {
   },
   {
     'HiPhish/rainbow-delimiters.nvim',
-    ft = { 'html', 'clojure', 'query', 'scheme', 'commonlisp' },
+    ft = {
+      'html',
+      'clojure',
+      'query',
+      'scheme',
+      'lisp',
+      'commonlisp',
+      'javascriptreact',
+      'typescriptreact',
+    },
     config = function()
-      local rainbow_delimiters = require('rainbow-delimiters')
       require('rainbow-delimiters.setup').setup {
+        query = {
+          [''] = '',
+          javascript = 'rainbow-tags-react',
+          tsx = 'rainbow-tags-react',
+          commonlisp = 'rainbow-delimiters',
+          scheme = 'rainbow-delimiters',
+          query = 'rainbow-delimiters',
+          clojure = 'rainbow-delimiters',
+          html = 'rainbow-delimiters',
+        },
         strategy = {
-          [''] = function()
-            return nil
-          end,
-          commonlisp = rainbow_delimiters.strategy['global'],
-          scheme = rainbow_delimiters.strategy['global'],
-          query = rainbow_delimiters.strategy['global'],
-          clojure = rainbow_delimiters.strategy['global'],
-          html = rainbow_delimiters.strategy['global'],
+          [''] = require('rainbow-delimiters').strategy['global'],
         },
       }
     end,
