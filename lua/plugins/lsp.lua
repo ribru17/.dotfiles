@@ -96,10 +96,15 @@ return {
           -- don't use Emmet CSS abbreviations anyway.
           local emmet_fts =
             require('lspconfig').emmet_language_server.document_config.default_config.filetypes
-          local cssls_fts =
+          -- TODO: Maybe get it so that these are only ignored when not in a
+          -- Tree-sitter "tag" section?
+          local ignored_fts = { 'javascriptreact', 'typescriptreact' }
+          vim.list_extend(
+            ignored_fts,
             require('lspconfig').cssls.document_config.default_config.filetypes
+          )
           local filtered_fts = vim.tbl_filter(function(value)
-            return not vim.tbl_contains(cssls_fts, value)
+            return not vim.tbl_contains(ignored_fts, value)
           end, emmet_fts)
           require('lspconfig').emmet_language_server.setup {
             filetypes = filtered_fts,
