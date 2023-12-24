@@ -291,7 +291,19 @@ return {
       { '<C-_>', mode = { 'i', 'x', 'n' } },
     },
     config = function()
+      local in_jsx_tags = require('rileybruins.utils').in_jsx_tags
       require('Comment').setup {
+        pre_hook = function()
+          local ft = vim.bo.filetype
+          if ft == 'typescriptreact' or ft == 'javascriptreact' then
+            if
+              in_jsx_tags()
+              or vim.api.nvim_get_current_line():match('^%s-{/%*.-%*/}%s-$')
+            then
+              return '{/*%s*/}'
+            end
+          end
+        end,
         ignore = function()
           local mode = vim.api.nvim_get_mode()['mode']
           if mode == 'n' then

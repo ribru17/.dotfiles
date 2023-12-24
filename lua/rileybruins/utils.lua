@@ -143,6 +143,17 @@ M.in_md_link_text = function()
   return false
 end
 
+M.in_jsx_tags = function()
+  local current_node = get_node()
+  while current_node do
+    if current_node:type() == 'jsx_element' then
+      return true
+    end
+    current_node = current_node:parent()
+  end
+  return false
+end
+
 M.in_latex_zone = function()
   local current_node = get_node { ignore_injections = false }
   while current_node do
