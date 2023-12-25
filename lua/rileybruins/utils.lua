@@ -167,9 +167,10 @@ end
 
 M.in_mathzone = function(_, matched_trigger)
   if matched_trigger and matched_trigger:len() == 1 then
-    -- redraw on single-character triggers to make function wait for the main
-    -- thread to finish tree-sitter parsing
-    vim.cmd.redraw()
+    -- reparse on single-character triggers to make function wait for the main
+    -- thread to finish tree-sitter parsing (otherwise single character snippets
+    -- will not be recognized if they are the first input in a LaTeX block)
+    vim.treesitter.get_parser():parse()
   end
   local current_node = get_node_insert_mode()
   while current_node do
