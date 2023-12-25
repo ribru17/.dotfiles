@@ -187,21 +187,7 @@ M.in_mathzone_ignore_backslash = function(line_to_cursor, matched_trigger)
   if line_to_cursor and line_to_cursor:match('.*\\[%a_]+$') then
     return false
   end
-  if matched_trigger and matched_trigger:len() == 1 then
-    -- redraw on single-character triggers to make function wait for the main
-    -- thread to finish tree-sitter parsing
-    vim.cmd.redraw()
-  end
-  local current_node = get_node_insert_mode()
-  while current_node do
-    if current_node:type() == 'text_mode' then
-      return false
-    elseif MATH_NODES[current_node:type()] then
-      return true
-    end
-    current_node = current_node:parent()
-  end
-  return false
+  return M.in_mathzone(line_to_cursor, matched_trigger)
 end
 
 M.in_text = function()
