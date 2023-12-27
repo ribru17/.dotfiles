@@ -128,13 +128,14 @@ return {
         local curs = vim.api.nvim_win_get_cursor(0)
         return curs[1]
           .. '/'
-          .. vim.api.nvim_buf_line_count(vim.fn.winbufnr(0))
+          .. vim.api.nvim_buf_line_count(0)
           .. ','
           .. curs[2]
       end
 
       require('lualine').setup {
         sections = {
+          lualine_x = { 'filename', 'fileformat', 'filetype' },
           lualine_z = { line_total },
         },
         options = {
