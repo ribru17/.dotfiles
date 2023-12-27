@@ -2,6 +2,12 @@ local M = {
   border = 'rounded',
   hide_foldcolumn = { 'markdown', 'text' },
   codelens_refresh_events = { 'InsertLeave', 'TextChanged', 'CursorHold' },
+  lazy_loaded_colorschemes = {
+    'catppuccin',
+    'tokyonight',
+    'onedark',
+    'kanagawa',
+  },
   ensure_installed_ts_parsers = {
     'c',
     'comment',

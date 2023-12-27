@@ -2,7 +2,7 @@ local BORDER_STYLE = require('rileybruins.settings').border
 return {
   {
     'navarasu/onedark.nvim',
-    keys = { '<leader>fc' },
+    lazy = true,
     config = function()
       require('onedark').setup {
         style = 'warmer',
@@ -61,42 +61,39 @@ return {
   },
   {
     'rebelot/kanagawa.nvim',
-    keys = { '<leader>fc' },
     lazy = true,
   },
   {
     'catppuccin/nvim',
     name = 'catppuccin',
-    keys = { '<leader>fc' },
-    config = function()
-      require('catppuccin').setup {
-        integrations = {
-          indent_blankline = {
-            enabled = true,
-            colored_indent_levels = true,
-          },
+    lazy = true,
+    opts = {
+      integrations = {
+        indent_blankline = {
+          enabled = true,
+          colored_indent_levels = true,
         },
-        custom_highlights = function(colors)
-          return {
-            -- make cmp item text matching easier to spot
-            ['CmpItemAbbr'] = { ctermbg = 0, fg = colors.text },
-            ['CmpItemAbbrMatch'] = { ctermbg = 0, fg = colors.blue },
-            ['CmpItemAbbrMatchFuzzy'] = {
-              ctermbg = 0,
-              fg = colors.blue,
-              underline = true,
-            },
-            -- make popup windows blend with the background better
-            ['NormalFloat'] = { ctermbg = 0, bg = colors.base },
-            -- better dashboard styling
-          }
-        end,
-      }
-    end,
+      },
+      custom_highlights = function(colors)
+        return {
+          -- make cmp item text matching easier to spot
+          ['CmpItemAbbr'] = { ctermbg = 0, fg = colors.text },
+          ['CmpItemAbbrMatch'] = { ctermbg = 0, fg = colors.blue },
+          ['CmpItemAbbrMatchFuzzy'] = {
+            ctermbg = 0,
+            fg = colors.blue,
+            underline = true,
+          },
+          -- make popup windows blend with the background better
+          ['NormalFloat'] = { ctermbg = 0, bg = colors.base },
+          -- better dashboard styling
+        }
+      end,
+    },
   },
   {
     'folke/tokyonight.nvim',
-    keys = { '<leader>fc' },
+    lazy = true,
   },
   {
     'akinsho/bufferline.nvim',
@@ -237,6 +234,8 @@ return {
   },
   {
     'nvim-telescope/telescope.nvim',
+    -- Pinning, since colorscheme picker is broken currently
+    commit = 'c0ee29e8e4700ef49623d12ca3ffb8481c8d69f3',
     keys = {
       { '<leader>ff' },
       { '<leader>fs' },
@@ -449,6 +448,15 @@ return {
       end, {})
       vim.keymap.set('n', '<leader>fw', builtin.git_files, {})
       vim.keymap.set('n', '<leader>fc', function()
+        local load_scheme = require('lazy.core.loader').colorscheme
+        for _, value in
+          pairs(require('rileybruins.settings').lazy_loaded_colorschemes)
+        do
+          load_scheme(value)
+        end
+        vim.keymap.set('n', '<leader>fc', function()
+          builtin.colorscheme { enable_preview = true }
+        end)
         builtin.colorscheme { enable_preview = true }
       end, {})
 
