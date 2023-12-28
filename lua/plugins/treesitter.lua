@@ -78,6 +78,7 @@ return {
       -- devicons
       local icon_fallbacks = {
         mermaid = '󰈺',
+        plantuml = '',
       }
 
       local get_icon = nil
