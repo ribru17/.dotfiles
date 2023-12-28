@@ -73,7 +73,14 @@ return {
         uxn = 'uxntal',
         ts = 'typescript',
       }
-      local icon = nil
+
+      -- extra fallbacks for icons that do not have a filetype entry in nvim-
+      -- devicons
+      local icon_fallbacks = {
+        mermaid = '󰈺',
+      }
+
+      local get_icon = nil
 
       local ft_conceal = function(match, _, source, pred, metadata)
         ---@cast pred integer[]
@@ -90,10 +97,12 @@ return {
           or non_filetype_match_injection_language_aliases[node_text]
           or node_text
 
-        if not icon then
-          icon = require('nvim-web-devicons').get_icon_by_filetype
+        if not get_icon then
+          get_icon = require('nvim-web-devicons').get_icon_by_filetype
         end
-        metadata.conceal = icon(node_text) or '󰡯'
+        metadata.conceal = get_icon(node_text)
+          or icon_fallbacks[node_text]
+          or '󰡯'
       end
 
       local offset_first_n = function(match, _, _, pred, metadata)
