@@ -1,4 +1,4 @@
-; inherits: quote
+;; inherits: quote
 
 ; Don't use `return` statements for function matching in Lua.
 

@@ -1,4 +1,4 @@
-; extends
+;; extends
 
 ((inline_formula) @math.inner (#offset! @math.inner 0 1 0 -1))
 ((displayed_equation) @math.inner (#offset! @math.inner 0 2 0 -2))
