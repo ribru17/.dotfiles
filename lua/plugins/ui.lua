@@ -161,6 +161,16 @@ return {
           ['scm'] = icons['query'],
           ['ss'] = icons['scm'],
         },
+        -- TODO: Remove after PR merge:
+        -- https://github.com/nvim-tree/nvim-web-devicons/pull/365
+        override_by_filename = {
+          ['tsconfig.json'] = {
+            icon = '',
+            color = '#519aba',
+            cterm_color = '74',
+            name = 'TSConfig',
+          },
+        },
       }
     end,
     lazy = true,

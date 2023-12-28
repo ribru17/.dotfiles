@@ -1,7 +1,8 @@
 ;; extends
 
 ; Highlight `command` commands.
-; TODO: Make a PR for this.
+; TODO: Remove after PR merge:
+; https://github.com/nvim-treesitter/nvim-treesitter/pull/5837
 (command
   name: (command_name) @_name
   .
