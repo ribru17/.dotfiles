@@ -130,6 +130,18 @@ map({ 'n', 'x' }, '<C-u>', function()
     bang = true,
   }
 end, cursorstay_opts)
+map({ 'n', 'x' }, '<C-f>', function()
+  vim.cmd.normal {
+    vim.api.nvim_replace_termcodes('<C-f>', true, false, true) .. 'zz',
+    bang = true,
+  }
+end, cursorstay_opts)
+map({ 'n', 'x' }, '<C-b>', function()
+  vim.cmd.normal {
+    vim.api.nvim_replace_termcodes('<C-b>', true, false, true) .. 'zz',
+    bang = true,
+  }
+end, cursorstay_opts)
 map('n', 'n', 'nzzzv', cursorstay_opts)
 map('n', 'N', 'Nzzzv', cursorstay_opts)
 
