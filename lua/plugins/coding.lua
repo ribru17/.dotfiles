@@ -57,8 +57,8 @@ return {
           -- undo all git changes
           map('n', '<leader>gr', gs.reset_buffer)
           -- stage git changes
-          map('n', '<leader>gs', gs.stage_hunk)
-          map('x', '<leader>gs', function()
+          map('n', '<leader>ga', gs.stage_hunk)
+          map('x', '<leader>ga', function()
             gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') }
           end)
           -- unstage git changes

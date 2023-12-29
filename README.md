@@ -138,8 +138,10 @@ that file). Save without formatting with `:W`.
   - Use `Ctrl+e` to Exit autocompletion menu
   - Use `Ctrl+Space` to show full autocompletion menu
 - Git
-  - Use `<leader>gu` to Undo a Git change
-  - Use `<leader>gr` to Reset (undo) _all_ Git changes
+  - Use `<leader>gu` to Undo a Git change (works in Normal and Visual mode)
+  - Use `<leader>gr` to Reset (undo) _all_ Git changes in a file
+  - Use `<leader>ga` to Add (stage) a Git change (works in Normal and Visual
+    mode)
 - EZ Semicolon
   - Implements EZ Semicolon (VS Code extension) functionality: inserting a
     semicolon anywhere will always place it at the end of the line followed by a
