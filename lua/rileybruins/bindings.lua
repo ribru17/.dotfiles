@@ -224,8 +224,8 @@ end, { desc = 'Cursor-in-place paste' })
 map(
   'i',
   '<C-p>',
-  '<C-r>0',
-  { desc = 'Paste from YANK register in insert mode' }
+  '<C-r>"',
+  { desc = 'Paste from register in insert mode' }
 )
 map('i', '<C-n>', '<Nop>', { desc = 'Disable default autocompletion menu' })
 
