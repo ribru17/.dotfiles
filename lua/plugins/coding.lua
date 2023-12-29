@@ -260,6 +260,7 @@ return {
       'scheme',
       'lisp',
       'commonlisp',
+      'php',
       'javascriptreact',
       'typescriptreact',
     },
@@ -274,9 +275,6 @@ return {
           query = 'rainbow-delimiters',
           clojure = 'rainbow-delimiters',
           html = 'rainbow-delimiters',
-        },
-        strategy = {
-          [''] = require('rainbow-delimiters').strategy['global'],
         },
       }
     end,
