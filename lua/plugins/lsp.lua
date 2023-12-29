@@ -145,6 +145,30 @@ return {
           -- this prevents conflicts with the haskell tools plugin
         end,
         ['lua_ls'] = function()
+          local library = {}
+
+          local function add(lib)
+            for _, p in pairs(vim.fn.expand(lib .. '/lua', false, true)) do
+              p = vim.loop.fs_realpath(p)
+              if p then
+                library[p] = true
+              end
+            end
+          end
+
+          -- add runtime
+          add('$VIMRUNTIME')
+
+          -- add config
+          add('~/.config/nvim')
+
+          -- add plugins
+          if package.loaded['lazy'] then
+            for _, plugin in ipairs(require('lazy').plugins()) do
+              add(plugin.dir)
+            end
+          end
+
           require('lspconfig').lua_ls.setup {
             capabilities = capabilities,
             settings = {
@@ -160,14 +184,15 @@ return {
                 telemetry = { enable = false },
                 runtime = {
                   version = 'LuaJIT',
+                  path = {
+                    '?.lua',
+                    '?/init.lua',
+                  },
+                  pathStrict = true,
                 },
                 workspace = {
-                  checkThirdParty = false,
                   -- Make the server aware of Neovim runtime files
-                  library = {
-                    vim.fn.expand('$VIMRUNTIME'),
-                    '${3rd}/luassert/library',
-                  },
+                  library = library,
                 },
                 -- see https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
                 format = {
