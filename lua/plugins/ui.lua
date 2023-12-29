@@ -132,7 +132,6 @@ return {
 
       require('lualine').setup {
         sections = {
-          lualine_x = { 'filename', 'fileformat', 'filetype' },
           lualine_z = { line_total },
         },
         options = {
