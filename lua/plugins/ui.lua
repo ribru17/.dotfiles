@@ -108,6 +108,7 @@ return {
           show_buffer_close_icons = false,
           modified_icon = '•',
           diagnostics = 'nvim_lsp',
+          ---@param level string
           diagnostics_indicator = function(count, level)
             local icon = level:match('error') and '' or ''
             return icon .. ' ' .. count

@@ -1,5 +1,7 @@
+---@diagnostic disable-next-line: missing-fields
 require('nvim-surround').buffer_setup {
   surrounds = {
+    ---@diagnostic disable-next-line: missing-fields
     ['g'] = {
       add = function()
         local result =
@@ -14,6 +16,7 @@ require('nvim-surround').buffer_setup {
       find = '[%w_]-%[.-%]',
       delete = '^([%w_]-%[)().-(%])()$',
     },
+    ---@diagnostic disable-next-line: missing-fields
     ['G'] = {
       add = function()
         local result =

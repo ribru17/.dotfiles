@@ -197,8 +197,10 @@ create_autocmd('FileType', {
   pattern = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
   callback = function()
     local config = require('nvim-surround.config')
+    ---@diagnostic disable-next-line: missing-fields
     require('nvim-surround').buffer_setup {
       surrounds = {
+        ---@diagnostic disable-next-line: missing-fields
         F = {
           add = function()
             local result = require('nvim-surround.config').get_input(
@@ -223,6 +225,7 @@ create_autocmd('FileType', {
               query = { capture = '@function.outer', type = 'textobjects' },
             }
           end,
+          ---@param char string
           delete = function(char)
             local match = config.get_selections {
               char = char,

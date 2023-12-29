@@ -1,5 +1,7 @@
+---@diagnostic disable-next-line: missing-fields
 require('nvim-surround').buffer_setup {
   surrounds = {
+    ---@diagnostic disable-next-line: missing-fields
     F = {
       add = function()
         local result =

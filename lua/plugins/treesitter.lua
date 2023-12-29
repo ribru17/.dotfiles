@@ -7,6 +7,7 @@ return {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
         -- A list of parser names, or "all" (the first five parsers should always be installed)
         ensure_installed = require('rileybruins.settings').ensure_installed_ts_parsers,

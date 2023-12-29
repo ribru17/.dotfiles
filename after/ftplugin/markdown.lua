@@ -20,11 +20,13 @@ end)
 
 local config = require('nvim-surround.config')
 local in_latex_zone = require('rileybruins.utils').in_latex_zone
+---@diagnostic disable-next-line: missing-fields
 require('nvim-surround').buffer_setup {
   aliases = {
     ['b'] = { '{', '[', '(', '<', 'b' },
   },
   surrounds = {
+    ---@diagnostic disable-next-line: missing-fields
     ['b'] = {
       add = { '**', '**' },
       find = '%*%*.-%*%*',
@@ -59,6 +61,7 @@ require('nvim-surround').buffer_setup {
           pattern = '[^=%s%(%){}]+%b()',
         }
       end,
+      ---@param char string
       delete = function(char)
         local match
         if in_latex_zone() then
@@ -75,6 +78,7 @@ require('nvim-surround').buffer_setup {
         return match
       end,
       change = {
+        ---@param char string
         target = function(char)
           if in_latex_zone() then
             return config.get_selections {

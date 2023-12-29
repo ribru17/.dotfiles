@@ -130,7 +130,7 @@ return {
       ls.filetype_extend('typescript', { 'javascript' })
       ls.filetype_extend('javascriptreact', { 'javascript' })
       ls.filetype_extend('typescriptreact', { 'javascript' })
-      require('luasnip.loaders.from_lua').lazy_load { paths = './snippets' }
+      require('luasnip.loaders.from_lua').lazy_load { paths = { './snippets' } }
 
       -- allow ts-autotag to coexist with luasnip
       local autotag = require('nvim-ts-autotag.internal')

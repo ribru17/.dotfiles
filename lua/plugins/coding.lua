@@ -183,6 +183,7 @@ return {
     event = { 'VeryLazy' },
     config = function()
       local ufo = require('ufo')
+      ---@diagnostic disable-next-line: missing-fields
       ufo.setup {
         fold_virt_text_handler = function(
           virtText,
@@ -295,6 +296,7 @@ return {
     },
     config = function()
       local input = require('nvim-surround.input').get_input
+      ---@diagnostic disable-next-line: missing-fields
       require('nvim-surround').setup {
         -- Configuration here, or leave empty to use defaults
         aliases = {
@@ -303,6 +305,7 @@ return {
           ['p'] = { '(' },
         },
         surrounds = {
+          ---@diagnostic disable-next-line: missing-fields
           ['f'] = {
             change = {
               target = '^.-([%w_.]+!?)()%(.-%)()()$',
@@ -314,6 +317,7 @@ return {
               end,
             },
           },
+          ---@diagnostic disable-next-line: missing-fields
           ['g'] = {
             add = function()
               local result = require('nvim-surround.config').get_input(
@@ -329,6 +333,7 @@ return {
             find = '[%w_]-<.->',
             delete = '^([%w_]-<)().-(>)()$',
           },
+          ---@diagnostic disable-next-line: missing-fields
           ['G'] = {
             add = function()
               local result = require('nvim-surround.config').get_input(
@@ -358,6 +363,7 @@ return {
     },
     config = function()
       local in_jsx_tags = require('rileybruins.utils').in_jsx_tags
+      ---@diagnostic disable-next-line: missing-fields
       require('Comment').setup {
         pre_hook = function()
           local ft = vim.bo.filetype
@@ -369,12 +375,15 @@ return {
               return '{/*%s*/}'
             end
           end
+          ---@diagnostic disable-next-line: return-type-mismatch
+          return nil
         end,
         ignore = function()
           local mode = vim.api.nvim_get_mode()['mode']
           if mode == 'n' then
             return '^$'
           end
+          ---@diagnostic disable-next-line: return-type-mismatch
           return nil
         end,
       }
