@@ -162,10 +162,12 @@ return {
           -- add config
           add('~/.config/nvim')
 
-          -- add plugins
-          if package.loaded['lazy'] then
-            for _, plugin in ipairs(require('lazy').plugins()) do
-              add(plugin.dir)
+          if settings.luals_load_plugins then
+            -- add plugins
+            if package.loaded['lazy'] then
+              for _, plugin in ipairs(require('lazy').plugins()) do
+                add(plugin.dir)
+              end
             end
           end
 
