@@ -223,6 +223,7 @@ that file). Save without formatting with `:W`.
       selected lines
   - Use `zn` and `zp` to traverse Next and Previous closed folds, respectively
   - Use `zf` to Focus (close all folds except) the current fold
+  - Use `zF` to Focus (close all folds except) the current fold and its children
   - Use `zO` to Open all folds
   - Use `zo` to Open all folds descending from the fold at the current line
 

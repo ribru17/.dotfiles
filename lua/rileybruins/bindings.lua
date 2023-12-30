@@ -211,6 +211,9 @@ map('x', '<leader>z', 'zf', { desc = 'Create fold from selection' })
 map('n', 'zf', function()
   vim.cmd.normal('zMzv')
 end, { desc = 'Fold all except current' })
+map('n', 'zF', function()
+  vim.cmd.normal('zMzvzczo')
+end, { desc = 'Fold all except current and children of current' })
 map('n', 'zO', function()
   vim.cmd.normal('zR')
 end, { desc = 'Open all folds' })
@@ -221,12 +224,7 @@ map('n', 'P', function()
   vim.cmd.normal { vim.v.count1 .. 'P`[', bang = true }
 end, { desc = 'Cursor-in-place paste' })
 
-map(
-  'i',
-  '<C-p>',
-  '<C-r>"',
-  { desc = 'Paste from register in insert mode' }
-)
+map('i', '<C-p>', '<C-r>"', { desc = 'Paste from register in insert mode' })
 map('i', '<C-n>', '<Nop>', { desc = 'Disable default autocompletion menu' })
 
 vim.keymap.set({ 'x', 'n' }, '<leader>t', function()
