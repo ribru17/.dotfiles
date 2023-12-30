@@ -167,8 +167,6 @@ return {
   },
   {
     'nvim-telescope/telescope.nvim',
-    -- Pinning, since colorscheme picker is broken currently
-    commit = 'c0ee29e8e4700ef49623d12ca3ffb8481c8d69f3',
     keys = {
       { '<leader>ff' },
       { '<leader>fs' },
