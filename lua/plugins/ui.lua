@@ -494,15 +494,7 @@ return {
     'nvim-tree/nvim-tree.lua',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
-      {
-        '<leader>ft',
-        function()
-          vim.cmd.NvimTreeFindFile()
-          -- Refresh diagnostics upon opening window, since it does not seem to
-          -- do this on its own.
-          require('nvim-tree.diagnostics').update()
-        end,
-      },
+      { '<leader>ft', vim.cmd.NvimTreeFindFile },
     },
     cmd = { 'NvimTreeFindFileToggle', 'NvimTreeToggle' },
     config = function()
@@ -746,6 +738,9 @@ return {
           },
         },
       }
+
+      -- Update diagnostics initially in case some existed before loading
+      require('nvim-tree.diagnostics').update()
     end,
   },
   {
