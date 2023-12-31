@@ -1,9 +1,9 @@
-local settings = require('rileybruins.settings')
+local SETTINGS = require('rileybruins.settings')
 local create_autocmd = vim.api.nvim_create_autocmd
 
 -- specify different tab widths on certain files
 create_autocmd('FileType', {
-  pattern = settings.two_space_indents,
+  pattern = SETTINGS.two_space_indents,
   callback = function()
     local setlocal = vim.opt_local
     setlocal.shiftwidth = 2
@@ -15,7 +15,7 @@ create_autocmd('FileType', {
 ---> filetype configuration for miniindentscope
 -- bottom whitespace trimming
 create_autocmd('FileType', {
-  pattern = settings.mini_indent_scope.ignore_bottom_whitespace,
+  pattern = SETTINGS.mini_indent_scope.ignore_bottom_whitespace,
   callback = function()
     vim.b.miniindentscope_config = {
       options = {
@@ -26,7 +26,7 @@ create_autocmd('FileType', {
 })
 -- disabling
 create_autocmd('FileType', {
-  pattern = settings.mini_indent_scope.disabled,
+  pattern = SETTINGS.mini_indent_scope.disabled,
   callback = function()
     vim.b.miniindentscope_disable = true
   end,
@@ -179,7 +179,7 @@ create_autocmd('FileType', {
 
 -- filetypes that should not have a foldcolumn that takes up lots of space
 create_autocmd('FileType', {
-  pattern = settings.hide_foldcolumn,
+  pattern = SETTINGS.hide_foldcolumn,
   callback = function()
     vim.opt_local.foldcolumn = '0'
   end,

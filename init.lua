@@ -18,8 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy.core.cache').enable()
 
 -- load opt settings and auto commands
-local settings = require('rileybruins.settings')
-settings.apply()
+local SETTINGS = require('rileybruins.settings')
+SETTINGS.apply()
 require('rileybruins.autocmds')
 
 -- load installed plugins and their configurations
@@ -27,7 +27,7 @@ require('lazy').setup('plugins', {
   -- defaults = { lazy = true },
   -- checker = { enabled = true },
   ui = {
-    border = settings.border,
+    border = SETTINGS.border,
   },
   install = {
     colorscheme = { 'bamboo' },
@@ -42,7 +42,7 @@ require('lazy').setup('plugins', {
     reset_packpath = true,
     rtp = {
       reset = true,
-      disabled_plugins = settings.unloaded_default_plugins,
+      disabled_plugins = SETTINGS.unloaded_default_plugins,
     },
   },
   -- debug = true,

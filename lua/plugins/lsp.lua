@@ -32,9 +32,9 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('mason').setup()
-      local settings = require('rileybruins.settings')
+      local SETTINGS = require('rileybruins.settings')
       require('mason-lspconfig').setup {
-        ensure_installed = settings.ensure_installed_lsps,
+        ensure_installed = SETTINGS.ensure_installed_lsps,
       }
 
       require('lspconfig.ui.windows').default_options.border = BORDER_STYLE
@@ -162,7 +162,7 @@ return {
           -- add config
           add('~/.config/nvim')
 
-          if settings.luals_load_plugins then
+          if SETTINGS.luals_load_plugins then
             -- add plugins
             if package.loaded['lazy'] then
               for _, plugin in ipairs(require('lazy').plugins()) do
@@ -252,7 +252,7 @@ return {
           local attached_client = vim.lsp.get_client_by_id(ev.data.client_id)
           if attached_client.server_capabilities.codeLensProvider then
             vim.lsp.codelens.refresh()
-            vim.api.nvim_create_autocmd(settings.codelens_refresh_events, {
+            vim.api.nvim_create_autocmd(SETTINGS.codelens_refresh_events, {
               buffer = ev.buf,
               group = vim.api.nvim_create_augroup(
                 'CodelensRefresh',
@@ -432,7 +432,7 @@ return {
 
       -- auto-install some packages that cannot be handled by `ensure_installed`
       local registry = require('mason-registry')
-      local ensured_formatters = settings.ensure_installed_formatters
+      local ensured_formatters = SETTINGS.ensure_installed_formatters
       registry.refresh(function()
         for _, pkg_name in ipairs(ensured_formatters) do
           local pkg = registry.get_package(pkg_name)

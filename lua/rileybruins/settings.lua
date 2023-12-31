@@ -174,7 +174,7 @@ M.apply = function()
   end
 
   -- properly recognize more filetypes
-  -- NOTE: This can be removed after a future Neovim version
+  -- TODO: Remove after a future Neovim version
   vim.filetype.add {
     extension = {
       conf = 'conf',
