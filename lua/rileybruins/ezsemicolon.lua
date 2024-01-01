@@ -30,6 +30,7 @@ local disabled_filetypes = {
   'lua',
   'python',
   'bash',
+  'sh',
 }
 
 vim.keymap.set('i', ';', function()
