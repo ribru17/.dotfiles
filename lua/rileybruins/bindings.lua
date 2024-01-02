@@ -227,7 +227,7 @@ end, { desc = 'Cursor-in-place paste' })
 map('i', '<C-p>', '<C-r>"', { desc = 'Paste from register in insert mode' })
 map('i', '<C-n>', '<Nop>', { desc = 'Disable default autocompletion menu' })
 
-vim.keymap.set({ 'x', 'n' }, '<leader>t', function()
+map({ 'x', 'n' }, '<leader>t', function()
   local win = vim.api.nvim_get_current_win()
   local cur = vim.api.nvim_win_get_cursor(win)
   local vstart = vim.fn.getpos('v')[2]
