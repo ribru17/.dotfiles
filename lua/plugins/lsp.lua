@@ -367,9 +367,7 @@ return {
           end)
           -- show code actions, executing if only 1
           map('n', '<leader>ca', function()
-            vim.lsp.buf.code_action {
-              apply = true,
-            }
+            require('actions-preview').code_actions()
           end, opts)
           map('n', '<leader>cl', vim.lsp.codelens.run, opts)
         end,
@@ -448,5 +446,15 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
     opts = {},
+  },
+  {
+    'aznhe21/actions-preview.nvim',
+    lazy = true,
+    config = function()
+      require('actions-preview').setup {
+        backend = { 'telescope' },
+        telescope = {},
+      }
+    end,
   },
 }
