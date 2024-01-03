@@ -230,7 +230,7 @@ return {
           previewers.git_commit_message.new(opts),
           previewers.git_commit_diff_as_was.new(opts),
         }
-        builtin.git_bcommits(opts)
+        builtin.git_commits(opts)
       end
 
       local function delta_git_bcommits(opts)
@@ -250,7 +250,7 @@ return {
           previewers.git_commit_message.new(opts),
           previewers.git_commit_diff_as_was.new(opts),
         }
-        builtin.git_bcommits(opts)
+        builtin.git_status(opts)
       end
 
       builtin.delta_git_commits = delta_git_commits
