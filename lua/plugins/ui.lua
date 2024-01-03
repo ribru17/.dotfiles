@@ -188,74 +188,61 @@ return {
       local previewers = require('telescope.previewers')
       local builtin = require('telescope.builtin')
 
+      local get_git_delta_opts = function()
+        return {
+          'git',
+          '-c',
+          'core.pager=delta',
+          '-c',
+          'delta.paging=always',
+          '-c',
+          'delta.side-by-side=false',
+          '-c',
+          'delta.line-numbers=false',
+          '-c',
+          'delta.hunk-header-style=omit',
+        }
+      end
+
       local delta_status = previewers.new_termopen_previewer {
         get_command = function(entry)
           if entry.status == '??' or entry.status == 'A ' then
             -- show a diff against the null file, since the current file is
             -- either untracked or was just added
-            return {
-              'git',
-              '-c',
-              'core.pager=delta',
-              '-c',
-              'delta.paging=always',
-              '-c',
-              'delta.side-by-side=false',
-              'diff',
-              '--no-index',
-              '--',
-              '/dev/null',
-              entry.value,
-            }
+            return vim.list_extend(
+              get_git_delta_opts(),
+              { 'diff', '--no-index', '--', '/dev/null', entry.value }
+            )
           end
           -- show the regular diff of the file against HEAD
-          return {
-            'git',
-            '-c',
-            'core.pager=delta',
-            '-c',
-            'delta.paging=always',
-            '-c',
-            'delta.side-by-side=false',
+          return vim.list_extend(get_git_delta_opts(), {
             'diff',
             'HEAD',
             '--',
             entry.value,
-          }
+          })
         end,
       }
 
       local delta_b = previewers.new_termopen_previewer {
         get_command = function(entry)
-          return {
-            'git',
+          return vim.list_extend(get_git_delta_opts(), {
             '-c',
-            'core.pager=delta',
-            '-c',
-            'delta.paging=always',
-            '-c',
-            'delta.side-by-side=false',
+            'delta.file-style=omit',
             'diff',
             entry.value .. '^!',
             '--',
             entry.current_file,
-          }
+          })
         end,
       }
 
       local delta = previewers.new_termopen_previewer {
         get_command = function(entry)
-          return {
-            'git',
-            '-c',
-            'core.pager=delta',
-            '-c',
-            'delta.paging=always',
-            '-c',
-            'delta.side-by-side=false',
+          return vim.list_extend(get_git_delta_opts(), {
             'diff',
             entry.value .. '^!',
-          }
+          })
         end,
       }
 
