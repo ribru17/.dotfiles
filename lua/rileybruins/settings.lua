@@ -83,6 +83,7 @@ local M = {
     disabled = {
       'alpha',
       'lazy',
+      'fzf',
       'mason',
       'lspinfo',
       'help',

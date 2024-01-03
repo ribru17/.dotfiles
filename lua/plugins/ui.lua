@@ -185,6 +185,77 @@ return {
     config = function()
       local actions = require('telescope.actions')
       local action_state = require('telescope.actions.state')
+      local previewers = require('telescope.previewers')
+      local builtin = require('telescope.builtin')
+
+      local delta = previewers.new_termopen_previewer {
+        get_command = function(entry)
+          -- this is for status
+          -- You can get the AM things in entry.status. So we are displaying file if entry.status == '??' or 'A '
+          -- just do an if and return a different command
+          if entry.status == '??' or 'A ' then
+            return {
+              'git',
+              '-c',
+              'core.pager=delta',
+              '-c',
+              'delta.paging=always',
+              '-c',
+              'delta.side-by-side=false',
+              'diff',
+              entry.value,
+            }
+          end
+
+          -- note we can't use pipes
+          -- this command is for git_commits and git_bcommits
+          return {
+            'git',
+            '-c',
+            'core.pager=delta',
+            '-c',
+            'delta.paging=always',
+            '-c',
+            'delta.side-by-side=false',
+            'diff',
+            entry.value .. '^!',
+          }
+        end,
+      }
+
+      local function delta_git_commits(opts)
+        opts = opts or {}
+        opts.previewer = {
+          delta,
+          previewers.git_commit_message.new(opts),
+          previewers.git_commit_diff_as_was.new(opts),
+        }
+        builtin.git_bcommits(opts)
+      end
+
+      local function delta_git_bcommits(opts)
+        opts = opts or {}
+        opts.previewer = {
+          delta,
+          previewers.git_commit_message.new(opts),
+          previewers.git_commit_diff_as_was.new(opts),
+        }
+        builtin.git_bcommits(opts)
+      end
+
+      local function delta_git_status(opts)
+        opts = opts or {}
+        opts.previewer = {
+          delta,
+          previewers.git_commit_message.new(opts),
+          previewers.git_commit_diff_as_was.new(opts),
+        }
+        builtin.git_bcommits(opts)
+      end
+
+      builtin.delta_git_commits = delta_git_commits
+      builtin.delta_git_bcommits = delta_git_bcommits
+      builtin.delta_git_status = delta_git_status
 
       -- open selected buffers in new tabs
       local function multi_tab(prompt_bufnr)
@@ -253,6 +324,10 @@ return {
 
       telescope.setup {
         defaults = {
+          set_env = {
+            LESS = '',
+            DELTA_PAGER = 'less',
+          },
           preview = {
             filetype_hook = function(filepath, bufnr, opts)
               -- don't display jank pdf previews
@@ -325,7 +400,6 @@ return {
         },
       }
 
-      local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', function()
         -- ignore opened buffers if not in dashboard or directory
         if

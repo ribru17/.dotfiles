@@ -226,6 +226,12 @@ that file). Save without formatting with `:W`.
   - Use `zF` to Focus (close all folds except) the current fold and its children
   - Use `zO` to Open all folds
   - Use `zo` to Open all folds descending from the fold at the current line
+- Using Git with Telescope
+  - Prefix the following `:Telescope` commands with `delta_` to have nice,
+    delta-highlighted diff previews:
+    - `git_status`
+    - `git_commits`
+    - `git_bcommits`
 
 ### Snippets
 
