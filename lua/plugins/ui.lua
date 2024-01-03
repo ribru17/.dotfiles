@@ -188,12 +188,11 @@ return {
       local previewers = require('telescope.previewers')
       local builtin = require('telescope.builtin')
 
-      local delta = previewers.new_termopen_previewer {
+      local delta_status = previewers.new_termopen_previewer {
         get_command = function(entry)
-          -- this is for status
-          -- You can get the AM things in entry.status. So we are displaying file if entry.status == '??' or 'A '
-          -- just do an if and return a different command
-          if entry.status == '??' or 'A ' then
+          if entry.status == '??' or entry.status == 'A ' then
+            -- show a diff against the null file, since the current file is
+            -- either untracked or was just added
             return {
               'git',
               '-c',
@@ -203,12 +202,49 @@ return {
               '-c',
               'delta.side-by-side=false',
               'diff',
+              '--no-index',
+              '--',
+              '/dev/null',
               entry.value,
             }
           end
+          -- show the regular diff of the file against HEAD
+          return {
+            'git',
+            '-c',
+            'core.pager=delta',
+            '-c',
+            'delta.paging=always',
+            '-c',
+            'delta.side-by-side=false',
+            'diff',
+            'HEAD',
+            '--',
+            entry.value,
+          }
+        end,
+      }
 
-          -- note we can't use pipes
-          -- this command is for git_commits and git_bcommits
+      local delta_b = previewers.new_termopen_previewer {
+        get_command = function(entry)
+          return {
+            'git',
+            '-c',
+            'core.pager=delta',
+            '-c',
+            'delta.paging=always',
+            '-c',
+            'delta.side-by-side=false',
+            'diff',
+            entry.value .. '^!',
+            '--',
+            entry.current_file,
+          }
+        end,
+      }
+
+      local delta = previewers.new_termopen_previewer {
+        get_command = function(entry)
           return {
             'git',
             '-c',
@@ -236,7 +272,7 @@ return {
       local function delta_git_bcommits(opts)
         opts = opts or {}
         opts.previewer = {
-          delta,
+          delta_b,
           previewers.git_commit_message.new(opts),
           previewers.git_commit_diff_as_was.new(opts),
         }
@@ -246,7 +282,7 @@ return {
       local function delta_git_status(opts)
         opts = opts or {}
         opts.previewer = {
-          delta,
+          delta_status,
           previewers.git_commit_message.new(opts),
           previewers.git_commit_diff_as_was.new(opts),
         }
