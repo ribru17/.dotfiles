@@ -42,6 +42,8 @@ plugins for you, no extra commands necessary.
   installation of the Haskell Language Server with Mason due to compatibility
   troubles with GHC, see [Troubleshooting](#question-troubleshooting) for
   details)
+- Install [`delta`](https://github.com/dandavison/delta.git) for nice Git diff
+  highlighting
 
 ## :rocket: Usage
 
