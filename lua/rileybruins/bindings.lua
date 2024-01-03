@@ -308,6 +308,28 @@ map('n', '<leader>s', function()
   vim.api.nvim_win_set_cursor(0, cur_pos)
 end, { desc = 'Correct spelling of word under cursor' })
 
+if vim.fn.executable('delta') == 1 then
+  map('n', '<leader>gc', function()
+    vim.cmd.Telescope('delta_git_commits')
+  end, { desc = 'Show Git commit history' })
+  map('n', '<leader>gh', function()
+    vim.cmd.Telescope('delta_git_bcommits')
+  end, { desc = 'Show Git commit history for current buffer' })
+  map('n', '<leader>gs', function()
+    vim.cmd.Telescope('delta_git_status')
+  end, { desc = 'Show Git status' })
+else
+  map('n', '<leader>gc', function()
+    vim.cmd.Telescope('git_commits')
+  end, { desc = 'Show Git commit history' })
+  map('n', '<leader>gh', function()
+    vim.cmd.Telescope('git_bcommits')
+  end, { desc = 'Show Git commit history for current buffer' })
+  map('n', '<leader>gs', function()
+    vim.cmd.Telescope('git_status')
+  end, { desc = 'Show Git status' })
+end
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--

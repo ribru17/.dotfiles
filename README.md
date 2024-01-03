@@ -234,6 +234,10 @@ that file). Save without formatting with `:W`.
     - `git_status`
     - `git_commits`
     - `git_bcommits`
+  - Use:
+    - `<leader>gs` to Get Git Status
+    - `<leader>gc` to Get Git Commits
+    - `<leader>gh` to Get Git Hunks (change History of current buffer)
 
 ### Snippets
 
