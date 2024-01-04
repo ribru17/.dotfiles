@@ -44,6 +44,9 @@ plugins for you, no extra commands necessary.
   details)
 - Install [`delta`](https://github.com/dandavison/delta.git) for nice Git diff
   highlighting
+  - This also requires
+    [`less`](https://archlinux.org/packages/core/x86_64/less/), which is usually
+    installed already
 
 ## :rocket: Usage
 
