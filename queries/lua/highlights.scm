@@ -1,5 +1,5 @@
 ;; extends
 
 ((identifier) @variable.builtin
- (#any-of? @variable.builtin "vim")
+ (#any-of? @variable.builtin "vim" "bit")
  (#set! "priority" 128))
