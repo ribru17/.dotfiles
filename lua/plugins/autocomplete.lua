@@ -205,7 +205,9 @@ return {
           -- skip and fall through to the next action
           and not (
             entry.source.name == 'spell'
-            and entry.context.cursor_before_line:match(entry:get_word() .. '$')
+            and entry.context.cursor_before_line:match(
+              '^' .. entry:get_word() .. '$'
+            )
           )
         then
           cmp.confirm { select = true }
