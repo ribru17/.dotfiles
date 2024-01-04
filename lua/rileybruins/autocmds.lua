@@ -172,8 +172,8 @@ create_autocmd('ColorScheme', {
 -- nicer cmp docs highlights for Nvim 0.10
 create_autocmd('FileType', {
   pattern = 'cmp_docs',
-  callback = function(args)
-    vim.treesitter.start(args.buf, 'markdown')
+  callback = function(ev)
+    vim.treesitter.start(ev.buf, 'markdown')
   end,
 })
 
