@@ -260,5 +260,6 @@ create_autocmd('TermOpen', {
     vim.opt_local.signcolumn = 'no'
     vim.opt_local.foldcolumn = '0'
     vim.b.miniindentscope_disable = true
+    vim.cmd.startinsert()
   end,
 })
