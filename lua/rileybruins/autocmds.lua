@@ -253,6 +253,7 @@ create_autocmd('BufWritePost', {
   end,
 })
 
+-- sane terminal options
 create_autocmd('TermOpen', {
   callback = function()
     vim.opt_local.number = false
@@ -260,6 +261,17 @@ create_autocmd('TermOpen', {
     vim.opt_local.signcolumn = 'no'
     vim.opt_local.foldcolumn = '0'
     vim.b.miniindentscope_disable = true
-    vim.cmd.startinsert()
+  end,
+})
+
+-- automatically close terminals after process exits successfully, without
+-- waiting for a [Process exited] prompt
+-- See: https://github.com/neovim/neovim/issues/14986
+-- TODO: Remove after v0.10
+create_autocmd('TermClose', {
+  callback = function(ev)
+    pcall(function()
+      vim.cmd.bdelete { ev.buf, bang = true }
+    end)
   end,
 })
