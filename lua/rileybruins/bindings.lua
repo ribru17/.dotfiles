@@ -457,4 +457,12 @@ create_command('ClearSem', function()
   clear('@lsp.typemod.generic.attribute')
 end, { desc = 'Clear LSP semantic highlights' })
 
+create_command('DiffKeep', function()
+  vim.cmd.diffg('LO')
+end, { desc = 'Keep local Git changes' })
+
+create_command('DiffAccept', function()
+  vim.cmd.diffg('RE')
+end, { desc = 'Accept remote Git changes' })
+
 --> END OF MISCELLANEOUS USER COMMANDS <--
