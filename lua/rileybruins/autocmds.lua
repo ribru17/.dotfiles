@@ -252,3 +252,13 @@ create_autocmd('BufWritePost', {
     vim.cmd.mkspell { '%', bang = true, mods = { silent = true } }
   end,
 })
+
+create_autocmd('TermOpen', {
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.signcolumn = 'no'
+    vim.opt_local.foldcolumn = '0'
+    vim.b.miniindentscope_disable = true
+  end,
+})
