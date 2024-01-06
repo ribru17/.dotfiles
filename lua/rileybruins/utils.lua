@@ -11,26 +11,26 @@ local background = string.format(
   vim.api.nvim_get_hl_by_name('Normal', true).background or 16777215
 )
 
+---Converts a hex color code string to a table of integer values
+---@param hex_str string: Hex color code of the format `#rrggbb`
+---@return table rgb: Table of {r, g, b} integers
 local function hexToRgb(hex_str)
-  local hex = '[abcdef0-9][abcdef0-9]'
-  local pat = '^#(' .. hex .. ')(' .. hex .. ')(' .. hex .. ')$'
-  hex_str = string.lower(hex_str)
-
-  assert(
-    string.find(hex_str, pat) ~= nil,
-    'hex_to_rgb: invalid hex_str: ' .. tostring(hex_str)
-  )
-
-  local r, g, b = string.match(hex_str, pat)
+  local r, g, b = string.match(hex_str, '^#(%x%x)(%x%x)(%x%x)')
+  assert(r, 'Invalid hex string: ' .. hex_str)
   return { tonumber(r, 16), tonumber(g, 16), tonumber(b, 16) }
 end
 
+---Blends two hex colors, given a blending amount
+---@param fg string: A hex color code of the format `#rrggbb`
+---@param bg string: A hex color code of the format `#rrggbb`
+---@param alpha number: A blending factor, between `0` and `1`.
+---@return string hex: A blended hex color code of the format `#rrggbb`
 function M.blend(fg, bg, alpha)
-  bg = hexToRgb(bg)
-  fg = hexToRgb(fg)
+  local bg_rgb = hexToRgb(bg)
+  local fg_rgb = hexToRgb(fg)
 
   local blendChannel = function(i)
-    local ret = (alpha * fg[i] + ((1 - alpha) * bg[i]))
+    local ret = (alpha * fg_rgb[i] + ((1 - alpha) * bg_rgb[i]))
     return math.floor(math.min(math.max(0, ret), 255) + 0.5)
   end
 
