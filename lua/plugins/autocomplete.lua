@@ -386,6 +386,20 @@ return {
           completion = cmp_info_style,
           documentation = cmp_info_style,
         },
+        sorting = {
+          priority_weight = 2,
+          comparators = {
+            compare.offset,
+            compare.exact,
+            compare.score,
+            compare.recently_used,
+            require('clangd_extensions.cmp_scores'),
+            compare.locality,
+            compare.kind,
+            compare.length,
+            compare.order,
+          },
+        },
         experimental = {
           ghost_text = true,
         },
