@@ -110,11 +110,14 @@ end
 
 local get_node = vim.treesitter.get_node
 local cur_pos = vim.api.nvim_win_get_cursor
-local get_node_insert_mode = function()
+
+local get_node_insert_mode = function(opts)
+  opts = opts or {}
   local ins_curs = cur_pos(0)
   ins_curs[1] = ins_curs[1] - 1
   ins_curs[2] = ins_curs[2] - 1
-  return get_node { ignore_injections = false, pos = ins_curs }
+  opts.pos = ins_curs
+  return get_node(opts)
 end
 
 local MATH_NODES = {
@@ -154,6 +157,17 @@ M.in_jsx_tags = function()
   return false
 end
 
+M.in_jsx_tags_insert = function()
+  local current_node = get_node_insert_mode()
+  while current_node do
+    if current_node:type() == 'jsx_element' then
+      return true
+    end
+    current_node = current_node:parent()
+  end
+  return false
+end
+
 M.in_latex_zone = function()
   local current_node = get_node { ignore_injections = false }
   while current_node do
@@ -172,7 +186,7 @@ M.in_mathzone = function(_, matched_trigger)
     -- will not be recognized if they are the first input in a LaTeX block)
     vim.treesitter.get_parser():parse()
   end
-  local current_node = get_node_insert_mode()
+  local current_node = get_node_insert_mode { ignore_injections = false }
   while current_node do
     if current_node:type() == 'text_mode' then
       return false

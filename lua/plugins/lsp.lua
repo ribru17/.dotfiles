@@ -91,18 +91,13 @@ return {
           -- don't set up LSP, we only want formatting
         end,
         ['emmet_language_server'] = function()
+          local emmet_fts =
+            require('lspconfig').emmet_language_server.document_config.default_config.filetypes
           -- These are the default filetypes less the ones that are covered by
           -- `cssls`. The two (sort of) conflict, and `cssls` is better. I
           -- don't use Emmet CSS abbreviations anyway.
-          local emmet_fts =
-            require('lspconfig').emmet_language_server.document_config.default_config.filetypes
-          -- TODO: Maybe get it so that these are only ignored when not in a
-          -- Tree-sitter "tag" section?
-          local ignored_fts = { 'javascriptreact', 'typescriptreact' }
-          vim.list_extend(
-            ignored_fts,
+          local ignored_fts =
             require('lspconfig').cssls.document_config.default_config.filetypes
-          )
           local filtered_fts = vim.tbl_filter(function(value)
             return not vim.tbl_contains(ignored_fts, value)
           end, emmet_fts)

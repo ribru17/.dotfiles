@@ -295,6 +295,7 @@ return {
 
       local BORDER_STYLE = require('rileybruins.settings').border
       local in_ts_cap = require('cmp.config.context').in_treesitter_capture
+      local in_jsx = require('rileybruins.utils').in_jsx_tags_insert
       local kinds = require('cmp.types').lsp.CompletionItemKind
 
       local cmp_info_style = cmp.config.window.bordered {
@@ -319,14 +320,18 @@ return {
             entry_filter = function(entry, _)
               -- filter out most text entries from LSP suggestions
               local keep_text_entries = { 'emmet_language_server', 'marksman' }
+              local client_name = entry.source.source.client
+                  and entry.source.source.client.name
+                or ''
+              local ft = vim.bo.filetype
+              if
+                client_name == 'emmet_language_server'
+                and (ft == 'javascriptreact' or ft == 'typescriptreact')
+              then
+                return in_jsx()
+              end
               return kinds[entry:get_kind()] ~= 'Text'
-                or (
-                  entry.source.source.client
-                  and vim.tbl_contains(
-                    keep_text_entries,
-                    entry.source.source.client.name
-                  )
-                )
+                or vim.tbl_contains(keep_text_entries, client_name)
             end,
           },
           { name = 'luasnip' },
