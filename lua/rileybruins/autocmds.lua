@@ -34,18 +34,9 @@ create_autocmd('FileType', {
 
 -->> "RUN ONCE" ON FILE OPEN COMMANDS <<--
 -- prevent comment from being inserted when entering new line in existing comment
-create_autocmd({ 'BufRead', 'BufNewFile' }, {
+create_autocmd('BufWinEnter', {
   callback = function()
-    -- allow <CR> to continue block comments only
-    -- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
-    vim.schedule(function()
-      -- TODO: find a way for this to work without changing comment format, to
-      -- allow for automatic comment wrapping when hitting textwidth
-      vim.opt_local.comments:remove('://')
-      vim.opt_local.comments:remove(':--')
-      vim.opt_local.comments:remove(':#')
-      vim.opt_local.comments:remove(':%')
-    end)
+    vim.opt_local.formatoptions:remove { 'r', 'o' }
     vim.opt_local.bufhidden = 'delete'
   end,
 })
