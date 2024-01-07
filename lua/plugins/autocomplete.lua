@@ -297,6 +297,7 @@ return {
       local in_ts_cap = require('cmp.config.context').in_treesitter_capture
       local in_jsx = require('rileybruins.utils').in_jsx_tags_insert
       local kinds = require('cmp.types').lsp.CompletionItemKind
+      local compare = require('cmp.config.compare')
 
       local cmp_info_style = cmp.config.window.bordered {
         border = BORDER_STYLE,
