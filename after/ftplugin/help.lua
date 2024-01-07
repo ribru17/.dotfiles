@@ -2,3 +2,4 @@
 vim.cmd.wincmd('T')
 -- get highlighted code examples
 vim.treesitter.start()
+vim.opt_local.relativenumber = true
