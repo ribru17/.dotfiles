@@ -179,6 +179,34 @@ return {
           'o'
         )
       end, math_obj_opts)
+      map('x', 'im', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@math.inner',
+          'textobjects',
+          'v'
+        )
+      end, math_obj_opts)
+      map('x', 'am', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@math.outer',
+          'textobjects',
+          'v'
+        )
+      end, math_obj_opts)
+      map('o', 'im', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@math.inner',
+          'textobjects',
+          'o'
+        )
+      end, math_obj_opts)
+      map('o', 'am', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@math.outer',
+          'textobjects',
+          'o'
+        )
+      end, math_obj_opts)
     end,
   },
 }

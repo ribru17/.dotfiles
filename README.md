@@ -195,7 +195,7 @@ that file). Save without formatting with `:W`.
     - `l`: Line
     - `c`: Conditional
     - `/`: Comment
-    - `$`: LaTeX blocks (in Markdown)
+    - `$` or `m`: LaTeX blocks (in Markdown)
     - `i`: Current indentation level
   - `<leader>sh` and `<leader>sl` to Swap nodes to the left and right,
     respectively
