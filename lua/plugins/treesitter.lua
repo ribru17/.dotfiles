@@ -68,10 +68,16 @@ return {
           swap = {
             enable = true,
             swap_next = {
-              ['<leader>sl'] = '@parameter.inner',
+              ['<leader>sl'] = {
+                query = { '@parameter.inner', '@swappable' },
+                desc = 'Swap things that should be swappable',
+              },
             },
             swap_previous = {
-              ['<leader>sh'] = '@parameter.inner',
+              ['<leader>sh'] = {
+                query = { '@parameter.inner', '@swappable' },
+                desc = 'Swap things that should be swappable',
+              },
             },
           },
         },
