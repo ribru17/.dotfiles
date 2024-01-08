@@ -1,5 +1,5 @@
-local in_link = require('rileybruins.utils').in_md_link_text
 --> MISCELLANEOUS KEYMAPS <--
+local link_dest = require('rileybruins.utils').get_md_link_dest
 local map = vim.keymap.set
 
 map('n', '<C-i>', '<Tab>', {
@@ -15,28 +15,28 @@ of both worlds).
 -- and load all of the netrw plugin to get this functionality.
 if vim.fn.executable('xdg-open') == 1 then
   map('n', 'gx', function()
-    local curpos = vim.api.nvim_win_get_cursor(0)
-    if in_link() then
-      -- HACK to move to the next link text; movement doesn't work with
-      -- injected text objects for some reason... see:
-      -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/479
-      require('nvim-treesitter.textobjects.select').select_textobject(
-        '@link',
-        'textobjects',
-        'v'
-      )
-      vim.api.nvim_input('<Esc>')
+    local link = link_dest()
+    if link then
+      vim.cmd['!'] {
+        args = {
+          'xdg-open',
+          link,
+        },
+        mods = {
+          silent = true,
+        },
+      }
+    else
+      vim.cmd['!'] {
+        args = {
+          'xdg-open',
+          vim.fn.expand('<cfile>'),
+        },
+        mods = {
+          silent = true,
+        },
+      }
     end
-    vim.cmd['!'] {
-      args = {
-        'xdg-open',
-        vim.fn.shellescape(vim.fn.expand('<cfile>'), 1),
-      },
-      mods = {
-        silent = true,
-      },
-    }
-    vim.api.nvim_win_set_cursor(0, curpos)
   end, { desc = 'Netrw-like link opening', silent = true })
 end
 

@@ -126,24 +126,20 @@ local MATH_NODES = {
   math_environment = true,
 }
 
-local LINK_NODES = {
-  image = true,
-  image_description = true,
-  inline_link = true,
-  link_text = true,
-}
-
-M.in_md_link_text = function()
-  local current_node = get_node { ignore_injections = false }
+M.get_md_link_dest = function()
+  local current_node = get_node { lang = 'markdown_inline' }
   while current_node do
-    if current_node:type() == 'link_destination' then
-      return false
-    elseif LINK_NODES[current_node:type()] then
-      return true
+    local type = current_node:type()
+    if type == 'link_destination' then
+      return vim.treesitter.get_node_text(current_node, 0)
+    elseif type == 'inline_link' or type == 'image' then
+      return vim.treesitter.get_node_text(current_node:named_child(1), 0)
+    elseif type == 'link_text' or type == 'image_description' then
+      return vim.treesitter.get_node_text(current_node:next_named_sibling(), 0)
     end
     current_node = current_node:parent()
   end
-  return false
+  return nil
 end
 
 M.in_jsx_tags = function()
