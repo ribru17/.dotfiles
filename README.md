@@ -186,16 +186,19 @@ that file). Save without formatting with `:W`.
     - E.g. `ysiwgArray<CR>` to surround a word with `Array<`, `>` (or `Array[`,
       `]` in Go)
   - Use `b` postfix to make selection Bold (surround with `**`) in Markdown
-- Custom text object motions using Tree-sitter (all motions support `a` and `i`
-  variants)
-  - `f`: Function call
-  - `F`: Function implementation
-  - `L`: Loop
-  - `l`: Line
-  - `c`: Conditional
-  - `/`: Comment
-  - `$`: LaTeX blocks (in Markdown)
-  - `i`: Current indentation level
+- Tree-sitter
+  - Custom text object motions using Tree-sitter (all motions support `a` and
+    `i` variants)
+    - `f`: Function call
+    - `F`: Function implementation
+    - `L`: Loop
+    - `l`: Line
+    - `c`: Conditional
+    - `/`: Comment
+    - `$`: LaTeX blocks (in Markdown)
+    - `i`: Current indentation level
+  - `<leader>sh` and `<leader>sl` to Swap nodes to the left and right,
+    respectively
 - Additionally, use `aa` motion to select entire buffer
 - Miscellaneous niceties
   - Insert new lines in Normal mode with `Enter` (line(s) below) or

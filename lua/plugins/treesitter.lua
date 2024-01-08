@@ -64,6 +64,16 @@ return {
               ['@conditional.inner'] = 'V',
             },
           },
+          -- TODO: Add generalized `@swappable` nodes
+          swap = {
+            enable = true,
+            swap_next = {
+              ['<leader>sl'] = '@parameter.inner',
+            },
+            swap_previous = {
+              ['<leader>sh'] = '@parameter.inner',
+            },
+          },
         },
       }
 
