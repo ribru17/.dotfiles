@@ -46,6 +46,7 @@ return {
           select = {
             enable = true,
             lookahead = true,
+            include_surrounding_whitespace = true,
             keymaps = {
               ['a/'] = '@comment.outer',
               ['i/'] = '@comment.outer',
