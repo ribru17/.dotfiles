@@ -302,11 +302,14 @@ map('x', 'gh', function()
   vim.cmd.h(vim.fn.getreg('0'))
 end, { desc = 'Get Help under current selection' })
 
-map('n', '<leader>s', function()
+map('n', '<leader>sf', function()
   local cur_pos = vim.api.nvim_win_get_cursor(0)
   vim.cmd.normal { '1z=', bang = true }
   vim.api.nvim_win_set_cursor(0, cur_pos)
 end, { desc = 'Correct spelling of word under cursor' })
+map('n', '<leader>si', function()
+  vim.cmd.normal('ysiw`')
+end, { desc = 'Ignore spelling of word under cursor' })
 
 if vim.fn.executable('delta') == 1 then
   map('n', '<leader>gc', function()

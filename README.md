@@ -209,7 +209,9 @@ that file). Save without formatting with `:W`.
     - This is default Vim functionality, this bullet is essentially a
       note-to-self
     - Also works with `gq` (though the two are slightly different)
-  - Use `<leader>s` to correct the Spelling of the word under the cursor
+  - Use `<leader>sf` to Fix the Spelling of the word under the cursor
+  - Use `<leader>si` to Ignore the Spelling of the word under the cursor
+    (surround it with backticks)
 
 ### Viewing
 
