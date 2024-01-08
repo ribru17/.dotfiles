@@ -295,7 +295,7 @@ return {
 
       local BORDER_STYLE = require('rileybruins.settings').border
       local in_ts_cap = require('cmp.config.context').in_treesitter_capture
-      local in_jsx = require('rileybruins.utils').in_jsx_tags_insert
+      local in_jsx = require('rileybruins.utils').in_jsx_tags
       local kinds = require('cmp.types').lsp.CompletionItemKind
       local compare = require('cmp.config.compare')
 
@@ -329,7 +329,7 @@ return {
                 client_name == 'emmet_language_server'
                 and (ft == 'javascriptreact' or ft == 'typescriptreact')
               then
-                return in_jsx()
+                return in_jsx(true)
               end
               return kinds[entry:get_kind()] ~= 'Text'
                 or vim.tbl_contains(keep_text_entries, client_name)

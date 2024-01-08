@@ -369,7 +369,7 @@ return {
           local ft = vim.bo.filetype
           if ft == 'typescriptreact' or ft == 'javascriptreact' then
             if
-              in_jsx_tags()
+              in_jsx_tags(false)
               or vim.api.nvim_get_current_line():match('^%s-{/%*.-%*/}%s-$')
             then
               return '{/*%s*/}'

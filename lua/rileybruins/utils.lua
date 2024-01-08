@@ -111,6 +111,9 @@ end
 local get_node = vim.treesitter.get_node
 local cur_pos = vim.api.nvim_win_get_cursor
 
+---An insert mode implementation of `vim.treesitter`'s `get_node`
+---@param opts table? Opts to be passed to `get_node`
+---@return TSNode node The node at the cursor
 local get_node_insert_mode = function(opts)
   opts = opts or {}
   local ins_curs = cur_pos(0)
@@ -120,12 +123,8 @@ local get_node_insert_mode = function(opts)
   return get_node(opts)
 end
 
-local MATH_NODES = {
-  displayed_equation = true,
-  inline_formula = true,
-  math_environment = true,
-}
-
+---Returns the destination of the Markdown link at the cursor (if any)
+---@return string?
 M.get_md_link_dest = function()
   local current_node = get_node { lang = 'markdown_inline' }
   while current_node do
@@ -142,8 +141,11 @@ M.get_md_link_dest = function()
   return nil
 end
 
-M.in_jsx_tags = function()
-  local current_node = get_node()
+---Whether or not the cursor is in a JSX-tag region
+---@param insert_mode boolean Whether or not the cursor is in insert mode
+---@return boolean
+M.in_jsx_tags = function(insert_mode)
+  local current_node = insert_mode and get_node_insert_mode() or get_node()
   while current_node do
     if current_node:type() == 'jsx_element' then
       return true
@@ -153,19 +155,16 @@ M.in_jsx_tags = function()
   return false
 end
 
-M.in_jsx_tags_insert = function()
-  local current_node = get_node_insert_mode()
-  while current_node do
-    if current_node:type() == 'jsx_element' then
-      return true
-    end
-    current_node = current_node:parent()
-  end
-  return false
-end
+local MATH_NODES = {
+  displayed_equation = true,
+  inline_formula = true,
+  math_environment = true,
+}
 
+---Whether or not the cursor is in a LaTeX block
+---@return boolean
 M.in_latex_zone = function()
-  local current_node = get_node { ignore_injections = false }
+  local current_node = get_node { lang = 'latex' }
   while current_node do
     if MATH_NODES[current_node:type()] then
       return true
@@ -175,6 +174,10 @@ M.in_latex_zone = function()
   return false
 end
 
+---Whether or not the cursor is in a LaTeX math zone
+---@param _ any
+---@param matched_trigger string? The matched snippet trigger
+---@return boolean
 M.in_mathzone = function(_, matched_trigger)
   if matched_trigger and matched_trigger:len() == 1 then
     -- reparse on single-character triggers to make function wait for the main
@@ -182,7 +185,7 @@ M.in_mathzone = function(_, matched_trigger)
     -- will not be recognized if they are the first input in a LaTeX block)
     vim.treesitter.get_parser():parse()
   end
-  local current_node = get_node_insert_mode { ignore_injections = false }
+  local current_node = get_node_insert_mode { lang = 'latex' }
   while current_node do
     if current_node:type() == 'text_mode' then
       return false
@@ -194,6 +197,10 @@ M.in_mathzone = function(_, matched_trigger)
   return false
 end
 
+---Whether or not the cursor is in a LaTeX math zone
+---@param line_to_cursor string? The line up to the cursor
+---@param matched_trigger string? The matched snippet trigger
+---@return boolean
 M.in_mathzone_ignore_backslash = function(line_to_cursor, matched_trigger)
   if line_to_cursor and line_to_cursor:match('.*\\[%a_]+$') then
     return false
