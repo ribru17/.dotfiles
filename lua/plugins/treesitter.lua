@@ -52,8 +52,6 @@ return {
               ['i/'] = '@comment.outer',
               ['ac'] = '@conditional.outer',
               ['ic'] = '@conditional.inner',
-              ['af'] = '@call.outer',
-              ['if'] = '@call.inner',
               ['aF'] = '@function.outer',
               ['iF'] = '@function.inner',
               ['aL'] = '@loop.outer',
@@ -159,7 +157,6 @@ return {
         end,
         true
       )
-
       vim.treesitter.query.add_predicate(
         'is-start-of-line?',
         function(match, _, _, pred)
@@ -236,6 +233,20 @@ return {
       map('o', 'am', function()
         require('nvim-treesitter.textobjects.select').select_textobject(
           '@math.outer',
+          'textobjects',
+          'o'
+        )
+      end, math_obj_opts)
+      map('o', 'if', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@call.inner',
+          'textobjects',
+          'o'
+        )
+      end, math_obj_opts)
+      map('o', 'af', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@call.outer',
           'textobjects',
           'o'
         )
