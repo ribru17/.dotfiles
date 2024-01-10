@@ -1,5 +1,6 @@
-;; extends
+; extends
+(object
+  (pair) @swappable)
 
-(object (pair) @swappable)
-
-(array (_) @swappable)
+(array
+  (_) @swappable)

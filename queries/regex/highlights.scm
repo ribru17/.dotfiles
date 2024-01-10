@@ -1,6 +1,5 @@
-;; extends
-
+; extends
 [
- (end_assertion)
- (start_assertion)
+  (end_assertion)
+  (start_assertion)
 ] @punctuation.special

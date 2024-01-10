@@ -1,3 +1,2 @@
-;; extends
-
+; extends
 (link_destination) @link

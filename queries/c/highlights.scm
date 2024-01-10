@@ -1,3 +1,5 @@
-;; extends
-
-["unsigned" "signed"] @type.qualifier
+; extends
+[
+  "unsigned"
+  "signed"
+] @type.qualifier

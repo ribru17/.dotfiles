@@ -1,2 +1,3 @@
 ; TODO: Remove after PR merge.
-((section) @fold (#trim! @fold))
+((section) @fold
+  (#trim! @fold))
