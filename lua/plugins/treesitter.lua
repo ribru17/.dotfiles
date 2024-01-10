@@ -63,7 +63,6 @@ return {
               ['@conditional.inner'] = 'V',
             },
           },
-          -- TODO: Add generalized `@swappable` nodes
           swap = {
             enable = true,
             swap_next = {
