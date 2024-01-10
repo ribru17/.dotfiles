@@ -435,7 +435,7 @@ local format_queries = [[
 (comment) @format.append-newline
 ;; comment styling. Feel free to change in the future
 ((comment) @format.replace
-  (#gsub! @format.replace "^;+%s*(.-)%s*$" "; %1"))
+  (#gsub! @format.replace "^;+(%s*.-)%s*$" ";%1"))
 ;; Preserve end of line comments
 (
   [
