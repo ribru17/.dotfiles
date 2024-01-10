@@ -271,7 +271,7 @@ create_autocmd('TermClose', {
 create_autocmd('BufWritePre', {
   pattern = '*.scm',
   callback = function(ev)
-    if vim.bo[ev].filetype ~= 'query' then
+    if vim.bo[ev.buf].filetype ~= 'query' then
       return
     end
     require('rileybruins.utils').format_query_buf(ev.buf)
