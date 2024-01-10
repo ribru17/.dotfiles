@@ -266,3 +266,14 @@ create_autocmd('TermClose', {
     end)
   end,
 })
+
+-- format query files, aligning with nvim-treesitter standards
+create_autocmd('BufWritePre', {
+  pattern = '*.scm',
+  callback = function(ev)
+    if vim.bo.filetype ~= 'query' then
+      return
+    end
+    require('rileybruins.utils').format_query_buf(ev.buf)
+  end,
+})
