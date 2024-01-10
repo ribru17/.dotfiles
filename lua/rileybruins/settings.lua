@@ -136,6 +136,7 @@ M.apply = function()
       backup = false,
       colorcolumn = '80',
       compatible = false,
+      cpoptions = 'aABceFs', -- make `cw` compatible with other `w` operations
       cursorline = true,
       cursorlineopt = 'number',
       encoding = 'utf-8',
