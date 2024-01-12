@@ -287,6 +287,20 @@ return {
           'o'
         )
       end, math_obj_opts)
+      map('v', 'if', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@call.inner',
+          'textobjects',
+          'v'
+        )
+      end, math_obj_opts)
+      map('v', 'af', function()
+        require('nvim-treesitter.textobjects.select').select_textobject(
+          '@call.outer',
+          'textobjects',
+          'v'
+        )
+      end, math_obj_opts)
       map('o', 'if', function()
         require('nvim-treesitter.textobjects.select').select_textobject(
           '@call.inner',
