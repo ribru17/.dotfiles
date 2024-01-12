@@ -228,93 +228,32 @@ return {
       )
 
       local map = vim.keymap.set
+      local select_ob =
+        require('nvim-treesitter.textobjects.select').select_textobject
       local math_obj_opts = {
         desc = 'Custom text object to delete inside "$" delimiters',
       }
-      map('x', 'i$', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@math.inner',
-          'textobjects',
-          'v'
-        )
-      end, math_obj_opts)
-      map('x', 'a$', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@math.outer',
-          'textobjects',
-          'v'
-        )
-      end, math_obj_opts)
-      map('o', 'i$', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@math.inner',
-          'textobjects',
-          'o'
-        )
-      end, math_obj_opts)
-      map('o', 'a$', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@math.outer',
-          'textobjects',
-          'o'
-        )
-      end, math_obj_opts)
-      map('x', 'im', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@math.inner',
-          'textobjects',
-          'v'
-        )
-      end, math_obj_opts)
-      map('x', 'am', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@math.outer',
-          'textobjects',
-          'v'
-        )
-      end, math_obj_opts)
-      map('o', 'im', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@math.inner',
-          'textobjects',
-          'o'
-        )
-      end, math_obj_opts)
-      map('o', 'am', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@math.outer',
-          'textobjects',
-          'o'
-        )
-      end, math_obj_opts)
-      map('v', 'if', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@call.inner',
-          'textobjects',
-          'v'
-        )
-      end, math_obj_opts)
-      map('v', 'af', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@call.outer',
-          'textobjects',
-          'v'
-        )
-      end, math_obj_opts)
-      map('o', 'if', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@call.inner',
-          'textobjects',
-          'o'
-        )
-      end, math_obj_opts)
-      map('o', 'af', function()
-        require('nvim-treesitter.textobjects.select').select_textobject(
-          '@call.outer',
-          'textobjects',
-          'o'
-        )
-      end, math_obj_opts)
+
+      local function textobj_map(key, query)
+        local outer = query .. '.outer'
+        local inner = query .. '.inner'
+        map('x', 'i' .. key, function()
+          select_ob(inner, 'textobjects', 'v')
+        end, math_obj_opts)
+        map('x', 'a' .. key, function()
+          select_ob(outer, 'textobjects', 'v')
+        end, math_obj_opts)
+        map('o', 'i' .. key, function()
+          select_ob(inner, 'textobjects', 'o')
+        end, math_obj_opts)
+        map('o', 'a' .. key, function()
+          select_ob(outer, 'textobjects', 'o')
+        end, math_obj_opts)
+      end
+
+      textobj_map('$', '@math')
+      textobj_map('m', '@math')
+      textobj_map('f', '@call')
     end,
   },
 }
