@@ -47,20 +47,8 @@ return {
             enable = true,
             lookahead = true,
             include_surrounding_whitespace = true,
-            keymaps = {
-              ['a/'] = '@comment.outer',
-              ['i/'] = '@comment.outer',
-              ['ac'] = '@conditional.outer',
-              ['ic'] = '@conditional.inner',
-              ['aF'] = '@function.outer',
-              ['iF'] = '@function.inner',
-              ['aL'] = '@loop.outer',
-              ['iL'] = '@loop.inner',
-            },
             selection_modes = {
               ['@comment.outer'] = 'V',
-              ['@conditional.outer'] = 'V',
-              ['@conditional.inner'] = 'V',
             },
           },
           swap = {
@@ -230,30 +218,35 @@ return {
       local map = vim.keymap.set
       local select_ob =
         require('nvim-treesitter.textobjects.select').select_textobject
-      local math_obj_opts = {
-        desc = 'Custom text object to delete inside "$" delimiters',
-      }
 
       local function textobj_map(key, query)
-        local outer = query .. '.outer'
-        local inner = query .. '.inner'
+        local outer = '@' .. query .. '.outer'
+        local inner = '@' .. query .. '.inner'
+        local opts = {
+          desc = 'Selection for ' .. query .. ' text objects',
+          silent = true,
+        }
         map('x', 'i' .. key, function()
           select_ob(inner, 'textobjects', 'v')
-        end, math_obj_opts)
+        end, opts)
         map('x', 'a' .. key, function()
           select_ob(outer, 'textobjects', 'v')
-        end, math_obj_opts)
+        end, opts)
         map('o', 'i' .. key, function()
           select_ob(inner, 'textobjects', 'o')
-        end, math_obj_opts)
+        end, opts)
         map('o', 'a' .. key, function()
           select_ob(outer, 'textobjects', 'o')
-        end, math_obj_opts)
+        end, opts)
       end
 
-      textobj_map('$', '@math')
-      textobj_map('m', '@math')
-      textobj_map('f', '@call')
+      textobj_map('$', 'math')
+      textobj_map('m', 'math')
+      textobj_map('f', 'call')
+      textobj_map('F', 'function')
+      textobj_map('L', 'loop')
+      textobj_map('c', 'conditional')
+      textobj_map('/', 'comment')
     end,
   },
 }
