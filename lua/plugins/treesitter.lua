@@ -46,9 +46,10 @@ return {
           select = {
             enable = true,
             lookahead = true,
-            include_surrounding_whitespace = true,
+            include_surrounding_whitespace = false,
             selection_modes = {
               ['@comment.outer'] = 'V',
+              ['@conditional.outer'] = 'V',
             },
           },
           swap = {
