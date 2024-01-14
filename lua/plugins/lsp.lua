@@ -175,6 +175,9 @@ return {
                   privateName = { '^_' },
                 },
                 diagnostics = {
+                  -- Still debating this one...
+                  -- disable = { 'redefined-local' },
+                  unusedLocalExclude = { '_*' },
                   -- Uncomment to receive LSP formatting diagnostics.
                   -- neededFileStatus = { ['codestyle-check'] = 'Any' },
                 },
