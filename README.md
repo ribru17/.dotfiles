@@ -164,8 +164,6 @@ that file). Save without formatting with `:W`.
   - Use a capital `H` to smartly match different cases like camelCase,
     PascalCase, etc. (but without incremental search)
 - Miscellaneous useful Visual mode operations
-  - Use `K` and `J` to move the selected lines up or down, respectively, smartly
-    indenting if the lines move within the scope of, say, an if statement
   - Prefix the `h`, `j`, `k`, and `l` motions with `Ctrl` to move the _end_ of
     the selection
   - Surround selection with brackets by pressing `s` or `S` then that bracket.

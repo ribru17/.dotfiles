@@ -86,12 +86,6 @@ map('n', '<S-CR>', function()
   end)
 end, { desc = 'Add new lines in normal mode (above)' })
 
-local smartmove_opts = {
-  desc = 'Move selection smartly, with indentation for `if` statements and such',
-}
-map('x', 'J', ":m '>+1<CR>gv=gv", smartmove_opts)
-map('x', 'K', ":m '<-2<CR>gv=gv", smartmove_opts)
-
 local nowhitespacejump_opts = {
   desc = 'Better no-whitespace jumping',
 }
