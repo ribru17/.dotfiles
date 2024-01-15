@@ -841,7 +841,6 @@ return {
   },
   {
     'Bekaboo/deadcolumn.nvim',
-    commit = 'b7cdc07c97abf54656c49763da935ca147318101',
     event = { 'VeryLazy' },
     config = function()
       require('deadcolumn').setup {
