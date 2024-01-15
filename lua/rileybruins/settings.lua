@@ -166,7 +166,7 @@ M.apply = function()
       textwidth = 80,
       undodir = os.getenv('HOME') .. '/.vim/undodir',
       undofile = true,
-      virtualedit = 'block',
+      virtualedit = 'block,insert',
       wrap = false,
     },
     opt = {
