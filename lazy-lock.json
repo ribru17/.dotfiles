@@ -40,7 +40,7 @@
   "onedark.nvim": { "branch": "master", "commit": "dc3bad0121298f89b50aaff8599d1946e07eb4c2" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
   "promise-async": { "branch": "main", "commit": "94f6f03c6c1e2aab551aacdf0c1e597a7269abb6" },
-  "rainbow-delimiters.nvim": { "branch": "master", "commit": "bbe08e16aef994d7137f627a8e692ad863e63b13" },
+  "rainbow-delimiters.nvim": { "branch": "master", "commit": "80ee86a2a81b5f029d5c8a85930cf549f9842635" },
   "rustaceanvim": { "branch": "master", "commit": "819ae2d889cca667e7410341c48955043be100a0" },
   "statuscol.nvim": { "branch": "main", "commit": "3b629754420919575a9e5758027d6e1831dbf2aa" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },

@@ -277,3 +277,16 @@ create_autocmd('BufWritePre', {
     require('rileybruins.utils').format_query_buf(ev.buf)
   end,
 })
+
+create_autocmd('FileType', {
+  pattern = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+  callback = function()
+    require('cmp').setup.filetype {
+      sorting = {
+        comparators = vim.list_extend({
+          require('clangd_extensions.cmp_scores'),
+        }, require('cmp.config').get().sorting.comparators),
+      },
+    }
+  end,
+})
