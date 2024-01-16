@@ -278,6 +278,7 @@ create_autocmd('BufWritePre', {
   end,
 })
 
+-- load clangd cmp scoring
 create_autocmd('FileType', {
   pattern = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
   callback = function()
