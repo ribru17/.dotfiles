@@ -220,6 +220,7 @@ return {
       local select_ob =
         require('nvim-treesitter.textobjects.select').select_textobject
 
+      -- Globally map Tree-sitter text object binds
       local function textobj_map(key, query)
         local outer = '@' .. query .. '.outer'
         local inner = '@' .. query .. '.inner'
