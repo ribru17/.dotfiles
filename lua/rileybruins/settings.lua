@@ -32,6 +32,7 @@ local M = {
     'query',
     'regex',
     'rust',
+    'sql',
     'tsx',
     'typescript',
     'vim',
