@@ -244,6 +244,13 @@ that file). Save without formatting with `:W`.
     - `<leader>gs` to Get Git Status
     - `<leader>gc` to Get Git Commits
     - `<leader>gh` to Get Git Hunks (change History of current buffer)
+- Arbitrary Tree-sitter language injections for Lua using comments like:
+  ```lua
+  --> INJECT: javascript
+  local js_string = [[
+  console.log('hello')
+  ]]
+  ```
 
 ### Snippets
 
