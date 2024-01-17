@@ -1,16 +1,18 @@
 # My Neovim Configuration :fire:
 
+<!-- vim: set spell: -->
+
 ## :camera: Screenshot
 
-- Font: [Iosevka](https://github.com/ribru17/iosevka-config), Custom Extended
+- Font: [`Iosevka`](https://github.com/ribru17/iosevka-config), Custom Extended
   15pt
 - Theme: [Bamboo](https://github.com/ribru17/bamboo.nvim)
 
-![nvimhome](https://github.com/ribru17/nvim/assets/55766287/dff3a76c-c381-4a4f-9e11-0e507d73fbef)
+![`nvimhome`](https://github.com/ribru17/nvim/assets/55766287/dff3a76c-c381-4a4f-9e11-0e507d73fbef)
 
-![nvimnotetaking](https://github.com/ribru17/nvim/assets/55766287/07bb57a7-3a48-4ac1-a944-420af08b0e04)
+![`nvimnotetaking`](https://github.com/ribru17/nvim/assets/55766287/07bb57a7-3a48-4ac1-a944-420af08b0e04)
 
-![nvimediting](https://github.com/ribru17/nvim/assets/55766287/35f0f7f5-2042-4b59-9d8e-407c6f0b2c12)
+![`nvimediting`](https://github.com/ribru17/nvim/assets/55766287/35f0f7f5-2042-4b59-9d8e-407c6f0b2c12)
 
 ## :package: Installation
 
@@ -23,24 +25,24 @@ plugins for you, no extra commands necessary.
 ## :lock: Optional Prerequisites
 
 - Use a font that is patched with the
-  [Nerd Fonts library](https://github.com/ryanoasis/nerd-fonts) for statusline,
-  bufferline icons
-- Install [ripgrep](https://github.com/BurntSushi/ripgrep#installation) for
+  [Nerd Fonts library](https://github.com/ryanoasis/nerd-fonts) for status line,
+  buffer line icons
+- Install [`ripgrep`](https://github.com/BurntSushi/ripgrep#installation) for
   fuzzy finding files with keyword search
 - Install
-  [wl-clipboard](https://archlinux.org/packages/extra/x86_64/wl-clipboard/) (or
-  [build from source](https://github.com/bugaevc/wl-clipboard#building)) if
+  [`wl-clipboard`](https://archlinux.org/packages/extra/x86_64/wl-clipboard/)
+  (or [build from source](https://github.com/bugaevc/wl-clipboard#building)) if
   using Wayland in order to support yanking to the system clipboard
 - Install [unzip](https://archlinux.org/packages/extra/x86_64/unzip/) to allow
-  Mason to unzip certain packages (like Deno for formatting of Javascript-family
-  files)
-- Install [TypeScript](https://www.typescriptlang.org/download) globally to
+  Mason to unzip certain packages (like `deno` for formatting of
+  Javascript-family files)
+- Install [Typescript](https://www.typescriptlang.org/download) globally to
   allow the [typescript-tools](https://github.com/pmizio/typescript-tools.nvim)
   plugin to work anywhere
 - Install `ghc` and `haskell-language-server` for Haskell development with
-  [haskell-tools.nvim](https://github.com/mrcjkb/haskell-tools.nvim) (avoid
+  [`haskell-tools.nvim`](https://github.com/mrcjkb/haskell-tools.nvim) (avoid
   installation of the Haskell Language Server with Mason due to compatibility
-  troubles with GHC, see [Troubleshooting](#question-troubleshooting) for
+  troubles with `GHC`, see [Troubleshooting](#question-troubleshooting) for
   details)
 - Install [`delta`](https://github.com/dandavison/delta.git) for nice Git diff
   highlighting
@@ -54,18 +56,18 @@ This configuration extends all of the core functionality of Neovim. I use
 `Space` as the Leader key. All mappings are in Normal mode unless specified
 otherwise.
 
-For best results use a terminal that supports ligatures (I use Konsole and
-WezTerm).
+For best results use a terminal that supports ligatures (I use `Konsole` and
+`WezTerm`).
 
 ### Basic
 
 - Update plugins with `:Lazy update`
 - Manage plugins via GUI with `:Lazy`
-- Install LSP's, formatters, etc. with `:LspInstall` or with `:Mason`:
+- Install `LSP`'s, formatters, etc. with `:LspInstall` or with `:Mason`:
   - `i` to install current package
   - `u` to update current package
   - `X` to remove current package
-- Install syntax highlighters for a given filetype with `:TSInstall {filetype}`
+- Install syntax highlighters for a given file type with `:TSInstall {filetype}`
 - Change/preview color schemes with `<leader>fc`
 
 ### Navigation
@@ -76,7 +78,7 @@ WezTerm).
   - Use `<leader>fg` to Grep Files against a fixed input query (more performant,
     better for large projects)
   - Use `<leader>fs` to live Search for Files that contain a phrase (using
-    ripgrep)
+    `ripgrep`)
   - Use `<leader>fw` to fuzzy find Files in the git Working tree and index
   - **NOTE**:
     - Use `Enter` to switch to selected file
@@ -99,7 +101,7 @@ WezTerm).
   - Use `<leader>gk` and `<leader>gj` to move up and down Git changes,
     respectively
 - Diagnostics
-  - For the following keymaps, make the suffix capital to open in a new tab
+  - For the following key maps, make the suffix capital to open in a new tab
     (e.g. `gD` opens definition in new tab)
     - Use `gd` to Go to Definition of current object
     - Use `gt` to Go to Type definition of current object
@@ -149,8 +151,8 @@ that file). Save without formatting with `:W`.
   - Use `<leader>gr` to Reset (undo) _all_ Git changes in a file
   - Use `<leader>ga` to Add (stage) a Git change (works in Normal and Visual
     mode)
-- EZ Semicolon
-  - Implements EZ Semicolon (VS Code extension) functionality: inserting a
+- `EZ Semicolon`
+  - Implements `EZ Semicolon` (VS Code extension) functionality: inserting a
     semicolon anywhere will always place it at the end of the line followed by a
     new line. The only exceptions to this are if the line is a return statement
     (no new line will be inserted) or a for loop (no formatting will occur at
@@ -163,8 +165,8 @@ that file). Save without formatting with `:W`.
     decrease or increase bullet point indentation, respectively.
 - Search and Replace
   - Use `<leader>h` to search and replace instances of the hovered word
-  - Use a capital `H` to smartly match different cases like camelCase,
-    PascalCase, etc. (but without incremental search)
+  - Use a capital `H` to smartly match different cases like `camelCase`,
+    `PascalCase`, etc. (but without incremental search)
 - Miscellaneous useful Visual mode operations
   - Prefix the `h`, `j`, `k`, and `l` motions with `Ctrl` to move the _end_ of
     the selection
@@ -177,7 +179,7 @@ that file). Save without formatting with `:W`.
   - Use `Ctrl+y` and `Ctrl+x` to copy or cut to system clipboard, respectively
 - Other useful surround operations
   - All defaults provided in
-    [nvim-surround](https://github.com/kylechui/nvim-surround) with some nice
+    [`nvim-surround`](https://github.com/kylechui/nvim-surround) with some nice
     aliases
   - Use `f` postfix to surround with function call
     - Capital `F` surrounds with a function definition in Lua and
@@ -258,8 +260,8 @@ that file). Save without formatting with `:W`.
 
 Inherits all snippets provided by the LSP. Additionally...
 
-- Emmet snippets for HTML and other filetypes (expand with `<S-CR>`)
-- `lorem`: snippet for Markdown and Emmet-supported filetypes that provides a
+- Emmet snippets for HTML and other file types (expand with `<S-CR>`)
+- `lorem`: snippet for Markdown and Emmet-supported file types that provides a
   long `lorem ipsum...` string
 - Many Markdown LaTeX snippets inspired by [Gilles Castel](https://castel.dev/)
 - Custom Markdown tables with `tbl<row_num>x<col_num>`
@@ -273,9 +275,9 @@ Inherits all snippets provided by the LSP. Additionally...
 
 ## :question: Troubleshooting
 
-- **NOTE:** To support `<S-CR>` on Konsole, go to
+- **NOTE:** To support `<S-CR>` on `Konsole`, go to
   `Settings>Edit Current Profile>Keyboard` and change the `Return+Shift` mapping
-  keycode from `\EOM` (or whatever the current value is) to `\E[13;2u`.
+  key code from `\EOM` (or whatever the current value is) to `\E[13;2u`.
 - If the post install hook doesn't work when first installing `tree-sitter`, run
   `:TSUpdate` manually and it should work.
 - If you get an error when opening a certain file type:
@@ -283,7 +285,7 @@ Inherits all snippets provided by the LSP. Additionally...
   Error executing lua: ...query: invalid node type at position...
   ```
   run `:TSInstall {filetype}` (or enter the valid name for the tree sitter
-  highlighter for that filetype) and this should fix it.
+  highlighter for that file type) and this should fix it.
 - If you get an error relating to `rust-analyzer` not being found or executable
   when opening Rust files, this may be because Mason's installed version cannot
   be executed due to shared library issues(?) and if this is the case it may be
@@ -292,7 +294,7 @@ Inherits all snippets provided by the LSP. Additionally...
 - If you get errors related to the Haskell Language Server not being found even
   after you have installed `ghc` and `hls`, this is because the version of `ghc`
   is not yet working in tandem with `hls`. In the `ghcup tui`, make sure your
-  version of GHC says `hls-powered` in the `Notes` section on the right. Once
-  you have done this set that version of GHC using `s` in the TUI and then
+  version of `GHC` says `hls-powered` in the `Notes` section on the right. Once
+  you have done this set that version of `GHC` using `s` in the TUI and then
   `ghc install hls`. It is not recommended to install the Haskell Language
   Server with Mason.
