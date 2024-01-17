@@ -29,7 +29,9 @@ require('nvim-surround').buffer_setup {
     ---@diagnostic disable-next-line: missing-fields
     ['b'] = {
       add = { '**', '**' },
+      --> INJECT: luap
       find = '%*%*.-%*%*',
+      --> INJECT: luap
       delete = '^(%*%*)().-(%*%*)()$',
     },
     -- recognize latex-style functions when in latex snippets
@@ -46,6 +48,7 @@ require('nvim-surround').buffer_setup {
       find = function()
         if in_latex_zone() then
           return config.get_selection {
+            --> INJECT: luap
             pattern = '\\[%w_]+{.-}',
           }
         end
@@ -58,6 +61,7 @@ require('nvim-surround').buffer_setup {
           end
         end
         return config.get_selection {
+          --> INJECT: luap
           pattern = '[^=%s%(%){}]+%b()',
         }
       end,
@@ -67,11 +71,13 @@ require('nvim-surround').buffer_setup {
         if in_latex_zone() then
           match = config.get_selections {
             char = char,
+            --> INJECT: luap
             pattern = '^(\\[%w_]+{)().-(})()$',
           }
         else
           match = config.get_selections {
             char = char,
+            --> INJECT: luap
             pattern = '^(.-%()().-(%))()$',
           }
         end
@@ -83,11 +89,13 @@ require('nvim-surround').buffer_setup {
           if in_latex_zone() then
             return config.get_selections {
               char = char,
+              --> INJECT: luap
               pattern = '^.-\\([%w_]+)(){.-}()()$',
             }
           else
             return config.get_selections {
               char = char,
+              --> INJECT: luap
               pattern = '^.-([%w_]+)()%(.-%)()()$',
             }
           end

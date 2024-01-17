@@ -19,6 +19,7 @@ require('nvim-surround').buffer_setup {
           query = { capture = '@function.outer', type = 'textobjects' },
         }
       end,
+      --> INJECT: luap
       delete = '^(.-function.-%(.-%))().-(end)()$',
     },
   },

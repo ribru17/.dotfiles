@@ -220,11 +220,13 @@ create_autocmd('FileType', {
           delete = function(char)
             local match = config.get_selections {
               char = char,
+              --> INJECT: luap
               pattern = '^(function%s+[%w_]-%s-%(.-%).-{)().-(})()$',
             }
             if not match then
               match = config.get_selections {
                 char = char,
+                --> INJECT: luap
                 pattern = '^(%(.-%)%s-=>%s-{)().-(})()$',
               }
             end

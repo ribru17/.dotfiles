@@ -19,6 +19,7 @@ local frac_no_parens = {
 
 local frac = s({
   priority = 1000,
+  --> INJECT: luap
   trig = '.*%)/',
   wordTrig = true,
   regTrig = true,
@@ -106,7 +107,11 @@ return {
       show_condition = in_text,
     }
   ),
-  s({ trig = 'tbl(%d+)x(%d+)', regTrig = true }, {
+  s({
+    --> INJECT: luap
+    trig = 'tbl(%d+)x(%d+)',
+    regTrig = true,
+  }, {
     d(1, function(_, snip)
       local nodes = {}
       local i_counter = 0
@@ -477,6 +482,7 @@ return {
   ),
   s(
     {
+      --> INJECT: luap
       trig = '(%a)bar',
       wordTrig = false,
       regTrig = true,
@@ -489,6 +495,7 @@ return {
   ),
   s(
     {
+      --> INJECT: luap
       trig = '%((%a+)%)bar',
       wordTrig = false,
       regTrig = true,
@@ -501,6 +508,7 @@ return {
   ),
   s(
     {
+      --> INJECT: luap
       trig = '(%a)hat',
       wordTrig = false,
       regTrig = true,
@@ -513,6 +521,7 @@ return {
   ),
   s(
     {
+      --> INJECT: luap
       trig = '([%a0])vec',
       wordTrig = false,
       regTrig = true,
@@ -603,6 +612,7 @@ return {
 
   frac,
   s({
+    --> INJECT: luap
     trig = '([%a])(%d)',
     regTrig = true,
     condition = in_mathzone,
@@ -614,6 +624,7 @@ return {
   }),
 
   s({
+    --> INJECT: luap
     trig = '([%a])_(%d%d)',
     regTrig = true,
     condition = in_mathzone,
@@ -625,30 +636,35 @@ return {
   }),
 
   s({
+    --> INJECT: luap
     trig = '(\\?[%w]+\\?^%w)/',
     regTrig = true,
     condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
 
   s({
+    --> INJECT: luap
     trig = '(\\?[%w]+\\?_%w)/',
     regTrig = true,
     condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
 
   s({
+    --> INJECT: luap
     trig = '(\\?[%w]+\\?^{%w*})/',
     regTrig = true,
     condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
 
   s({
+    --> INJECT: luap
     trig = '(\\?[%w]+\\?_{%w*})/',
     regTrig = true,
     condition = in_mathzone,
   }, vim.deepcopy(frac_no_parens)),
 
   s({
+    --> INJECT: luap
     trig = '(\\?%w+)/',
     regTrig = true,
     condition = in_mathzone,

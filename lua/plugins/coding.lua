@@ -308,6 +308,7 @@ return {
           ---@diagnostic disable-next-line: missing-fields
           ['f'] = {
             change = {
+              --> INJECT: luap
               target = '^.-([%w_.]+!?)()%(.-%)()()$',
               replacement = function()
                 local result = input('Enter the function name: ')
@@ -330,7 +331,9 @@ return {
                 }
               end
             end,
+            --> INJECT: luap
             find = '[%w_]-<.->',
+            --> INJECT: luap
             delete = '^([%w_]-<)().-(>)()$',
           },
           ---@diagnostic disable-next-line: missing-fields
@@ -346,7 +349,9 @@ return {
                 }
               end
             end,
+            --> INJECT: luap
             find = '[%w_]-<.->',
+            --> INJECT: luap
             delete = '^([%w_]-<)().-(>)()$',
           },
         },

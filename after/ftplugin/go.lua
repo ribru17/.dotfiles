@@ -13,7 +13,9 @@ require('nvim-surround').buffer_setup {
           }
         end
       end,
+      --> INJECT: luap
       find = '[%w_]-%[.-%]',
+      --> INJECT: luap
       delete = '^([%w_]-%[)().-(%])()$',
     },
     ---@diagnostic disable-next-line: missing-fields
@@ -28,7 +30,9 @@ require('nvim-surround').buffer_setup {
           }
         end
       end,
+      --> INJECT: luap
       find = '[%w_]-%[.-%]',
+      --> INJECT: luap
       delete = '^([%w_]-%[)().-(%])()$',
     },
   },

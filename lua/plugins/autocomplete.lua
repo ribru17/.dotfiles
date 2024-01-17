@@ -105,11 +105,11 @@ return {
         })
         :with_pair(cond.not_before_text('\\')))
 
-      npairs.add_rule(
-        Rule('/**', '  */')
-          :with_pair(cond.not_after_regex('.-%*/', -1))
-          :set_end_pair_length(3)
-      )
+      npairs.add_rule(Rule('/**', '  */'):with_pair(cond.not_after_regex(
+        --> INJECT: luap
+        '.-%*/',
+        -1
+      )):set_end_pair_length(3))
 
       npairs.add_rule(Rule('**', '**', 'markdown'):with_move(function(opts)
         return cond.after_text('*')(opts) and cond.not_before_text('\\')(opts)
