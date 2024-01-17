@@ -302,6 +302,8 @@ return {
       local cmp_info_style = cmp.config.window.bordered {
         border = BORDER_STYLE,
       }
+      -- pumheight doesn't affect the documentation window
+      cmp_info_style.max_height = 16
 
       local cmp_config = {
         mapping = cmp_mappings,
