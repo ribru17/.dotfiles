@@ -50,6 +50,9 @@ end, indent_opts)
 map('n', '<Tab>', '>>', indent_opts)
 map('n', '<S-Tab>', '<<', indent_opts)
 
+map('n', '<leader>sj', ']s', { desc = 'Move to next misspelling' })
+map('n', '<leader>sk', '[s', { desc = 'Move to previous misspelling' })
+
 map('n', '<CR>', function()
   local n = vim.v.count1
   local current_line = vim.api.nvim_win_get_cursor(0)[1]

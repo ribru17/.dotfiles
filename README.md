@@ -113,6 +113,8 @@ WezTerm).
     - This also works with `w`, `e`, and `b`
   - Use `<M-BS>` to delete a word
   - Can use `Meta+i` as an alternative to `Esc` to exit Insert mode
+- Use `<leader>sj` and `<leader>sk` to move to the next and previous
+  misspellings, respectively
 
 ### Editing
 
