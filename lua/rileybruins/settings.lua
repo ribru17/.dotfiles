@@ -37,6 +37,7 @@ local M = {
     'typescript',
     'vim',
     'vimdoc',
+    'xml',
   },
   ensure_installed_lsps = {
     'clangd',
