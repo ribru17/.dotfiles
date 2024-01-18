@@ -185,11 +185,15 @@ M.apply = function()
   end
 
   -- properly recognize more filetypes
-  -- TODO: Remove after a future Neovim version
+  -- TODO: Remove conf and luau specifications after a future Neovim version
   vim.filetype.add {
     extension = {
       conf = 'conf',
       luau = 'luau',
+    },
+    filename = {
+      -- recognize e.g. Github private keys as PEM files
+      id_ed25519 = 'pem',
     },
   }
 end
