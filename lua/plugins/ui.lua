@@ -728,7 +728,7 @@ return {
 
         local function tab_with_close()
           if not FLOAT_ENABLED then
-            vim.api.nvim_command('wincmd h')
+            vim.cmd.wincmd('h')
           end
           local marks = api.marks.list()
           if #marks == 0 then
