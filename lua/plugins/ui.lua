@@ -544,7 +544,7 @@ return {
         ),
         newButton('l', ' ' .. " LSP's", ':Mason<CR>'),
         newButton('p', ' ' .. ' Plugins', ':Lazy<CR>'),
-        newButton('q', ' ' .. ' Quit', ':qa<CR>'),
+        newButton('q', ' ' .. ' Quit', ':q<CR>'),
       }
       dashboard.opts.layout[3].val = 0
       dashboard.section.footer.val =
