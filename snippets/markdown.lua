@@ -611,6 +611,25 @@ return {
   --> IN MATH ZONE, WORD BOUNDARY
 
   frac,
+  s(
+    {
+      trig = 'vec',
+    },
+    fmt(
+      [[
+        \begin{{align}}
+          {1} &= \begin{{bmatrix}}
+            {2} \\
+            {3} \\
+            \vdots \\
+            {4}
+          \end{{bmatrix}}
+        \end{{align}}
+      ]],
+      { i(1, 'y'), i(2, 'x_{1}'), i(3, 'x_{2}'), i(4, 'x_{m}') }
+    ),
+    { condition = in_mathzone }
+  ),
   s({
     --> INJECT: luap
     trig = '([%a])(%d)',
