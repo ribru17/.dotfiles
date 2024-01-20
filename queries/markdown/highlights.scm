@@ -8,8 +8,8 @@
   (list_marker_minus)
   (list_marker_plus)
   (list_marker_star)
-] @punctuation.special
-  (#offset-first-n! @punctuation.special 1)
+] @markup.list
+  (#offset-first-n! @markup.list 1)
   (#set! conceal "•"))
 
 (list
@@ -20,8 +20,8 @@
           (list_marker_minus)
           (list_marker_plus)
           (list_marker_star)
-        ] @punctuation.special
-          (#offset-first-n! @punctuation.special 1)
+        ] @markup.list
+          (#offset-first-n! @markup.list 1)
           (#set! conceal "◦"))))))
 
 (list
@@ -34,8 +34,8 @@
               (list_marker_minus)
               (list_marker_plus)
               (list_marker_star)
-            ] @punctuation.special
-              (#offset-first-n! @punctuation.special 1)
+            ] @markup.list
+              (#offset-first-n! @markup.list 1)
               (#set! conceal "▪"))))))))
 
 (list
@@ -50,8 +50,8 @@
                   (list_marker_minus)
                   (list_marker_plus)
                   (list_marker_star)
-                ] @punctuation.special
-                  (#offset-first-n! @punctuation.special 1)
+                ] @markup.list
+                  (#offset-first-n! @markup.list 1)
                   (#set! conceal "▫"))))))))))
 
 (list
@@ -68,17 +68,17 @@
                       (list_marker_minus)
                       (list_marker_plus)
                       (list_marker_star)
-                    ] @punctuation.special
-                      (#offset-first-n! @punctuation.special 1)
+                    ] @markup.list
+                      (#offset-first-n! @markup.list 1)
                       (#set! conceal "🠢"))))))))))))
 
 ; Checkbox list items
-((task_list_marker_unchecked) @text.todo.unchecked
-  (#offset! @text.todo.unchecked 0 -2 0 0)
+((task_list_marker_unchecked) @markup.list.unchecked
+  (#offset! @markup.list.unchecked 0 -2 0 0)
   (#set! conceal "☐")) ; Alts:✗ ✘ 🗷 ❌☐
 
-((task_list_marker_checked) @text.todo.checked
-  (#offset! @text.todo.checked 0 -2 0 0)
+((task_list_marker_checked) @markup.list.checked
+  (#offset! @markup.list.checked 0 -2 0 0)
   (#set! conceal "☑")) ; Alts:✓ ✔ 🗹 ✅☑
 
 (list_item
@@ -131,26 +131,26 @@
   (#set! conceal "━"))
 
 ; Headers
-((atx_h1_marker) @text.title
+((atx_h1_marker) @markup.heading.1.marker
   (#set! conceal "1"))
 
-((atx_h2_marker) @text.title
+((atx_h2_marker) @markup.heading.2.marker
   (#set! conceal "2"))
 
-((atx_h3_marker) @text.title
+((atx_h3_marker) @markup.heading.3.marker
   (#set! conceal "3"))
 
-((atx_h4_marker) @text.title
+((atx_h4_marker) @markup.heading.4.marker
   (#set! conceal "4"))
 
-((atx_h5_marker) @text.title
+((atx_h5_marker) @markup.heading.5.marker
   (#set! conceal "5"))
 
-((atx_h6_marker) @text.title
+((atx_h6_marker) @markup.heading.6.marker
   (#set! conceal "6"))
 
 ; Ease fenced code block conceals a bit
-((fenced_code_block_delimiter) @punctuation.delimiter
+((fenced_code_block_delimiter) @markup.raw.delimiter
   (#set! conceal "~"))
 
 ; Awesome fenced code block language conceals using Nerd icons
