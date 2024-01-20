@@ -269,17 +269,6 @@ create_autocmd('TermClose', {
   end,
 })
 
--- format query files, aligning with nvim-treesitter standards
-create_autocmd('BufWritePre', {
-  pattern = '*.scm',
-  callback = function(ev)
-    if vim.bo[ev.buf].filetype ~= 'query' then
-      return
-    end
-    require('rileybruins.utils').format_query_buf(ev.buf)
-  end,
-})
-
 -- load clangd cmp scoring
 create_autocmd('FileType', {
   pattern = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },

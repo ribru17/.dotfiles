@@ -590,4 +590,6 @@ M.format_query_buf = function(bufnr)
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
 end
 
+-->> END OF QUERY FORMATTING
+
 return M
