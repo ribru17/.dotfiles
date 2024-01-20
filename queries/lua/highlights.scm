@@ -11,5 +11,5 @@
       (_)
       .
       (string
-        (string_content) @string.regex))
+        (string_content) @string.regexp))
   (#any-of? @_method "vim.split" "vim.gsplit"))

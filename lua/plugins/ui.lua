@@ -22,14 +22,6 @@ return {
           ['@comment'] = { fg = '$bg_yellow', fmt = 'italic' },
           -- change bracket color so that it doesn't conflict with string color
           ['TSRainbowGreen'] = { fg = '$fg' },
-          -- markdown latex highlighting
-          ['@text.math'] = { fg = '$blue' },
-          -- markdown text modifier highlights
-          ['@text.strong.markdown_inline'] = { fg = '$purple', fmt = 'bold' },
-          ['@text.emphasis.markdown_inline'] = {
-            fg = '$purple',
-            fmt = 'italic',
-          },
           -- better match paren highlights
           ['MatchParen'] = { fg = '$orange', fmt = 'bold' },
           -- better dashboard styling
