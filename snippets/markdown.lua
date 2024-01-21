@@ -1029,6 +1029,11 @@ return {
     fmt([[\circ]], {}),
     { condition = in_mathzone_ignore_backslash }
   ),
+  s(
+    { trig = '\\?begin', regTrig = true },
+    fmt([[\begin{{{}}} {} \end{{{}}}]], { i(1, 'equation'), i(2, ''), rep(1) }),
+    { condition = in_mathzone }
+  ),
 
   --> NOT IN MATH ZONE <--
 
