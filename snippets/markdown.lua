@@ -1020,9 +1020,9 @@ return {
     { condition = in_mathzone }
   ),
   s(
-    { trig = 'text' },
+    { trig = '\\?text', regTrig = true },
     fmt([[\text{{{}}}]], { i(1, '') }),
-    { condition = in_mathzone_ignore_backslash }
+    { condition = in_mathzone }
   ),
   s(
     { trig = 'circ' },
