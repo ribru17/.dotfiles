@@ -87,15 +87,15 @@
 
 ; Tables
 (pipe_table_header
-  ("|") @punctuation.special
+  "|" @punctuation.special
   (#set! conceal "┃"))
 
 (pipe_table_delimiter_row
-  ("|") @punctuation.special
+  "|" @punctuation.special
   (#set! conceal "┃"))
 
 (pipe_table_delimiter_cell
-  ("-") @punctuation.special
+  "-" @punctuation.special
   (#set! conceal "━"))
 
 ((pipe_table_align_left) @punctuation.special
@@ -105,7 +105,7 @@
   (#set! conceal "┫"))
 
 (pipe_table_row
-  ("|") @punctuation.special
+  "|" @punctuation.special
   (#set! conceal "┃"))
 
 ; Block quotes
