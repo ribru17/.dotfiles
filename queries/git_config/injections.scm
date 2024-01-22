@@ -1,6 +1,6 @@
 ; extends
 ; Alias bash injections
-; TODO: Make a PR for this
+; TODO: Remove after PR merge
 (section
   (section_header
     (section_name) @_section)
