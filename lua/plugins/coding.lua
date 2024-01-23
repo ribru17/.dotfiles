@@ -445,7 +445,7 @@ return {
           jsonc = { 'deno_fmt' },
           lua = { 'stylua' },
           luau = { 'stylua' },
-          markdown = { 'deno_fmt', 'injected' },
+          markdown = { 'deno_fmt' },
           python = { 'yapf' },
           typescript = { 'deno_fmt' },
           typescriptreact = { 'deno_fmt' },
