@@ -35,7 +35,7 @@ return {
     end,
   },
   {
-    'ribru17/bamboo.nvim',
+    url = 'git@github.com:ribru17/bamboo.nvim.git',
     lazy = false,
     priority = 1000,
     config = function()
