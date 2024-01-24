@@ -1,5 +1,6 @@
 ; extends
-; TODO: Make a PR for this?
+; These are technically type specifiers, not qualifiers, but it looks better
+; this way imo.
 (sized_type_specifier
   [
     "signed"
