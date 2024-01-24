@@ -83,7 +83,7 @@ return {
       local icon_fallbacks = {
         mermaid = '󰈺',
         plantuml = '',
-        ebnf = '󱘎'
+        ebnf = '󱘎',
       }
 
       local get_icon = nil
