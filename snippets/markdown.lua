@@ -343,7 +343,7 @@ return {
     { condition = in_mathzone }
   ),
   s(
-    { trig = 'xii', wordTrig = false },
+    { trig = '\\xii', wordTrig = false },
     t([[x_{i}]]),
     { condition = in_mathzone }
   ),
@@ -617,16 +617,14 @@ return {
     },
     fmt(
       [[
-        \begin{{align}}
-          {1} &= \begin{{bmatrix}}
-            {2} \\
-            {3} \\
-            \vdots \\
-            {4}
-          \end{{bmatrix}}
-        \end{{align}}
+        \begin{{bmatrix}}
+          {1} \\
+          {2} \\
+          \vdots \\
+          {3}
+        \end{{bmatrix}}
       ]],
-      { i(1, 'y'), i(2, 'x_{1}'), i(3, 'x_{2}'), i(4, 'x_{m}') }
+      { i(2, 'x_{1}'), i(3, 'x_{2}'), i(4, 'x_{m}') }
     ),
     { condition = in_mathzone }
   ),
@@ -825,13 +823,13 @@ return {
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
-    { trig = 'xi ' },
-    fmt([[\xi ]], {}),
+    { trig = 'xi' },
+    fmt([[\xi]], {}),
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
-    { trig = 'Xi ' },
-    fmt([[\Xi ]], {}),
+    { trig = 'Xi' },
+    fmt([[\Xi]], {}),
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
