@@ -164,9 +164,9 @@ local MATH_NODES = {
 ---Whether or not the cursor is in a LaTeX block
 ---@return boolean
 M.in_latex_zone = function()
-  local current_node = get_node { ignore_injections = false }
+  local current_node = get_node { lang = 'markdown_inline' }
   while current_node do
-    if MATH_NODES[current_node:type()] then
+    if current_node:type() == 'latex_block' then
       return true
     end
     current_node = current_node:parent()
@@ -185,7 +185,7 @@ M.in_mathzone = function(_, matched_trigger)
     -- will not be recognized if they are the first input in a LaTeX block)
     vim.treesitter.get_parser():parse()
   end
-  local current_node = get_node_insert_mode { ignore_injections = false }
+  local current_node = get_node_insert_mode { lang = 'latex' }
   while current_node do
     if current_node:type() == 'text_mode' then
       return false
