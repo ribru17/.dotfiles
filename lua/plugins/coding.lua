@@ -417,7 +417,7 @@ return {
     config = function()
       -- use this directory's stylua.toml if none is found in the current
       require('conform.formatters.stylua').env = {
-        XDG_CONFIG_HOME = vim.fn.expand('~/.config/nvim/'),
+        XDG_CONFIG_HOME = vim.fn.stdpath('config'),
       }
       require('conform.formatters.injected').options.ignore_errors = true
       local util = require('conform.util')
