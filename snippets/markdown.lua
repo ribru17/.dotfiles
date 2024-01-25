@@ -472,7 +472,7 @@ return {
   ),
   s(
     { trig = '\\?partial', regTrig = true, wordTrig = false },
-    fmt([[\frac{{\partial {1}}}{{\partial {2}}}]], { i(1, 'V'), i(2, 'x') }),
+    fmt([[\frac{{\partial {1}}}{{\partial {2}}}]], { i(1, 'f'), i(2, 'x') }),
     { condition = in_mathzone }
   ),
   s(
@@ -1030,6 +1030,11 @@ return {
   s(
     { trig = '\\?begin', regTrig = true },
     fmt([[\begin{{{}}} {} \end{{{}}}]], { i(1, 'equation'), i(2, ''), rep(1) }),
+    { condition = in_mathzone }
+  ),
+  s(
+    { trig = 'del ' },
+    fmt([[\frac{{\partial {1}}}{{\partial {2}}}]], { i(1, 'f'), i(2, 'x') }),
     { condition = in_mathzone }
   ),
 
