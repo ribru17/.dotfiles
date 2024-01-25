@@ -49,6 +49,7 @@ local M = {
     'lua_ls',
     'marksman',
     'pylsp',
+    'tsserver',
   },
   ensure_installed_formatters = {
     'clang-format',
