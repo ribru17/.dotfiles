@@ -84,6 +84,7 @@ return {
         mermaid = '󰈺',
         plantuml = '',
         ebnf = '󱘎',
+        chart = '',
       }
 
       local get_icon = nil
