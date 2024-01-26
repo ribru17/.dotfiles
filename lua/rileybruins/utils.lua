@@ -126,6 +126,11 @@ end
 ---Returns the destination of the Markdown link at the cursor (if any)
 ---@return string?
 M.get_md_link_dest = function()
+  -- NOTE: Maybe in the future make this work for injected Markdown used in e.g.
+  -- documentation?
+  if vim.bo.filetype ~= 'markdown' then
+    return
+  end
   local current_node = get_node { ignore_injections = false }
   while current_node do
     local type = current_node:type()
