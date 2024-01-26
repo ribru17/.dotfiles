@@ -126,7 +126,7 @@ end
 ---Returns the destination of the Markdown link at the cursor (if any)
 ---@return string?
 M.get_md_link_dest = function()
-  local current_node = get_node { lang = 'markdown_inline' }
+  local current_node = get_node { ignore_injections = false }
   while current_node do
     local type = current_node:type()
     if type == 'link_destination' then
@@ -164,9 +164,9 @@ local MATH_NODES = {
 ---Whether or not the cursor is in a LaTeX block
 ---@return boolean
 M.in_latex_zone = function()
-  local current_node = get_node { lang = 'markdown_inline' }
+  local current_node = get_node { ignore_injections = false }
   while current_node do
-    if current_node:type() == 'latex_block' then
+    if MATH_NODES[current_node:type()] then
       return true
     end
     current_node = current_node:parent()
@@ -185,7 +185,10 @@ M.in_mathzone = function(_, matched_trigger)
     -- will not be recognized if they are the first input in a LaTeX block)
     vim.treesitter.get_parser():parse()
   end
-  local current_node = get_node_insert_mode { lang = 'latex' }
+  -- NOTE: This must not be set to `lang = 'latex'`; all injection context is
+  -- lost and the entire buffer is erroneously parsed as LaTeX, leading to
+  -- incorrect snippet evaluation.
+  local current_node = get_node_insert_mode { ignore_injections = false }
   while current_node do
     if current_node:type() == 'text_mode' then
       return false
