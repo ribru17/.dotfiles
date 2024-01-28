@@ -1,1 +1,2 @@
-spell/*.add.spl
+# Bare repository with the dotfiles
+.dotfiles
