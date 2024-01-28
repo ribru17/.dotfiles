@@ -460,14 +460,19 @@ return {
             file_ignore_patterns = get_open_buffers(),
           }
         end
-      end, {})
+      end, { desc = 'Search for files (ignoring already opened ones)' })
       vim.keymap.set('n', '<leader>fg', function()
         builtin.grep_string { search = vim.fn.input('Grep > ') }
-      end, {})
+      end, { desc = 'Search content of files' })
       vim.keymap.set('n', '<leader>fs', function()
         builtin.live_grep { initial_mode = 'insert' }
-      end, {})
-      vim.keymap.set('n', '<leader>fw', builtin.git_files, {})
+      end, { desc = 'Live-search content of files' })
+      vim.keymap.set(
+        'n',
+        '<leader>fw',
+        builtin.git_files,
+        { desc = 'Search files in the Git working tree' }
+      )
       vim.keymap.set('n', '<leader>fc', function()
         local load_scheme = require('lazy.core.loader').colorscheme
         for _, value in
@@ -479,7 +484,7 @@ return {
           builtin.colorscheme { enable_preview = true }
         end)
         builtin.colorscheme { enable_preview = true }
-      end, {})
+      end, { desc = 'Preview color schemes' })
 
       telescope.load_extension('fzf')
     end,
