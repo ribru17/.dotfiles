@@ -8,6 +8,10 @@
 # set editor
 export EDITOR=nvim
 
+# working with dotfiles version control
+alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias d='dots'
+
 # faster text editing potential
 alias vi='nvim'
 alias g='git'
