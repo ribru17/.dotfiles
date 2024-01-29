@@ -1,0 +1,16 @@
+[buildPlans.IosevkaCustom]
+family = "Iosevka Custom"
+spacing = "FontConfig Mono"
+serifs = "Sans"
+noCvSs = true
+exportGlyphNames = true
+
+[buildPlans.IosevkaCustom.variants.design]
+at = "fourfold"
+lig-equal-chain = "without-notch"
+lig-hyphen-chain = "without-notch"
+
+[buildPlans.IosevkaCustom.ligations]
+inherits = "dlig"
+disables = ["brack-bar"]
+enables = ["exeqeq", "eqeqeq", "llggeq", "tildeeq"]
