@@ -4,6 +4,7 @@
 [core]
 	editor = nvim
 	pager = delta
+	excludesFile = ~/.config/git/.gitignore.global
 [pager]
 	blame  = delta
 	diff   = delta

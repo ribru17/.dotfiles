@@ -1,0 +1,4 @@
+# vim: ft=gitignore
+**/.env
+**/.env.*
+node_modules
