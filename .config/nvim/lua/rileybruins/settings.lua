@@ -195,6 +195,8 @@ M.apply = function()
     filename = {
       -- recognize e.g. Github private keys as PEM files
       id_ed25519 = 'pem',
+      -- properly recognize Git configuration for dotfiles
+      ['~/.dotfiles/config'] = 'gitconfig'
     },
   }
 end
