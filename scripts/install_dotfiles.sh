@@ -1,3 +1,5 @@
+#!/bin/bash
+
 git clone git@github.com:ribru17/.dotfiles.git $HOME/.dotfiles
 alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dots config --local status.showUntrackedFiles no
