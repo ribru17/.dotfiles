@@ -62,9 +62,6 @@ fi
 PS1='\[\033[32m\]╭\[\033[40m\]┨\[\033[37m\]\[\033[40m\]  \u \[\033[30m\]\[\033[42m\] \w \[\033[00m\]\[\033[32m\]\n\[\033[32m\]╰─🢒\[\033[00m\]\$ \[\033[00m\]'
 
 export BAT_THEME="bamboo"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f "/home/rileyb/.ghcup/env" ] && source "/home/rileyb/.ghcup/env" # ghcup-env
 

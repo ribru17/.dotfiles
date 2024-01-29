@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# make sure git is installed
+if ! command -v git &> /dev/null
+then
+    echo "Installing git"
+    sudo pacman -S git
+fi
+# clone and install dotfiles
 git clone git@github.com:ribru17/.dotfiles.git $HOME/.dotfiles
 alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dots config --local status.showUntrackedFiles no
@@ -9,7 +16,7 @@ if [ $? = 0 ]; then
   else
     echo "Must move or delete conflicting files.";
 fi;
-
+# optionally (preferably) install some system dependencies
 read -p "Install all dependencies? [Y/n] " ans
 if [ -z "$ans" ] || [ "$ans" = "y" ] || [ "$ans" = "Y" ]
 then
