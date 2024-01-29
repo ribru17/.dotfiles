@@ -9,3 +9,9 @@ if [ $? = 0 ]; then
   else
     echo "Must move or delete conflicting files.";
 fi;
+
+read -p "Install all dependencies? [Y/n] " ans
+if [ -z "$ans" ] || [ "$ans" = "y" ] || [ "$ans" = "Y" ]
+then
+    ./install_dependencies.sh
+fi

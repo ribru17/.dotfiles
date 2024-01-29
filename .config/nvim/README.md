@@ -19,6 +19,9 @@ Running `nvim` should install all plugins for you, no extra commands necessary.
 
 ## :lock: Optional Prerequisites
 
+> **NOTE:** Most of these will be already installed if the dependency
+> installation script was run.
+
 - Use a font that is patched with the
   [Nerd Fonts library](https://github.com/ryanoasis/nerd-fonts) for status line,
   buffer line icons
