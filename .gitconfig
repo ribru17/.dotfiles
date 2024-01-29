@@ -1,0 +1,52 @@
+[user]
+	email = ribru17@hotmail.com
+	name = Riley Bruins
+[core]
+	editor = nvim
+	pager = delta
+[pager]
+	blame  = delta
+	diff   = delta
+	reflog = delta
+	show   = delta
+[credential]
+	helper = libsecret
+[delta]
+	navigate = true
+	syntax-theme = bamboo
+	side-by-side = false
+	line-numbers = true
+[alias]
+	a = add
+	b = branch
+	db = branch -d
+	c = commit
+	ca = commit -a
+	d = diff
+	l = log
+	p = push
+	po = push origin
+	poc = !git push origin $(git symbolic-ref --short HEAD)
+	pod = push -u origin master
+	s = show
+	st = status
+	stat = status
+	new = checkout -b
+	uncommit = reset HEAD~1
+	recommit = reset ORIG_HEAD
+	info = !git diff && git remote -v && git status
+	undo = reset --hard HEAD
+	squash = "!f() { git rebase -i HEAD~$1; }; f"
+[pull]
+	rebase = true
+[merge]
+	tool = vimdiff
+	ff = false
+[mergetool]
+	keepBackup = false
+[mergetool "vimdiff"]
+	cmd = nvim -d $LOCAL $MERGED $REMOTE -c 'wincmd l'
+[rebase]
+	autoSquash = true
+[push]
+	autoSetupRemote = true
