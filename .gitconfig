@@ -16,6 +16,7 @@
 	syntax-theme = bamboo
 	side-by-side = false
 	line-numbers = true
+	minus-style = syntax auto
 [alias]
 	a = add
 	b = branch
