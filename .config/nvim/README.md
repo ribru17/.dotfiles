@@ -36,9 +36,6 @@ Running `nvim` should install all plugins for you, no extra commands necessary.
 - Install [unzip](https://archlinux.org/packages/extra/x86_64/unzip/) to allow
   Mason to unzip certain packages (like `deno` for formatting of
   Javascript-family files)
-- Install [Typescript](https://www.typescriptlang.org/download) globally to
-  allow the [typescript-tools](https://github.com/pmizio/typescript-tools.nvim)
-  plugin to work anywhere
 - Install `ghc` and `haskell-language-server` for Haskell development with
   [`haskell-tools.nvim`](https://github.com/mrcjkb/haskell-tools.nvim) (avoid
   installation of the Haskell Language Server with Mason due to compatibility
