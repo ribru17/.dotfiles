@@ -1,3 +1,7 @@
+local in_dotfiles = vim.fn.system(
+  'git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-tree --name-only HEAD'
+) ~= ''
+
 local M = {
   border = 'rounded',
   -- If `true`, this consumes a lot of resources and slows the LSP greatly.
@@ -176,8 +180,13 @@ M.apply = function()
       completeopt = { 'menu', 'menuone', 'preview', 'noselect', 'noinsert' },
       listchars = { tab = '<->', nbsp = '␣' },
     },
+    env = {
+      GIT_WORK_TREE = in_dotfiles and vim.env.HOME or vim.env.GIT_WORK_TREE,
+      GIT_DIR = in_dotfiles and vim.env.HOME .. '/.dotfiles' or vim.env.GIT_DIR,
+    },
   }
 
+  -- apply the above settings
   for scope, ops in pairs(settings) do
     local op_group = vim[scope]
     for op_key, op_value in pairs(ops) do
@@ -196,7 +205,7 @@ M.apply = function()
       -- recognize e.g. Github private keys as PEM files
       id_ed25519 = 'pem',
       -- properly recognize Git configuration for dotfiles
-      ['~/.dotfiles/config'] = 'gitconfig'
+      ['~/.dotfiles/config'] = 'gitconfig',
     },
   }
 end
