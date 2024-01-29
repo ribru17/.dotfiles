@@ -10,4 +10,4 @@ cd
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-yay -S fastfetch
+yay -S --needed fastfetch
