@@ -4,8 +4,7 @@
 
 ## :camera: Screenshot
 
-- Font: [`Iosevka`](https://github.com/ribru17/iosevka-config), Custom Extended
-  15pt
+- Font: [`Iosevka`](https://github.com/be5invis/Iosevka), Custom Extended 15pt
 - Theme: [Bamboo](https://github.com/ribru17/bamboo.nvim)
 
 ![`nvimhome`](https://github.com/ribru17/nvim/assets/55766287/dff3a76c-c381-4a4f-9e11-0e507d73fbef)
@@ -16,11 +15,7 @@
 
 ## :package: Installation
 
-Make sure you have [Neovim](https://github.com/neovim/neovim) and
-[`nodejs`](https://nodejs.org/en) (with `npm`) installed. Then run
-`git clone --depth 1 https://github.com/ribru17/nvim.git` in your `~/.config`
-directory (`~/AppData/Local` on Windows). Running `nvim` should install all
-plugins for you, no extra commands necessary.
+Running `nvim` should install all plugins for you, no extra commands necessary.
 
 ## :lock: Optional Prerequisites
 
@@ -33,6 +28,8 @@ plugins for you, no extra commands necessary.
   [`wl-clipboard`](https://archlinux.org/packages/extra/x86_64/wl-clipboard/)
   (or [build from source](https://github.com/bugaevc/wl-clipboard#building)) if
   using Wayland in order to support yanking to the system clipboard
+- Install [`nodejs`](https://nodejs.org/en) (with `npm`) for Markdown
+  previewing, among many other things
 - Install [unzip](https://archlinux.org/packages/extra/x86_64/unzip/) to allow
   Mason to unzip certain packages (like `deno` for formatting of
   Javascript-family files)
