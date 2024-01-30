@@ -4,8 +4,8 @@
 	name = Riley Bruins
 [core]
 	editor = nvim
-	pager = delta
 	excludesFile = ~/.config/git/.gitignore.global
+	pager = delta
 [pager]
 	blame  = delta
 	diff   = delta
@@ -14,18 +14,18 @@
 [credential]
 	helper = libsecret
 [delta]
-	navigate = true
-	syntax-theme = bamboo
-	side-by-side = false
 	line-numbers = true
 	minus-style = syntax auto
+	navigate = true
+	side-by-side = false
+	syntax-theme = bamboo
 [alias]
 	a = add
 	b = branch
-	db = branch -d
 	c = commit
 	ca = commit -a
 	d = diff
+	db = branch -d
 	l = log
 	p = push
 	po = push origin
@@ -34,17 +34,18 @@
 	s = show
 	st = status
 	stat = status
-	new = checkout -b
-	uncommit = reset HEAD~1
-	recommit = reset ORIG_HEAD
+	edit = !nvim ~/.config/git/config
 	info = !git diff && git remote -v && git status
-	undo = reset --hard HEAD
+	new = checkout -b
+	recommit = reset ORIG_HEAD
 	squash = "!f() { git rebase -i HEAD~$1; }; f"
+	uncommit = reset HEAD~1
+	undo = reset --hard HEAD
 [pull]
 	rebase = true
 [merge]
-	tool = vimdiff
 	ff = false
+	tool = vimdiff
 [mergetool]
 	keepBackup = false
 [mergetool "vimdiff"]
