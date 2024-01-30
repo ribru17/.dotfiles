@@ -17,8 +17,13 @@ if [ $? = 0 ]; then
     echo "Must move or delete conflicting files.";
 fi;
 # optionally (preferably) install some system dependencies
-read -p "Install all dependencies? [Y/n] " ans
+read -p "Install all package dependencies? [Y/n] " ans
 if [ -z "$ans" ] || [ "$ans" = "y" ] || [ "$ans" = "Y" ]
 then
     ./install_dependencies.sh
+fi
+read -p 'Install a "symbols only" Nerd font? [Y/n] ' ans
+if [ -z "$ans" ] || [ "$ans" = "y" ] || [ "$ans" = "Y" ]
+then
+    ./install_nerdicons.sh
 fi

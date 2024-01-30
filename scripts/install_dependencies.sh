@@ -6,8 +6,7 @@ sudo pacman -Syu
 echo "Installing dependencies:"
 sudo pacman -S --needed neovim nodejs python3 kitty git-delta ripgrep wl-clipboard bat reflector base-devel curl gcc unzip less
 echo "Installing Yay:"
-cd
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
+cd && git clone https://aur.archlinux.org/yay.git
+cd yay && makepkg -si
+cd .. && rm -rf yay
 yay -S --needed fastfetch
