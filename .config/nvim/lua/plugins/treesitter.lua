@@ -70,6 +70,41 @@ return {
         },
       }
 
+      local map = vim.keymap.set
+      local select_ob =
+        require('nvim-treesitter.textobjects.select').select_textobject
+
+      -- Globally map Tree-sitter text object binds
+      local function textobj_map(key, query)
+        local outer = '@' .. query .. '.outer'
+        local inner = '@' .. query .. '.inner'
+        local opts = {
+          desc = 'Selection for ' .. query .. ' text objects',
+          silent = true,
+        }
+        map('x', 'i' .. key, function()
+          select_ob(inner, 'textobjects', 'v')
+        end, opts)
+        map('x', 'a' .. key, function()
+          select_ob(outer, 'textobjects', 'v')
+        end, opts)
+        map('o', 'i' .. key, function()
+          select_ob(inner, 'textobjects', 'o')
+        end, opts)
+        map('o', 'a' .. key, function()
+          select_ob(outer, 'textobjects', 'o')
+        end, opts)
+      end
+
+      textobj_map('$', 'math')
+      textobj_map('m', 'math')
+      textobj_map('f', 'call')
+      textobj_map('F', 'function')
+      textobj_map('L', 'loop')
+      textobj_map('c', 'conditional')
+      textobj_map('/', 'comment')
+      textobj_map('P', 'parameter')
+
       local non_filetype_match_injection_language_aliases = {
         ex = 'elixir',
         pl = 'perl',
@@ -218,40 +253,6 @@ return {
         end,
         true
       )
-
-      local map = vim.keymap.set
-      local select_ob =
-        require('nvim-treesitter.textobjects.select').select_textobject
-
-      -- Globally map Tree-sitter text object binds
-      local function textobj_map(key, query)
-        local outer = '@' .. query .. '.outer'
-        local inner = '@' .. query .. '.inner'
-        local opts = {
-          desc = 'Selection for ' .. query .. ' text objects',
-          silent = true,
-        }
-        map('x', 'i' .. key, function()
-          select_ob(inner, 'textobjects', 'v')
-        end, opts)
-        map('x', 'a' .. key, function()
-          select_ob(outer, 'textobjects', 'v')
-        end, opts)
-        map('o', 'i' .. key, function()
-          select_ob(inner, 'textobjects', 'o')
-        end, opts)
-        map('o', 'a' .. key, function()
-          select_ob(outer, 'textobjects', 'o')
-        end, opts)
-      end
-
-      textobj_map('$', 'math')
-      textobj_map('m', 'math')
-      textobj_map('f', 'call')
-      textobj_map('F', 'function')
-      textobj_map('L', 'loop')
-      textobj_map('c', 'conditional')
-      textobj_map('/', 'comment')
     end,
   },
 }
