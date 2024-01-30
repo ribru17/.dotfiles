@@ -127,7 +127,7 @@ return {
   },
   {
     'tpope/vim-fugitive',
-    cmd = 'Git',
+    cmd = { 'Git', 'G' },
   },
   {
     'tpope/vim-abolish',

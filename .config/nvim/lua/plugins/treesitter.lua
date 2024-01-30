@@ -195,6 +195,7 @@ return {
                 vim.api.nvim_buf_get_lines(bufnr, end_row - 1, end_row, true)[1]
 
               if end_line ~= '' then
+                -- trim newline character
                 end_col = #end_line
                 end_row = end_row - 1
                 break
