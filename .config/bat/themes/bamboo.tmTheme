@@ -103,7 +103,7 @@
 			<key>name</key>
 			<string>Field</string>
 			<key>scope</key>
-			<string>string.unquoted.key</string>
+			<string>string.unquoted.key, meta.property</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -147,7 +147,7 @@
 			<key>name</key>
 			<string>Functions</string>
 			<key>scope</key>
-			<string>entity.name.function, meta.require, support.function.any-method</string>
+			<string>entity.name.function, variable.function, entity.name.method, meta.class-method, meta.require, support.function.any-method</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
