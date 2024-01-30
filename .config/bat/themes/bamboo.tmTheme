@@ -79,6 +79,17 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>Delimiters Lua</string>
+			<key>scope</key>
+			<string>punctuation.separator.key-value.lua</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#aaaaff</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>Operators</string>
 			<key>scope</key>
 			<string>keyword.operator</string>
