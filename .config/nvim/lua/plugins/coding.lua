@@ -74,7 +74,6 @@ return {
   },
   {
     'echasnovski/mini.indentscope',
-    version = '*',
     main = 'mini.indentscope',
     event = { 'VeryLazy' },
     opts = {
@@ -282,7 +281,6 @@ return {
   },
   {
     'kylechui/nvim-surround',
-    version = '*',
     keys = {
       'ys',
       'yS',
