@@ -68,24 +68,13 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>Punctuation</string>
-			<key>scope</key>
-			<string>punctuation.definition.string, punctuation.definition.variable, punctuation.definition.string, punctuation.definition.parameters, punctuation.definition.string, punctuation.definition.array</string>
-			<key>settings</key>
-			<dict>
-				<key>foreground</key>
-				<string>#8fb573</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>name</key>
 			<string>Delimiters</string>
 			<key>scope</key>
-			<string>none</string>
+			<string>punctuation.separator.key-value</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#aaaaff</string>
+				<string>#838781</string>
 			</dict>
 		</dict>
 		<dict>
@@ -103,7 +92,7 @@
 			<key>name</key>
 			<string>Field</string>
 			<key>scope</key>
-			<string>string.unquoted.key, meta.property</string>
+			<string>string.unquoted.key, meta.property, meta.object.member.js, meta.object-literal.key</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -147,7 +136,7 @@
 			<key>name</key>
 			<string>Functions</string>
 			<key>scope</key>
-			<string>entity.name.function, variable.function, entity.name.method, meta.class-method, meta.require, support.function.any-method</string>
+			<string>meta.decorator variable.other.readwrite, entity.name.function, variable.function, entity.name.method, meta.class-method, meta.require, support.function.any-method</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -211,9 +200,9 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>Strings, Inherited Class</string>
+			<string>Strings</string>
 			<key>scope</key>
-			<string>string, constant.other.symbol, entity.other.inherited-class</string>
+			<string>string</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
