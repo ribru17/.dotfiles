@@ -749,6 +749,7 @@ return {
         map('n', '<Esc>', smart_close_esc, opts('Close'))
         map('n', 'z', api.node.navigate.parent_close, opts('Close Directory'))
         map('n', 't', api.marks.toggle, opts('Toggle Bookmark'))
+        map('n', '+', api.tree.change_root_to_node, opts('CD'))
         map(
           'n',
           '<leader>dj',
