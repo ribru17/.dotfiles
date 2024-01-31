@@ -624,7 +624,7 @@ return {
           {3}
         \end{{bmatrix}}
       ]],
-      { i(2, 'x_{1}'), i(3, 'x_{2}'), i(4, 'x_{m}') }
+      { i(1, 'x_{1}'), i(2, 'x_{2}'), i(3, 'x_{m}') }
     ),
     { condition = in_mathzone }
   ),
