@@ -70,28 +70,21 @@
 ; Only starts indent if 2 or more elements
 (list
   "[" @format.indent.begin
-  .
-  (_)
-  .
-  (_)
   "]" @format.indent.dedent)
 
 ; Otherwise, remove brackets
 (list
-  "[" @format.remove
+  "[" @format.remove @format.cancel-append
   .
   (_) @format.cancel-append
   .
   "]" @format.remove)
 
 ; [ ... ] @capture1 @capture2
-(list
-  (capture) @format.prepend-space)
-
 ; Append newlines for nodes inside the list
 (list
   (_) @format.append-newline
-  (#not-has-type? @format.append-newline capture))
+  (#not-has-type? @format.append-newline capture quantifier))
 
 ; (_), "_" and _ handler
 ; Start indents if it's one of these patterns
@@ -146,14 +139,6 @@
     "."
   ] @format.append-newline)
 
-(named_node
-  (list
-    "["
-    .
-    (_) @format.append-newline
-    .
-    "]"))
-
 ; Collapse closing parentheses
 (named_node
   [
@@ -166,11 +151,7 @@
   (#not-has-type? @format.cancel-append comment))
 
 ; All captures should be separated with a space
-(named_node
-  (capture) @format.prepend-space)
-
-(anonymous_node
-  (capture) @format.prepend-space)
+(capture) @format.prepend-space
 
 ; Workaround to just use the string's content
 (anonymous_node
