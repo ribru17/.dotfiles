@@ -33,8 +33,8 @@ alias tar-unzip='tar -xvzf'
 # original mirror list as a backup.
 alias pacman-update-mirrors='sudo reflector --verbose -c "United States" --latest 5 --age 12 --protocol http,https --sort rate --save /etc/pacman.d/newmirrorlist'
 
-# search packages easier
-alias pacman-search='pacman -Q | rg'
+# quicker updates
+alias update='sudo pacman -Syu'
 
 # simple way to count lines of code in the current directory
 loc() {
