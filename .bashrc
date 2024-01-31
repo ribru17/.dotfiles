@@ -57,8 +57,6 @@ fi
 # or change that base color of the scheme (usually 0) to, say, 1 value off of
 # the original. hacky but works.
 
-# PS1='\[\033[32m\]╭\[\033[40m\]┨\[\033[37m\]\[\033[40m\] \u <=> \w \[\033[32m\]┃\[\033[00m\]\n\[\033[32m\]╰─►\[\033[00m\]\$ \[\033[00m\]'
-
 PROMPT_COMMAND=_prompt_command
 _prompt_command() {
     if [ $? -eq 0 ]; then
@@ -66,7 +64,7 @@ _prompt_command() {
     else
         local color='1'
     fi
-    PS1="\[\033[3${color}m\]╭\[\033[40m\]┨\[\033[37m\]\[\033[40m\]  \u \[\033[30m\]\[\033[4${color}m\] \w \[\033[00m\]\[\033[3${color}m\]\n\[\033[3${color}m\]╰─🢒\[\033[00m\]\$ \[\033[00m\]"
+    PS1="\e[3${color}m╭\e[40m┨\e[37m\e[40m  \e[1m\u \e[0m\e[30m\e[4${color}m \e[3m\w \e[0m\e[00m\e[3${color}m\n\e[3${color}m╰─🢒\e[00m\$ \e[00m"
 }
 
 export BAT_THEME="bamboo"
