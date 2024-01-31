@@ -5,6 +5,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('gitsigns').setup {
+        attach_to_untracked = true,
         signs = {
           change = { text = '┋' },
           delete = { text = '🢒' },
