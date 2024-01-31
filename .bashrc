@@ -35,6 +35,9 @@ alias pacman-update-mirrors='sudo reflector --verbose -c "United States" --lates
 # quicker updates
 alias update='sudo pacman -Syu'
 
+# navigation
+alias ..='cd ..'
+
 # simple way to count lines of code in the current directory
 loc() {
     if [[ -z "$1" ]]; then
