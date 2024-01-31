@@ -1,6 +1,5 @@
-#
+#!/bin/bash
 # ~/.bashrc
-#
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -59,7 +58,16 @@ fi
 # the original. hacky but works.
 
 # PS1='\[\033[32m\]╭\[\033[40m\]┨\[\033[37m\]\[\033[40m\] \u <=> \w \[\033[32m\]┃\[\033[00m\]\n\[\033[32m\]╰─►\[\033[00m\]\$ \[\033[00m\]'
-PS1='\[\033[32m\]╭\[\033[40m\]┨\[\033[37m\]\[\033[40m\]  \u \[\033[30m\]\[\033[42m\] \w \[\033[00m\]\[\033[32m\]\n\[\033[32m\]╰─🢒\[\033[00m\]\$ \[\033[00m\]'
+
+PROMPT_COMMAND=_prompt_command
+_prompt_command() {
+    if [ $? -eq 0 ]; then
+        local color='2'
+    else
+        local color='1'
+    fi
+    PS1="\[\033[3${color}m\]╭\[\033[40m\]┨\[\033[37m\]\[\033[40m\]  \u \[\033[30m\]\[\033[4${color}m\] \w \[\033[00m\]\[\033[3${color}m\]\n\[\033[3${color}m\]╰─🢒\[\033[00m\]\$ \[\033[00m\]"
+}
 
 export BAT_THEME="bamboo"
 
