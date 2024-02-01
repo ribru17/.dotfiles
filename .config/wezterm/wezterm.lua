@@ -146,22 +146,22 @@ return {
   keys = {
     {
       key = 'LeftArrow',
-      mods = 'SHIFT',
+      mods = 'CTRL|SHIFT',
       action = act.ActivateTabRelative(-1),
     },
     {
       key = 'RightArrow',
-      mods = 'SHIFT',
+      mods = 'CTRL|SHIFT',
       action = act.ActivateTabRelative(1),
     },
     {
       key = 'LeftArrow',
-      mods = 'CTRL|SHIFT',
+      mods = 'CTRL|ALT|SHIFT',
       action = act.MoveTabRelative(-1),
     },
     {
       key = 'RightArrow',
-      mods = 'CTRL|SHIFT',
+      mods = 'CTRL|ALT|SHIFT',
       action = act.MoveTabRelative(1),
     },
   },
