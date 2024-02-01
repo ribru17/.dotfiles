@@ -70,7 +70,9 @@ _prompt_command() {
     PS1="\e[3${color}m╭\e[40m┨\e[37m\e[40m  \e[1m\u \e[0m\e[30m\e[4${color}m \e[3m\e[1m\e[30m\w \e[0m\e[00m\e[3${color}m\n\e[3${color}m╰─🢒\e[00m\$ \e[00m"
 }
 
+# various environment variables for program configuration
 export BAT_THEME="bamboo"
+export RIPGREP_CONFIG_PATH="$HOME/.config/rg/.ripgreprc"
 
 [ -f "/home/rileyb/.ghcup/env" ] && source "/home/rileyb/.ghcup/env" # ghcup-env
 
