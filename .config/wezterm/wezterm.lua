@@ -62,6 +62,30 @@ return {
     stretch = 'Expanded',
     weight = 'Regular',
   },
+  -- use bold rather than demibold
+  -- see https://github.com/wez/wezterm/issues/2930#issuecomment-1375018473
+  font_rules = {
+    {
+      intensity = 'Bold',
+      italic = true,
+      font = wezterm.font {
+        family = 'Iosevka Custom',
+        stretch = 'Expanded',
+        weight = 'Bold',
+        style = 'Italic',
+      },
+    },
+    {
+      intensity = 'Bold',
+      italic = false,
+      font = wezterm.font {
+        family = 'Iosevka Custom',
+        stretch = 'Expanded',
+        weight = 'Bold',
+        style = 'Normal',
+      },
+    },
+  },
   -- underscores can look weird depending on the font; see this issue:
   -- https://github.com/be5invis/Iosevka/issues/1361
   font_size = 15,
