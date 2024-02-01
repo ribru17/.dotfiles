@@ -5,6 +5,7 @@
 [[ $- != *i* ]] && return
 
 # set editor
+export VISUAL=nvim
 export EDITOR=nvim
 
 # working with dotfiles version control
