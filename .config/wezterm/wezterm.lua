@@ -70,6 +70,7 @@ return {
 
   -- color options
   colors = SCHEME_OBJ,
+  bold_brightens_ansi_colors = false,
   --> other nice themes
   -- color_scheme = 'Argonaut',
   -- color_scheme = 'Afterglow',

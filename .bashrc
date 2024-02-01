@@ -53,12 +53,12 @@ if [[ $TERM_PROGRAM == "WezTerm" ]]; then
     export TERM="wezterm"
 fi
 
-# Some cool `PS1` prompts
+# Cool `PS1` prompt
 # NOTE: on Konsole or Kitty with transparent background the parts of the prompts
 # that share the same color as the background color (if any, determined by color
-# scheme) will also be transparent. workaround is only to disable transparency
+# scheme) will also be transparent. Workaround is only to disable transparency
 # or change that base color of the scheme (usually 0) to, say, 1 value off of
-# the original. hacky but works.
+# the original. Hacky but works.
 
 PROMPT_COMMAND=_prompt_command
 _prompt_command() {
@@ -67,7 +67,7 @@ _prompt_command() {
     else
         local color='1'
     fi
-    PS1="\e[3${color}m╭\e[40m┨\e[97m\e[40m  \e[1m\u \e[0m\e[30m\e[4${color}m \e[3m\e[1m\e[90m\w \e[0m\e[00m\e[3${color}m\n\e[3${color}m╰─🢒\e[00m\$ \e[00m"
+    PS1="\e[3${color}m╭\e[40m┨\e[37m\e[40m  \e[1m\u \e[0m\e[30m\e[4${color}m \e[3m\e[1m\e[30m\w \e[0m\e[00m\e[3${color}m\n\e[3${color}m╰─🢒\e[00m\$ \e[00m"
 }
 
 export BAT_THEME="bamboo"
