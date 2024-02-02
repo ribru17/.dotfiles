@@ -84,5 +84,7 @@ set -o physical
 fastfetch
 
 # sourcery
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 [ -f "$HOME/.local/share/blesh/ble.sh" ] && source ~/.local/share/blesh/ble.sh
+[ -f "/usr/share/bash-completion/completions/git" ] && source /usr/share/bash-completion/completions/git
+__git_complete g __git_main  # completions
