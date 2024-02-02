@@ -17,24 +17,14 @@ if vim.fn.executable('xdg-open') == 1 then
   map('n', 'gx', function()
     local link = link_dest()
     if link then
-      vim.cmd['!'] {
-        args = {
-          'xdg-open',
-          link,
-        },
-        mods = {
-          silent = true,
-        },
+      vim.fn.system {
+        'xdg-open',
+        link,
       }
     else
-      vim.cmd['!'] {
-        args = {
-          'xdg-open',
-          vim.fn.expand('<cfile>'),
-        },
-        mods = {
-          silent = true,
-        },
+      vim.fn.system {
+        'xdg-open',
+        vim.fn.expand('<cfile>'),
       }
     end
   end, { desc = 'Netrw-like link opening', silent = true })
