@@ -13,12 +13,12 @@ bind 'set completion-ignore-case on'
 # for kitty
 ble-bind -m auto_complete -f C-i auto_complete/insert
 ble-bind -f 'C-SP' menu-complete
-ble-bind -f 'M-DEL' kill-backward-cword
-ble-bind -m vi_imap -f 'M-DEL' kill-backward-cword
+ble-bind -f 'M-DEL' kill-backward-fword
+ble-bind -m vi_imap -f 'M-DEL' kill-backward-fword
 # for wezterm
 ble-bind -m auto_complete -f TAB auto_complete/insert
-ble-bind -f 'M-C-?' kill-backward-cword
-ble-bind -m vi_imap -f 'M-C-?' kill-backward-cword
+ble-bind -f 'M-C-?' kill-backward-fword
+ble-bind -m vi_imap -f 'M-C-?' kill-backward-fword
 
 # colors
 ble-face -s argument_error bg=red
