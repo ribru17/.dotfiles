@@ -3,6 +3,8 @@
 # suppress error output
 bleopt exec_errexit_mark=''
 bleopt term_index_colors=auto
+bleopt complete_auto_history=
+bleopt complete_ambiguous=
 
 # case insensitive auto-complete
 bind 'set completion-ignore-case on'
