@@ -44,12 +44,6 @@ loc() {
     fi
 }
 
-# get wezterm undercurl after following these steps:
-# https://wezfurlong.org/wezterm/faq.html?highlight=undercur#how-do-i-enable-undercurl-curly-underlines
-if [[ $TERM_PROGRAM == "WezTerm" ]]; then
-    export TERM="wezterm"
-fi
-
 # Cool `PS1` prompt
 # NOTE: on Konsole or Kitty with transparent background the parts of the prompts
 # that share the same color as the background color (if any, determined by color

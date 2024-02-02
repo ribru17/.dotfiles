@@ -49,6 +49,9 @@ wezterm.on('format-tab-title', function(tab, _, _, _, hover, max_width)
 end)
 
 return {
+  -- see https://wezfurlong.org/wezterm/faq.html?highlight=undercur#how-do-i-enable-undercurl-curly-underlines
+  -- for wezterm undercurl
+  term = 'wezterm',
   -- font options
   -- NOTE: if nerd font symbols are smaller on wezterm, install a SYMBOLS ONLY
   -- nerd font https://www.nerdfonts.com/font-downloads so essentially the font
