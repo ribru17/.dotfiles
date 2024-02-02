@@ -80,8 +80,9 @@ export PATH=$PATH:./node_modules/.bin
 # no symlink following for `cd`, etc.
 set -o physical
 
-[ -f "/home/rileyb/.ghcup/env" ] && source "/home/rileyb/.ghcup/env" # ghcup-env
-
 # start shell with fastfetch
 fastfetch
-source ~/.local/share/blesh/ble.sh
+
+# sourcery
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+[ -f "$HOME/.local/share/blesh/ble.sh" ] && source ~/.local/share/blesh/ble.sh
