@@ -35,6 +35,7 @@ ble-face -s filename_orphan fg=cyan,bold,underline
 ble-face -s filename_other none
 ble-face -s region bg=#3a3d37
 ble-face -s region_insert bg=#3a3d37
+ble-face -s region_match fg=black,bg=#e2c792
 ble-face -s syntax_brace fg=#838781
 ble-face -s syntax_command fg=blue
 ble-face -s syntax_comment fg=#e2c792
@@ -55,7 +56,9 @@ ble-face -s varname_empty fg=#ff9966
 ble-face -s varname_export fg=#ff9966
 ble-face -s varname_expr fg=#ff9966
 ble-face -s varname_hash fg=#ff9966
+ble-face -s syntax_history_expansion bg=blue
 ble-face -s varname_number fg=none
 ble-face -s varname_readonly fg=#ff9966
 ble-face -s varname_transform fg=#ff9966
 ble-face -s varname_unset bg=red
+ble-face -s vbell_erase bg=#3a3d37
