@@ -28,12 +28,16 @@ ble-face -s command_function fg=blue
 ble-face -s command_keyword fg=purple
 ble-face -s disabled fg=#5b5e5a
 ble-face -s filename_directory fg=#96c7ef,italic,underline
+ble-face -s filename_directory_sticky fg=0,bg=green
 ble-face -s filename_executable fg=green,bold
 ble-face -s filename_orphan fg=cyan,bold,underline
 ble-face -s region_insert bg=#3a3d37
+ble-face -s syntax_brace fg=#838781
 ble-face -s syntax_command fg=blue
 ble-face -s syntax_comment fg=#e2c792
 ble-face -s syntax_delimiter fg=#838781
+ble-face -s syntax_document fg=cyan,bold
+ble-face -s syntax_document_begin fg=cyan,bold
 ble-face -s syntax_error bg=red
 ble-face -s syntax_escape fg=#f08080
 ble-face -s syntax_expr fg=#c5c2ee
