@@ -6,6 +6,7 @@ bleopt complete_auto_history=
 bleopt exec_errexit_mark=''
 bleopt prompt_eol_mark=''
 bleopt term_index_colors=auto
+bleopt exec_elapsed_mark=''
 
 # case insensitive auto-complete
 bind 'set completion-ignore-case on'
