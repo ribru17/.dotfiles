@@ -30,7 +30,10 @@ ble-face -s disabled fg=#5b5e5a
 ble-face -s filename_directory fg=#96c7ef,italic,underline
 ble-face -s filename_directory_sticky fg=0,bg=green
 ble-face -s filename_executable fg=green,bold
+ble-face -s filename_ls_colors none
 ble-face -s filename_orphan fg=cyan,bold,underline
+ble-face -s filename_other none
+ble-face -s region bg=#3a3d37
 ble-face -s region_insert bg=#3a3d37
 ble-face -s syntax_brace fg=#838781
 ble-face -s syntax_command fg=blue
