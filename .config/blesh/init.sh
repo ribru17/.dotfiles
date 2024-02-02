@@ -11,6 +11,7 @@ bleopt term_index_colors=auto
 bind 'set completion-ignore-case on'
 
 ble-bind -f 'C-SP' menu-complete
+ble-bind -m auto_complete -f 'C-e' auto_complete/cancel
 # for kitty
 ble-bind -m auto_complete -f C-i auto_complete/insert
 ble-bind -f 'M-DEL' kill-backward-fword
