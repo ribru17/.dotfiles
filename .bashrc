@@ -82,3 +82,4 @@ export PATH=$PATH:./node_modules/.bin
 
 # start shell with fastfetch
 fastfetch
+source ~/.local/share/blesh/ble.sh
