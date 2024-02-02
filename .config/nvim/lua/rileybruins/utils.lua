@@ -197,6 +197,12 @@ M.in_mathzone = function(_, matched_trigger)
   while current_node do
     if current_node:type() == 'text_mode' then
       return false
+    elseif current_node:type() == 'generic_command' then
+      local cmd_name =
+        vim.treesitter.get_node_text(current_node:named_child(0), 0, {})
+      if cmd_name == '\\textbf' or cmd_name == '\\textit' then
+        return false
+      end
     elseif MATH_NODES[current_node:type()] then
       return true
     end
