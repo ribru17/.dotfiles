@@ -158,8 +158,6 @@ return {
   },
   {
     'hrsh7th/nvim-cmp',
-    -- commit after this ruins spell sorting. look into this
-    commit = '5e1fa025534b92b7da908f0acaee84663f8ea71b',
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp' },
@@ -394,6 +392,22 @@ return {
         sorting = {
           priority_weight = 2,
           comparators = {
+            -- custom comparator for making spell sources work.
+            -- (basically compare.order but for spell source only)
+            function(a, b)
+              if
+                not a.source.name == 'spell' or not b.source.name == 'spell'
+              then
+                return nil
+              end
+              local diff = a.id - b.id
+              if diff < 0 then
+                return true
+              elseif diff > 0 then
+                return false
+              end
+              return nil
+            end,
             compare.offset,
             compare.exact,
             compare.score,
