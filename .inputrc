@@ -1,0 +1,12 @@
+set editing-mode vi
+set show-mode-in-prompt on
+
+# don't show weird emacs mode string
+set emacs-mode-string
+# blinking I-beam cursor in insert mode
+set vi-ins-mode-string \1\e[5 q\2
+# block cursor in normal mode
+set vi-cmd-mode-string \1\e[2 q\2
+# snappier insert mode leaving
+# NOTE: Could be bad when using tmux. See: https://superuser.com/a/1809494
+set keyseq-timeout 0
