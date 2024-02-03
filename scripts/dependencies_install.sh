@@ -34,3 +34,8 @@ mkdir -p ~/.local/share/blesh
 cp -Rf ble-nightly/* ~/.local/share/blesh/
 rm -rf ble-nightly
 source ~/.local/share/blesh/ble.sh
+echo "Setting up terminfo support for WezTerm (for things like undercurl):"
+tempfile=$(mktemp) \
+    && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
+    && tic -x -o ~/.terminfo $tempfile \
+    && rm $tempfile
