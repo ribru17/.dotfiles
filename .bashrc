@@ -81,4 +81,8 @@ fastfetch
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 [ -f "$HOME/.local/share/blesh/ble.sh" ] && source ~/.local/share/blesh/ble.sh
 # git alias completions
-[ -f "/usr/share/bash-completion/completions/git" ] && source /usr/share/bash-completion/completions/git && __git_complete g __git_main && __git_complete dots __git_main && __git_complete d __git_main
+[ -f "/usr/share/bash-completion/completions/git" ] &&\
+    source /usr/share/bash-completion/completions/git &&\
+    __git_complete g __git_main &&\
+    __git_complete dots __git_main &&\
+    __git_complete d __git_main

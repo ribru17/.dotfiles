@@ -4,7 +4,26 @@
 echo "Updating system:"
 sudo pacman -Syu
 echo "Installing dependencies:"
-sudo pacman -S --needed fastfetch neovim nodejs npm python3 kitty git git-delta ripgrep wl-clipboard bat reflector base-devel curl gcc unzip less xz bash-completion
+sudo pacman -S --needed\
+    fastfetch\
+    neovim\
+    nodejs\
+    npm\
+    python3\
+    kitty\
+    git\
+    git-delta\
+    ripgrep\
+    wl-clipboard\
+    bat\
+    reflector\
+    base-devel\
+    curl\
+    gcc\
+    unzip\
+    less\
+    xz\
+    bash-completion
 echo "Installing Yay:"
 cd && git clone https://aur.archlinux.org/yay.git
 cd yay && makepkg -si
