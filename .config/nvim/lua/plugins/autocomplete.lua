@@ -395,9 +395,7 @@ return {
             -- custom comparator for making spell sources work.
             -- (basically compare.order but for spell source only)
             function(a, b)
-              if
-                not a.source.name == 'spell' or not b.source.name == 'spell'
-              then
+              if a.source.name ~= 'spell' or b.source.name ~= 'spell' then
                 return nil
               end
               local diff = a.id - b.id
