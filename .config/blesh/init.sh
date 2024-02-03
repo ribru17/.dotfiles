@@ -11,7 +11,7 @@ bleopt exec_elapsed_mark=''
 # case insensitive auto-complete
 bind 'set completion-ignore-case on'
 
-ble-bind -f 'C-SP' menu-complete
+ble-bind -f 'C-SP' 'complete show_menu'
 ble-bind -m auto_complete -f 'C-e' auto_complete/cancel
 # for kitty
 ble-bind -m auto_complete -f C-i auto_complete/insert
