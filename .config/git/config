@@ -6,6 +6,10 @@
 	editor = nvim
 	excludesFile = ~/.config/git/.gitignore.global
 	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[diff]
+	colorMoved = default
 [pager]
 	blame  = delta
 	diff   = delta
@@ -15,10 +19,23 @@
 	helper = libsecret
 [delta]
 	line-numbers = true
-	minus-style = syntax auto
+	features = decorations
 	navigate = true
 	side-by-side = false
 	syntax-theme = bamboo
+[delta "decorations"]
+	file-decoration-style = bold yellow ul
+	file-style = yellow bold
+	hunk-header-decoration-style = yellow box ul
+	hunk-header-file-style = yellow
+	hunk-header-line-number-style = grey bold italic
+	hunk-header-style = line-number syntax italic
+	line-numbers-minus-style = red bold italic
+	line-numbers-plus-style = green bold italic
+	line-numbers-zero-style = grey italic
+	minus-emph-style = syntax auto
+	minus-style = syntax auto
+	zero-style = syntax
 [alias]
 	a = add
 	b = branch
