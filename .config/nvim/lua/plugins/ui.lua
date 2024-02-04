@@ -199,20 +199,26 @@ return {
 
       local delta_status = previewers.new_termopen_previewer {
         get_command = function(entry)
+          local value = SETTINGS.in_dotfiles
+              and vim.env.HOME .. '/' .. entry.value
+            or entry.value
           if entry.status == '??' or entry.status == 'A ' then
             -- show a diff against the null file, since the current file is
             -- either untracked or was just added
-            return vim.list_extend(
-              get_git_delta_opts(),
-              { 'diff', '--no-index', '--', '/dev/null', entry.value }
-            )
+            return vim.list_extend(get_git_delta_opts(), {
+              'diff',
+              '--no-index',
+              '--',
+              '/dev/null',
+              value,
+            })
           end
           -- show the regular diff of the file against HEAD
           return vim.list_extend(get_git_delta_opts(), {
             'diff',
             'HEAD',
             '--',
-            entry.value,
+            value,
           })
         end,
       }
