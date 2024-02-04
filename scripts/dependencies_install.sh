@@ -25,6 +25,8 @@ sudo pacman -S --needed\
     xz\
     bash-completion
 
+echo "Compiling bat theme:"
+bat cache --build
 echo "Installing Yay:"
 cd && git clone https://aur.archlinux.org/yay.git
 cd yay && makepkg -si
