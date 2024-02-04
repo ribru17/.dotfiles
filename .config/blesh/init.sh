@@ -16,13 +16,16 @@ ble-bind -m auto_complete -f 'C-e' auto_complete/cancel
 ble-bind -m isearch -f 'RET' isearch/accept-line
 ble-bind -m isearch -f 'C-m' isearch/accept-line
 ble-bind -m vi_imap -f 'C-c' discard-line
+ble-bind -m vi_imap -f 'C-RET' accept-line
+ble-bind -m vi_imap -f 'S-RET' newline
+ble-bind -m emacs -f 'S-RET' newline
 # for kitty
 ble-bind -m auto_complete -f C-i auto_complete/insert
-ble-bind -f 'M-DEL' kill-backward-fword
+ble-bind -m emacs -f 'M-DEL' kill-backward-fword
 ble-bind -m vi_imap -f 'M-DEL' kill-backward-fword
 # for wezterm
 ble-bind -m auto_complete -f TAB auto_complete/insert
-ble-bind -f 'M-C-?' kill-backward-fword
+ble-bind -m emacs -f 'M-C-?' kill-backward-fword
 ble-bind -m vi_imap -f 'M-C-?' kill-backward-fword
 
 # colors
