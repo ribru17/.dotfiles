@@ -4,6 +4,7 @@ local in_dotfiles = vim.fn.system(
 
 local M = {
   border = 'rounded',
+  in_dotfiles = in_dotfiles,
   -- If `true`, this consumes a lot of resources and slows the LSP greatly.
   luals_load_plugins = false,
   hide_foldcolumn = { 'markdown', 'text', 'gitconfig', 'gitcommit', 'toml' },

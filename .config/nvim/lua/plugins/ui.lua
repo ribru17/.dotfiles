@@ -1,4 +1,5 @@
-local BORDER_STYLE = require('rileybruins.settings').border
+local SETTINGS = require('rileybruins.settings')
+local BORDER_STYLE = SETTINGS.border
 return {
   {
     'navarasu/onedark.nvim',
@@ -265,6 +266,7 @@ return {
           previewers.git_commit_message.new(opts),
           previewers.git_commit_diff_as_was.new(opts),
         }
+        opts.expand_dir = not SETTINGS.in_dotfiles
         builtin.git_status(opts)
       end
 
@@ -475,9 +477,7 @@ return {
       )
       vim.keymap.set('n', '<leader>fc', function()
         local load_scheme = require('lazy.core.loader').colorscheme
-        for _, value in
-          pairs(require('rileybruins.settings').lazy_loaded_colorschemes)
-        do
+        for _, value in pairs(SETTINGS.lazy_loaded_colorschemes) do
           load_scheme(value)
         end
         vim.keymap.set('n', '<leader>fc', function()
