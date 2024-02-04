@@ -4,7 +4,7 @@
 [
   (arrow_function
     "=>" @open.function)
-  (function
+  (function_expression
     "function" @open.function)
   (function_declaration
     "function" @open.function)
