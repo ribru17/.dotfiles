@@ -6,7 +6,7 @@ local M = {
   border = 'rounded',
   -- If `true`, this consumes a lot of resources and slows the LSP greatly.
   luals_load_plugins = false,
-  hide_foldcolumn = { 'markdown', 'text', 'gitconfig' },
+  hide_foldcolumn = { 'markdown', 'text', 'gitconfig', 'gitcommit', 'toml' },
   codelens_refresh_events = { 'InsertLeave', 'TextChanged', 'CursorHold' },
   lazy_loaded_colorschemes = {
     'catppuccin',

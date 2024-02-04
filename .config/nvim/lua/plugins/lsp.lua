@@ -448,9 +448,13 @@ return {
     'aznhe21/actions-preview.nvim',
     lazy = true,
     config = function()
+      local hl = require('actions-preview.highlight')
       require('actions-preview').setup {
         backend = { 'telescope' },
         telescope = {},
+        highlight_command = {
+          hl.delta('delta --hunk-header-style omit --paging=always'),
+        },
       }
     end,
   },
