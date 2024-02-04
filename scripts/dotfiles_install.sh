@@ -10,6 +10,9 @@ fi
 git clone git@github.com:ribru17/.dotfiles.git $HOME/.dotfiles
 alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dots config --local status.showUntrackedFiles no
+# so fugitive can recognize the dotfiles working tree
+# see: https://stackoverflow.com/a/66624354
+dots config --local core.worktree $HOME
 dots checkout
 if [ $? = 0 ]; then
     echo "Installed config!";
