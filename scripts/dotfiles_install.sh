@@ -12,9 +12,10 @@ alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dots config --local status.showUntrackedFiles no
 dots checkout
 if [ $? = 0 ]; then
-  echo "Installed config!";
-  else
+    echo "Installed config!";
+else
     echo "Must move or delete conflicting files.";
+    exit
 fi;
 # optionally (preferably) install some system dependencies
 read -p "Install all package dependencies? [Y/n] " ans
