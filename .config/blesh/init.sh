@@ -15,6 +15,7 @@ ble-bind -f 'C-SP' 'complete show_menu'
 ble-bind -m auto_complete -f 'C-e' auto_complete/cancel
 ble-bind -m isearch -f 'RET' isearch/accept-line
 ble-bind -m isearch -f 'C-m' isearch/accept-line
+ble-bind -m vi_imap -f 'C-c' discard-line
 # for kitty
 ble-bind -m auto_complete -f C-i auto_complete/insert
 ble-bind -f 'M-DEL' kill-backward-fword
