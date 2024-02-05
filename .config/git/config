@@ -8,8 +8,6 @@
 	pager = delta
 [interactive]
 	diffFilter = delta --color-only
-[diff]
-	colorMoved = default
 [pager]
 	blame  = delta
 	diff   = delta
