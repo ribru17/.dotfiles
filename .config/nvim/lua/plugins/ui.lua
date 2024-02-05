@@ -189,7 +189,7 @@ return {
           '-c',
           'delta.side-by-side=false',
           '-c',
-          'delta.line-numbers=false',
+          'delta.line-numbers=true',
           '-c',
           'delta.hunk-header-style=omit',
         }
@@ -250,6 +250,7 @@ return {
           previewers.git_commit_message.new(opts),
           previewers.git_commit_diff_as_was.new(opts),
         }
+        opts = vim.tbl_extend('keep', opts, SETTINGS.telescope_centered_picker)
         builtin.git_commits(opts)
       end
 
@@ -260,6 +261,7 @@ return {
           previewers.git_commit_message.new(opts),
           previewers.git_commit_diff_as_was.new(opts),
         }
+        opts = vim.tbl_extend('keep', opts, SETTINGS.telescope_centered_picker)
         builtin.git_bcommits(opts)
       end
 
@@ -270,6 +272,7 @@ return {
           previewers.git_commit_message.new(opts),
           previewers.git_commit_diff_as_was.new(opts),
         }
+        opts = vim.tbl_extend('keep', opts, SETTINGS.telescope_centered_picker)
         opts.expand_dir = not SETTINGS.in_dotfiles
         builtin.git_status(opts)
       end

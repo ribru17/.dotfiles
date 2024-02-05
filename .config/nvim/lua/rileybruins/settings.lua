@@ -19,7 +19,7 @@ local M = {
       anchor = 'S',
       preview_cutoff = 1,
       prompt_position = 'bottom',
-      width = 0.9,
+      width = 0.95,
       results_height = 5,
     },
     border = true,
