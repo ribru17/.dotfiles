@@ -5,6 +5,6 @@ vim.treesitter.start()
 -- easier navigation
 vim.opt_local.relativenumber = true
 -- better mnemonic for tag jumping
-vim.keymap.set('n', 'gd', '<C-]>', {
+vim.keymap.set({ 'n', 'x' }, 'gd', '<C-]>', {
   buffer = true,
 })
