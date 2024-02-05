@@ -1,6 +1,8 @@
+# start in vi mode
 set editing-mode vi
 set show-mode-in-prompt on
-
+# case insensitive auto-complete
+set completion-ignore-case on
 # don't show weird emacs mode string
 set emacs-mode-string
 # blinking I-beam cursor in insert mode

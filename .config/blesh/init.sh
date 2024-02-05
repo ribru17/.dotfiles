@@ -8,9 +8,6 @@ bleopt prompt_eol_mark=''
 bleopt term_index_colors=auto
 bleopt exec_elapsed_mark=''
 
-# case insensitive auto-complete
-bind 'set completion-ignore-case on'
-
 ble-bind -f 'C-SP' 'complete show_menu'
 ble-bind -m auto_complete -f 'C-e' auto_complete/cancel
 ble-bind -m isearch -f 'RET' isearch/accept-line
