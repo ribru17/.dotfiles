@@ -159,7 +159,7 @@ return {
     lazy = true,
   },
   {
-    'nvim-telescope/telescope.nvim',
+    'git@github.com:ribru17/telescope.nvim.git',
     keys = {
       { '<leader>ff' },
       { '<leader>fs' },
@@ -371,14 +371,7 @@ return {
               return true
             end,
           },
-          borderchars = ({
-            none = { '', '', '', '', '', '', '', '' },
-            single = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-            double = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
-            rounded = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-            solid = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-            shadow = { '', '', '', '', '', '', '', '' },
-          })[BORDER_STYLE],
+          borderchars = SETTINGS.telescope_border_chars[BORDER_STYLE],
           layout_config = {
             horizontal = {
               preview_cutoff = 0,

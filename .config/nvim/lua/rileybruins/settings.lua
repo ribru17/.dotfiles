@@ -4,6 +4,32 @@ local in_dotfiles = vim.fn.system(
 
 local M = {
   border = 'rounded',
+  telescope_border_chars = {
+    none = { '', '', '', '', '', '', '', '' },
+    single = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+    double = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
+    rounded = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    solid = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+    shadow = { '', '', '', '', '', '', '', '' },
+  },
+  telescope_centered_picker = {
+    results_title = false,
+    layout_strategy = 'center',
+    layout_config = {
+      anchor = 'S',
+      preview_cutoff = 1,
+      prompt_position = 'bottom',
+      width = 0.9,
+      results_height = 5,
+    },
+    border = true,
+    -- TODO: Choose these dynamically based on `border` value
+    borderchars = {
+      prompt = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+      results = { '─', '│', '─', '│', '╭', '╮', '┤', '├' },
+      preview = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    },
+  },
   in_dotfiles = in_dotfiles,
   -- If `true`, this consumes a lot of resources and slows the LSP greatly.
   luals_load_plugins = false,

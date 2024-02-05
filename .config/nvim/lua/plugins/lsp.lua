@@ -1,4 +1,5 @@
 local BORDER_STYLE = require('rileybruins.settings').border
+local SETTINGS = require('rileybruins.settings')
 
 return {
   {
@@ -451,7 +452,7 @@ return {
       local hl = require('actions-preview.highlight')
       require('actions-preview').setup {
         backend = { 'telescope' },
-        telescope = {},
+        telescope = SETTINGS.telescope_centered_picker,
         highlight_command = {
           hl.delta('delta --hunk-header-style omit --paging=always'),
         },
