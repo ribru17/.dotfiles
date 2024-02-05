@@ -374,7 +374,7 @@ return {
               return true
             end,
           },
-          borderchars = SETTINGS.telescope_border_chars[BORDER_STYLE],
+          borderchars = SETTINGS.telescope_border_chars,
           layout_config = {
             horizontal = {
               preview_cutoff = 0,

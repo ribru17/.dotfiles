@@ -2,16 +2,27 @@ local in_dotfiles = vim.fn.system(
   'git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-tree --name-only HEAD'
 ) ~= ''
 
+local BORDER_STYLE = 'rounded'
+local telescope_border_chars = {
+  none = { '', '', '', '', '', '', '', '' },
+  single = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+  double = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
+  rounded = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+  solid = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+  shadow = { '', '', '', '', '', '', '', '' },
+}
+local connected_telescope_border_chars = {
+  none = { '', '', '', '', '', '', '', '' },
+  single = { '─', '│', '─', '│', '┌', '┐', '┤', '├' },
+  double = { '═', '║', '═', '║', '╔', '╗', '╣', '╠' },
+  rounded = { '─', '│', '─', '│', '╭', '╮', '┤', '├' },
+  solid = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+  shadow = { '', '', '', '', '', '', '', '' },
+}
+
 local M = {
-  border = 'rounded',
-  telescope_border_chars = {
-    none = { '', '', '', '', '', '', '', '' },
-    single = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-    double = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
-    rounded = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    solid = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-    shadow = { '', '', '', '', '', '', '', '' },
-  },
+  border = BORDER_STYLE,
+  telescope_border_chars = telescope_border_chars[BORDER_STYLE],
   telescope_centered_picker = {
     results_title = false,
     layout_strategy = 'center',
@@ -23,11 +34,10 @@ local M = {
       results_height = 5,
     },
     border = true,
-    -- TODO: Choose these dynamically based on `border` value
     borderchars = {
-      prompt = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-      results = { '─', '│', '─', '│', '╭', '╮', '┤', '├' },
-      preview = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+      prompt = telescope_border_chars[BORDER_STYLE],
+      results = connected_telescope_border_chars[BORDER_STYLE],
+      preview = telescope_border_chars[BORDER_STYLE],
     },
   },
   in_dotfiles = in_dotfiles,
