@@ -187,8 +187,6 @@ return {
           '-c',
           'core.pager=delta',
           '-c',
-          'delta.paging=always',
-          '-c',
           'delta.side-by-side=false',
           '-c',
           'delta.line-numbers=false',
