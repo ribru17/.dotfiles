@@ -11,6 +11,7 @@ of both worlds).
 ]],
 })
 
+-- TODO: Remove after v0.10
 -- Only set this mapping if `xdg-open` is found. If not, we will bite the bullet
 -- and load all of the netrw plugin to get this functionality.
 if vim.fn.executable('xdg-open') == 1 then

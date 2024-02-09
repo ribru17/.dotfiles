@@ -108,6 +108,7 @@ return {
     },
   },
   {
+    -- TODO: Remove after v0.10
     -- Lazy-load netrw for `gx` functionality, *only* if `xdg-open` is not found
     -- (in which case we will create a regular keymapping for `gx` using it)
     dir = vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim',
