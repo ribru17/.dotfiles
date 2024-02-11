@@ -94,7 +94,7 @@ return {
   font_size = 15,
   warn_about_missing_glyphs = false,
   custom_block_glyphs = true,
-  unicode_version = 14,
+  unicode_version = 15,
 
   -- color options
   colors = SCHEME_OBJ,
