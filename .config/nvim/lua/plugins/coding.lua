@@ -159,19 +159,34 @@ return {
                 text = {
                   function(args)
                     local foldinfo = c.fold_info(args.wp, args.lnum)
+                    local foldinfo_next = c.fold_info(args.wp, args.lnum + 1)
                     local level = foldinfo.level
                     local width = c.compute_foldcolumn(args.wp, 0)
+                    local foldstr = ' '
                     if width == 0 then
                       return ''
                     end
                     local hl = '%#FoldCol' .. level .. '#'
                     if level == 0 then
                       hl = '%#Normal#'
+                      foldstr = ' '
                     end
                     if level > 8 then
                       hl = '%#FoldCol8#'
+                      return hl .. foldstr .. '%#Normal# '
                     end
-                    return hl .. ' %#Normal# '
+                    if args.lnum == foldinfo.start then
+                      foldstr = '◠'
+                    elseif
+                      foldinfo.level > foldinfo_next.level
+                      or (
+                        foldinfo_next.start == args.lnum + 1
+                        and foldinfo_next.level == foldinfo.level
+                      )
+                    then
+                      foldstr = '◡'
+                    end
+                    return hl .. foldstr .. '%#Normal# '
                   end,
                 },
                 click = 'v:lua.ScFa',

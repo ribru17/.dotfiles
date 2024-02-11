@@ -154,7 +154,7 @@ create_autocmd('ColorScheme', {
           ),
           0.125 * i
         ),
-        fg = vim.api.nvim_get_hl(0, { name = 'Function' }).fg or 0,
+        fg = vim.api.nvim_get_hl(0, { name = 'Normal' }).bg or 0,
       })
     end
   end,
