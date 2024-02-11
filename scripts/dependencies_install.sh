@@ -5,25 +5,25 @@ echo "Updating system:"
 sudo pacman -Syu
 echo "Installing dependencies:"
 sudo pacman -S --needed\
+    base-devel\
+    bash-completion\
+    bat\
+    curl\
     fastfetch\
+    gcc\
+    git-delta\
+    git\
+    kitty\
+    less\
     neovim\
     nodejs\
     npm\
     python3\
-    kitty\
-    git\
-    git-delta\
-    ripgrep\
-    wl-clipboard\
-    bat\
     reflector\
-    base-devel\
-    curl\
-    gcc\
+    ripgrep\
     unzip\
-    less\
-    xz\
-    bash-completion
+    wl-clipboard\
+    xz
 
 echo "Compiling bat theme:"
 bat cache --build
