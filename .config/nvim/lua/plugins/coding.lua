@@ -175,7 +175,9 @@ return {
                     if level > 8 then
                       hl = '%#FoldCol8#'
                     end
-                    if args.lnum == foldinfo.start then
+                    if foldinfo.lines ~= 0 then
+                      foldstr = '▹'
+                    elseif args.lnum == foldinfo.start then
                       foldstr = '◠'
                     elseif
                       foldinfo.level > foldinfo_next.level
