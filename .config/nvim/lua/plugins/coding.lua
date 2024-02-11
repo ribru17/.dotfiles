@@ -170,10 +170,10 @@ return {
                     if level == 0 then
                       hl = '%#Normal#'
                       foldstr = ' '
+                      return hl .. foldstr .. '%#Normal# '
                     end
                     if level > 8 then
                       hl = '%#FoldCol8#'
-                      return hl .. foldstr .. '%#Normal# '
                     end
                     if args.lnum == foldinfo.start then
                       foldstr = '◠'
