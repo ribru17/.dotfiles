@@ -70,6 +70,7 @@ local M = {
     'markdown',
     'markdown_inline',
     'mermaid',
+    'printf',
     'query',
     'regex',
     'rust',
