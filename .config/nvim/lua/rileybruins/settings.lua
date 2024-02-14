@@ -82,6 +82,7 @@ local M = {
     'xml',
   },
   ensure_installed_lsps = {
+    'bashls',
     'clangd',
     'cssls',
     'denols',
@@ -96,6 +97,7 @@ local M = {
   ensure_installed_formatters = {
     'clang-format',
     'prettierd',
+    'shfmt',
     'stylua',
     'yapf',
   },

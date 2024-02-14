@@ -438,13 +438,15 @@ return {
       }
       require('conform.formatters.injected').options.ignore_errors = true
       local util = require('conform.util')
-      local deno_fmt = require('conform.formatters.deno_fmt')
       local clang_format = require('conform.formatters.clang_format')
-      util.add_formatter_args(deno_fmt, { '--single-quote' }, { append = true })
+      local deno_fmt = require('conform.formatters.deno_fmt')
+      local shfmt = require('conform.formatters.shfmt')
       util.add_formatter_args(clang_format, {
         '--style',
         '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}',
       })
+      util.add_formatter_args(deno_fmt, { '--single-quote' }, { append = true })
+      util.add_formatter_args(shfmt, { '--indent', '4' })
       require('conform').setup {
         format_on_save = {
           timeout_ms = 1000,
@@ -464,6 +466,7 @@ return {
           luau = { 'stylua' },
           markdown = { 'deno_fmt' },
           python = { 'yapf' },
+          sh = { 'shfmt' },
           typescript = { 'deno_fmt' },
           typescriptreact = { 'deno_fmt' },
         },
