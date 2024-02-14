@@ -639,7 +639,21 @@ return {
     end, {}),
     i(0),
   }),
-
+  s(
+    {
+      trig = 'pw',
+    },
+    fmt(
+      [[
+      \begin{{cases}}
+        {1}  & \text{{{2}}} \\
+        {3} & \text{{{4}}}
+      \end{{cases}}
+      ]],
+      { i(1, 'n/2'), i(2, '$n$ is even'), i(3, '3n+1'), i(4, '$n$ is odd') }
+    ),
+    { condition = in_mathzone }
+  ),
   s({
     --> INJECT: luap
     trig = '([%a])_(%d%d)',

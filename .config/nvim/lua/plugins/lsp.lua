@@ -448,7 +448,7 @@ return {
         tsserver_file_preferences = {
           -- NOTE: Should only really enable this if working in a Tree-sitter
           -- grammar
-          disableSuggestions = true,
+          disableSuggestions = false,
         },
       },
     },
