@@ -4,25 +4,26 @@
 echo "Updating system:"
 sudo pacman -Syu
 echo "Installing dependencies:"
-sudo pacman -S --needed\
-    base-devel\
-    bash-completion\
-    bat\
-    curl\
-    fastfetch\
-    gcc\
-    git-delta\
-    git\
-    kitty\
-    less\
-    neovim\
-    nodejs\
-    npm\
-    python3\
-    reflector\
-    ripgrep\
-    unzip\
-    wl-clipboard\
+sudo pacman -S --needed \
+    base-devel \
+    bash-completion \
+    bat \
+    curl \
+    fastfetch \
+    gcc \
+    git \
+    git-delta \
+    kitty \
+    less \
+    man-db \
+    neovim \
+    nodejs \
+    npm \
+    python3 \
+    reflector \
+    ripgrep \
+    unzip \
+    wl-clipboard \
     xz
 
 echo "Compiling bat theme:"
@@ -38,10 +39,10 @@ cp -Rf ble-nightly/* ~/.local/share/blesh/
 rm -rf ble-nightly
 source ~/.local/share/blesh/ble.sh
 echo "Setting up terminfo support for WezTerm (for things like undercurl):"
-tempfile=$(mktemp) \
-    && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
-    && tic -x -o ~/.terminfo $tempfile \
-    && rm $tempfile
+tempfile=$(mktemp) &&
+    curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo &&
+    tic -x -o ~/.terminfo $tempfile &&
+    rm $tempfile
 
 read -p "Are you on a laptop? (If yes, TLP will be installed to preserve battery life. Do NOT accept if you are on a desktop.) [y/N] " ans
 if [ "$ans" = "y" ] || [ "$ans" = "Y" ]; then
