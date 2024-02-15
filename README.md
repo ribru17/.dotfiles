@@ -7,7 +7,7 @@ Dotfiles for Arch Linux.
 To install, run:
 
 ```sh
-wget -O - https://raw.githubusercontent.com/ribru17/.dotfiles/master/scripts/install_dotfiles.sh | bash
+wget -O - https://raw.githubusercontent.com/ribru17/.dotfiles/master/scripts/dotfiles_install.sh | bash
 ```
 
 ## Reference
