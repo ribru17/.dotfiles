@@ -15,7 +15,7 @@ dots config status.showUntrackedFiles no
 # see: https://stackoverflow.com/a/66624354
 dots config core.worktree "$HOME"
 if ! dots checkout; then
-    echo "Overwrite the existing files? [Y/n] " ans
+    read -rp "Overwrite the existing files? [Y/n] " ans
     if [ -z "$ans" ] || [ "$ans" = "y" ] || [ "$ans" = "Y" ]; then
         dots checkout -f
     else
