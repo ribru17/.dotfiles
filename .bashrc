@@ -44,6 +44,8 @@ loc() {
     fi
 }
 
+CDPATH=$HOME
+
 # Cool `PS1` prompt
 # NOTE: on Konsole or Kitty with transparent background the parts of the prompts
 # that share the same color as the background color (if any, determined by color
