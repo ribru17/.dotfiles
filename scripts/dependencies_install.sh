@@ -28,17 +28,24 @@ sudo pacman -S --needed \
 
 echo "Compiling bat theme:"
 bat cache --build
-echo "Installing Yay:"
-cd && git clone https://aur.archlinux.org/yay.git
-cd yay && makepkg -si
-cd .. && rm -rf yay
-echo "Installing blesh:"
-wget -O - https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz | tar xJf -
-mkdir -p ~/.local/share/blesh
-cp -Rf ble-nightly/* ~/.local/share/blesh/
-rm -rf ble-nightly
-# shellcheck disable=1090
-source ~/.local/share/blesh/ble.sh
+# TODO: Test this, maybe look into `makepkg -sirc`
+if ! command -v yay; then
+    echo "Installing Yay:"
+    cd && git clone https://aur.archlinux.org/yay.git
+    cd yay && makepkg -si
+    cd .. && rm -rf yay
+fi
+if ! command -v ble-update; then
+    echo "Installing blesh:"
+    wget -O - https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz | tar xJf -
+    mkdir -p ~/.local/share/blesh
+    cp -Rf ble-nightly/* ~/.local/share/blesh/
+    rm -rf ble-nightly
+    # shellcheck disable=1090
+    source ~/.local/share/blesh/ble.sh
+else
+    ble-update
+fi
 echo "Setting up terminfo support for WezTerm (for things like undercurl):"
 tempfile=$(mktemp) &&
     curl -o "$tempfile" https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo &&
