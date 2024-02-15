@@ -97,6 +97,7 @@ local M = {
   ensure_installed_formatters = {
     'clang-format',
     'prettierd',
+    'shellcheck',
     'shfmt',
     'stylua',
     'yapf',
