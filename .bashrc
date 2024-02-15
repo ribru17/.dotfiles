@@ -60,7 +60,8 @@ _prompt_command() {
     else
         local color='1'
     fi
-    PS1="\e[3${color}m╭\e[40m┨\e[37m\e[40m  \e[1m\u \e[0m\e[30m\e[4${color}m \e[3m\e[1m\e[30m\w \e[0m\e[00m\e[3${color}m\n\e[3${color}m╰─🢒\e[03m\e[33m\$ \e[00m"
+    # shellcheck disable=SC2025
+    PS1="\e[3${color}m╭\e[40m┨\e[37;40m  \e[1m\u \e[0;30;4${color}m \e[3;1;30m\w \e[0;3${color}m\n\e[3${color}m╰─🢒\e[3;33m\$ \e[0m"
 }
 
 ## EXPORTED VARIABLES
@@ -89,8 +90,9 @@ set -o physical
 # start shell with fastfetch
 fastfetch
 
-# sourcery
+## Sourcery
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
+# shellcheck disable=SC1090
 [ -f "$HOME/.local/share/blesh/ble.sh" ] && source ~/.local/share/blesh/ble.sh
 # git alias completions
 [ -f "/usr/share/bash-completion/completions/git" ] &&
