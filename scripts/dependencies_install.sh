@@ -28,7 +28,6 @@ sudo pacman -S --needed \
 
 echo "Compiling bat theme:"
 bat cache --build
-# TODO: Test this, maybe look into `makepkg -sirc`
 if ! command -v yay; then
     echo "Installing Yay:"
     cd && git clone https://aur.archlinux.org/yay.git

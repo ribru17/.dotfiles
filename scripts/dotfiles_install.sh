@@ -15,8 +15,12 @@ dots config status.showUntrackedFiles no
 # see: https://stackoverflow.com/a/66624354
 dots config core.worktree "$HOME"
 if ! dots checkout; then
-    echo "Must move or delete conflicting files."
-    exit
+    echo "Overwrite the existing files? [Y/n] " ans
+    if [ -z "$ans" ] || [ "$ans" = "y" ] || [ "$ans" = "Y" ]; then
+        dots checkout -f
+    else
+        exit
+    fi
 else
     echo "Installed config!"
 fi
