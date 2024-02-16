@@ -49,6 +49,7 @@
 	s = show
 	st = status
 	stat = status
+	amend = commit -a --amend --no-edit
 	edit = !nvim ~/.config/git/config
 	info = !git diff && git remote -v && git status
 	new = checkout -b
