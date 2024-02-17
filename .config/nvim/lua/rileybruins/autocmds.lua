@@ -296,10 +296,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     if vim.bo[ev.buf].ft ~= 'query' then
       return
     end
-    vim.fn.jobstart(cmd .. vim.api.nvim_buf_get_name(ev.buf), {
-      on_exit = function()
-        vim.cmd.checkt(ev.buf)
-      end,
-    })
+    vim.fn.system(cmd .. vim.api.nvim_buf_get_name(ev.buf))
+    vim.cmd.checkt(ev.buf)
   end,
 })
