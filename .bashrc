@@ -44,7 +44,7 @@ loc() {
     fi
 }
 
-CDPATH=$HOME
+CDPATH=.:$HOME
 
 # Cool `PS1` prompt
 # NOTE: on Konsole or Kitty with transparent background the parts of the prompts
