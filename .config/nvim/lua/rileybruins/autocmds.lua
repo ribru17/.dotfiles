@@ -282,3 +282,24 @@ create_autocmd('FileType', {
     }
   end,
 })
+
+-- format query files, aligning with nvim-treesitter standards
+local ts_path = vim.fn.stdpath('data') .. '/lazy/nvim-treesitter/'
+local cmd = 'nvim +"lua vim.opt.rtp:append(\''
+  .. ts_path
+  .. '\')" -l '
+  .. ts_path
+  .. 'scripts/format-queries.lua '
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.scm',
+  callback = function(ev)
+    if vim.bo[ev.buf].ft ~= 'query' then
+      return
+    end
+    vim.fn.jobstart(cmd .. vim.api.nvim_buf_get_name(ev.buf), {
+      on_exit = function()
+        vim.cmd.checkt(ev.buf)
+      end,
+    })
+  end,
+})
