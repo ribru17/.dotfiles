@@ -224,7 +224,7 @@ M.apply = function()
     env = {
       GIT_WORK_TREE = in_dotfiles and vim.env.HOME or vim.env.GIT_WORK_TREE,
       GIT_DIR = in_dotfiles and vim.env.HOME .. '/.dotfiles' or vim.env.GIT_DIR,
-      -- for constant paging in fugitive temp buffers
+      -- for constant paging in Telescope delta commands
       GIT_PAGER = 'delta --paging=always',
     },
   }
