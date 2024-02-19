@@ -285,13 +285,15 @@ create_autocmd('FileType', {
 
 -- format query files, aligning with nvim-treesitter standards
 local ts_path = vim.fn.stdpath('data') .. '/lazy/nvim-treesitter/'
+-- NOTE: We could just call this with dofile if Arch bundled the parsers... for
+-- now the rtp hack fixes it
 local cmd = 'nvim +"lua vim.opt.rtp:append(\''
   .. ts_path
   .. '\')" -l '
   .. ts_path
   .. 'scripts/format-queries.lua '
-vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = '*.scm',
+create_autocmd('BufWritePost', {
+  pattern = 'queries/*/*.scm',
   callback = function(ev)
     if vim.bo[ev.buf].ft ~= 'query' then
       return
