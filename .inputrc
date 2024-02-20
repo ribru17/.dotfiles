@@ -12,3 +12,5 @@ set vi-cmd-mode-string \1\e[2 q\2
 # snappier insert mode leaving
 # NOTE: Could be bad when using tmux. See: https://superuser.com/a/1809494
 set keyseq-timeout 0
+# no beeps
+set bell-style visible
