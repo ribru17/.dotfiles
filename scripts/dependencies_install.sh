@@ -4,28 +4,8 @@
 echo "Updating system:"
 sudo pacman -Syu
 echo "Installing dependencies:"
-sudo pacman -S --needed \
-    base-devel \
-    bash-completion \
-    bat \
-    curl \
-    fastfetch \
-    gcc \
-    git \
-    git-delta \
-    kitty \
-    less \
-    man-db \
-    neovim \
-    nodejs \
-    npm \
-    python3 \
-    reflector \
-    ripgrep \
-    unzip \
-    wl-clipboard \
-    xz
-
+# shellcheck disable=2024
+sudo pacman -S --needed - <packages.txt
 echo "Compiling bat theme:"
 bat cache --build
 if ! command -v yay; then
