@@ -196,6 +196,7 @@ M.apply = function()
       foldlevelstart = 99,
       foldmethod = 'expr',
       ignorecase = true,
+      lispoptions = 'expr:1',
       list = true,
       mouse = '',
       number = true,
