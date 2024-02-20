@@ -19,8 +19,10 @@ ble-bind -m vi_imap -f 'S-RET' newline
 ble-bind -m vi_nmap -f 'S-RET' accept-line
 ble-bind -m vi_nmap -f 'H' vi-command/beginning-of-line
 ble-bind -m vi_omap -f 'H' vi-command/beginning-of-line
+ble-bind -m vi_xmap -f 'H' vi-command/beginning-of-line
 ble-bind -m vi_nmap -f 'L' vi-command/forward-eol
 ble-bind -m vi_omap -f 'L' vi-command/forward-eol
+ble-bind -m vi_xmap -f 'L' vi-command/forward-eol
 ble-bind -m emacs -f 'S-RET' newline
 # for kitty
 ble-bind -m auto_complete -f C-i auto_complete/insert
