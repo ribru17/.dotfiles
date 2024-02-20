@@ -79,7 +79,7 @@
 
 ((task_list_marker_checked) @markup.list.checked
   (#offset! @markup.list.checked 0 -2 0 0)
-  (#set! conceal "☑")) ; Alts:✓ ✔ 🗹 ✅☑
+  (#set! conceal "🗹")) ; Alts:✓ ✔ 🗹 ✅☑
 
 (list_item
   (task_list_marker_checked)
