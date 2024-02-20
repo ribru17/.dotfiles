@@ -137,8 +137,6 @@ map('n', '<Esc>', vim.cmd.noh, { desc = 'Clear search highlighting' })
 
 map('t', '<Esc>', '<C-Bslash><C-n>', { desc = 'Easily exit terminal mode' })
 
-map('n', 'Q', '<nop>', { desc = "Don't enter ex mode by accident" })
-
 map(
   'n',
   '<leader>h',
