@@ -38,9 +38,9 @@ alias ..='cd ..'
 # simple way to count lines of code in the current directory
 loc() {
     if [[ -z "$1" ]]; then
-        command find . -regextype sed -not -regex '\./\.git.*' -type f | xargs wc -l | sort -n
+        find . -regextype sed -not -regex '\./\.git.*' -type f -exec wc -l {} + | sort -n
     else
-        command find . -regextype sed -not -regex '\./\.git.*' -regex ".*\.$1" -type f | xargs wc -l | sort -n
+        find . -regextype sed -not -regex '\./\.git.*' -regex ".*\.$1" -type f -exec wc -l {} + | sort -n
     fi
 }
 
