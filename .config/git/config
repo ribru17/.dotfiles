@@ -62,7 +62,6 @@
 [pull]
 	rebase = true
 [merge]
-	ff = false
 	tool = vimdiff
 	conflictstyle = diff3
 [mergetool]
