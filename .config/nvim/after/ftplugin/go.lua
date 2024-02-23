@@ -1,3 +1,4 @@
+vim.opt_local.expandtab = false
 ---@diagnostic disable-next-line: missing-fields
 require('nvim-surround').buffer_setup {
   surrounds = {
