@@ -73,6 +73,7 @@ export VISUAL=nvim
 export EDITOR=nvim
 # access Node.js dependencies from Bash prompt when in project root
 export PATH=$PATH:./node_modules/.bin
+export MANWIDTH=80
 export MANPAGER='nvim +Man!' # nice nvim man paging
 # NOTE: Uncomment for less paging
 # export MANPAGER='less -s -M +Gg'    # for percentages when using less paging
