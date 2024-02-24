@@ -73,6 +73,9 @@ export VISUAL=nvim
 export EDITOR=nvim
 # access Node.js dependencies from Bash prompt when in project root
 export PATH=$PATH:./node_modules/.bin
+export MANPAGER='nvim +Man!' # nice nvim man paging
+# NOTE: Uncomment for less paging
+# export MANPAGER='less -s -M +Gg'    # for percentages when using less paging
 # less colors for man pages
 export LESS_TERMCAP_mb=$'\e[1;35m'  # begin bold
 export LESS_TERMCAP_md=$'\e[1;34m'  # begin blink
@@ -82,7 +85,6 @@ export LESS_TERMCAP_me=$'\e[0m'     # reset bold/blink
 export LESS_TERMCAP_se=$'\e[0m'     # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'     # reset underline
 export GROFF_NO_SGR=1               # for color interpretation
-export MANPAGER='less -s -M +Gg'    # percentages for less paging
 
 # no symlink following for `cd`, etc.
 set -o physical
