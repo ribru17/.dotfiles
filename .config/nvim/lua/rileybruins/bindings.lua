@@ -319,6 +319,22 @@ else
   end, { desc = 'Show Git status' })
 end
 
+local ll_opts = { desc = 'Easier location list movement' }
+map({ 'n', 'x' }, '<leader>lj', function()
+  pcall(function()
+    vim.cmd.lne {
+      count = vim.v.count1,
+    }
+  end)
+end, ll_opts)
+map({ 'n', 'x' }, '<leader>lk', function()
+  pcall(function()
+    vim.cmd.lp {
+      count = vim.v.count1,
+    }
+  end)
+end, ll_opts)
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
