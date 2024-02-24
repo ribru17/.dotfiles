@@ -120,6 +120,7 @@ return {
         plantuml = '',
         ebnf = '󱘎',
         chart = '',
+        nroff = '',
       }
 
       local get_icon = nil
