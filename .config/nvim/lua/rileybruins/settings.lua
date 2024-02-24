@@ -152,6 +152,7 @@ local M = {
       'make',
       'man',
       'mason',
+      'qf',
     },
   },
 }
