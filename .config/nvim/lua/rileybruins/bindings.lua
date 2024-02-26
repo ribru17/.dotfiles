@@ -168,6 +168,12 @@ map(
   { remap = true, desc = 'Copy to clipboard (Linux)' }
 )
 map(
+  'n',
+  '<C-y><C-y>',
+  '"+yy',
+  { remap = true, desc = 'Copy to clipboard (Linux)' }
+)
+map(
   { 'x', 'n' },
   '<C-x>',
   '"+d',
