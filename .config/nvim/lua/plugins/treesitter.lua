@@ -46,7 +46,12 @@ return {
           select = {
             enable = true,
             lookahead = true,
-            include_surrounding_whitespace = false,
+            include_surrounding_whitespace = function(ev)
+              if ev.query_string == '@function.outer' then
+                return true
+              end
+              return false
+            end,
             selection_modes = {
               ['@comment.outer'] = 'V',
               ['@conditional.outer'] = 'V',
