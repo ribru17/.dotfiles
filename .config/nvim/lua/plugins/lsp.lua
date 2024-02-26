@@ -1,6 +1,34 @@
 local BORDER_STYLE = require('rileybruins.settings').border
 local SETTINGS = require('rileybruins.settings')
 
+local diagnostic_ns = vim.api.nvim_create_namespace('hlyank')
+local diagnostic_timer
+local hl_cancel
+
+local function goto_diagnostic_hl(dir)
+  assert(dir == 'prev' or dir == 'next')
+  local pos = vim.diagnostic['get_' .. dir]()
+  if not pos then
+    return
+  end
+  if diagnostic_timer then
+    diagnostic_timer:close()
+    hl_cancel()
+  end
+  vim.api.nvim_buf_set_extmark(0, diagnostic_ns, pos.lnum, pos.col, {
+    end_row = pos.end_lnum,
+    end_col = pos.end_col,
+    hl_group = 'Visual',
+  })
+  hl_cancel = function()
+    diagnostic_timer = nil
+    hl_cancel = nil
+    pcall(vim.api.nvim_buf_clear_namespace, 0, diagnostic_ns, 0, -1)
+  end
+  diagnostic_timer = vim.defer_fn(hl_cancel, 500)
+  vim.diagnostic['goto_' .. dir]()
+end
+
 return {
   {
     'p00f/clangd_extensions.nvim',
@@ -307,8 +335,12 @@ return {
           map('n', 'gr', function()
             vim.cmd.Telescope('lsp_references')
           end, opts)
-          map('n', '<leader>dk', vim.diagnostic.goto_prev, opts)
-          map('n', '<leader>dj', vim.diagnostic.goto_next, opts)
+          map('n', '<leader>dk', function()
+            goto_diagnostic_hl('prev')
+          end, opts)
+          map('n', '<leader>dj', function()
+            goto_diagnostic_hl('next')
+          end, opts)
           -- rename symbol starting with empty prompt, highlight references
           map('n', '<leader>r', function()
             local bufnr = vim.api.nvim_get_current_buf()
