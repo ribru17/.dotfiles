@@ -35,6 +35,9 @@ alias update='sudo pacman -Syu'
 # navigation
 alias ..='cd ..'
 
+# easier python usage
+alias py='python3'
+
 # simple way to count lines of code in the current directory
 loc() {
     if [[ -z "$1" ]]; then
