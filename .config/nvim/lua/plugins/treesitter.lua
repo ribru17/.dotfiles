@@ -1,3 +1,7 @@
+local include_surrounding_whitespace = {
+  ['@function.outer'] = true,
+  ['@class.outer'] = true,
+}
 return {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -47,7 +51,7 @@ return {
             enable = true,
             lookahead = true,
             include_surrounding_whitespace = function(ev)
-              if ev.query_string == '@function.outer' then
+              if include_surrounding_whitespace[ev.query_string] then
                 return true
               end
               return false
@@ -107,6 +111,7 @@ return {
       textobj_map('F', 'function')
       textobj_map('L', 'loop')
       textobj_map('c', 'conditional')
+      textobj_map('C', 'class')
       textobj_map('/', 'comment')
       textobj_map('P', 'parameter')
 
