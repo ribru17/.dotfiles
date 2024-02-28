@@ -4,12 +4,13 @@ local include_surrounding_whitespace = {
 }
 return {
   {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    event = { 'LazyFile' },
+  },
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     event = { 'LazyFile', 'VeryLazy' },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
@@ -80,8 +81,6 @@ return {
       }
 
       local map = vim.keymap.set
-      local select_ob =
-        require('nvim-treesitter.textobjects.select').select_textobject
 
       -- Globally map Tree-sitter text object binds
       local function textobj_map(key, query)
@@ -92,16 +91,16 @@ return {
           silent = true,
         }
         map('x', 'i' .. key, function()
-          select_ob(inner, 'textobjects', 'v')
+          vim.cmd.TSTextobjectSelect(inner)
         end, opts)
         map('x', 'a' .. key, function()
-          select_ob(outer, 'textobjects', 'v')
+          vim.cmd.TSTextobjectSelect(outer)
         end, opts)
         map('o', 'i' .. key, function()
-          select_ob(inner, 'textobjects', 'o')
+          vim.cmd.TSTextobjectSelect(inner)
         end, opts)
         map('o', 'a' .. key, function()
-          select_ob(outer, 'textobjects', 'o')
+          vim.cmd.TSTextobjectSelect(outer)
         end, opts)
       end
 
