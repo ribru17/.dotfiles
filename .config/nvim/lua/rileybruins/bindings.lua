@@ -252,6 +252,13 @@ end, { expr = true, desc = 'Select entire buffer' })
 map('o', 'aa', function()
   vim.cmd.normal('ggVG')
 end, { desc = 'Select entire buffer' })
+map('x', 'ia', function()
+  local mode = vim.api.nvim_get_mode().mode == 'V' and 'v' or ''
+  return 'gg0oG$h' .. mode
+end, { expr = true, desc = 'Select entire buffer (without final newline)' })
+map('o', 'ia', function()
+  vim.cmd.normal('gg0vG$')
+end, { desc = 'Select entire buffer (without final newline)' })
 
 map('x', 'il', '_og_', { desc = 'Select text content of current line' })
 map('o', 'il', function()

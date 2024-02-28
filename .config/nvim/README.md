@@ -199,6 +199,7 @@ that file). Save without formatting with `:W`.
   - `<leader>sh` and `<leader>sl` to Swap nodes to the left and right,
     respectively
 - Additionally, use `aa` motion to select entire buffer
+  - (Can also use `ia` to get text contents without the final newline)
 - Miscellaneous niceties
   - Insert new lines in Normal mode with `Enter` (line(s) below) or
     `Shift+Enter` (line(s) above)
