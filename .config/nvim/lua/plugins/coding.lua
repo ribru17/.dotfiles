@@ -2,7 +2,7 @@ local BORDER_STYLE = require('rileybruins.settings').border
 return {
   {
     'lewis6991/gitsigns.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'LazyFile' },
     config = function()
       require('gitsigns').setup {
         attach_to_untracked = true,
@@ -76,7 +76,7 @@ return {
   {
     'echasnovski/mini.indentscope',
     main = 'mini.indentscope',
-    event = { 'VeryLazy' },
+    event = { 'LazyFile' },
     opts = {
       symbol = '┊',
       mappings = {
@@ -95,7 +95,7 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = { 'VeryLazy' },
+    event = { 'LazyFile' },
     main = 'ibl',
     opts = {
       indent = {
@@ -231,7 +231,7 @@ return {
     dependencies = {
       'kevinhwang91/promise-async',
     },
-    event = { 'VeryLazy' },
+    event = { 'LazyFile' },
     config = function()
       local ufo = require('ufo')
       ---@diagnostic disable-next-line: missing-fields

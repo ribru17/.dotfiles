@@ -6,7 +6,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { 'LazyFile', 'VeryLazy' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },

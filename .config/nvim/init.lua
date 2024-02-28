@@ -22,6 +22,12 @@ local SETTINGS = require('rileybruins.settings')
 SETTINGS.apply()
 require('rileybruins.autocmds')
 
+-- add event aliases
+local event = require('lazy.core.handler.event')
+event.mappings.LazyFile =
+  { id = 'LazyFile', event = { 'BufReadPost', 'BufNewFile', 'BufWritePre' } }
+event.mappings['User LazyFile'] = event.mappings.LazyFile
+
 -- load installed plugins and their configurations
 require('lazy').setup('plugins', {
   -- defaults = { lazy = true },

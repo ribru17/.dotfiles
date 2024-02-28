@@ -58,7 +58,7 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'LazyFile' },
     config = function()
       require('mason').setup()
       local SETTINGS = require('rileybruins.settings')
