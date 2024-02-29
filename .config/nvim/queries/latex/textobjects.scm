@@ -1,4 +1,5 @@
 ; extends
+
 ((inline_formula
   .
   "$"

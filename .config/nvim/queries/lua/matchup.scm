@@ -1,4 +1,5 @@
 ; inherits: quote
+
 ; Don't use `return` statements for function matching in Lua.
 ; Allow `for` and `while` keywords to be jumpable.
 (for_statement

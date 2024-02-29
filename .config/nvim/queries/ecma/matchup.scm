@@ -1,4 +1,5 @@
 ; inherits: quote
+
 ; Don't count backticks for matching.
 ; functions
 [

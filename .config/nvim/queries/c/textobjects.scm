@@ -1,4 +1,5 @@
 ; extends
+
 ; Text object `call` for `sizeof` expressions
 (sizeof_expression
   value:

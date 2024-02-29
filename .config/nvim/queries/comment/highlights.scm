@@ -1,4 +1,5 @@
 ; extends
+
 ((tag
   (name) @keyword
   ":" @punctuation.delimiter)

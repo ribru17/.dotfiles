@@ -1,4 +1,5 @@
 ; extends
+
 (function_call
   name: (dot_index_expression) @_method
   arguments:
