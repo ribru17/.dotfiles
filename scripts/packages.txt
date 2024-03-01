@@ -9,6 +9,7 @@ git-delta
 kitty
 less
 man-db
+man-pages
 neovim
 nodejs
 npm
