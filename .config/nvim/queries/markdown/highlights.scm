@@ -132,26 +132,26 @@
   (#set! conceal "━"))
 
 ; Headers
-((atx_h1_marker) @markup.heading.1.marker
+((atx_h1_marker) @markup.heading.1
   (#set! conceal "1"))
 
-((atx_h2_marker) @markup.heading.2.marker
+((atx_h2_marker) @markup.heading.2
   (#set! conceal "2"))
 
-((atx_h3_marker) @markup.heading.3.marker
+((atx_h3_marker) @markup.heading.3
   (#set! conceal "3"))
 
-((atx_h4_marker) @markup.heading.4.marker
+((atx_h4_marker) @markup.heading.4
   (#set! conceal "4"))
 
-((atx_h5_marker) @markup.heading.5.marker
+((atx_h5_marker) @markup.heading.5
   (#set! conceal "5"))
 
-((atx_h6_marker) @markup.heading.6.marker
+((atx_h6_marker) @markup.heading.6
   (#set! conceal "6"))
 
 ; Ease fenced code block conceals a bit
-((fenced_code_block_delimiter) @markup.raw.delimiter
+((fenced_code_block_delimiter) @conceal
   (#set! conceal "~"))
 
 ; Awesome fenced code block language conceals using Nerd icons
