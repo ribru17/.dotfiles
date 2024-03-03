@@ -484,4 +484,46 @@ create_command('DiffAccept', function()
   vim.cmd.diffg('RE')
 end, { desc = 'Accept remote Git changes' })
 
+create_command('Converttomultiplex', function()
+  local original = require('bamboo.palette').vulgaris
+  local new = require('bamboo.palette').multiplex
+  for key, value in pairs(original) do
+    pcall(vim.cmd.s, {
+      '/' .. value:sub(2) .. '/' .. new[key]:sub(2) .. '/g',
+      range = { 1, vim.fn.line('$') },
+    })
+  end
+  -- operator
+  pcall(vim.cmd.s, {
+    '%s/c5c2ee/c5b0d4/g',
+    range = { 1, vim.fn.line('$') },
+  })
+  -- lightblue
+  pcall(vim.cmd.s, {
+    '%s/c5c2ee/95bbda/g',
+    range = { 1, vim.fn.line('$') },
+  })
+end, { desc = 'Accept remote Git changes' })
+
+create_command('Converttolight', function()
+  local original = require('bamboo.palette').vulgaris
+  local new = require('bamboo.palette').light
+  for key, value in pairs(original) do
+    pcall(vim.cmd.s, {
+      '/' .. value:sub(2) .. '/' .. new[key]:sub(2) .. '/g',
+      range = { 1, vim.fn.line('$') },
+    })
+  end
+  -- operator
+  pcall(vim.cmd.s, {
+    '%s/c5c2ee/6c47a0/g',
+    range = { 1, vim.fn.line('$') },
+  })
+  -- lightblue
+  pcall(vim.cmd.s, {
+    '%s/96c7ef/6e9fe5/g',
+    range = { 1, vim.fn.line('$') },
+  })
+end, { desc = 'Accept remote Git changes' })
+
 --> END OF MISCELLANEOUS USER COMMANDS <--
