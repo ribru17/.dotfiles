@@ -41,7 +41,9 @@ return {
     priority = 1000,
     config = function()
       require('bamboo').setup {
+        style = 'multiplex',
         toggle_style_key = '<leader><leader>',
+        toggle_style_list = { 'multiplex', 'light', 'vulgaris' }, -- List of styles to toggle between
         diagnostics = {
           undercurl = false,
         },
