@@ -293,7 +293,7 @@ local cmd = 'nvim +"lua vim.opt.rtp:append(\''
   .. ts_path
   .. 'scripts/format-queries.lua '
 create_autocmd('BufWritePost', {
-  pattern = 'queries/*/*.scm',
+  pattern = '*.scm',
   callback = function(ev)
     if vim.bo[ev.buf].ft ~= 'query' then
       return
