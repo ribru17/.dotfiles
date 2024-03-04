@@ -215,7 +215,7 @@ return {
       -- Trim whitespace from end of the region
       -- Arguments are the captures to trim.
       vim.treesitter.query.add_directive(
-        'trim-charwise!',
+        'trim-list-item!',
         ---@param match (TSNode|nil)[]
         ---@param _ string
         ---@param bufnr integer
@@ -228,11 +228,6 @@ return {
               return
             end
             local start_row, start_col, end_row, end_col = node:range()
-
-            -- Don't trim if region ends in middle of a line
-            if end_col ~= 0 then
-              return
-            end
 
             while true do
               -- As we only care when end_col == 0, always inspect one line above end_row.
