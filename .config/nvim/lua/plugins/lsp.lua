@@ -4,22 +4,34 @@ local SETTINGS = require('rileybruins.settings')
 local diagnostic_ns = vim.api.nvim_create_namespace('hlyank')
 local diagnostic_timer
 local hl_cancel
+local hl_map = {
+  [vim.diagnostic.severity.ERROR] = 'DiagnosticVirtualTextError',
+  [vim.diagnostic.severity.WARN] = 'DiagnosticVirtualTextWarn',
+  [vim.diagnostic.severity.HINT] = 'DiagnosticVirtualTextHint',
+  [vim.diagnostic.severity.INFO] = 'DiagnosticVirtualTextInfo',
+}
 
 local function goto_diagnostic_hl(dir)
   assert(dir == 'prev' or dir == 'next')
-  local pos = vim.diagnostic['get_' .. dir]()
-  if not pos then
+  local diagnostic = vim.diagnostic['get_' .. dir]()
+  if not diagnostic then
     return
   end
   if diagnostic_timer then
     diagnostic_timer:close()
     hl_cancel()
   end
-  vim.api.nvim_buf_set_extmark(0, diagnostic_ns, pos.lnum, pos.col, {
-    end_row = pos.end_lnum,
-    end_col = pos.end_col,
-    hl_group = 'Visual',
-  })
+  vim.api.nvim_buf_set_extmark(
+    0,
+    diagnostic_ns,
+    diagnostic.lnum,
+    diagnostic.col,
+    {
+      end_row = diagnostic.end_lnum,
+      end_col = diagnostic.end_col,
+      hl_group = hl_map[diagnostic.severity],
+    }
+  )
   hl_cancel = function()
     diagnostic_timer = nil
     hl_cancel = nil
