@@ -366,16 +366,15 @@ return {
             -- customization.
             -- (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
             before = function(_, vim_item)
-              -- set fixed width of cmp window
+              -- set max width of cmp window
               local width = 30
               local ellipses_char = '…'
               local label = vim_item.abbr
               local truncated_label = vim.fn.strcharpart(label, 0, width)
               if truncated_label ~= label then
                 vim_item.abbr = truncated_label .. ellipses_char
-              elseif string.len(label) < width then
-                local padding = string.rep(' ', width - string.len(label))
-                vim_item.abbr = label .. padding
+              else
+                vim_item.abbr = label .. ' '
               end
               return vim_item
             end,
