@@ -526,4 +526,15 @@ create_command('Converttolight', function()
   })
 end, { desc = 'Accept remote Git changes' })
 
+create_command('Screenshot', function()
+  if vim.env.XDG_CURRENT_DESKTOP == 'KDE' then
+    vim.fn.jobstart('spectacle -a -o sample.png -b -d 100 -e -S')
+    -- clear command area text
+    vim.cmd.normal {
+      vim.api.nvim_replace_termcodes('<C-l>', true, false, true),
+      bang = true,
+    }
+  end
+end, { desc = 'Take a screenshot of the terminal contents' })
+
 --> END OF MISCELLANEOUS USER COMMANDS <--
