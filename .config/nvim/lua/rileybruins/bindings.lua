@@ -528,22 +528,18 @@ end, { desc = 'Accept remote Git changes' })
 
 local function take_screenshot(opts)
   if vim.env.XDG_CURRENT_DESKTOP == 'KDE' then
-    local out = opts.fargs[1] or 'sample.png'
-    vim.fn.jobstart('spectacle -a -o ' .. out .. ' -b -d 100 -e -S')
+    local args = vim.split(opts.fargs[1], ' ')
+    local out = args[1] or 'sample.png'
+    local delay = args[2] or 100
+    vim.fn.jobstart('spectacle -a -o ' .. out .. ' -b -d ' .. delay .. ' -e -S')
     -- clear command area text
     vim.cmd.mod()
   end
 end
+local ss_cmd_opts =
+  { desc = 'Take a screenshot of the terminal contents', nargs = '?' }
 
-create_command(
-  'Screenshot',
-  take_screenshot,
-  { desc = 'Take a screenshot of the terminal contents', nargs = '?' }
-)
-create_command(
-  'SS',
-  take_screenshot,
-  { desc = 'Take a screenshot of the terminal contents', nargs = '?' }
-)
+create_command('Screenshot', take_screenshot, ss_cmd_opts)
+create_command('SS', take_screenshot, ss_cmd_opts)
 
 --> END OF MISCELLANEOUS USER COMMANDS <--
