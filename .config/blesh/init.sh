@@ -1,5 +1,43 @@
 #!/bin/bash
 
+# copy to system clipboard
+# shellcheck disable=2034,1007,2154
+function ble/keymap:vi/operator:Y {
+    local beg=$1 end=$2 context=$3 arg=$4 reg=$5
+    local yank_type= yank_content=
+    if [[ $context == line ]]; then
+        ble_keymap_vi_operator_index=$_ble_edit_ind
+        yank_type=L
+        yank_content=${_ble_edit_str:beg:end-beg}
+    elif [[ $context == block ]]; then
+        local sub
+        local -a afill=() atext=()
+        for sub in "${sub_ranges[@]}"; do
+            local sub4=${sub#*:*:*:*:}
+            local sfill=${sub4%%:*} stext=${sub4#*:}
+            ble/array#push afill "$sfill"
+            ble/array#push atext "$stext"
+        done
+
+        IFS=$'\n' builtin eval 'local yank_content="${atext[*]-}"'
+        local IFS=$_ble_term_IFS
+        yank_type=B:"${afill[*]-}"
+    else
+        yank_type=
+        yank_content=${_ble_edit_str:beg:end-beg}
+    fi
+
+    echo -n "$yank_content" | wl-copy 2>/dev/null
+    ble/keymap:vi/mark/commit-edit-area "$beg" "$end"
+    return 0
+}
+
+blehook/eval-after-load keymap_vi "
+  ble-bind -m vi_nmap -f 'C-y' 'vi-command/operator Y'
+  ble-bind -m vi_omap -f 'C-y' 'vi-command/operator Y'
+  ble-bind -m vi_xmap -f 'C-y' 'vi-command/operator Y'
+"
+
 # suppress error output
 bleopt complete_ambiguous=
 bleopt complete_auto_history=
