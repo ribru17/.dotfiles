@@ -38,6 +38,8 @@ alias ..='cd ..'
 # easier python usage
 alias py='python3'
 
+alias open='xdg-open'
+
 # simple way to count lines of code in the current directory
 loc() {
     if [[ -z "$1" ]]; then
