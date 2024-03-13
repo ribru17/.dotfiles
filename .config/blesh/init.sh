@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# vim-surround
+ble-import lib/vim-surround
+
 # copy to system clipboard
 # shellcheck disable=2034,1007,2154
 function ble/keymap:vi/operator:Y {
