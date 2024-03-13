@@ -57,7 +57,6 @@ CDPATH=.:$HOME
 # scheme) will also be transparent. Workaround is only to disable transparency
 # or change that base color of the scheme (usually 0) to, say, 1 value off of
 # the original. Hacky but works.
-
 PROMPT_COMMAND=_prompt_command
 _prompt_command() {
     if [ $? -eq 0 ]; then
@@ -68,6 +67,9 @@ _prompt_command() {
     # shellcheck disable=SC2025
     PS1="\e[3${color}m╭\e[40m┨\e[37;40m  \e[1m\u \e[0;30;4${color}m \e[3;1;30m\w \e[0;3${color}m\n\e[3${color}m╰─🢒\e[3;33m\$ \e[0m"
 }
+
+# don't put duplicate lines or lines starting with space in the history
+HISTCONTROL=ignoreboth
 
 ## EXPORTED VARIABLES
 # various environment variables for program configuration
