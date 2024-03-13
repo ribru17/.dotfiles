@@ -311,3 +311,10 @@ create_autocmd('BufWritePost', {
     vim.cmd.checkt(ev.buf)
   end,
 })
+
+-- allow regular CR function in cmdline windows
+create_autocmd('CmdwinEnter', {
+  callback = function(ev)
+    vim.keymap.set('n', '<CR>', '<CR>', { remap = false, buffer = ev.buf })
+  end,
+})
