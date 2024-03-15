@@ -383,7 +383,7 @@ return {
               preview_width = 0.5,
             },
           },
-          prompt_prefix = '  ',
+          prompt_prefix = '  ',
           initial_mode = 'normal',
           mappings = {
             n = {
