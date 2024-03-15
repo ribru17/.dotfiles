@@ -538,7 +538,7 @@ return {
         newButton('t', ' ' .. ' File tree', ':NvimTreeToggle <CR>'),
         newButton(
           's',
-          ' ' .. ' Search for text',
+          ' ' .. ' Search for text',
           ":lua require('telescope.builtin').live_grep({initial_mode = 'insert'})<CR>"
         ),
         newButton('l', ' ' .. " LSP's", ':Mason<CR>'),
