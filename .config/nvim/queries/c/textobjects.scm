@@ -1,5 +1,6 @@
 ; extends
 
+; TODO: PR for this?
 ; Text object `call` for `sizeof` expressions
 (sizeof_expression
   value:
