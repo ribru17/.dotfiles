@@ -52,6 +52,7 @@
 	amend = commit -a --amend --no-edit
 	edit = !nvim ~/.config/git/config
 	info = !git diff && git remote -v && git status
+	move = "!f() { git branch $1 && git reset --hard HEAD~${2-1} && git checkout $1; }; f"
 	new = checkout -b
 	recommit = reset ORIG_HEAD
 	remove = rm --cached
