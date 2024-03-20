@@ -58,7 +58,7 @@
 	remove = rm --cached
 	squash = "!f() { git rebase -i HEAD~$1; }; f"
 	unadd = restore --staged
-	uncommit = reset HEAD~1
+	uncommit = "!f() { git reset HEAD~${1-1}; }; f"
 	undo = reset --hard HEAD
 [pull]
 	rebase = true
