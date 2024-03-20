@@ -348,6 +348,10 @@ map({ 'n', 'x' }, '<leader>lk', function()
   end)
 end, ll_opts)
 
+map({ 'x', 'o' }, 'ig', function()
+  vim.cmd.Gitsigns('select_hunk')
+end, { desc = 'Select Inside a Git change' })
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
