@@ -2,13 +2,12 @@
 
 (function_call
   name: (dot_index_expression) @_method
-  arguments:
-    (arguments
-      .
-      (_)
-      .
-      (string
-        (string_content) @injection.content))
+  arguments: (arguments
+    .
+    (_)
+    .
+    (string
+      (string_content) @injection.content))
   (#any-of? @_method "vim.split" "vim.gsplit")
   (#set! injection.language "luap"))
 
@@ -26,9 +25,8 @@
     (comment_content) @injection.language)
   .
   (field
-    value:
-      (string
-        (string_content) @injection.content))
+    value: (string
+      (string_content) @injection.content))
   (#gsub! @injection.language "^> INJECT: ([%w_]+)$" "%1"))
 
 (_

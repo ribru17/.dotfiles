@@ -6,11 +6,10 @@
 
 (function_call
   name: (dot_index_expression) @_method
-  arguments:
-    (arguments
-      .
-      (_)
-      .
-      (string
-        (string_content) @string.regexp))
+  arguments: (arguments
+    .
+    (_)
+    .
+    (string
+      (string_content) @string.regexp))
   (#any-of? @_method "vim.split" "vim.gsplit"))
