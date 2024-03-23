@@ -46,6 +46,7 @@
 	po = push origin
 	poc = !git push origin $(git symbolic-ref --short HEAD)
 	pod = push -u origin master
+	pu = pull
 	s = show
 	st = status
 	stat = status
