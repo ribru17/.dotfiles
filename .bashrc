@@ -93,6 +93,8 @@ export LESS_TERMCAP_me=$'\e[0m'     # reset bold/blink
 export LESS_TERMCAP_se=$'\e[0m'     # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'     # reset underline
 export GROFF_NO_SGR=1               # for color interpretation
+# parallelize builds
+export NIX_BUILD_CORES=8
 
 # no symlink following for `cd`, etc.
 set -o physical
