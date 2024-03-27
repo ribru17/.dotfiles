@@ -92,7 +92,29 @@
     isNormalUser = true;
     description = "Riley Bruins";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
+    packages = with pkgs;
+      let
+      iosevka-custom = ( iosevka.override {
+        set = "custom";
+        privateBuildPlan = {
+          family = "Iosevka Custom";
+          spacing = "FontConfig Mono";
+          serifs = "Sans";
+          noCvSs = true;
+          exportGlyphNames = true;
+          variants.design = {
+            at = "fourfold";
+            lig-equal-chain = "without-notch";
+            lig-hyphen-chain = "without-notch";
+          };
+          ligations = {
+            inherits = "dlig";
+            disables = [ "brack-bar" ];
+            enables = [ "exeqeq" "eqeqeq" "llggeq" "tildeeq" ];
+          };
+        };
+      } );
+    in [
       bash-completion
       bat
       brave
@@ -102,6 +124,7 @@
       firefox
       gcc
       git
+      iosevka-custom
       kitty
       neovim
       ripgrep
