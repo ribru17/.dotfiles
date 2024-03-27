@@ -119,6 +119,7 @@ local M = {
     'javascriptreact',
     'lua',
     'markdown',
+    'nix',
     'query',
     'scss',
     'typescript',
