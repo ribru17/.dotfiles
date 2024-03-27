@@ -173,7 +173,8 @@ create_autocmd('FileType', {
   pattern = '*',
   callback = function(ev)
     local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].ft)
-    if not lang or not vim.treesitter.query.get(lang, 'folds') then
+    local has_folds = pcall(function() vim.treesitter.query.get(lang, 'folds') end)
+    if not lang or not has_folds then
       vim.opt_local.foldcolumn = '0'
     end
   end,
