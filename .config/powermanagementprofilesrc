@@ -57,7 +57,7 @@ lockBeforeTurnOff=0
 idleTime=60000
 
 [LowBattery][HandleButtonEvents]
-lidAction=0
+lidAction=1
 powerButtonAction=16
 powerDownAction=16
 triggerLidActionWhenExternalMonitorPresent=false
@@ -66,6 +66,3 @@ triggerLidActionWhenExternalMonitorPresent=false
 idleTime=300000
 suspendThenHibernate=false
 suspendType=1
-
-[Migration]
-MigratedProfilesToPlasma6=powerdevilrc
