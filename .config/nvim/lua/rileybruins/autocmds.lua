@@ -173,7 +173,9 @@ create_autocmd('FileType', {
   pattern = '*',
   callback = function(ev)
     local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].ft)
-    local has_folds = pcall(function() vim.treesitter.query.get(lang, 'folds') end)
+    local has_folds = pcall(function()
+      vim.treesitter.query.get(lang, 'folds')
+    end)
     if not lang or not has_folds then
       vim.opt_local.foldcolumn = '0'
     end
@@ -294,14 +296,9 @@ create_autocmd('FileType', {
 })
 
 -- format query files, aligning with nvim-treesitter standards
-local ts_path = vim.fn.stdpath('data') .. '/lazy/nvim-treesitter/'
--- NOTE: We could just call this with dofile if Arch bundled the parsers... for
--- now the rtp hack fixes it
-local cmd = 'nvim +"lua vim.opt.rtp:append(\''
-  .. ts_path
-  .. '\')" -l '
-  .. ts_path
-  .. 'scripts/format-queries.lua '
+local cmd = 'nvim -l '
+  .. vim.fn.stdpath('data')
+  .. '/lazy/nvim-treesitter/scripts/format-queries.lua '
 create_autocmd('BufWritePost', {
   pattern = '**/queries/*/*.scm',
   callback = function(ev)
