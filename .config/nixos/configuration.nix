@@ -117,34 +117,35 @@
     in [
       bash-completion
       bat
+      blesh
       brave
-      lua-language-server
-      marksman
-      nodePackages_latest.typescript-language-server
-      nodePackages_latest.bash-language-server
-      nodePackages_latest.vscode-css-languageserver-bin
-      python311Packages.python-lsp-server
-      python311Packages.pycodestyle
-      python311Packages.pyflakes
-      python311Packages.yapf
-      stylua
-      emmet-language-server
-      deno
       clang-tools
-      prettierd
-      shellcheck
-      shfmt
-      gopls
       curl
       delta
+      deno
+      emmet-language-server
       fastfetch
       firefox
       gcc
       git
+      gopls
       iosevka-custom
       kitty
+      lua-language-server
+      marksman
       neovim
+      nodePackages_latest.bash-language-server
+      nodePackages_latest.typescript-language-server
+      nodePackages_latest.vscode-css-languageserver-bin
+      prettierd
+      python311Packages.pycodestyle
+      python311Packages.pyflakes
+      python311Packages.python-lsp-server
+      python311Packages.yapf
       ripgrep
+      shellcheck
+      shfmt
+      stylua
       unzip
       wget
       wl-clipboard
