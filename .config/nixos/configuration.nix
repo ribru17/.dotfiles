@@ -114,10 +114,7 @@
         bash-completion
         bat
         blesh
-        (pkgs.brave.overrideAttrs (oldAttrs: {
-          commandLineArgs =
-            [ "--ozone-platform-hint=auto" "--force-device-scale-factor=2.0" ];
-        }))
+        brave
         clang-tools
         curl
         delta
