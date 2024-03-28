@@ -127,6 +127,7 @@
         firefox
         gcc
         git
+        gnumake
         gopls
         iosevka-custom
         kitty
