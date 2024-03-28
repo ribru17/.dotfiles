@@ -104,11 +104,13 @@ fastfetch
 
 ## Sourcery
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
-# shellcheck disable=SC1090
-[ -f "$HOME/.local/share/blesh/ble.sh" ] && source ~/.local/share/blesh/ble.sh
+# blesh
+# shellcheck disable=SC1091
+source "$(blesh-share)"/ble.sh --attach=none
 # git alias completions
 [ -f "/usr/share/bash-completion/completions/git" ] &&
     source /usr/share/bash-completion/completions/git &&
     __git_complete g __git_main &&
     __git_complete dots __git_main &&
     __git_complete d __git_main
+[[ ${BLE_VERSION-} ]] && ble-attach
