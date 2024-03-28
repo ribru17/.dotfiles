@@ -38,7 +38,12 @@ alias ..='cd ..'
 # easier python usage
 alias py='python3'
 
+# easier opening
 alias open='xdg-open'
+
+# system configuring
+alias nix:rebuild='sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"'
+alias nix:edit='nvim ~/.config/nixos/'
 
 # simple way to count lines of code in the current directory
 loc() {
