@@ -118,6 +118,23 @@
       bash-completion
       bat
       brave
+      lua-language-server
+      marksman
+      nodePackages_latest.typescript-language-server
+      nodePackages_latest.bash-language-server
+      nodePackages_latest.vscode-css-languageserver-bin
+      python311Packages.python-lsp-server
+      python311Packages.pycodestyle
+      python311Packages.pyflakes
+      python311Packages.yapf
+      stylua
+      emmet-language-server
+      deno
+      clang-tools
+      prettierd
+      shellcheck
+      shfmt
+      gopls
       curl
       delta
       fastfetch

@@ -47,23 +47,6 @@ return {
     lazy = true,
   },
   {
-    'williamboman/mason.nvim',
-    cmd = { 'Mason' },
-    opts = {
-      registries = {
-        'lua:mason.registry',
-        'github:mason-org/mason-registry',
-      },
-      ui = {
-        border = BORDER_STYLE,
-      },
-    },
-  },
-  {
-    'williamboman/mason-lspconfig.nvim',
-    lazy = true,
-  },
-  {
     'mrcjkb/haskell-tools.nvim',
     ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
     version = '^3',
@@ -72,214 +55,183 @@ return {
     'neovim/nvim-lspconfig',
     event = { 'LazyFile' },
     config = function()
-      require('mason').setup()
       local SETTINGS = require('rileybruins.settings')
-      require('mason-lspconfig').setup {
-        ensure_installed = SETTINGS.ensure_installed_lsps,
-      }
-
       require('lspconfig.ui.windows').default_options.border = BORDER_STYLE
-
+      local lspconfig = require('lspconfig')
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      require('mason-lspconfig').setup_handlers {
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
-        function(server_name) -- default handler (optional)
-          require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-          }
+      local custom_capabilities = require('cmp_nvim_lsp').default_capabilities()
+      custom_capabilities.offsetEncoding = { 'utf-16' }
+      lspconfig.clangd.setup {
+        on_attach = function()
+          require('clangd_extensions.inlay_hints').setup_autocmd()
+          require('clangd_extensions.inlay_hints').set_inlay_hints()
         end,
-        ['clangd'] = function()
-          local custom_capabilities =
-            require('cmp_nvim_lsp').default_capabilities()
-          custom_capabilities.offsetEncoding = { 'utf-16' }
-          require('lspconfig').clangd.setup {
-            on_attach = function()
-              require('clangd_extensions.inlay_hints').setup_autocmd()
-              require('clangd_extensions.inlay_hints').set_inlay_hints()
-            end,
-            capabilities = custom_capabilities,
-            -- NOTE: to achieve LSP warnings on unused includes, add a `.clangd`
-            -- file to the project directory containing:
-            -- ```
-            -- Diagnostics:
-            -- UnusedIncludes: Strict
-            -- MissingIncludes: Strict
-            -- ```
-            cmd = {
-              'clangd',
-              '--header-insertion-decorators=false',
-              '--enable-config',
-              '--completion-style=detailed',
-              '--background-index',
-              '--clang-tidy',
-              '--include-cleaner-stdlib',
-              '--header-insertion=iwyu',
-              '--completion-style=detailed',
-              '--function-arg-placeholders',
-              '--fallback-style=llvm',
+        capabilities = custom_capabilities,
+        -- NOTE: to achieve LSP warnings on unused includes, add a `.clangd`
+        -- file to the project directory containing:
+        -- ```
+        -- Diagnostics:
+        -- UnusedIncludes: Strict
+        -- MissingIncludes: Strict
+        -- ```
+        cmd = {
+          'clangd',
+          '--header-insertion-decorators=false',
+          '--enable-config',
+          '--completion-style=detailed',
+          '--background-index',
+          '--clang-tidy',
+          '--include-cleaner-stdlib',
+          '--header-insertion=iwyu',
+          '--completion-style=detailed',
+          '--function-arg-placeholders',
+          '--fallback-style=llvm',
+        },
+        init_options = {
+          usePlaceholders = true,
+          completeUnimported = true,
+          clangdFileStatus = true,
+        },
+      }
+      local emmet_fts =
+        lspconfig.emmet_language_server.document_config.default_config.filetypes
+      -- These are the default filetypes less the ones that are covered by
+      -- `cssls`. The two (sort of) conflict, and `cssls` is better. I
+      -- don't use Emmet CSS abbreviations anyway.
+      local ignored_fts =
+        lspconfig.cssls.document_config.default_config.filetypes
+      local filtered_fts = vim.tbl_filter(function(value)
+        return not vim.tbl_contains(ignored_fts, value)
+      end, emmet_fts)
+      lspconfig.emmet_language_server.setup {
+        capabilities = capabilities,
+        filetypes = filtered_fts,
+        init_options = {
+          preferences = {
+            ['caniuse.enabled'] = false,
+          },
+        },
+      }
+      lspconfig.eslint.setup {
+        capabilities = capabilities,
+        on_attach = function(_, bufnr)
+          vim.api.nvim_create_autocmd('BufWritePre', {
+            buffer = bufnr,
+            command = 'EslintFixAll',
+          })
+        end,
+      }
+      lspconfig.gopls.setup {
+        capabilities = capabilities,
+        settings = {
+          gopls = {
+            semanticTokens = true,
+            analyses = {
+              unusedparams = true,
             },
-            init_options = {
-              usePlaceholders = true,
-              completeUnimported = true,
-              clangdFileStatus = true,
-            },
-          }
-        end,
-        ['denols'] = function()
-          -- don't set up LSP, we only want formatting
-        end,
-        ['emmet_language_server'] = function()
-          local emmet_fts =
-            require('lspconfig').emmet_language_server.document_config.default_config.filetypes
-          -- These are the default filetypes less the ones that are covered by
-          -- `cssls`. The two (sort of) conflict, and `cssls` is better. I
-          -- don't use Emmet CSS abbreviations anyway.
-          local ignored_fts =
-            require('lspconfig').cssls.document_config.default_config.filetypes
-          local filtered_fts = vim.tbl_filter(function(value)
-            return not vim.tbl_contains(ignored_fts, value)
-          end, emmet_fts)
-          require('lspconfig').emmet_language_server.setup {
-            filetypes = filtered_fts,
-            init_options = {
-              preferences = {
-                ['caniuse.enabled'] = false,
-              },
-            },
-          }
-        end,
-        ['eslint'] = function()
-          require('lspconfig').eslint.setup {
-            capabilities = capabilities,
-            on_attach = function(_, bufnr)
-              vim.api.nvim_create_autocmd('BufWritePre', {
-                buffer = bufnr,
-                command = 'EslintFixAll',
-              })
-            end,
-          }
-        end,
-        ['gopls'] = function()
-          require('lspconfig').gopls.setup {
-            capabilities = capabilities,
-            settings = {
-              gopls = {
-                semanticTokens = true,
-                analyses = {
-                  unusedparams = true,
-                },
-                staticcheck = true,
-              },
-            },
-          }
-        end,
-        ['hls'] = function()
-          -- do nothing in case user installed lsp with Mason
-          -- this prevents conflicts with the haskell tools plugin
-        end,
-        ['lua_ls'] = function()
-          local library = {}
+            staticcheck = true,
+          },
+        },
+      }
+      lspconfig.bashls.setup {
+        capabilities = capabilities,
+      }
+      lspconfig.cssls.setup {
+        capabilities = capabilities,
+      }
+      lspconfig.marksman.setup {
+        capabilities = capabilities,
+      }
+      local library = {}
 
-          local function add(lib)
-            for _, p in pairs(vim.fn.expand(lib .. '/lua', false, true)) do
-              p = vim.loop.fs_realpath(p)
-              if p then
-                library[p] = true
-              end
-            end
+      local function add(lib)
+        for _, p in pairs(vim.fn.expand(lib .. '/lua', false, true)) do
+          p = vim.loop.fs_realpath(p)
+          if p then
+            library[p] = true
           end
+        end
+      end
 
-          -- add runtime
-          add('$VIMRUNTIME')
+      -- add runtime
+      add('$VIMRUNTIME')
 
-          -- add config
-          add('~/.config/nvim')
+      -- add config
+      add('~/.config/nvim')
 
-          if SETTINGS.luals_load_plugins then
-            -- add plugins
-            if package.loaded['lazy'] then
-              for _, plugin in ipairs(require('lazy').plugins()) do
-                add(plugin.dir)
-              end
-            end
+      if SETTINGS.luals_load_plugins then
+        -- add plugins
+        if package.loaded['lazy'] then
+          for _, plugin in ipairs(require('lazy').plugins()) do
+            add(plugin.dir)
           end
+        end
+      end
 
-          require('lspconfig').lua_ls.setup {
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                codeLens = { enable = true },
-                doc = {
-                  privateName = { '^_' },
-                },
-                diagnostics = {
-                  disable = { 'redefined-local' },
-                  unusedLocalExclude = { '_*' },
-                  -- Uncomment to receive LSP formatting diagnostics.
-                  -- neededFileStatus = { ['codestyle-check'] = 'Any' },
-                },
-                telemetry = { enable = false },
-                runtime = {
-                  version = 'LuaJIT',
-                  path = {
-                    '?.lua',
-                    '?/init.lua',
-                  },
-                  pathStrict = true,
-                },
-                workspace = {
-                  -- Make the server aware of Neovim runtime files
-                  library = library,
-                },
-                -- see https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
-                format = {
-                  enable = false,
-                  defaultConfig = {
-                    indent_size = '2',
-                    indent_style = 'space',
-                    quote_style = 'single',
-                    max_line_length = '80',
-                    trailing_table_separator = 'smart',
-                    -- NOTE: some options break some formatting properties? :(
-                    -- in fact a lot of things are buggy (removing `quote_style`
-                    -- property allows trailing table separators to be more
-                    -- comprehensive) but... good enough :)
-                    -- break_all_list_when_line_exceed = true, --breaks things sadly
-                    call_arg_parentheses = 'remove_table_only',
-                    -- align_call_args = true, -- breaks things sadly
-                  },
-                },
+      lspconfig.lua_ls.setup {
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            codeLens = { enable = true },
+            doc = {
+              privateName = { '^_' },
+            },
+            diagnostics = {
+              disable = { 'redefined-local' },
+              unusedLocalExclude = { '_*' },
+              -- Uncomment to receive LSP formatting diagnostics.
+              -- neededFileStatus = { ['codestyle-check'] = 'Any' },
+            },
+            telemetry = { enable = false },
+            runtime = {
+              version = 'LuaJIT',
+              path = {
+                '?.lua',
+                '?/init.lua',
+              },
+              pathStrict = true,
+            },
+            workspace = {
+              -- Make the server aware of Neovim runtime files
+              library = library,
+            },
+            -- see https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
+            format = {
+              enable = false,
+              defaultConfig = {
+                indent_size = '2',
+                indent_style = 'space',
+                quote_style = 'single',
+                max_line_length = '80',
+                trailing_table_separator = 'smart',
+                -- NOTE: some options break some formatting properties? :(
+                -- in fact a lot of things are buggy (removing `quote_style`
+                -- property allows trailing table separators to be more
+                -- comprehensive) but... good enough :)
+                -- break_all_list_when_line_exceed = true, --breaks things sadly
+                call_arg_parentheses = 'remove_table_only',
+                -- align_call_args = true, -- breaks things sadly
               },
             },
-          }
+          },
+        },
+      }
+      lspconfig.pylsp.setup {
+        capabilities = capabilities,
+        on_attach = function(_, bufnr)
+          -- https://vi.stackexchange.com/questions/39200/wrapping-comment-in-visual-mode-not-working-with-gq
+          vim.bo[bufnr].formatexpr = nil
         end,
-        ['pylsp'] = function()
-          require('lspconfig').pylsp.setup {
-            capabilities = capabilities,
-            on_attach = function(_, bufnr)
-              -- https://vi.stackexchange.com/questions/39200/wrapping-comment-in-visual-mode-not-working-with-gq
-              vim.bo[bufnr].formatexpr = nil
-            end,
-            settings = {
-              pylsp = {
-                plugins = {
-                  pycodestyle = {
-                    maxLineLength = 80,
-                  },
-                },
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                maxLineLength = 80,
               },
             },
-          }
-        end,
-        ['rust_analyzer'] = function()
-          -- don't set up, this will be done by rustaceanvim
-        end,
-        ['tsserver'] = function()
-          -- don't set up, conflicts with typescript-tools.nvim
-        end,
+          },
+        },
       }
 
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -469,18 +421,6 @@ return {
           orig_signs_handler.hide(ns, bufnr)
         end,
       }
-
-      -- auto-install some packages that cannot be handled by `ensure_installed`
-      local registry = require('mason-registry')
-      local ensured_formatters = SETTINGS.ensure_installed_formatters
-      registry.refresh(function()
-        for _, pkg_name in ipairs(ensured_formatters) do
-          local pkg = registry.get_package(pkg_name)
-          if not pkg:is_installed() then
-            pkg:install()
-          end
-        end
-      end)
     end,
   },
   {

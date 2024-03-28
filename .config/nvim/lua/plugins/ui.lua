@@ -541,9 +541,8 @@ return {
           ' ' .. ' Search for text',
           ":lua require('telescope.builtin').live_grep({initial_mode = 'insert'})<CR>"
         ),
-        newButton('l', ' ' .. " LSP's", ':Mason<CR>'),
-        newButton('p', ' ' .. ' Plugins', ':Lazy<CR>'),
-        newButton('q', ' ' .. ' Quit', ':q<CR>'),
+        newButton('p', '󰏗 ' .. ' Plugins', ':Lazy<CR>'),
+        newButton('q', '󰗼 ' .. ' Quit', ':q<CR>'),
       }
       dashboard.opts.layout[3].val = 0
       dashboard.section.footer.val =
