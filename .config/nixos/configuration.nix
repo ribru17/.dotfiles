@@ -2,13 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -82,10 +81,7 @@
   # services.xserver.libinput.enable = true;
 
   nix.package = pkgs.nixUnstable;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rileyb = {
@@ -94,78 +90,79 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs;
       let
-      iosevka-custom = ( iosevka.override {
-        set = "custom";
-        privateBuildPlan = {
-          family = "Iosevka Custom";
-          spacing = "FontConfig Mono";
-          serifs = "Sans";
-          noCvSs = true;
-          exportGlyphNames = true;
-          variants.design = {
-            at = "fourfold";
-            lig-equal-chain = "without-notch";
-            lig-hyphen-chain = "without-notch";
+        iosevka-custom = (iosevka.override {
+          set = "custom";
+          privateBuildPlan = {
+            family = "Iosevka Custom";
+            spacing = "FontConfig Mono";
+            serifs = "Sans";
+            noCvSs = true;
+            exportGlyphNames = true;
+            variants.design = {
+              at = "fourfold";
+              lig-equal-chain = "without-notch";
+              lig-hyphen-chain = "without-notch";
+            };
+            ligations = {
+              inherits = "dlig";
+              disables = [ "brack-bar" ];
+              enables = [ "exeqeq" "eqeqeq" "llggeq" "tildeeq" ];
+            };
           };
-          ligations = {
-            inherits = "dlig";
-            disables = [ "brack-bar" ];
-            enables = [ "exeqeq" "eqeqeq" "llggeq" "tildeeq" ];
-          };
-        };
-      } );
-    in [
-      bash-completion
-      bat
-      blesh
-      brave
-      clang-tools
-      curl
-      delta
-      deno
-      emmet-language-server
-      fastfetch
-      firefox
-      gcc
-      git
-      gopls
-      iosevka-custom
-      kitty
-      lua-language-server
-      marksman
-      neovim
-      nodePackages_latest.bash-language-server
-      nodePackages_latest.typescript-language-server
-      nodePackages_latest.vscode-css-languageserver-bin
-      prettierd
-      python311Packages.pycodestyle
-      python311Packages.pyflakes
-      python311Packages.python-lsp-server
-      python311Packages.yapf
-      ripgrep
-      shellcheck
-      shfmt
-      stylua
-      unzip
-      wget
-      wl-clipboard
-      xz
-    ];
+        });
+      in [
+        bash-completion
+        bat
+        blesh
+        (pkgs.brave.overrideAttrs (oldAttrs: {
+          commandLineArgs =
+            [ "--ozone-platform-hint=auto" "--force-device-scale-factor=2.0" ];
+        }))
+        clang-tools
+        curl
+        delta
+        deno
+        emmet-language-server
+        fastfetch
+        firefox
+        gcc
+        git
+        gopls
+        iosevka-custom
+        kitty
+        lua-language-server
+        marksman
+        neovim
+        nil
+        nixfmt
+        nodePackages_latest.bash-language-server
+        nodePackages_latest.typescript-language-server
+        nodePackages_latest.vscode-css-languageserver-bin
+        prettierd
+        python311Packages.pycodestyle
+        python311Packages.pyflakes
+        python311Packages.python-lsp-server
+        python311Packages.yapf
+        ripgrep
+        shellcheck
+        shfmt
+        stylua
+        unzip
+        wget
+        wl-clipboard
+        xz
+      ];
   };
 
-  fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-  ];
+  fonts.packages = with pkgs;
+    [ (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; }) ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  ];
+  environment.systemPackages = with pkgs; [ vim wget ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

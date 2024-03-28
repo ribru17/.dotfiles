@@ -143,6 +143,16 @@ return {
       lspconfig.marksman.setup {
         capabilities = capabilities,
       }
+      lspconfig.nil_ls.setup {
+        capabilities = capabilities,
+        settings = {
+          ['nil'] = {
+            formatting = {
+              command = { 'nixfmt' },
+            },
+          },
+        },
+      }
       local library = {}
 
       local function add(lib)
