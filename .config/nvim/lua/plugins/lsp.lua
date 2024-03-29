@@ -1,7 +1,7 @@
 local BORDER_STYLE = require('rileybruins.settings').border
 local SETTINGS = require('rileybruins.settings')
 
-local diagnostic_ns = vim.api.nvim_create_namespace('hlyank')
+local diagnostic_ns = vim.api.nvim_create_namespace('hldiagnosticregion')
 local diagnostic_timer
 local hl_cancel
 local hl_map = {
