@@ -69,6 +69,10 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.bluetooth = {
+    enable = true;
+    package = pkgs.bluez;
+  };
   security.rtkit.enable = true;
   # disable fingerprint login because it disables password login
   security.pam.services.login.fprintAuth = false;
