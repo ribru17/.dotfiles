@@ -104,6 +104,7 @@
     packages = with pkgs; [
       bash-completion
       bat
+      bibata-cursors
       blesh
       brave
       clang-tools
@@ -126,7 +127,6 @@
       nodePackages_latest.bash-language-server
       nodePackages_latest.typescript-language-server
       nodePackages_latest.vscode-css-languageserver-bin
-      bibata-cursors
       prettierd
       python311Packages.pycodestyle
       python311Packages.pyflakes
@@ -136,6 +136,7 @@
       shellcheck
       shfmt
       stylua
+      typescript
       unzip
       wget
       wl-clipboard
