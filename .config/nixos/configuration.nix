@@ -102,26 +102,19 @@
     description = "Riley Bruins";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      bash-completion
       bat
       bibata-cursors
       blesh
       brave
       clang-tools
-      curl
       delta
       deno
       emmet-language-server
       fastfetch
       firefox
-      gcc
-      git
-      gnumake
       gopls
-      kitty
       lua-language-server
       marksman
-      neovim
       nil
       nixfmt
       nodePackages_latest.bash-language-server
@@ -182,7 +175,19 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ vim wget ];
+  environment.systemPackages = with pkgs; [
+    bash
+    bash-completion
+    bashInteractive
+    curl
+    gcc
+    git
+    gnumake
+    kitty
+    neovim
+    nix-bash-completions
+    wget
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
