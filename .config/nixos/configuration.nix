@@ -91,73 +91,80 @@
     isNormalUser = true;
     description = "Riley Bruins";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs;
-      let
-        iosevka-custom = (iosevka.override {
-          set = "custom";
-          privateBuildPlan = {
-            family = "Iosevka Custom";
-            spacing = "FontConfig Mono";
-            serifs = "Sans";
-            noCvSs = true;
-            exportGlyphNames = true;
-            variants.design = {
-              at = "fourfold";
-              lig-equal-chain = "without-notch";
-              lig-hyphen-chain = "without-notch";
-            };
-            ligations = {
-              inherits = "dlig";
-              disables = [ "brack-bar" ];
-              enables = [ "exeqeq" "eqeqeq" "llggeq" "tildeeq" ];
-            };
-          };
-        });
-      in [
-        bash-completion
-        bat
-        blesh
-        brave
-        clang-tools
-        curl
-        delta
-        deno
-        emmet-language-server
-        fastfetch
-        firefox
-        gcc
-        git
-        gnumake
-        gopls
-        iosevka-custom
-        kitty
-        lua-language-server
-        marksman
-        neovim
-        nil
-        nixfmt
-        nodePackages_latest.bash-language-server
-        nodePackages_latest.typescript-language-server
-        nodePackages_latest.vscode-css-languageserver-bin
-        bibata-cursors
-        prettierd
-        python311Packages.pycodestyle
-        python311Packages.pyflakes
-        python311Packages.python-lsp-server
-        python311Packages.yapf
-        ripgrep
-        shellcheck
-        shfmt
-        stylua
-        unzip
-        wget
-        wl-clipboard
-        xz
-      ];
+    packages = with pkgs; [
+      bash-completion
+      bat
+      blesh
+      brave
+      clang-tools
+      curl
+      delta
+      deno
+      emmet-language-server
+      fastfetch
+      firefox
+      gcc
+      git
+      gnumake
+      gopls
+      kitty
+      lua-language-server
+      marksman
+      neovim
+      nil
+      nixfmt
+      nodePackages_latest.bash-language-server
+      nodePackages_latest.typescript-language-server
+      nodePackages_latest.vscode-css-languageserver-bin
+      bibata-cursors
+      prettierd
+      python311Packages.pycodestyle
+      python311Packages.pyflakes
+      python311Packages.python-lsp-server
+      python311Packages.yapf
+      ripgrep
+      shellcheck
+      shfmt
+      stylua
+      unzip
+      wget
+      wl-clipboard
+      xz
+    ];
   };
 
   fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; }) ];
+    let
+      iosevka-custom = (iosevka.override {
+        set = "Custom";
+        privateBuildPlan = {
+          family = "Iosevka Custom";
+          spacing = "FontConfig Mono";
+          serifs = "Sans";
+          noCvSs = true;
+          exportGlyphNames = true;
+          variants.design = {
+            at = "fourfold";
+            lig-equal-chain = "without-notch";
+            lig-hyphen-chain = "without-notch";
+          };
+          ligations = {
+            inherits = "dlig";
+            disables = [ "brack-bar" ];
+            enables = [ "exeqeq" "eqeqeq" "llggeq" "tildeeq" ];
+          };
+        };
+      });
+    in [
+      iosevka-custom
+      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    ];
+  fonts.fontconfig = {
+    hinting.autohint = true;
+    antialias = true;
+    allowBitmaps = true;
+    useEmbeddedBitmaps = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
