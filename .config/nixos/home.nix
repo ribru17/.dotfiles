@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, ... }: {
 
-{
+  imports = [ ./home-modules/plasma.nix ];
+
   home.username = "rileyb";
   home.homeDirectory = "/home/rileyb";
 
