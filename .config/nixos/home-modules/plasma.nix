@@ -4,6 +4,7 @@
     workspace = {
       theme = "breeze-dark";
       colorScheme = "BreezeDark";
+      cursorTheme = "Bibata-Modern-Ice";
     };
     shortcuts = {
       "ActivityManager"."switch-to-activity-18729546-c057-4fd4-a4fd-9a9aa7b4a44a" =

@@ -139,6 +139,7 @@
         nodePackages_latest.bash-language-server
         nodePackages_latest.typescript-language-server
         nodePackages_latest.vscode-css-languageserver-bin
+        bibata-cursors
         prettierd
         python311Packages.pycodestyle
         python311Packages.pyflakes
