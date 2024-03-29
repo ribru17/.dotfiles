@@ -64,6 +64,9 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  # disable fingerprint login because it disables password login
+  security.pam.services.login.fprintAuth = false;
+  security.pam.services.kde.fprintAuth = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
