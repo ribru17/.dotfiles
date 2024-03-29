@@ -24,12 +24,3 @@ if ! dots checkout; then
 else
     echo "Installed config!"
 fi
-# optionally (preferably) install some system dependencies
-read -rp "Install all package dependencies? [Y/n] " ans
-if [ -z "$ans" ] || [ "$ans" = "y" ] || [ "$ans" = "Y" ]; then
-    ./install_dependencies.sh
-fi
-read -rp 'Install a "symbols only" Nerd font? [Y/n] ' ans
-if [ -z "$ans" ] || [ "$ans" = "y" ] || [ "$ans" = "Y" ]; then
-    ./install_nerdicons.sh
-fi
