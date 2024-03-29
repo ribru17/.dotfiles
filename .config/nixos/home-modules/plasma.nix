@@ -5,7 +5,6 @@
       theme = "breeze-dark";
       colorScheme = "BreezeDark";
       cursorTheme = "Bibata-Modern-Ice";
-      clickItemTo = "select";
     };
     shortcuts = {
       "ActivityManager"."switch-to-activity-18729546-c057-4fd4-a4fd-9a9aa7b4a44a" =
@@ -286,8 +285,8 @@
         true;
       "kdeglobals"."General"."BrowserApplication".value =
         "brave-browser.desktop";
-      "kdeglobals"."General"."UseSystemBell".value = true;
-      "kdeglobals"."KDE"."SingleClick".value = true;
+      "kdeglobals"."General"."UseSystemBell".value = false;
+      "kdeglobals"."KDE"."SingleClick".value = false;
       "kdeglobals"."KFileDialog Settings"."Allow Expansion".value = false;
       "kdeglobals"."KFileDialog Settings"."Automatically select filename extension".value =
         true;
