@@ -42,8 +42,9 @@ alias py='python3'
 alias open='xdg-open'
 
 # system configuring
-alias nix:rebuild='sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"'
 alias nix:edit='nvim ~/.config/nixos/'
+alias nix:rebuild='sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"'
+alias nix:update='nix flake update --flake "$HOME/.config/nixos/"'
 
 # simple way to count lines of code in the current directory
 loc() {
@@ -99,7 +100,7 @@ export LESS_TERMCAP_se=$'\e[0m'     # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'     # reset underline
 export GROFF_NO_SGR=1               # for color interpretation
 # parallelize builds
-export NIX_BUILD_CORES=8
+export NIX_BUILD_CORES=4
 
 # no symlink following for `cd`, etc.
 set -o physical
