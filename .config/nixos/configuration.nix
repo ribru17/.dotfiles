@@ -49,7 +49,13 @@
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sddm.wayland.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.defaultSession = "plasma";
+  services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs;
+    with kdePackages; [
+      konsole
+      okular
+    ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
