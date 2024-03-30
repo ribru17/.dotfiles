@@ -1,5 +1,4 @@
 #!/bin/bash
-# ~/.bashrc
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -112,11 +111,4 @@ fastfetch
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 # blesh
 # shellcheck disable=SC1091
-source "$(blesh-share)"/ble.sh --attach=none
-# git alias completions
-[ -f "/usr/share/bash-completion/completions/git" ] &&
-    source /usr/share/bash-completion/completions/git &&
-    __git_complete g __git_main &&
-    __git_complete dots __git_main &&
-    __git_complete d __git_main
-[[ ${BLE_VERSION-} ]] && ble-attach
+source "$(blesh-share)"/ble.sh
