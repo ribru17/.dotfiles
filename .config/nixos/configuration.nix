@@ -105,7 +105,6 @@
       bat
       bibata-cursors
       blesh
-      brave
       clang-tools
       delta
       deno

@@ -1,4 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  brave = (pkgs.brave.override {
+    commandLineArgs = [ "--force-device-scale-factor=1.5" ];
+  });
+in {
 
   imports = [ ./home-modules/plasma.nix ];
 
@@ -10,11 +15,13 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  home.sessionVariables.BROWSER = "brave";
+
+  home.packages = [ brave ];
+
   programs.chromium = {
     enable = true;
-    package = pkgs.brave;
-    commandLineArgs =
-      [ "--ozone-platform-hint=auto" "--force-device-scale-factor=1.5" ];
+    package = brave;
     extensions = [
       # Plasma integration
       { id = "cimiefiiaegbelhefglklhhakcgmhkai"; }
