@@ -186,6 +186,7 @@
     kitty
     neovim
     nix-bash-completions
+    pciutils
     wget
   ];
 

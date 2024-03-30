@@ -1018,8 +1018,28 @@
       "kxkbrc"."Layout"."Options".value = "caps:escape_shifted_compose";
       "kxkbrc"."Layout"."ResetOldOptions".value = true;
       "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
-      "plasmashellrc"."PlasmaViews/Panel 2"."floating".value = 1;
-      "plasmashellrc"."PlasmaViews/Panel 2/Defaults"."thickness".value = 64;
     };
+    panels = [{
+      location = "left";
+      floating = true;
+      height = 64;
+      widgets = [
+        "org.kde.plasma.kickoff"
+        "org.kde.plasma.pager"
+        {
+          name = "org.kde.plasma.icontasks";
+          config = {
+            General.launchers = [
+              "applications:systemsettings.desktop"
+              "applications:org.kde.dolphin.desktop"
+              "applications:brave-browser.desktop"
+              "applications:kitty.desktop"
+            ];
+          };
+        }
+        "org.kde.plasma.systemtray"
+        "org.kde.plasma.digitalclock"
+      ];
+    }];
   };
 }
