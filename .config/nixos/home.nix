@@ -17,7 +17,40 @@ in {
 
   home.sessionVariables.BROWSER = "brave";
 
-  home.packages = [ brave ];
+  home.packages = with pkgs; [
+    bat
+    bibata-cursors
+    blesh
+    brave
+    clang-tools
+    delta
+    deno
+    emmet-language-server
+    fastfetch
+    firefox
+    gopls
+    lua-language-server
+    marksman
+    nil
+    nixfmt
+    nodePackages_latest.bash-language-server
+    nodePackages_latest.typescript-language-server
+    nodePackages_latest.vscode-css-languageserver-bin
+    prettierd
+    python311Packages.pycodestyle
+    python311Packages.pyflakes
+    python311Packages.python-lsp-server
+    python311Packages.yapf
+    ripgrep
+    shellcheck
+    shfmt
+    stylua
+    typescript
+    unzip
+    wget
+    wl-clipboard
+    xz
+  ];
 
   programs.chromium = {
     enable = true;
