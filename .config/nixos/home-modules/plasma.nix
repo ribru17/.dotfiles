@@ -1040,6 +1040,23 @@
         "org.kde.plasma.systemtray"
         "org.kde.plasma.digitalclock"
       ];
+      # Correctly grab the system tray widget and adjust settings.
+      # Cannot do this in the regular widgets nix config because the id will
+      # change every time.
+      extraSettings = ''
+        panels().forEach((p) => {
+          p.widgets().forEach((w) => {
+            switch(w.type) {
+              case "org.kde.plasma.systemtray":
+                systray = w.readConfig("SystrayContainmentId")
+                systray = desktopById(systray)
+                systray.writeConfig("scaleIconsToFit", true)
+                systray.writeConfig("hiddenItems", "org.kde.plasma.clipboard")
+                systray.writeConfig("shownItems", "org.kde.plasma.battery")
+            }
+          })
+        })
+      '';
     }];
   };
 }
