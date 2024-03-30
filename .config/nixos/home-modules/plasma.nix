@@ -1014,6 +1014,8 @@
       "kxkbrc"."Layout"."Options".value = "caps:escape_shifted_compose";
       "kxkbrc"."Layout"."ResetOldOptions".value = true;
       "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
+      "plasmashellrc"."PlasmaViews/Panel 2"."floating".value = 1;
+      "plasmashellrc"."PlasmaViews/Panel 2/Defaults"."thickness".value = 64;
     };
   };
 }
