@@ -1011,6 +1011,10 @@
         {"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}'';
       "kwinrc"."Windows"."RollOverDesktops".value = true;
       "kwinrc"."Xwayland"."Scale".value = 1.25;
+      "kwinrc"."NightColor"."Active".value = true;
+      "kwinrc"."NightColor"."Mode".value = "Times";
+      "kwinrc"."NightColor"."EveningBeginFixed".value = "1900";
+      "kwinrc"."NightColor"."MorningBeginFixed".value = "0700";
       "kxkbrc"."Layout"."Options".value = "caps:escape_shifted_compose";
       "kxkbrc"."Layout"."ResetOldOptions".value = true;
       "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
