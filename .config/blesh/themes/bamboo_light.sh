@@ -19,7 +19,8 @@ ble-face -s filename_orphan fg=cyan,bold
 ble-face -s filename_other none
 ble-face -s filename_setgid fg=black,bg=yellow,underline
 ble-face -s filename_setuid fg=black,bg=#df7946,underline
-ble-face -s menu_filter_input fg=black,bg=#855505
+# TODO: Find a way to get the latest blesh version in nix and then add this back
+# ble-face -s menu_filter_input fg=black,bg=#855505
 ble-face -s overwrite_mode fg=black,bg=cyan
 ble-face -s prompt_status_line bg=#a1a7a0
 ble-face -s region bg=#dadac2
