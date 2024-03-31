@@ -4,7 +4,6 @@ let
     commandLineArgs = [ "--force-device-scale-factor=1.5" ];
   });
 in {
-
   imports = [ ./home-modules/plasma.nix ];
 
   home.username = "rileyb";
@@ -36,6 +35,7 @@ in {
     nodePackages_latest.bash-language-server
     nodePackages_latest.typescript-language-server
     nodePackages_latest.vscode-css-languageserver-bin
+    nodejs_21
     prettierd
     python311Packages.pycodestyle
     python311Packages.pyflakes
