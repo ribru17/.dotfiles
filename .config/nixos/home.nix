@@ -58,6 +58,11 @@ in {
     extensions = [
       # Plasma integration
       { id = "cimiefiiaegbelhefglklhhakcgmhkai"; }
+      {
+        id = "dcpihecpambacapedldabdbpakmachpb";
+        updateUrl =
+          "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
+      }
     ];
   };
 
