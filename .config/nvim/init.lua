@@ -34,6 +34,7 @@ require('lazy').setup('plugins', {
   -- checker = { enabled = true },
   ui = {
     border = SETTINGS.border,
+    backdrop = 100,
   },
   install = {
     colorscheme = { 'bamboo' },
