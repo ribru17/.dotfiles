@@ -66,7 +66,6 @@ in {
           "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
       }
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
-      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark reader
     ];
   };
 
