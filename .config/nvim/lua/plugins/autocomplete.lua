@@ -114,6 +114,10 @@ return {
       npairs.add_rule(Rule('**', '**', 'markdown'):with_move(function(opts)
         return cond.after_text('*')(opts) and cond.not_before_text('\\')(opts)
       end))
+
+      -- TODO: Make a PR for this.
+      npairs.get_rule("'")[1].not_filetypes = { 'nix' }
+      npairs.add_rule(Rule("''", "''", 'nix'):with_move(cond.after_text("'")))
     end,
   },
   {
