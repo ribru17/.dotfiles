@@ -81,6 +81,8 @@ in {
         id = "dbepggeogbaibhgnhhndojpepiihcmeb";
         # Mappings:
         # map <c-h> previousTab
+        # map <c-H> moveTabLeft
+        # map <c-L> moveTabRight
         # map <c-l> nextTab
         # map :q<enter> removeTab
       }
