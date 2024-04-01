@@ -30,6 +30,7 @@ in {
     fastfetch
     firefox
     gopls
+    kdePackages.plasma-browser-integration
     lua-language-server
     marksman
     nil
@@ -54,6 +55,15 @@ in {
     xz
   ];
 
+  home.file = let
+    appId = "org.kde.plasma.browser_integration.json";
+    source =
+      "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/${appId}";
+  in {
+    ".config/BraveSoftware/Brave-Browser/NativeMessagingHosts/${appId}".source =
+      source;
+  };
+
   programs.chromium = {
     enable = true;
     package = brave;
@@ -65,7 +75,14 @@ in {
         updateUrl =
           "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
       }
-      { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
+      {
+        # Vimium
+        id = "dbepggeogbaibhgnhhndojpepiihcmeb";
+        # Mappings:
+        # map <c-h> previousTab
+        # map <c-l> nextTab
+        # map :q<enter> removeTab
+      }
     ];
   };
 
