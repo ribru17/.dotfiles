@@ -95,6 +95,11 @@
 
   nix.package = pkgs.nixUnstable;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than +15"; # keep the last 15 configurations only
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${vars.username} = {
