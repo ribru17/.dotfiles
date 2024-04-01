@@ -55,13 +55,14 @@ in {
     xz
   ];
 
-  home.file = let
+  xdg.enable = true;
+
+  xdg.configFile = let
     appId = "org.kde.plasma.browser_integration.json";
     source =
       "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/${appId}";
   in {
-    ".config/BraveSoftware/Brave-Browser/NativeMessagingHosts/${appId}".source =
-      source;
+    "BraveSoftware/Brave-Browser/NativeMessagingHosts/${appId}".source = source;
   };
 
   programs.chromium = {
