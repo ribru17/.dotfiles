@@ -1,6 +1,8 @@
 { pkgs, ... }:
 let
   brave = (pkgs.brave.override {
+    # NOTE: Enable this bad boy to get rid of weird tab scrolling:
+    # brave://flags/#scrollable-tabstrip
     commandLineArgs = [ "--force-device-scale-factor=1.5" ];
   });
 in {
@@ -56,13 +58,15 @@ in {
     enable = true;
     package = brave;
     extensions = [
-      # Plasma integration
-      { id = "cimiefiiaegbelhefglklhhakcgmhkai"; }
+      { id = "cimiefiiaegbelhefglklhhakcgmhkai"; } # Plasma integration
       {
+        # Bypass paywalls
         id = "dcpihecpambacapedldabdbpakmachpb";
         updateUrl =
           "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
       }
+      { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
+      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark reader
     ];
   };
 
