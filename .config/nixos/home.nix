@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
 let
   brave = (pkgs.brave.override {
     # NOTE: Enable this bad boy to get rid of weird tab scrolling:
@@ -8,8 +8,8 @@ let
 in {
   imports = [ ./home-modules/plasma.nix ];
 
-  home.username = "rileyb";
-  home.homeDirectory = "/home/rileyb";
+  home.username = "${vars.username}";
+  home.homeDirectory = "/home/${vars.username}";
 
   home.stateVersion = "23.11";
 

@@ -10,22 +10,31 @@
     plasma-manager.url = "github:pjones/plasma-manager";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, plasma-manager }: {
-    nixosConfigurations.frametop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        # add your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
-        nixos-hardware.nixosModules.framework-13-7040-amd
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.rileyb = import ./home.nix;
-          home-manager.sharedModules =
-            [ plasma-manager.homeManagerModules.plasma-manager ];
-        }
-      ];
+  outputs =
+    inputs@{ self, nixpkgs, nixos-hardware, home-manager, plasma-manager }:
+    let
+      vars = {
+        username = "rileyb";
+        hostname = "frametop";
+      };
+    in {
+      nixosConfigurations.${vars.hostname} = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs vars; };
+        modules = [
+          ./configuration.nix
+          # add your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
+          nixos-hardware.nixosModules.framework-13-7040-amd
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.useUserPackages = true;
+            home-manager.users.${vars.username} = import ./home.nix;
+            home-manager.sharedModules =
+              [ plasma-manager.homeManagerModules.plasma-manager ];
+          }
+        ];
+      };
     };
-  };
 }

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -15,7 +15,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "frametop"; # Define your hostname.
+  networking.hostName = "${vars.hostname}";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -97,7 +97,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.rileyb = {
+  users.users.${vars.username} = {
     isNormalUser = true;
     description = "Riley Bruins";
     extraGroups = [ "networkmanager" "wheel" ];
