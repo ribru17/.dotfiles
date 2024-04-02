@@ -3,7 +3,7 @@
   in {
     enable = true;
     workspace = {
-      wallpaper = builtins.path { path = ../assets/animals.png; };
+      wallpaper = ../assets/animals.png;
       theme = "breeze-dark";
       colorScheme = "BreezeDark";
       cursorTheme = "Bibata-Modern-Ice";
