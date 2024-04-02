@@ -25,11 +25,11 @@ in {
     clang-tools
     delta
     deno
+    discord
     emmet-language-server
     fastfetch
     firefox
     gopls
-    kdePackages.plasma-browser-integration
     lua-language-server
     marksman
     nil
@@ -46,6 +46,7 @@ in {
     ripgrep
     shellcheck
     shfmt
+    spotify
     stylua
     typescript
     unzip

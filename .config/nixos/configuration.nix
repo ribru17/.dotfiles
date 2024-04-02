@@ -56,8 +56,14 @@
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs;
     with kdePackages; [
+      ark
+      elisa
+      gwenview
+      kate
+      khelpcenter
       konsole
       okular
+      print-manager
     ];
 
   # Configure keymap in X11
@@ -156,6 +162,7 @@
     bibata-cursors
     curl
     gcc
+    gimp
     git
     gnumake
     kitty
