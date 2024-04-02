@@ -20,7 +20,6 @@ in {
 
   home.packages = with pkgs; [
     bat
-    bibata-cursors
     blesh
     brave
     clang-tools
