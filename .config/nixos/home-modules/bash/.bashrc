@@ -45,6 +45,9 @@ alias nix:edit='nvim ~/.config/nixos/'
 alias nix:rebuild='sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"'
 alias nix:update='nix flake update --flake "$HOME/.config/nixos/"'
 
+# like resourcing but nicer
+alias refresh='clear && fastfetch'
+
 # simple way to count lines of code in the current directory
 loc() {
     if [[ -z "$1" ]]; then
