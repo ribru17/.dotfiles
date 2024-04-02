@@ -307,7 +307,7 @@
       "kdeglobals"."KFileDialog Settings"."Show Full Path".value = false;
       "kdeglobals"."KFileDialog Settings"."Show Inline Previews".value = true;
       "kdeglobals"."KFileDialog Settings"."Show Speedbar".value = true;
-      "kdeglobals"."KFileDialog Settings"."Show hidden files".value = false;
+      "kdeglobals"."KFileDialog Settings"."Show hidden files".value = true;
       "kdeglobals"."KFileDialog Settings"."Sort by".value = "Name";
       "kdeglobals"."KFileDialog Settings"."Sort directories first".value = true;
       "kdeglobals"."KFileDialog Settings"."Sort hidden files last".value =
