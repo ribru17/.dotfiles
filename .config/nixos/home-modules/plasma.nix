@@ -1,5 +1,6 @@
 { ... }: {
-  programs.plasma = {
+  programs.plasma = let system-notification-sounds = false;
+  in {
     enable = true;
     workspace = {
       theme = "breeze-dark";
@@ -286,6 +287,12 @@
       "kdeglobals"."General"."BrowserApplication".value =
         "brave-browser.desktop";
       "kdeglobals"."General"."UseSystemBell".value = false;
+      # TODO: Set the appropriate value in `xsettingsd`?
+      "kdeglobals"."Sounds"."Enable".value = system-notification-sounds;
+      "gtk-3.0/settings.ini"."Settings"."gtk-enable-event-sounds".value =
+        system-notification-sounds;
+      "gtk-4.0/settings.ini"."Settings"."gtk-enable-event-sounds".value =
+        system-notification-sounds;
       "kdeglobals"."KDE"."SingleClick".value = false;
       "kdeglobals"."KFileDialog Settings"."Allow Expansion".value = false;
       "kdeglobals"."KFileDialog Settings"."Automatically select filename extension".value =
