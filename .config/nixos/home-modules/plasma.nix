@@ -1042,6 +1042,8 @@
               "applications:org.kde.dolphin.desktop"
               "applications:brave-browser.desktop"
               "applications:kitty.desktop"
+              "applications:discord.desktop"
+              "applications:spotify.desktop"
             ];
           };
         }

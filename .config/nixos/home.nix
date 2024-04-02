@@ -46,7 +46,7 @@ in {
     ripgrep
     shellcheck
     shfmt
-    spotify
+    (spotify.override { deviceScaleFactor = 1.5; })
     stylua
     typescript
     unzip
