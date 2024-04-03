@@ -33,7 +33,7 @@ in {
     lua-language-server
     marksman
     nil
-    nixfmt
+    nixfmt-classic
     nodePackages_latest.bash-language-server
     nodePackages_latest.typescript-language-server
     nodePackages_latest.vscode-css-languageserver-bin
