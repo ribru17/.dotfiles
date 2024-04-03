@@ -117,6 +117,13 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      # pin iosevka version
+      iosevka = prev.iosevka.overrideAttrs (oldAttrs: { version = "29.0.4"; });
+    })
+  ];
+
   fonts.packages = with pkgs;
     let
       iosevka-custom = (iosevka.override {
