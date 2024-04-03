@@ -120,7 +120,15 @@
   nixpkgs.overlays = [
     (final: prev: {
       # pin iosevka version
-      iosevka = prev.iosevka.overrideAttrs (oldAttrs: { version = "29.0.4"; });
+      iosevka = prev.iosevka.overrideAttrs (oldAttrs: rec {
+        version = "29.0.4";
+        src = prev.fetchFromGitHub {
+          owner = "be5invis";
+          repo = "iosevka";
+          rev = "v${version}";
+          hash = "sha256-dkFvgiGCHvBp7gBNAG08cfpTc0c7b2oU56xfxjPHhm8=";
+        };
+      });
     })
   ];
 
