@@ -8,6 +8,16 @@
       colorScheme = "BreezeDark";
       cursorTheme = "Bibata-Modern-Ice";
     };
+    hotkeys.commands."launch-kitty" = {
+      name = "Launch Kitty";
+      key = "Ctrl+Alt+T";
+      command = "kitty --start-as maximized";
+    };
+    hotkeys.commands."launch-brave" = {
+      name = "Launch Brave";
+      key = "Ctrl+Alt+B";
+      command = "brave";
+    };
     shortcuts = {
       "ActivityManager"."switch-to-activity-18729546-c057-4fd4-a4fd-9a9aa7b4a44a" =
         [ ];
