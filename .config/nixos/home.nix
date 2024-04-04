@@ -39,7 +39,7 @@ in {
     nixfmt-classic
     nodePackages_latest.bash-language-server
     nodePackages_latest.typescript-language-server
-    nodePackages_latest.vscode-css-languageserver-bin
+    vscode-langservers-extracted
     nodejs_21
     prettierd
     python311Packages.pycodestyle
