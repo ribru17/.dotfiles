@@ -19,7 +19,10 @@ in {
   home.sessionVariables.BROWSER = "brave";
 
   home.packages = with pkgs; [
+    (spotify.override { deviceScaleFactor = 1.5; })
     bat
+    # install with `betterdiscord install`
+    betterdiscordctl
     blesh
     brave
     clang-tools
@@ -46,7 +49,6 @@ in {
     ripgrep
     shellcheck
     shfmt
-    (spotify.override { deviceScaleFactor = 1.5; })
     stylua
     typescript
     unzip
