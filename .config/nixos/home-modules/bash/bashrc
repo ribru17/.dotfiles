@@ -42,6 +42,7 @@ alias open='xdg-open'
 
 # system configuring
 alias nix:edit='nvim ~/.config/nixos/'
+alias nix:pruneboot='sudo nixos-rebuild boot --flake "$HOME/.config/nixos/"'
 alias nix:rebuild='sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"'
 alias nix:update='nix flake update --flake "$HOME/.config/nixos/"'
 
@@ -101,8 +102,6 @@ export LESS_TERMCAP_me=$'\e[0m'     # reset bold/blink
 export LESS_TERMCAP_se=$'\e[0m'     # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'     # reset underline
 export GROFF_NO_SGR=1               # for color interpretation
-# parallelize builds
-export NIX_BUILD_CORES=4
 
 # no symlink following for `cd`, etc.
 set -o physical
