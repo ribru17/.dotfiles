@@ -52,6 +52,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-iosevka-pin": {
+      "locked": {
+        "lastModified": 1711863353,
+        "narHash": "sha256-hJwkfLaHxDCokvzrA/jM58cqNITOtoCYwh+2pPfYHos=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "7848d6f048d38c42a8aeeff7fe7d36916ffb8284",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "7848d6f048d38c42a8aeeff7fe7d36916ffb8284",
+        "type": "github"
+      }
+    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -80,6 +96,7 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-iosevka-pin": "nixpkgs-iosevka-pin",
         "plasma-manager": "plasma-manager"
       }
     }

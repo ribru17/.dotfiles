@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, vars, ... }:
+{ pkgs, vars, pkgs-iosevka-pin, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -117,24 +117,9 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      # pin iosevka version
-      iosevka = prev.iosevka.overrideAttrs (oldAttrs: rec {
-        version = "29.0.4";
-        src = prev.fetchFromGitHub {
-          owner = "be5invis";
-          repo = "iosevka";
-          rev = "v${version}";
-          hash = "sha256-dkFvgiGCHvBp7gBNAG08cfpTc0c7b2oU56xfxjPHhm8=";
-        };
-      });
-    })
-  ];
-
   fonts.packages = with pkgs;
     let
-      iosevka-custom = (iosevka.override {
+      iosevka-custom = (pkgs-iosevka-pin.iosevka.override {
         set = "Custom";
         privateBuildPlan = {
           family = "Iosevka Custom";
