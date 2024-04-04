@@ -110,7 +110,10 @@
   nix.gc = {
     automatic = true;
     dates = "daily";
-    options = "--delete-older-than +15"; # keep the last 15 configurations only
+    options = "--delete-older-than 7d";
+    # The below is not possible sadly: see the following issue
+    # https://github.com/NixOS/nix/issues/9455
+    # options = "--delete-older-than +15"; # keep the last 15 configurations only
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
