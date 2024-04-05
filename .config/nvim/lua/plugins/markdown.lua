@@ -5,7 +5,7 @@ return {
     -- https://github.com/iamcco/markdown-preview.nvim/pull/575
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = 'markdown',
-    build = 'cd app && npm install',
+    build = 'cd app && npx --yes yarn install',
   },
   {
     'dkarter/bullets.vim',
