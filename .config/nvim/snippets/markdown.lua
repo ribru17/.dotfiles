@@ -218,6 +218,11 @@ return {
     { condition = in_mathzone }
   ),
   s(
+    { trig = '<-', wordTrig = false },
+    fmt([[\longleftarrow]], {}),
+    { condition = in_mathzone }
+  ),
+  s(
     { trig = '=<', wordTrig = false },
     fmt([[\impliedby]], {}),
     { condition = in_mathzone }
@@ -642,6 +647,21 @@ return {
   s(
     {
       trig = 'pw',
+    },
+    fmt(
+      [[
+      \begin{{cases}}
+        {1}  & \text{{{2}}} \\
+        {3} & \text{{{4}}}
+      \end{{cases}}
+      ]],
+      { i(1, 'n/2'), i(2, '$n$ is even'), i(3, '3n+1'), i(4, '$n$ is odd') }
+    ),
+    { condition = in_mathzone }
+  ),
+  s(
+    {
+      trig = 'piecewise',
     },
     fmt(
       [[
