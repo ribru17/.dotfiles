@@ -25,6 +25,7 @@ in {
     betterdiscordctl
     blesh
     brave
+    cargo
     clang-tools
     delta
     deno
@@ -39,7 +40,6 @@ in {
     nixfmt-classic
     nodePackages_latest.bash-language-server
     nodePackages_latest.typescript-language-server
-    vscode-langservers-extracted
     nodejs_21
     prettierd
     python311Packages.pycodestyle
@@ -47,11 +47,13 @@ in {
     python311Packages.python-lsp-server
     python311Packages.yapf
     ripgrep
+    rustc
     shellcheck
     shfmt
     stylua
     typescript
     unzip
+    vscode-langservers-extracted
     wget
     wl-clipboard
     xz
