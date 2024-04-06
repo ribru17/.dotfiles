@@ -75,6 +75,7 @@ local M = {
     'regex',
     'rust',
     'sql',
+    'styled',
     'tsx',
     'typescript',
     'vim',
