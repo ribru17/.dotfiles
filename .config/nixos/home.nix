@@ -51,6 +51,7 @@ in {
     shellcheck
     shfmt
     stylua
+    tree-sitter
     typescript
     unzip
     vscode-langservers-extracted
