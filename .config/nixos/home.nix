@@ -35,7 +35,6 @@ in {
     gopls
     lua-language-server
     marksman
-    nil
     nixfmt-classic
     nodePackages_latest.bash-language-server
     nodePackages_latest.typescript-language-server

@@ -1,19 +1,53 @@
 {
   description = "NixOS configuration with flakes";
   inputs = {
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # Main nixpkgs source
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    plasma-manager.inputs.home-manager.follows = "home-manager";
-    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-    plasma-manager.url = "github:pjones/plasma-manager";
+
+    # Home manager
+    home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+    };
+
+    # Up-to-date hardware support
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    # Declarative KDE Plasma configuration
+    plasma-manager = {
+      inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:pjones/plasma-manager";
+    };
+
+    # Pin Iosevka to a specific nixpkgs commit to prevent lots of long builds
     nixpkgs-iosevka-pin.url =
       "github:nixos/nixpkgs/7848d6f048d38c42a8aeeff7fe7d36916ffb8284";
+
+    # This will already be installed by other flake inputs anyway, may as well
+    # include it so we can prevent accidental package duplication in the
+    # future (using `follows`)
+    flake-utils.url = "github:numtide/flake-utils";
+
+    # Rust overlay
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
+    # Nix Language server
+    nil = {
+      url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, plasma-manager
-    , nixpkgs-iosevka-pin }:
+    , nixpkgs-iosevka-pin, rust-overlay, nil, flake-utils }:
     let
       vars = {
         username = "rileyb";
