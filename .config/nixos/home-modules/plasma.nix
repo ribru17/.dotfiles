@@ -1068,6 +1068,7 @@
       # Correctly grab the system tray widget and adjust settings.
       # Cannot do this in the regular widgets nix config because the id will
       # change every time.
+      # TODO: Declarative `showPercentage` for battery
       extraSettings = ''
         panels().forEach((p) => {
           p.widgets().forEach((w) => {
