@@ -20,26 +20,24 @@ local function isInReturn(s)
     or firstSeven == 'return;'
 end
 
-local disabled_filetypes = {
-  'bash',
-  'clojure',
-  'lisp',
-  'lua',
-  'markdown',
-  'nix',
-  'python',
-  'query',
-  'scheme',
-  'sh',
-  'text',
+local enabled_filetypes = {
+  ['rust'] = true,
+  ['c'] = true,
+  ['cpp'] = true,
+  ['typescript'] = true,
+  ['javascript'] = true,
+  ['typescriptreact'] = true,
+  ['javascriptreact'] = true,
+  ['css'] = true,
+  ['java'] = true,
+  ['cs'] = true,
+  ['php'] = true,
+  ['ocaml'] = true,
 }
 
 vim.keymap.set('i', ';', function()
-  for k = 1, #disabled_filetypes do
-    local v = disabled_filetypes[k]
-    if vim.bo.filetype == v then
-      return ';'
-    end
+  if not enabled_filetypes[vim.bo.filetype] then
+    return ';'
   end
   local line = vim.api.nvim_get_current_line()
   local last = string.sub(trim(line), -1)
