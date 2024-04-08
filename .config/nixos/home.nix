@@ -70,6 +70,22 @@ in {
     "BraveSoftware/Brave-Browser/NativeMessagingHosts/${appId}".source = source;
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = { "application/pdf" = [ "brave-browser.desktop" ]; };
+    defaultApplications = {
+      "application/pdf" = [ "brave-browser.desktop" ];
+      "image/png" = "brave-browser.desktop";
+      "image/jpeg" = "brave-browser.desktop";
+      "image/gif" = "brave-browser.desktop";
+      "image/svg+xml" = "brave-browser.desktop";
+      "text/plain" = "brave-browser.desktop";
+      "text/html" = "brave-browser.desktop";
+      "x-scheme-handler/http" = "brave-browser.desktop";
+      "x-scheme-handler/https" = "brave-browser.desktop";
+    };
+  };
+
   programs.chromium = {
     enable = true;
     package = brave;
