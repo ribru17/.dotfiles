@@ -156,6 +156,12 @@ return {
             formatting = {
               command = { 'nixfmt' },
             },
+            nix = {
+              flake = {
+                autoArchive = true,
+                autoEvalInputs = true,
+              },
+            },
           },
         },
       }
