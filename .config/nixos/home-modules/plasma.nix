@@ -1058,6 +1058,7 @@
               "applications:kitty.desktop"
               "applications:discord.desktop"
               "applications:spotify.desktop"
+              "applications:gimp.desktop"
             ];
           };
         }
