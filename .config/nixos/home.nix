@@ -70,19 +70,54 @@ in {
     "BraveSoftware/Brave-Browser/NativeMessagingHosts/${appId}".source = source;
   };
 
-  xdg.mimeApps = {
+  xdg.mimeApps = rec {
     enable = true;
-    associations.added = { "application/pdf" = [ "brave-browser.desktop" ]; };
-    defaultApplications = {
-      "application/pdf" = [ "brave-browser.desktop" ];
-      "image/png" = "brave-browser.desktop";
-      "image/jpeg" = "brave-browser.desktop";
-      "image/gif" = "brave-browser.desktop";
-      "image/svg+xml" = "brave-browser.desktop";
-      "text/plain" = "brave-browser.desktop";
-      "text/html" = "brave-browser.desktop";
-      "x-scheme-handler/http" = "brave-browser.desktop";
-      "x-scheme-handler/https" = "brave-browser.desktop";
+    associations.added = defaultApplications;
+    defaultApplications = let
+      imageViewer = "brave-browser.desktop";
+      mediaPlayer = "brave-browser.desktop";
+      documentViewer = "brave-browser.desktop";
+      browser = "brave-browser.desktop";
+      textEditor = "neovim.desktop";
+      fileManager = "org.kde.dolphin.desktop";
+    in {
+      # Documents
+      "application/pdf" = documentViewer;
+
+      # Images
+      "image/png" = imageViewer;
+      "image/jpeg" = imageViewer;
+      "image/gif" = imageViewer;
+      "image/svg+xml" = imageViewer;
+      "image/avif" = imageViewer;
+      "image/jpg" = imageViewer;
+      "image/pjpeg" = imageViewer;
+      "image/tiff" = imageViewer;
+      "image/webp" = imageViewer;
+      "image/x-bmp" = imageViewer;
+      "image/x-gray" = imageViewer;
+      "image/x-icb" = imageViewer;
+      "image/x-ico" = imageViewer;
+      "image/x-png" = imageViewer;
+
+      # Videos
+      "video/webm" = mediaPlayer;
+      "video/mp4" = mediaPlayer;
+      "video/mkv" = mediaPlayer;
+
+      # Text and code
+      "text/english" = textEditor;
+      "text/plain" = textEditor;
+      "application/x-shellscript" = textEditor;
+
+      # Web
+      "text/html" = browser;
+      "x-scheme-handler/http" = browser;
+      "x-scheme-handler/https" = browser;
+
+      # Other files
+      "x-scheme-handler/file" = fileManager;
+      "inode/directory" = fileManager;
     };
   };
 
