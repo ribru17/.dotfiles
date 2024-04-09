@@ -173,6 +173,11 @@ return {
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
+    { trig = '~', wordTrig = false },
+    fmt([[\sim]], {}),
+    { condition = in_mathzone }
+  ),
+  s(
     { trig = 'div', wordTrig = false },
     fmt([[\div]], {}),
     { condition = in_mathzone_ignore_backslash }
@@ -198,7 +203,7 @@ return {
     { condition = in_mathzone }
   ),
   s(
-    { trig = '~~', wordTrig = false },
+    { trig = '\\sim~', wordTrig = false, priority = 1001 },
     fmt([[\approx]], {}),
     { condition = in_mathzone }
   ),
@@ -724,6 +729,16 @@ return {
   s(
     { trig = 'in' },
     fmt([[\in]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'sim' },
+    fmt([[\sim]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'approx' },
+    fmt([[\approx]], {}),
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
