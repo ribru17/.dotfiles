@@ -76,4 +76,4 @@ ble-bind -m vi_imap -f 'M-C-?' kill-backward-fword
 
 # colors
 # shellcheck disable=SC1091
-source "$HOME/.config/blesh/themes/bamboo.sh"
+source "$HOME/.config/blesh/themes/bamboo_multiplex.sh"

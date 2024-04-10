@@ -20,7 +20,7 @@
 	features = decorations
 	navigate = true
 	side-by-side = false
-	syntax-theme = bamboo
+	syntax-theme = bamboo_multiplex
 [delta "decorations"]
 	file-decoration-style = bold yellow ul
 	file-style = yellow bold
