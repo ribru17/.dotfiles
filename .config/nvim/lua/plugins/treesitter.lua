@@ -112,7 +112,8 @@ return {
       textobj_map('c', 'conditional')
       textobj_map('C', 'class')
       textobj_map('/', 'comment')
-      textobj_map('P', 'parameter')
+      textobj_map('e', 'parameter') -- also applies to array *Elements*
+      textobj_map('r', 'return')
 
       local non_filetype_match_injection_language_aliases = {
         ex = 'elixir',
