@@ -32,7 +32,9 @@ in {
     emmet-language-server
     fastfetch
     firefox
+    ghc
     gopls
+    haskell-language-server
     lua-language-server
     marksman
     nil
@@ -46,8 +48,7 @@ in {
     python311Packages.python-lsp-server
     python311Packages.yapf
     ripgrep
-    ghc
-    haskell-language-server
+    rust-analyzer
     rustc
     shellcheck
     shfmt
