@@ -2,8 +2,8 @@
 
 # make sure git is installed
 if ! command -v git &>/dev/null; then
-    echo "Installing git"
-    sudo pacman -S git
+    echo "Please install git (or run this script in a \`nix-shell -p git\` shell)"
+    exit
 fi
 # clone and install dotfiles
 git clone --bare git@github.com:ribru17/.dotfiles.git "$HOME/.dotfiles"
@@ -18,9 +18,8 @@ if ! dots checkout; then
     read -rp "Overwrite the existing files? [Y/n] " ans
     if [ -z "$ans" ] || [ "$ans" = "y" ] || [ "$ans" = "Y" ]; then
         dots checkout -f
-    else
-        exit
     fi
-else
-    echo "Installed config!"
 fi
+echo "Building system:"
+sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"
+echo "Done!"
