@@ -108,7 +108,6 @@ set -o physical
 fastfetch
 
 ## Sourcery
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 # blesh
 # shellcheck disable=SC1091
 source "$(blesh-share)"/ble.sh

@@ -21,8 +21,7 @@ in {
   home.packages = with pkgs; [
     (spotify.override { deviceScaleFactor = 1.5; })
     bat
-    # install with `betterdiscord install`
-    betterdiscordctl
+    betterdiscordctl # install with `betterdiscord install`
     blesh
     brave
     cargo
@@ -47,6 +46,8 @@ in {
     python311Packages.python-lsp-server
     python311Packages.yapf
     ripgrep
+    ghc
+    haskell-language-server
     rustc
     shellcheck
     shfmt
