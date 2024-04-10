@@ -22,4 +22,6 @@ if ! dots checkout; then
 fi
 echo "Building system:"
 sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"
+bat cache --build
+betterdiscordctl install
 echo "Done!"
