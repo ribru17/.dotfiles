@@ -50,6 +50,7 @@ in {
     ripgrep
     rust-analyzer
     rustc
+    rustfmt
     shellcheck
     shfmt
     stylua
