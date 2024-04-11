@@ -72,7 +72,7 @@ _prompt_command() {
         local color='1'
     fi
     # shellcheck disable=SC2025
-    PS1="\e[3${color}m╭\e[40m┨\e[37;40m  \e[1m\u \e[0;30;4${color}m \e[3;1;30m\w \e[0;3${color}m\n\e[3${color}m╰─🢒\e[3;33m\$ \e[0m"
+    PS1="\e[3${color}m╭\e[40m┨\e[36;40m  \e[37;1m\u \e[0;30;4${color}m \e[3;1;30m\w \e[0;3${color}m\n\e[3${color}m╰─🢒\e[3;33m\$ \e[0m"
 }
 
 # don't put duplicate lines or lines starting with space in the history
