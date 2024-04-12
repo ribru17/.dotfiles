@@ -30,6 +30,7 @@ in {
     deno
     discord
     emmet-language-server
+    eza
     fastfetch
     firefox
     ghc
