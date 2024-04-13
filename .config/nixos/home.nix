@@ -152,12 +152,14 @@ in {
 
   programs.bash = {
     enable = true;
-    initExtra = (builtins.readFile ./home-modules/bash/bashrc) + ''
-      source "${pkgs.git}/share/bash-completion/completions/git"
-      __git_complete g __git_main
-      __git_complete d __git_main
-      __git_complete dots __git_main
-    '';
+    initExtra = (builtins.readFile ./home-modules/bash/bashrc) +
+      # bash
+      ''
+        source "${pkgs.git}/share/bash-completion/completions/git"
+        __git_complete g __git_main
+        __git_complete d __git_main
+        __git_complete dots __git_main
+      '';
     profileExtra = builtins.readFile ./home-modules/bash/profile;
   };
 }

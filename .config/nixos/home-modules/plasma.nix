@@ -11,7 +11,9 @@
     hotkeys.commands."launch-kitty" = {
       name = "Launch Kitty";
       key = "Ctrl+Alt+T";
-      command = "kitty --start-as maximized";
+      command =
+        # bash
+        "kitty --start-as maximized";
     };
     hotkeys.commands."launch-brave" = {
       name = "Launch Brave";
@@ -1069,20 +1071,22 @@
       # Cannot do this in the regular widgets nix config because the id will
       # change every time.
       # TODO: Declarative `showPercentage` for battery
-      extraSettings = ''
-        panels().forEach((p) => {
-          p.widgets().forEach((w) => {
-            switch(w.type) {
-              case "org.kde.plasma.systemtray":
-                systray = w.readConfig("SystrayContainmentId")
-                systray = desktopById(systray)
-                systray.writeConfig("scaleIconsToFit", true)
-                systray.writeConfig("hiddenItems", "org.kde.plasma.clipboard")
-                systray.writeConfig("shownItems", "org.kde.plasma.battery")
-            }
+      extraSettings =
+        # javascript
+        ''
+          panels().forEach((p) => {
+            p.widgets().forEach((w) => {
+              switch(w.type) {
+                case "org.kde.plasma.systemtray":
+                  systray = w.readConfig("SystrayContainmentId")
+                  systray = desktopById(systray)
+                  systray.writeConfig("scaleIconsToFit", true)
+                  systray.writeConfig("hiddenItems", "org.kde.plasma.clipboard")
+                  systray.writeConfig("shownItems", "org.kde.plasma.battery")
+              }
+            })
           })
-        })
-      '';
+        '';
     }];
   };
 }
