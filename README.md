@@ -12,7 +12,7 @@ wget -O - https://raw.githubusercontent.com/ribru17/.dotfiles/master/scripts/dot
 
 ## Usage
 
-System configuration is be found in `~/.config/nixos/`, and can be rebuilt with
+System configuration is found in `~/.config/nixos/`, and can be rebuilt with
 the `nix:rebuild` command. Flake inputs can be updated with `nix:update`.
 
 ## Reference
