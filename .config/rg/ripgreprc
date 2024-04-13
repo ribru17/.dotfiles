@@ -1,4 +1,6 @@
+# vim: ft=conf
 --max-columns=150
 --max-columns-preview
-
 --smart-case
+--hidden
+--iglob=!**/.git/**
