@@ -352,6 +352,19 @@ map({ 'x', 'o' }, 'ig', function()
   vim.cmd.Gitsigns('select_hunk')
 end, { desc = 'Select Inside a Git change' })
 
+map(
+  { 'n', 'x' },
+  '<leader>qj',
+  vim.cmd.cnext,
+  { desc = 'Go to next qflist item' }
+)
+map(
+  { 'n', 'x' },
+  '<leader>qk',
+  vim.cmd.cprev,
+  { desc = 'Go to previous qflist item' }
+)
+
 --> END OF MISCELLANEOUS KEYMAPS <--
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
