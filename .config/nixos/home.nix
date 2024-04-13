@@ -52,6 +52,7 @@ in {
     rust-analyzer
     rustc
     rustfmt
+    sd
     shellcheck
     shfmt
     stylua
