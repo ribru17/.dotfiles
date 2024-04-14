@@ -52,10 +52,12 @@
       vars = {
         username = "rileyb";
         hostname = "frametop";
+        system = "x86_64-linux";
+        version = "23.11";
       };
     in {
       nixosConfigurations.${vars.hostname} = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
+        system = "${vars.system}";
         specialArgs = {
           inherit inputs vars;
           pkgs-iosevka-pin = import nixpkgs-iosevka-pin {

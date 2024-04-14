@@ -11,7 +11,7 @@ in {
   home.username = "${vars.username}";
   home.homeDirectory = "/home/${vars.username}";
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "${vars.version}";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
