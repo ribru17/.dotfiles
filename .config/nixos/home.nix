@@ -84,7 +84,6 @@ in {
       documentViewer = "brave-browser.desktop";
       browser = "brave-browser.desktop";
       textEditor = "neovim.desktop";
-      fileManager = "org.kde.dolphin.desktop";
     in {
       # Documents
       "application/pdf" = documentViewer;
@@ -119,10 +118,6 @@ in {
       "text/html" = browser;
       "x-scheme-handler/http" = browser;
       "x-scheme-handler/https" = browser;
-
-      # Other files
-      "x-scheme-handler/file" = fileManager;
-      "inode/directory" = fileManager;
     };
   };
 
