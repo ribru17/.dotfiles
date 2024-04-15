@@ -24,7 +24,6 @@ in {
     betterdiscordctl # install with `betterdiscord install`
     blesh
     brave
-    cargo
     clang-tools
     delta
     deno
@@ -49,9 +48,6 @@ in {
     python311Packages.python-lsp-server
     python311Packages.yapf
     ripgrep
-    rust-analyzer
-    rustc
-    rustfmt
     sd
     shellcheck
     shfmt
