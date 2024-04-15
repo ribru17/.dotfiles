@@ -1,4 +1,4 @@
-{ pkgs, vars, ... }:
+{ pkgs, vars, lib, ... }:
 let
   brave = (pkgs.brave.override {
     commandLineArgs = [
@@ -7,6 +7,9 @@ let
       "--enable-features=ScrollableTabStrip"
     ];
   });
+  appId = "org.kde.plasma.browser_integration.json";
+  source =
+    "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/${appId}";
 in {
   imports = [ ./home-modules/plasma.nix ];
 
@@ -23,7 +26,7 @@ in {
   home.packages = with pkgs; [
     (spotify.override { deviceScaleFactor = 1.5; })
     bat
-    betterdiscordctl # install with `betterdiscord install`
+    betterdiscordctl # install with `betterdiscordctl install`
     blesh
     brave
     clang-tools
@@ -65,13 +68,9 @@ in {
 
   xdg.enable = true;
 
-  xdg.configFile = let
-    appId = "org.kde.plasma.browser_integration.json";
-    source =
-      "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/${appId}";
-  in {
-    "BraveSoftware/Brave-Browser/NativeMessagingHosts/${appId}".source = source;
-  };
+  # Browser integration
+  xdg.configFile."BraveSoftware/Brave-Browser/NativeMessagingHosts/${appId}".source =
+    source;
 
   xdg.mimeApps = rec {
     enable = true;
@@ -154,5 +153,19 @@ in {
         __git_complete dots __git_main
       '';
     profileExtra = builtins.readFile ./home-modules/bash/profile;
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "bamboo_multiplex";
+      italic-text = "always";
+    };
+  };
+
+  xdg.configFile."bat/themes" = {
+    recursive = true;
+    source = ./home-modules/bat-themes;
+    onChange = "${lib.getExe pkgs.bat} cache --build";
   };
 }

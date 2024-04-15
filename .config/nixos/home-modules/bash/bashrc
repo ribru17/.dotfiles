@@ -89,7 +89,6 @@ HISTCONTROL=ignoreboth
 
 ## EXPORTED VARIABLES
 # various environment variables for program configuration
-export BAT_THEME="bamboo"
 export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgreprc"
 export EZA_COLORS="reset"
 # set editor
