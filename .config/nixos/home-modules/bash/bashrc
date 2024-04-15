@@ -12,7 +12,8 @@ alias vi='nvim'
 alias g='git'
 
 # nice colorizing
-alias ls='ls --color=auto'
+alias ls='eza --icons=auto'
+alias tree='eza --tree --icons=auto'
 alias grep='grep --color=auto'
 
 # vimy bash exiting
