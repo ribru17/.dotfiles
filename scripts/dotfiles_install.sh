@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # make sure git is installed
-if ! command -v git &>/dev/null; then
+if ! command -v git &> /dev/null; then
     echo "Please install git (or run this script in a \`nix-shell -p git\` shell)"
     exit
 fi
@@ -22,6 +22,7 @@ if ! dots checkout; then
 fi
 echo "Building system:"
 sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"
+nixos-generate-config --show-hardware-config > "$HOME/.config/nixos/hardware-configuration.nix"
 bat cache --build
 betterdiscordctl install
 echo "Done!"

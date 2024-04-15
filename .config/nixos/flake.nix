@@ -67,7 +67,8 @@
         };
         modules = [
           ./configuration.nix
-          # add your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
+          # NOTE: add your model from this list:
+          # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
           nixos-hardware.nixosModules.framework-13-7040-amd
           home-manager.nixosModules.home-manager
           {
