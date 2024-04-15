@@ -1,9 +1,11 @@
 { pkgs, vars, ... }:
 let
   brave = (pkgs.brave.override {
-    # NOTE: Enable this bad boy to get rid of weird tab scrolling:
-    # brave://flags/#scrollable-tabstrip
-    commandLineArgs = [ "--force-device-scale-factor=1.5" ];
+    commandLineArgs = [
+      "--force-device-scale-factor=1.5"
+      # Get rid of weird tab scrolling
+      "--enable-features=ScrollableTabStrip"
+    ];
   });
 in {
   imports = [ ./home-modules/plasma.nix ];
