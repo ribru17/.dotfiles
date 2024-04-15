@@ -392,7 +392,14 @@ return {
         '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}',
       })
       util.add_formatter_args(deno_fmt, { '--single-quote' }, { append = true })
-      util.add_formatter_args(shfmt, { '--indent', '4' })
+      util.add_formatter_args(shfmt, {
+        '--indent',
+        '4',
+        -- Case Indentation
+        '-ci',
+        -- Space after Redirect carets (`foo > bar`)
+        '-sr',
+      })
       require('conform').setup {
         format_on_save = {
           timeout_ms = 1000,
