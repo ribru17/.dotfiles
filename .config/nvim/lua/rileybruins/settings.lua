@@ -122,6 +122,7 @@ local M = {
     'markdown',
     'nix',
     'query',
+    'r',
     'scss',
     'typescript',
     'typescriptreact',
