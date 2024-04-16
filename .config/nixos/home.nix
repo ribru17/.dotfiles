@@ -23,48 +23,52 @@ in {
 
   home.sessionVariables.BROWSER = "brave";
 
-  home.packages = with pkgs; [
-    (spotify.override { deviceScaleFactor = 1.5; })
-    bat
-    betterdiscordctl # install with `betterdiscordctl install`
-    blesh
-    brave
-    clang-tools
-    delta
-    deno
-    discord
-    emmet-language-server
-    eza
-    fastfetch
-    firefox
-    ghc
-    gopls
-    haskell-language-server
-    lua-language-server
-    marksman
-    nil
-    nixfmt-classic
-    nodePackages_latest.bash-language-server
-    nodePackages_latest.typescript-language-server
-    nodejs_21
-    prettierd
-    python311Packages.pycodestyle
-    python311Packages.pyflakes
-    python311Packages.python-lsp-server
-    python311Packages.yapf
-    ripgrep
-    sd
-    shellcheck
-    shfmt
-    stylua
-    tree-sitter
-    typescript
-    unzip
-    vscode-langservers-extracted
-    wget
-    wl-clipboard
-    xz
-  ];
+  home.packages = with pkgs;
+    let
+      R = rWrapper.override { packages = with rPackages; [ languageserver ]; };
+    in [
+      (spotify.override { deviceScaleFactor = 1.5; })
+      R
+      bat
+      betterdiscordctl # install with `betterdiscordctl install`
+      blesh
+      brave
+      clang-tools
+      delta
+      deno
+      discord
+      emmet-language-server
+      eza
+      fastfetch
+      firefox
+      ghc
+      gopls
+      haskell-language-server
+      lua-language-server
+      marksman
+      nil
+      nixfmt-classic
+      nodePackages_latest.bash-language-server
+      nodePackages_latest.typescript-language-server
+      nodejs_21
+      prettierd
+      python311Packages.pycodestyle
+      python311Packages.pyflakes
+      python311Packages.python-lsp-server
+      python311Packages.yapf
+      ripgrep
+      sd
+      shellcheck
+      shfmt
+      stylua
+      tree-sitter
+      typescript
+      unzip
+      vscode-langservers-extracted
+      wget
+      wl-clipboard
+      xz
+    ];
 
   xdg.enable = true;
 

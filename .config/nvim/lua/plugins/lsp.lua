@@ -164,6 +164,10 @@ return {
           },
         },
       }
+      lspconfig.r_language_server.setup {
+        capabilities = capabilities,
+      }
+
       local library = {}
 
       local function add(lib)
