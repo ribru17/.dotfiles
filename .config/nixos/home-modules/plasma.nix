@@ -1042,6 +1042,9 @@
       "kxkbrc"."Layout"."Options".value = "caps:escape_shifted_compose";
       "kxkbrc"."Layout"."ResetOldOptions".value = true;
       "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
+      "plasmanotifyrc"."DoNotDisturb"."NotificationSoundsMuted".value = true;
+      "plasmanotifyrc"."DoNotDisturb"."Until".value = "2025,4,16,23,38,52.564";
+      "plasmanotifyrc"."Notifications"."PopupPosition".value = "TopRight";
     };
     panels = [{
       location = "left";
@@ -1081,7 +1084,10 @@
                   systray = w.readConfig("SystrayContainmentId")
                   systray = desktopById(systray)
                   systray.writeConfig("scaleIconsToFit", true)
-                  systray.writeConfig("hiddenItems", "org.kde.plasma.clipboard")
+                  systray.writeConfig("hiddenItems", [
+                    "org.kde.plasma.clipboard",
+                    "org.kde.plasma.notifications"
+                  ])
                   systray.writeConfig("shownItems", "org.kde.plasma.battery")
               }
             })
