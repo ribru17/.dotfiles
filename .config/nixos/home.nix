@@ -33,6 +33,7 @@ in {
       betterdiscordctl # install with `betterdiscordctl install`
       blesh
       brave
+      ccache
       clang-tools
       delta
       deno
@@ -47,6 +48,7 @@ in {
       lua-language-server
       marksman
       nil
+      ninja
       nixfmt-classic
       nodePackages_latest.bash-language-server
       nodePackages_latest.typescript-language-server
