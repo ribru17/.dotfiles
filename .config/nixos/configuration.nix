@@ -106,9 +106,10 @@
 
   nix.package = pkgs.nixUnstable;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # replace duplicate software with hardlinks
-  # NOTE: This may make builds noticeably slower
+  # Replace duplicate software with hardlinks
+  # NOTE: This may make builds noticeably slower (but saves a ton of space)
   nix.settings.auto-optimise-store = true;
+  nix.settings.cores = 8;
   nix.gc = {
     automatic = true;
     dates = "daily";
