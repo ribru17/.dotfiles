@@ -23,6 +23,5 @@ fi
 echo "Building system:"
 sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"
 nixos-generate-config --show-hardware-config > "$HOME/.config/nixos/hardware-configuration.nix"
-bat cache --build
 betterdiscordctl install
 echo "Done!"
