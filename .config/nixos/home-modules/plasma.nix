@@ -3,6 +3,9 @@
   in {
     enable = true;
     overrideConfig = true;
+    # remove this once the following issue is fixed
+    # https://github.com/pjones/plasma-manager/issues/47
+    overrideConfigExclude = [ "kcminputrc" ];
     workspace = {
       wallpaper = ../assets/animals.png;
       theme = "breeze-dark";
