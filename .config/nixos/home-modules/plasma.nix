@@ -2,6 +2,7 @@
   programs.plasma = let system-notification-sounds = false;
   in {
     enable = true;
+    overrideConfig = true;
     workspace = {
       wallpaper = ../assets/animals.png;
       theme = "breeze-dark";
