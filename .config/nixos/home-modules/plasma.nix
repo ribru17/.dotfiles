@@ -1,8 +1,10 @@
-{ ... }: {
+{ options, ... }: {
   programs.plasma = let system-notification-sounds = false;
   in {
     enable = true;
     overrideConfig = true;
+    overrideConfigFiles = options.programs.plasma.overrideConfigFiles.default
+      ++ [ "plasma-org.kde.plasma.desktop-appletsrc" ];
     workspace = {
       wallpaper = ../assets/animals.png;
       theme = "breeze-dark";
@@ -25,6 +27,8 @@
       captureActiveWindow = "Meta+Print";
       captureRectangularRegion = "Meta+Shift+Print";
     };
+    # NOTE: In order to get everything running, you sometimes may have to run
+    # `systemctl --user restart plasma-plasmashell`
     shortcuts = {
       "ActivityManager"."switch-to-activity-18729546-c057-4fd4-a4fd-9a9aa7b4a44a" =
         [ ];
@@ -1072,12 +1076,10 @@
           };
         }
         "org.kde.plasma.systemtray"
-        "org.kde.plasma.digitalclock"
       ];
       # Correctly grab the system tray widget and adjust settings.
       # Cannot do this in the regular widgets nix config because the id will
       # change every time.
-      # TODO: Declarative `showPercentage` for battery
       extraSettings =
         # javascript
         ''
@@ -1090,9 +1092,12 @@
                   systray.writeConfig("scaleIconsToFit", true)
                   systray.writeConfig("hiddenItems", [
                     "org.kde.plasma.clipboard",
-                    "org.kde.plasma.notifications"
+                    "org.kde.plasma.notifications",
+                    "org.kde.plasma.battery"
                   ])
-                  systray.writeConfig("shownItems", "org.kde.plasma.battery")
+                  let battery = p.addWidget("org.kde.plasma.battery")
+                  battery.writeConfig("showPercentage", true)
+                  p.addWidget("org.kde.plasma.digitalclock")
               }
             })
           })
