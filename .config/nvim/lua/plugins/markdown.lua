@@ -9,7 +9,7 @@ return {
   },
   {
     'dkarter/bullets.vim',
-    ft = { 'markdown', 'text' },
+    ft = { 'markdown', 'text', 'gitcommit' },
     cmd = { 'InsertNewBullet' },
   },
 }
