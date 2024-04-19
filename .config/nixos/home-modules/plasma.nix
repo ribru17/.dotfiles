@@ -3,9 +3,6 @@
   in {
     enable = true;
     overrideConfig = true;
-    # remove this once the following issue is fixed
-    # https://github.com/pjones/plasma-manager/issues/47
-    overrideConfigExclude = [ "kcminputrc" ];
     workspace = {
       wallpaper = ../assets/animals.png;
       theme = "breeze-dark";
@@ -291,12 +288,15 @@
         "Default";
       "kactivitymanagerdrc"."main"."currentActivity".value =
         "18729546-c057-4fd4-a4fd-9a9aa7b4a44a";
+      # NOTE: Change this once it can be done without being hard-coded
       "kcminputrc"."Libinput/2362/628/PIXA3854:00 093A:0274 Touchpad"."ClickMethod".value =
         2;
       "kcminputrc"."Libinput/2362/628/PIXA3854:00 093A:0274 Touchpad"."MiddleButtonEmulation".value =
         false;
       "kcminputrc"."Libinput/2362/628/PIXA3854:00 093A:0274 Touchpad"."NaturalScroll".value =
         true;
+      "kcminputrc"."Libinput/2362/628/PIXA3854:00 093A:0274 Touchpad"."TapToClick".value =
+        false;
       "kcminputrc"."Mouse"."X11LibInputXAccelProfileFlat".value = true;
       "kcminputrc"."Tmp"."update_info".value =
         "delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize";
