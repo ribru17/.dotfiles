@@ -732,6 +732,11 @@ return {
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
+    { trig = '\\?frac', regTrig = true },
+    fmt([[\frac{{{1}}}{{{2}}}]], { i(1, 'a'), i(2, 'b') }),
+    { condition = in_mathzone }
+  ),
+  s(
     { trig = 'sim' },
     fmt([[\sim]], {}),
     { condition = in_mathzone_ignore_backslash }
