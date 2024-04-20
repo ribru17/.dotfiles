@@ -35,6 +35,7 @@ in {
       brave
       ccache
       clang-tools
+      cmake # for building Neovim
       delta
       deno
       discord
@@ -42,6 +43,7 @@ in {
       eza
       fastfetch
       firefox
+      gettext # for building Neovim
       ghc
       gopls
       haskell-language-server
