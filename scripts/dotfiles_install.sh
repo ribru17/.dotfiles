@@ -1,10 +1,6 @@
-#!/bin/bash
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p bash git cowsay
 
-# make sure git is installed
-if ! command -v git &> /dev/null; then
-    echo "Please install git (or run this script in a \`nix-shell -p git\` shell)"
-    exit
-fi
 # clone and install dotfiles
 git clone --bare git@github.com:ribru17/.dotfiles.git "$HOME/.dotfiles"
 function dots {
@@ -24,4 +20,4 @@ echo "Building system:"
 nixos-generate-config --show-hardware-config > "$HOME/.config/nixos/hardware-configuration.nix"
 sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"
 betterdiscordctl install
-echo "Done!"
+cowsay 'Done!'

@@ -7,8 +7,8 @@ Dotfiles for NixOS.
 To install, run:
 
 ```sh
-nix-shell -p git bash wget
-wget -O - https://raw.githubusercontent.com/ribru17/.dotfiles/master/scripts/dotfiles_install.sh | bash
+nix-shell -p wget
+wget -O - https://raw.githubusercontent.com/ribru17/.dotfiles/master/scripts/dotfiles_install.sh | sh
 ```
 
 This script will download all files, regenerate the hardware configuration, and
