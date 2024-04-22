@@ -546,7 +546,7 @@ end, { desc = 'Accept remote Git changes' })
 
 local function take_screenshot(opts)
   if vim.env.XDG_CURRENT_DESKTOP == 'KDE' then
-    local args = vim.split(opts.fargs[1], ' ')
+    local args = vim.split(opts.fargs[1] or '', ' ')
     local out = args[1] or 'sample.png'
     local delay = args[2] or 100
     vim.fn.jobstart('spectacle -a -o ' .. out .. ' -b -d ' .. delay .. ' -e -S')
