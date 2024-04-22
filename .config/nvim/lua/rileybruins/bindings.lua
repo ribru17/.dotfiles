@@ -348,9 +348,12 @@ map({ 'n', 'x' }, '<leader>lk', function()
   end)
 end, ll_opts)
 
-map({ 'x', 'o' }, 'ig', function()
+local gh_opts = { desc = 'Select Inside a Git change' }
+map('o', 'ig', function()
   vim.cmd.Gitsigns('select_hunk')
-end, { desc = 'Select Inside a Git change' })
+end, gh_opts)
+-- Workaround because of a bug where visual selection only travels forward
+map('x', 'ig', '<Esc><Cmd>Gitsigns select_hunk<CR>', gh_opts)
 
 map(
   { 'n', 'x' },
