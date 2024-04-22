@@ -19,6 +19,8 @@ set up everything to be tracked in the Git repo.
 System configuration is found in `~/.config/nixos/`, and can be rebuilt with the
 `nix:rebuild` command. Flake inputs can be updated with `nix:update`.
 
+Remember to update the `nixos-hardware` device property name in `flake.nix`.
+
 ## Reference
 
 Credit to [this article](https://www.atlassian.com/git/tutorials/dotfiles) for

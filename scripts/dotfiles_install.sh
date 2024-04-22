@@ -21,7 +21,7 @@ if ! dots checkout; then
     fi
 fi
 echo "Building system:"
-sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"
 nixos-generate-config --show-hardware-config > "$HOME/.config/nixos/hardware-configuration.nix"
+sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"
 betterdiscordctl install
 echo "Done!"
