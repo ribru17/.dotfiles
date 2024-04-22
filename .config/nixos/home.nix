@@ -45,6 +45,7 @@ in {
       firefox
       gettext # for building Neovim
       ghc
+      go
       gopls
       haskell-language-server
       lua-language-server
