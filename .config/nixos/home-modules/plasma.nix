@@ -1095,6 +1095,8 @@
                     "org.kde.plasma.notifications",
                     "org.kde.plasma.battery"
                   ])
+                  systray.writeConfig("popupHeight", 432)
+                  systray.writeConfig("popupWidth", 432)
                   let battery = p.addWidget("org.kde.plasma.battery")
                   battery.writeConfig("showPercentage", true)
                   p.addWidget("org.kde.plasma.digitalclock")
