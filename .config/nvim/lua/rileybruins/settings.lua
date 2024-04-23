@@ -52,6 +52,7 @@ local M = {
     'kanagawa',
   },
   ensure_installed_ts_parsers = {
+    'bash',
     'c',
     'comment',
     'diff',
