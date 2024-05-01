@@ -58,6 +58,7 @@ in {
       nodePackages_latest.typescript-language-server
       nodejs_21
       prettierd
+      python3
       python311Packages.pycodestyle
       python311Packages.pyflakes
       python311Packages.python-lsp-server
