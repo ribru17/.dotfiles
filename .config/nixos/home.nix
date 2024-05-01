@@ -44,6 +44,7 @@ in {
       fastfetch
       firefox
       gettext # for building Neovim
+      gh
       ghc
       go
       gopls
