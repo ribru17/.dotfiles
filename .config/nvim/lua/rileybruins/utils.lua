@@ -131,7 +131,7 @@ M.get_md_link_dest = function()
   if vim.bo.filetype ~= 'markdown' then
     return
   end
-  local current_node = get_node { ignore_injections = false }
+  local current_node = get_node { lang = 'markdown_inline' }
   while current_node do
     local type = current_node:type()
     if type == 'link_destination' then
