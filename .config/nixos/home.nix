@@ -56,7 +56,7 @@ in {
       nixfmt-classic
       nodePackages_latest.bash-language-server
       nodePackages_latest.typescript-language-server
-      nodejs_21
+      nodejs_22
       prettierd
       python3
       python311Packages.pycodestyle

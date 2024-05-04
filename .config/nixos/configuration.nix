@@ -104,7 +104,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  nix.package = pkgs.nixUnstable;
+  nix.package = pkgs.nixVersions.git;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Replace duplicate software with hardlinks
   # NOTE: This may make builds noticeably slower (but saves a ton of space)
