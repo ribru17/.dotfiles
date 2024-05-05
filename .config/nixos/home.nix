@@ -49,6 +49,7 @@ in {
       go
       gopls
       haskell-language-server
+      lua
       lua-language-server
       marksman
       nil
