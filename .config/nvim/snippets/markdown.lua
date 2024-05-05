@@ -38,7 +38,7 @@ local frac = s({
       if stripped:sub(k, k) == '(' then
         depth = depth - 1
       end
-      if depth == 0 then
+      if depth == 0 or k == 0 then
         break
       end
       k = k - 1
@@ -626,6 +626,7 @@ return {
       trig = 'vec',
     },
     fmt(
+      --> INJECT: latex
       [[
         \begin{{bmatrix}}
           {1} \\
@@ -654,9 +655,10 @@ return {
       trig = 'pw',
     },
     fmt(
+      --> INJECT: latex
       [[
       \begin{{cases}}
-        {1}  & \text{{{2}}} \\
+        {1} & \text{{{2}}} \\
         {3} & \text{{{4}}}
       \end{{cases}}
       ]],
@@ -669,9 +671,10 @@ return {
       trig = 'piecewise',
     },
     fmt(
+      --> INJECT: latex
       [[
       \begin{{cases}}
-        {1}  & \text{{{2}}} \\
+        {1} & \text{{{2}}} \\
         {3} & \text{{{4}}}
       \end{{cases}}
       ]],
