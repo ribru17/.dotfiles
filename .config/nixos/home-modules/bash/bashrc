@@ -115,8 +115,3 @@ set -o physical
 
 # start shell with fastfetch
 fastfetch
-
-## Sourcery
-# blesh
-# shellcheck disable=SC1091
-source "$(blesh-share)"/ble.sh
