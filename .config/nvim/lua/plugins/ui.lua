@@ -378,6 +378,7 @@ return {
             end,
           },
           borderchars = SETTINGS.telescope_border_chars,
+          path_display = { 'filename_first' },
           layout_config = {
             horizontal = {
               preview_cutoff = 0,
