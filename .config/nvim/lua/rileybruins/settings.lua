@@ -185,6 +185,7 @@ M.apply = function()
       },
       -- Recognize `.typ` filetype as `typst`. Only works on nightly as of now.
       filetype_typ = 'typst',
+      neovide_cursor_animate_in_insert_mode = false,
     },
     o = {
       backup = false,
@@ -201,6 +202,8 @@ M.apply = function()
       foldlevel = 99,
       foldlevelstart = 99,
       foldmethod = 'expr',
+      guifont = 'Iosevka Custom Extended,Symbols Nerd Font Mono:h15',
+      linespace = -1,
       ignorecase = true,
       list = true,
       mouse = '',
