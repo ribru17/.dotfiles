@@ -134,12 +134,8 @@ M.get_md_link_dest = function()
   local current_node = get_node { lang = 'markdown_inline' }
   while current_node do
     local type = current_node:type()
-    if type == 'link_destination' then
-      return vim.treesitter.get_node_text(current_node, 0)
-    elseif type == 'inline_link' or type == 'image' then
+    if type == 'inline_link' or type == 'image' then
       return vim.treesitter.get_node_text(current_node:named_child(1), 0)
-    elseif type == 'link_text' or type == 'image_description' then
-      return vim.treesitter.get_node_text(current_node:next_named_sibling(), 0)
     end
     current_node = current_node:parent()
   end
