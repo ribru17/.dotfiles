@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, vars, pkgs-iosevka-pin, ... }:
+{ pkgs, inputs, vars, pkgs-iosevka-pin, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -161,6 +161,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -79,15 +79,6 @@
             home-manager.sharedModules =
               [ plasma-manager.homeManagerModules.plasma-manager ];
           }
-          ({ pkgs, ... }: {
-            nixpkgs.overlays = [ rust-overlay.overlays.default ];
-            # TODO: Install this user-wide instead of system-wide?
-            environment.systemPackages = [
-              (pkgs.rust-bin.stable.latest.default.override {
-                extensions = [ "rust-analyzer" "rust-src" ];
-              })
-            ];
-          })
         ];
       };
     };

@@ -26,6 +26,9 @@ in {
   home.packages = with pkgs;
     let
       R = rWrapper.override { packages = with rPackages; [ languageserver ]; };
+      rust = (rust-bin.stable.latest.default.override {
+        extensions = [ "rust-analyzer" "rust-src" ];
+      });
     in [
       (spotify.override { deviceScaleFactor = 1.5; })
       R
@@ -46,6 +49,7 @@ in {
       gettext # for building Neovim
       gh
       ghc
+      rust
       go
       gopls
       haskell-language-server
