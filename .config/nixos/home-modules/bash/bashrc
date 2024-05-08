@@ -25,6 +25,10 @@ alias nix:update='nix flake update --flake "$HOME/.config/nixos/"'
 # like re-sourcing but nicer
 alias refresh='clear && fastfetch'
 
+# neovim development
+alias devi='$HOME/neovim/bin/nvim'
+alias devi:build='make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="$HOME/neovim/" && make install'
+
 # misc
 alias py='python3'
 alias open='xdg-open'
