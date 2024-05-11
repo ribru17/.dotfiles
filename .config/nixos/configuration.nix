@@ -15,6 +15,12 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # For Neovim: `:h fswatch-limitations`
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = 100000;
+    "fs.inotify.max_queued_events" = 100000;
+  };
+
   networking.hostName = "${vars.hostname}";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

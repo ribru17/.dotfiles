@@ -46,10 +46,10 @@ in {
       eza
       fastfetch
       firefox
+      fswatch # faster file watching backend for LSP
       gettext # for building Neovim
       gh
       ghc
-      rust
       go
       gopls
       haskell-language-server
@@ -69,6 +69,7 @@ in {
       python311Packages.python-lsp-server
       python311Packages.yapf
       ripgrep
+      rust
       sd
       shellcheck
       shfmt
