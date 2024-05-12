@@ -23,7 +23,7 @@
 	syntax-theme = bamboo_multiplex
 [delta "decorations"]
 	file-decoration-style = bold yellow ul
-	file-style = yellow bold
+	file-style = purple bold
 	hunk-header-decoration-style = yellow box ul
 	hunk-header-file-style = yellow
 	hunk-header-line-number-style = grey bold italic
