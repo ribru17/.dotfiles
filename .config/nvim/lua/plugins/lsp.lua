@@ -264,8 +264,13 @@ return {
         -- to disable qflist opening, see
         -- https://github.com/neovim/neovim/pull/19213
         callback = function(ev)
-          local attached_client = vim.lsp.get_client_by_id(ev.data.client_id)
-          if attached_client.server_capabilities.codeLensProvider then
+          local attached_client = ev.data
+              and vim.lsp.get_client_by_id(ev.data.client_id)
+            or nil
+          if
+            attached_client
+            and attached_client.server_capabilities.codeLensProvider
+          then
             vim.lsp.codelens.refresh()
             vim.api.nvim_create_autocmd(SETTINGS.codelens_refresh_events, {
               buffer = ev.buf,
@@ -336,6 +341,10 @@ return {
             local params = vim.lsp.util.make_position_params()
             params.context = { includeDeclaration = true }
             local clients = vim.lsp.get_active_clients()
+            if not clients or #clients == 0 then
+              vim.print('No attached clients.')
+              return
+            end
             local client = clients[1]
             for _, possible_client in pairs(clients) do
               if possible_client.server_capabilities.renameProvider then
