@@ -2,17 +2,6 @@
 
 <!-- vim: set spell: -->
 
-## :camera: Screenshot
-
-- Font: [`Iosevka`](https://github.com/be5invis/Iosevka), Custom Extended 15pt
-- Theme: [Bamboo](https://github.com/ribru17/bamboo.nvim)
-
-![`nvimhome`](https://github.com/ribru17/nvim/assets/55766287/dff3a76c-c381-4a4f-9e11-0e507d73fbef)
-
-![`nvimnotetaking`](https://github.com/ribru17/nvim/assets/55766287/07bb57a7-3a48-4ac1-a944-420af08b0e04)
-
-![`nvimediting`](https://github.com/ribru17/nvim/assets/55766287/35f0f7f5-2042-4b59-9d8e-407c6f0b2c12)
-
 ## :package: Installation
 
 Running `nvim` should install all plugins for you, no extra commands necessary.

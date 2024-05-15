@@ -23,11 +23,14 @@ Remember to update the `nixos-hardware` device property name in `flake.nix`.
 
 ## :camera: Screenshots
 
-![dots_dashboard_showcase](https://github.com/ribru17/.dotfiles/assets/55766287/f4b67b79-fa22-4aa5-b84a-9b8435f689b2)
+- Font: [`Iosevka`](https://github.com/be5invis/Iosevka), Custom Extended 15pt
+- Theme: [Bamboo](https://github.com/ribru17/bamboo.nvim), `multiplex` variant
 
-![dots_md_showcase](https://github.com/ribru17/.dotfiles/assets/55766287/80b4d8b3-8b07-44c6-bcd0-899a4542c00a)
+![Neovim Dashboard Showcase](https://github.com/ribru17/.dotfiles/assets/55766287/f4b67b79-fa22-4aa5-b84a-9b8435f689b2)
 
-![dots_code_showcase](https://github.com/ribru17/.dotfiles/assets/55766287/f1409bd1-2c93-4dce-bcad-75e5145a8e12)
+![Neovim Markdown Showcase](https://github.com/ribru17/.dotfiles/assets/55766287/80b4d8b3-8b07-44c6-bcd0-899a4542c00a)
+
+![Neovim Code-editing Showcase](https://github.com/ribru17/.dotfiles/assets/55766287/f1409bd1-2c93-4dce-bcad-75e5145a8e12)
 
 ## :link: Reference
 

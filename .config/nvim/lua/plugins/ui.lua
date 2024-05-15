@@ -500,6 +500,7 @@ return {
     opts = function()
       require('rileybruins.utils').update_colors()
       local dashboard = require('alpha.themes.dashboard')
+      dashboard.opts.layout[1].val = 8
       local logo = {
         '      ███████████   ████ █████      ██',
         '     ████████████  ████   █████ ',
