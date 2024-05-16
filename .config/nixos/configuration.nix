@@ -57,6 +57,7 @@
     enable = true;
     wayland.enable = true;
     theme = "catppuccin-mocha";
+    # BUG: Not working when setting a custom theme?
     settings.Theme.CursorTheme = "Bibata-Modern-Ice";
   };
   services.displayManager.defaultSession = "plasma";
