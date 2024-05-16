@@ -1053,6 +1053,11 @@
       "plasmanotifyrc"."DoNotDisturb"."NotificationSoundsMuted".value = true;
       "plasmanotifyrc"."DoNotDisturb"."Until".value = "2025,4,16,23,38,52.564";
       "plasmanotifyrc"."Notifications"."PopupPosition".value = "TopRight";
+      "kscreenlockerrc"."Greeter"."WallpaperPlugin".value = "org.kde.image";
+      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image".value =
+        "${../assets/animals.png}";
+      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage".value =
+        "${../assets/animals.png}";
     };
     panels = [{
       location = "left";
