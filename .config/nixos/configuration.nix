@@ -190,6 +190,7 @@
     (catppuccin-sddm.override {
       background = "${./assets/animals.png}";
       loginBackground = true;
+      font = "Iosevka Custom Extended";
       fontSize = "15";
     })
   ];
