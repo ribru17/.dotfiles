@@ -56,6 +56,7 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
+    theme = "catppuccin-mocha";
     settings.Theme.CursorTheme = "Bibata-Modern-Ice";
   };
   services.displayManager.defaultSession = "plasma";
@@ -186,6 +187,11 @@
     nix-bash-completions
     pciutils
     wget
+    (catppuccin-sddm.override {
+      background = "${./assets/animals.png}";
+      loginBackground = true;
+      fontSize = "15";
+    })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
