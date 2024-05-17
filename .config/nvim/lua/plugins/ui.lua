@@ -227,12 +227,14 @@ return {
       local delta_b = previewers.new_termopen_previewer {
         get_command = function(entry)
           return vim.list_extend(get_git_delta_opts(), {
-            '-c',
-            'delta.file-style=omit',
             'diff',
             entry.value .. '^!',
             '--',
             entry.current_file,
+            -- show dotfiles diffs pre- and post-migration to bare repo
+            SETTINGS.in_dotfiles
+                and (entry.current_file:gsub('.config/nvim/', ''))
+              or nil,
           })
         end,
       }
