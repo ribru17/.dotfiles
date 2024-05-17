@@ -1,5 +1,6 @@
 ; extends
 
+; TODO: Replace with quantified capture after nvim-treesitter 1.0
 ((inline_formula
   .
   "$"
