@@ -189,7 +189,7 @@
     pciutils
     wget
     (catppuccin-sddm.override {
-      background = "${./assets/animals.png}";
+      background = "${./assets/dsotm_blurred.png}";
       loginBackground = true;
       font = "Iosevka Custom Extended";
       fontSize = "15";
