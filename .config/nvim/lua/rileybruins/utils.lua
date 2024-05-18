@@ -4,11 +4,11 @@ local inc = -1
 local timer = nil
 local color = string.format(
   '#%x',
-  vim.api.nvim_get_hl_by_name('@alpha.title', true).foreground or 16777215
+  vim.api.nvim_get_hl(0, { name = '@alpha.title', link = false }).fg or 16777215
 )
 local background = string.format(
   '#%x',
-  vim.api.nvim_get_hl_by_name('Normal', true).background or 16777215
+  vim.api.nvim_get_hl(0, { name = 'Normal', link = false }).bg or 16777215
 )
 
 ---Converts a hex color code string to a table of integer values
@@ -60,11 +60,11 @@ M.update_colors = function()
   )
   background = string.format(
     '#%x',
-    vim.api.nvim_get_hl_by_name('Normal', true).background or 0
+    vim.api.nvim_get_hl(0, { name = 'Normal', link = false }).bg or 0
   )
   color = string.format(
     '#%x',
-    vim.api.nvim_get_hl_by_name('@alpha.title', true).foreground or 0
+    vim.api.nvim_get_hl(0, { name = '@alpha.title', link = false }).fg or 0
   )
   if background:len() ~= 7 then
     background = '#ffffff'
@@ -83,7 +83,10 @@ function M.color_fade_start()
     return
   end
 
-  timer = vim.loop.new_timer()
+  timer = vim.uv.new_timer()
+  if not timer then
+    return
+  end
   timer:start(
     50,
     50,
@@ -146,6 +149,7 @@ end
 ---@param insert_mode boolean Whether or not the cursor is in insert mode
 ---@return boolean
 M.in_jsx_tags = function(insert_mode)
+  ---@type TSNode?
   local current_node = insert_mode and get_node_insert_mode() or get_node()
   while current_node do
     if current_node:type() == 'jsx_element' then
@@ -189,6 +193,7 @@ M.in_mathzone = function(_, matched_trigger)
   -- NOTE: This must not be set to `lang = 'latex'`; all injection context is
   -- lost and the entire buffer is erroneously parsed as LaTeX, leading to
   -- incorrect snippet evaluation.
+  ---@type TSNode?
   local current_node = get_node_insert_mode { ignore_injections = false }
   while current_node do
     if current_node:type() == 'text_mode' then

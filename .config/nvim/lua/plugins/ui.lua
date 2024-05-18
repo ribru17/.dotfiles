@@ -323,8 +323,14 @@ return {
             local entry_bufnr = entry.bufnr
 
             if entry_bufnr then
-              if not vim.api.nvim_buf_get_option(entry_bufnr, 'buflisted') then
-                vim.api.nvim_buf_set_option(entry_bufnr, 'buflisted', true)
+              if
+                not vim.api.nvim_buf_get_option_value(entry_bufnr, 'buflisted')
+              then
+                vim.api.nvim_buf_set_option_value(
+                  entry_bufnr,
+                  'buflisted',
+                  true
+                )
               end
               pcall(vim.cmd.sbuffer, {
                 filename,
@@ -335,7 +341,7 @@ return {
             else
               filename = require('plenary.path')
                 :new(vim.fn.fnameescape(filename))
-                :normalize(vim.loop.cwd())
+                :normalize(vim.uv.cwd())
               pcall(vim.cmd.tabedit, filename)
             end
 
@@ -452,7 +458,7 @@ return {
                     string
                       .gsub(
                         vim.api.nvim_buf_get_name(buffer),
-                        literalize(vim.loop.cwd()),
+                        literalize(vim.uv.cwd()),
                         ''
                       )
                       :sub(2)

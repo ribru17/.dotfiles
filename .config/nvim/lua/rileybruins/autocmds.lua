@@ -98,10 +98,7 @@ create_autocmd('BufEnter', {
     local layout = vim.api.nvim_call_function('winlayout', {})
     if
       layout[1] == 'leaf'
-      and vim.api.nvim_buf_get_option(
-        vim.api.nvim_win_get_buf(layout[2]),
-        'filetype'
-      ) == 'NvimTree'
+      and vim.bo[vim.api.nvim_win_get_buf(layout[2])].ft == 'NvimTree'
       and layout[3] == nil
     then
       vim.cmd.quit { mods = { confirm = true } }

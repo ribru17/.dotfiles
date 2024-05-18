@@ -168,22 +168,23 @@ return {
         capabilities = capabilities,
       }
 
-      local library = {}
+      local library = {
+        vim.env.VIMRUNTIME,
+        vim.fn.stdpath('config'),
+        '${3rd}/luv/library',
+        '${3rd}/busted/library',
+      }
 
       local function add(lib)
-        for _, p in pairs(vim.fn.expand(lib .. '/lua', false, true)) do
-          p = vim.loop.fs_realpath(p)
+        for _, p in
+          pairs(vim.fn.expand(lib .. '/lua', false, true) --[[@as string[]--]])
+        do
+          local p = vim.uv.fs_realpath(p)
           if p then
             library[p] = true
           end
         end
       end
-
-      -- add runtime
-      add('$VIMRUNTIME')
-
-      -- add config
-      add('~/.config/nvim')
 
       if SETTINGS.luals_load_plugins then
         -- add plugins
@@ -218,6 +219,7 @@ return {
               pathStrict = true,
             },
             workspace = {
+              checkThirdParty = false,
               -- Make the server aware of Neovim runtime files
               library = library,
             },
