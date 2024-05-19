@@ -44,6 +44,15 @@ loc() {
     fi
 }
 
+# safe shutdowns
+shutdown() {
+    if [[ $* == "now" ]]; then
+        shutdown -h now
+    else
+        shutdown "$@"
+    fi
+}
+
 # find and replace in a directory (current by default)
 # ignores hidden files
 # `replace <before> <after> [directory]`
