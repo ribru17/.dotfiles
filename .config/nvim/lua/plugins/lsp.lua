@@ -43,10 +43,6 @@ end
 
 return {
   {
-    'p00f/clangd_extensions.nvim',
-    lazy = true,
-  },
-  {
     'mrcjkb/haskell-tools.nvim',
     ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
     version = '^3',
@@ -55,7 +51,6 @@ return {
     'neovim/nvim-lspconfig',
     event = { 'LazyFile' },
     config = function()
-      local SETTINGS = require('rileybruins.settings')
       require('lspconfig.ui.windows').default_options.border = BORDER_STYLE
       local lspconfig = require('lspconfig')
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -63,10 +58,6 @@ return {
       local custom_capabilities = require('cmp_nvim_lsp').default_capabilities()
       custom_capabilities.offsetEncoding = { 'utf-16' }
       lspconfig.clangd.setup {
-        on_attach = function()
-          require('clangd_extensions.inlay_hints').setup_autocmd()
-          require('clangd_extensions.inlay_hints').set_inlay_hints()
-        end,
         capabilities = custom_capabilities,
         -- NOTE: to achieve LSP warnings on unused includes, add a `.clangd`
         -- file to the project directory containing:
@@ -286,18 +277,15 @@ return {
           local map = vim.keymap.set
           local opts = { buffer = ev.buf, remap = false, silent = true }
 
+          vim.lsp.inlay_hint.enable()
+
           -- if action opens up qf list, open the first item and close the list
           local function choose_list_first(options)
             vim.fn.setqflist({}, ' ', options)
             vim.cmd.cfirst()
           end
 
-          map('n', 'K', function()
-            local winid = require('ufo').peekFoldedLinesUnderCursor()
-            if not winid then
-              vim.lsp.buf.hover()
-            end
-          end, opts)
+          map('n', 'K', vim.lsp.buf.hover, opts)
           map('n', '<leader>e', vim.diagnostic.open_float, opts)
           -- go back with <C-o>, forth with <C-i>
           map('n', 'gd', function()

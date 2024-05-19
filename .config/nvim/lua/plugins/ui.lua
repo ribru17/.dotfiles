@@ -888,10 +888,8 @@ return {
             },
           },
           {
-            -- TODO: Change this after v0.10. See the following discussion:
-            -- https://github.com/luukvbaal/statuscol.nvim/issues/103#issuecomment-1937791243
             sign = {
-              name = { 'Diagnostic' },
+              namespace = { 'diagnostic' },
               maxwidth = 2,
               colwidth = 1,
               auto = false,

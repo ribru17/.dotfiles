@@ -183,8 +183,6 @@ M.apply = function()
           },
         },
       },
-      -- Recognize `.typ` filetype as `typst`. Only works on nightly as of now.
-      filetype_typ = 'typst',
       neovide_cursor_animate_in_insert_mode = false,
     },
     o = {
@@ -226,6 +224,10 @@ M.apply = function()
       undofile = true,
       virtualedit = 'block,insert',
       wrap = false,
+    },
+    wo = {
+      foldexpr = 'v:lua.vim.treesitter.foldexpr()',
+      foldtext = '',
     },
     opt = {
       completeopt = { 'menu', 'menuone', 'preview', 'noselect', 'noinsert' },

@@ -11,25 +11,21 @@ of both worlds).
 ]],
 })
 
--- TODO: Remove after v0.10
--- Only set this mapping if `xdg-open` is found. If not, we will bite the bullet
--- and load all of the netrw plugin to get this functionality.
-if vim.fn.executable('xdg-open') == 1 then
-  map('n', 'gx', function()
-    local link = link_dest()
-    if link then
-      vim.fn.system {
-        'xdg-open',
-        link,
-      }
-    else
-      vim.fn.system {
-        'xdg-open',
-        vim.fn.expand('<cfile>'),
-      }
-    end
-  end, { desc = 'Netrw-like link opening', silent = true })
-end
+-- TODO: Remove after https://github.com/neovim/neovim/pull/28630
+map('n', 'gx', function()
+  local link = link_dest()
+  if link then
+    vim.fn.system {
+      'xdg-open',
+      link,
+    }
+  else
+    vim.fn.system {
+      'xdg-open',
+      vim.fn.expand('<cfile>'),
+    }
+  end
+end, { desc = 'Netrw-like link opening', silent = true })
 
 local indent_opts = { desc = 'VSCode-style block indentation' }
 map('x', '<Tab>', function()
@@ -191,10 +187,13 @@ map('i', '<C-e>', '<C-o>e<Right>', insertnav_opts)
 
 map({ 'i', 'c' }, '<M-BS>', '<C-w>', { desc = 'Delete word in insert mode' })
 
-map({ 'n', 'v', 'i' }, '<C-/>', '<C-_>', {
-  remap = true,
-  desc = 'Make comment work on terminals where <C-/> is literally <C-/>',
-})
+local comment_opts = { desc = 'VS-Code comment keybinding', remap = true }
+map('n', '<C-/>', 'gcc', comment_opts)
+map('x', '<C-/>', 'gc', comment_opts)
+map('i', '<C-/>', function()
+  -- TODO: Insert mode comments for empty lines
+  vim.cmd.normal('gcc')
+end, comment_opts)
 
 map('i', '<C-f>', '<C-t>', { remap = true, desc = 'Easier bullet formatting' })
 
@@ -227,7 +226,7 @@ map({ 'x', 'n' }, '<leader>t', function()
   local set_cur = vim.api.nvim_win_set_cursor
   if vstart == current_line then
     vim.cmd.yank()
-    require('Comment.api').toggle.linewise.current()
+    vim.cmd.normal('gcc')
     vim.cmd.put()
     set_cur(win, { cur[1] + 1, cur[2] })
   else
@@ -241,7 +240,7 @@ map({ 'x', 'n' }, '<leader>t', function()
       vim.cmd.put()
       set_cur(win, { vim.fn.line('.'), cur[2] })
     end
-    require('Comment.api').toggle.linewise(vim.fn.visualmode())
+    vim.cmd.normal('gvgc')
   end
 end, { silent = true, desc = 'Comment and duplicate selected lines' })
 
@@ -424,77 +423,9 @@ create_command('DiffFormat', function()
 end, { desc = 'Format changed lines' })
 
 create_command('ClearSem', function()
-  local set_hl = vim.api.nvim_set_hl
-  local function clear(hl)
-    set_hl(0, hl, {})
+  for _, client in ipairs(vim.lsp.get_clients()) do
+    vim.lsp.semantic_tokens.stop(vim.api.nvim_get_current_buf(), client.id)
   end
-  clear('@lsp.mod.readonly')
-  clear('@lsp.mod.typeHint')
-  clear('@lsp.type.boolean')
-  clear('@lsp.type.builtinConstant')
-  clear('@lsp.type.builtinType')
-  clear('@lsp.type.comment')
-  clear('@lsp.type.decorator')
-  clear('@lsp.type.deriveHelper')
-  clear('@lsp.type.enum')
-  clear('@lsp.type.enumMember')
-  clear('@lsp.type.escapeSequence')
-  clear('@lsp.type.event')
-  clear('@lsp.type.formatSpecifier')
-  clear('@lsp.type.function')
-  clear('@lsp.type.generic')
-  clear('@lsp.type.interface')
-  clear('@lsp.type.keyword')
-  clear('@lsp.type.lifetime')
-  clear('@lsp.type.macro')
-  clear('@lsp.type.magicFunction')
-  clear('@lsp.type.method')
-  clear('@lsp.type.namespace')
-  clear('@lsp.type.number')
-  clear('@lsp.type.operator')
-  clear('@lsp.type.parameter')
-  clear('@lsp.type.property')
-  clear('@lsp.type.selfKeyword')
-  clear('@lsp.type.selfTypeKeyword')
-  clear('@lsp.type.string')
-  clear('@lsp.type.struct')
-  clear('@lsp.type.type')
-  clear('@lsp.type.typeAlias')
-  clear('@lsp.type.typeParameter')
-  clear('@lsp.type.unresolvedReference')
-  clear('@lsp.type.variable')
-  clear('@lsp.type.variable.rust')
-  clear('@lsp.typemod.class.defaultLibrary')
-  clear('@lsp.typemod.enum.defaultLibrary')
-  clear('@lsp.typemod.enumMember.defaultLibrary')
-  clear('@lsp.typemod.function.defaultLibrary')
-  clear('@lsp.typemod.function.builtin')
-  clear('@lsp.typemod.function.readonly')
-  clear('@lsp.typemod.keyword.async')
-  clear('@lsp.typemod.keyword.injected')
-  clear('@lsp.typemod.macro.defaultLibrary')
-  clear('@lsp.typemod.method.defaultLibrary')
-  clear('@lsp.typemod.method.readonly')
-  clear('@lsp.typemod.operator.injected')
-  clear('@lsp.typemod.parameter.mutable.rust')
-  clear('@lsp.typemod.parameter.readonly')
-  clear('@lsp.type.class')
-  clear('@lsp.typemod.property.readonly')
-  clear('@lsp.typemod.string.injected')
-  clear('@lsp.typemod.struct.defaultLibrary')
-  clear('@lsp.typemod.type.defaultLibrary')
-  clear('@lsp.typemod.typeAlias.defaultLibrary')
-  clear('@lsp.typemod.variable.callable')
-  clear('@lsp.typemod.variable.constant.rust')
-  clear('@lsp.typemod.variable.defaultLibrary')
-  clear('@lsp.typemod.variable.global')
-  clear('@lsp.typemod.variable.injected')
-  clear('@lsp.typemod.variable.mutable.rust')
-  clear('@lsp.typemod.variable.static')
-  clear('@lsp.typemod.variable.static.rust')
-  clear('@lsp.type.builtinAttribute')
-  clear('@lsp.type.derive')
-  clear('@lsp.typemod.generic.attribute')
 end, { desc = 'Clear LSP semantic highlights' })
 
 create_command('DiffKeep', function()

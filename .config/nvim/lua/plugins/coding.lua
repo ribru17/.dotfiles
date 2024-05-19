@@ -70,7 +70,6 @@ return {
   },
   {
     'mrcjkb/rustaceanvim',
-    version = '^3',
     ft = { 'rust' },
   },
   {
@@ -108,22 +107,6 @@ return {
     },
   },
   {
-    -- TODO: Remove after v0.10
-    -- Lazy-load netrw for `gx` functionality, *only* if `xdg-open` is not found
-    -- (in which case we will create a regular keymapping for `gx` using it)
-    dir = vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim',
-    enabled = function()
-      return vim.fn.executable('xdg-open') == 0
-    end,
-    keys = {
-      'gx',
-    },
-    cmd = 'Explore',
-    config = function()
-      vim.cmd.source(vim.env.VIMRUNTIME .. '/plugin/netrwPlugin.vim')
-    end,
-  },
-  {
     'andymass/vim-matchup',
     event = { 'BufReadPost', 'BufNewFile' },
   },
@@ -138,83 +121,6 @@ return {
   {
     'dstein64/vim-startuptime',
     cmd = 'StartupTime',
-  },
-  {
-    'kevinhwang91/nvim-ufo',
-    dependencies = {
-      'kevinhwang91/promise-async',
-    },
-    event = { 'LazyFile' },
-    config = function()
-      local ufo = require('ufo')
-      ---@diagnostic disable-next-line: missing-fields
-      ufo.setup {
-        fold_virt_text_handler = function(
-          virtText,
-          lnum,
-          endLnum,
-          width,
-          truncate
-        )
-          local newVirtText = {}
-          local totalLines = vim.api.nvim_buf_line_count(0) - 1
-          local foldedLines = endLnum - lnum
-          local suffix = (' ⤶ %d %d%%'):format(
-            foldedLines,
-            foldedLines / totalLines * 100
-          )
-          local sufWidth = vim.fn.strdisplaywidth(suffix)
-          local targetWidth = width - sufWidth
-          local curWidth = 0
-          table.insert(virtText, { ' …', 'Comment' })
-          for _, chunk in ipairs(virtText) do
-            local chunkText = chunk[1]
-            local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-            if targetWidth > curWidth + chunkWidth then
-              table.insert(newVirtText, chunk)
-            else
-              chunkText = truncate(chunkText, targetWidth - curWidth)
-              local hlGroup = chunk[2]
-              table.insert(newVirtText, { chunkText, hlGroup })
-              chunkWidth = vim.fn.strdisplaywidth(chunkText)
-              -- str width returned from truncate() may less than 2nd argument, need padding
-              if curWidth + chunkWidth < targetWidth then
-                suffix = suffix
-                  .. (' '):rep(targetWidth - curWidth - chunkWidth)
-              end
-              break
-            end
-            curWidth = curWidth + chunkWidth
-          end
-          local rAlignAppndx = math.max(
-            math.min(vim.opt.textwidth['_value'], width - 1)
-              - curWidth
-              - sufWidth,
-            0
-          )
-          suffix = (' '):rep(rAlignAppndx) .. suffix
-          table.insert(newVirtText, { suffix, 'MoreMsg' })
-          return newVirtText
-        end,
-        preview = {
-          win_config = {
-            border = require('rileybruins.settings').border,
-            winhighlight = 'Normal:Normal',
-            winblend = 0,
-          },
-        },
-        provider_selector = function(_, _, _)
-          return { 'treesitter' }
-        end,
-      }
-
-      local map = vim.keymap.set
-      map('n', 'zR', ufo.openAllFolds)
-      map('n', 'zM', ufo.closeAllFolds)
-      map('n', 'zk', ufo.goPreviousStartFold)
-      map('n', 'zn', ufo.goNextClosedFold)
-      map('n', 'zp', ufo.goPreviousClosedFold)
-    end,
   },
   {
     'HiPhish/rainbow-delimiters.nvim',
@@ -320,57 +226,6 @@ return {
         },
         move_cursor = false,
       }
-    end,
-  },
-  {
-    'numToStr/Comment.nvim',
-    keys = {
-      { 'gc', mode = { 'n', 'x' } },
-      { 'gb', mode = { 'n', 'x' } },
-      { '<C-_>', mode = { 'i', 'x', 'n' } },
-    },
-    config = function()
-      local in_jsx_tags = require('rileybruins.utils').in_jsx_tags
-      ---@diagnostic disable-next-line: missing-fields
-      require('Comment').setup {
-        pre_hook = function()
-          local ft = vim.bo.filetype
-          if ft == 'typescriptreact' or ft == 'javascriptreact' then
-            if
-              in_jsx_tags(false)
-              or vim.api.nvim_get_current_line():match('^%s-{/%*.-%*/}%s-$')
-            then
-              return '{/*%s*/}'
-            end
-          end
-          ---@diagnostic disable-next-line: return-type-mismatch
-          return nil
-        end,
-        ignore = function()
-          local mode = vim.api.nvim_get_mode()['mode']
-          if mode == 'n' then
-            return '^$'
-          end
-          ---@diagnostic disable-next-line: return-type-mismatch
-          return nil
-        end,
-      }
-
-      -- toggle comment in insert mode
-      local comment_line = require('Comment.api').toggle.linewise.current
-      vim.keymap.set('i', '<C-_>', function()
-        if vim.api.nvim_get_current_line() == '' then
-          local esc =
-            vim.api.nvim_replace_termcodes('<Esc>gcA', true, false, true)
-          vim.api.nvim_feedkeys(esc, 'm', false)
-          return
-        end
-        comment_line()
-        vim.cmd.normal { '$', bang = true }
-        vim.cmd.startinsert { bang = true }
-      end, {})
-      vim.keymap.set({ 'n' }, '<C-_>', comment_line, {})
-      vim.keymap.set({ 'x' }, '<C-_>', 'gc', { remap = true })
     end,
   },
   {

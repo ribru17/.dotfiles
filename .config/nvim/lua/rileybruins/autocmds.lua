@@ -266,32 +266,6 @@ create_autocmd('TermOpen', {
   end,
 })
 
--- automatically close terminals after process exits successfully, without
--- waiting for a [Process exited] prompt
--- See: https://github.com/neovim/neovim/issues/14986
--- TODO: Remove after v0.10
-create_autocmd('TermClose', {
-  callback = function(ev)
-    pcall(function()
-      vim.cmd.bdelete { ev.buf, bang = true }
-    end)
-  end,
-})
-
--- load clangd cmp scoring
-create_autocmd('FileType', {
-  pattern = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
-  callback = function()
-    require('cmp').setup.filetype {
-      sorting = {
-        comparators = vim.list_extend({
-          require('clangd_extensions.cmp_scores'),
-        }, require('cmp.config').get().sorting.comparators),
-      },
-    }
-  end,
-})
-
 -- format query files, aligning with nvim-treesitter standards
 local cmd = 'nvim -l '
   .. vim.fn.stdpath('data')
