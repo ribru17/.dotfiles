@@ -33,13 +33,6 @@ return {
           -- Instead of true it can also be a list of languages
           additional_vim_regex_highlighting = false,
         },
-        -- HTML-style tag completion
-        autotag = {
-          enable = true,
-          -- disable auto-close because we manually implement this in luasnip
-          -- https://github.com/windwp/nvim-ts-autotag/pull/105#discussion_r1179164951
-          enable_close = 'false',
-        },
         indent = {
           enable = true,
         },
