@@ -155,17 +155,10 @@
   (#set! conceal "~"))
 
 ; Awesome fenced code block language conceals using Nerd icons
-; This solution is a bit hacky to allow the Nerd icon to expand to full width
 (fenced_code_block
-  (fenced_code_block_delimiter) @label
   (info_string
-    (language) @_lang)
-  (#offset! @label 0 1 0 -1)
-  (#ft-conceal! @_lang))
-
-((fenced_code_block_delimiter) @label
-  (#offset! @label 0 2 0 0)
-  (#set! conceal " "))
+    (language) @label)
+  (#ft-conceal! @label))
 
 ; Spell checking for table content
 (pipe_table_header
