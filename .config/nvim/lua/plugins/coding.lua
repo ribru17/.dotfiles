@@ -243,8 +243,7 @@ return {
       local deno_fmt = require('conform.formatters.deno_fmt')
       local shfmt = require('conform.formatters.shfmt')
       util.add_formatter_args(clang_format, {
-        '--style',
-        '{IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty}',
+        '--style=file',
       })
       util.add_formatter_args(deno_fmt, { '--single-quote' }, { append = true })
       util.add_formatter_args(shfmt, {
