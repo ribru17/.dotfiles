@@ -121,7 +121,6 @@
 
 ; Thematic breaks
 ((thematic_break) @punctuation.special
-  (#offset! @punctuation.special 0 2 0 0)
   (#set! conceal "━"))
 
 ((thematic_break) @punctuation.special
@@ -129,6 +128,7 @@
   (#set! conceal "━"))
 
 ((thematic_break) @punctuation.special
+  (#offset! @punctuation.special 0 2 0 0)
   (#set! conceal "━"))
 
 ; Headers
