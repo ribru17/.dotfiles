@@ -12,7 +12,8 @@ return {
       'vue',
       'tsx',
       'jsx',
-      'rescript',
+      -- No parser for now; TODO: add one
+      -- 'rescript',
       'php',
       'glimmer',
       'handlebars',
