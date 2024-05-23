@@ -12,8 +12,7 @@ return {
       'vue',
       'tsx',
       'jsx',
-      -- No parser for now; TODO: add one
-      -- 'rescript',
+      'rescript',
       'php',
       'glimmer',
       'handlebars',
@@ -170,6 +169,7 @@ return {
       { 'hrsh7th/cmp-path' },
       { 'saadparwaiz1/cmp_luasnip' },
       { 'hrsh7th/cmp-nvim-lua' },
+      { 'hrsh7th/cmp-omni' },
       { 'onsails/lspkind-nvim' },
     },
     config = function()
@@ -357,6 +357,7 @@ return {
               end,
             },
           },
+          { name = 'omni' },
         },
         formatting = {
           fields = { 'abbr', 'menu', 'kind' },
