@@ -4,11 +4,12 @@ local SETTINGS = require('rileybruins.settings')
 local diagnostic_ns = vim.api.nvim_create_namespace('hldiagnosticregion')
 local diagnostic_timer
 local hl_cancel
+local diag_level = vim.diagnostic.severity
 local hl_map = {
-  [vim.diagnostic.severity.ERROR] = 'DiagnosticVirtualTextError',
-  [vim.diagnostic.severity.WARN] = 'DiagnosticVirtualTextWarn',
-  [vim.diagnostic.severity.HINT] = 'DiagnosticVirtualTextHint',
-  [vim.diagnostic.severity.INFO] = 'DiagnosticVirtualTextInfo',
+  [diag_level.ERROR] = 'DiagnosticVirtualTextError',
+  [diag_level.WARN] = 'DiagnosticVirtualTextWarn',
+  [diag_level.HINT] = 'DiagnosticVirtualTextHint',
+  [diag_level.INFO] = 'DiagnosticVirtualTextInfo',
 }
 
 local function goto_diagnostic_hl(dir)
@@ -393,7 +394,26 @@ return {
 
       vim.diagnostic.config {
         virtual_text = true,
-        signs = true,
+        signs = {
+          text = {
+            [diag_level.ERROR] = ' ',
+            [diag_level.WARN] = ' ',
+            [diag_level.INFO] = '󰌶 ',
+            [diag_level.HINT] = ' ',
+          },
+          texthl = {
+            [diag_level.ERROR] = 'DiagnosticSignError',
+            [diag_level.WARN] = 'DiagnosticSignWarn',
+            [diag_level.INFO] = 'DiagnosticSignInfo',
+            [diag_level.HINT] = 'DiagnosticSignHint',
+          },
+          numhl = {
+            [diag_level.ERROR] = 'DiagnosticSignError',
+            [diag_level.WARN] = 'DiagnosticSignWarn',
+            [diag_level.INFO] = 'DiagnosticSignInfo',
+            [diag_level.HINT] = 'DiagnosticSignHint',
+          },
+        },
         update_in_insert = false,
         underline = true,
         severity_sort = true,
@@ -408,13 +428,6 @@ return {
         vim.lsp.with(vim.lsp.handlers.signature_help, {
           border = BORDER_STYLE,
         })
-
-      local signs =
-        { Error = ' ', Warn = ' ', Hint = '󰌶 ', Info = ' ' }
-      for type, icon in pairs(signs) do
-        local hl = 'DiagnosticSign' .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
 
       -- Create a custom namespace. This will aggregate signs from all other
       -- namespaces and only show the one with the highest severity on a

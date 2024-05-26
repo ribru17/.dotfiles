@@ -105,9 +105,15 @@ return {
           diagnostics = 'nvim_lsp',
           ---@param level string
           diagnostics_indicator = function(count, level)
-            -- TODO: Do one for each of the `signs` variables in `lsp.lua`
-            local icon = level:match('error') and '' or ''
-            return icon .. ' ' .. count
+            local icon = ' '
+            if level:match('warn') then
+              icon = ' '
+            elseif level:match('hint') then
+              icon = '󰌶 '
+            elseif level:match('info') then
+              icon = ' '
+            end
+            return icon .. count
           end,
         },
       }
