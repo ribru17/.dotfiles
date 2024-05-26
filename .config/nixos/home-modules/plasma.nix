@@ -10,6 +10,7 @@
       theme = "breeze-dark";
       colorScheme = "BreezeDark";
       cursorTheme = "Bibata-Modern-Ice";
+      lookAndFeel = "org.kde.breezedark.desktop";
     };
     hotkeys.commands."launch-kitty" = {
       name = "Launch Kitty";
