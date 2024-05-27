@@ -954,4 +954,9 @@ return {
       }
     end,
   },
+  {
+    '3rd/image.nvim',
+    ft = { 'markdown', 'norg' },
+    opts = true,
+  },
 }
