@@ -640,6 +640,33 @@ return {
     ),
     { condition = in_mathzone }
   ),
+  s(
+    {
+      trig = 'mat',
+    },
+    fmt(
+      --> INJECT: latex
+      [[
+        \begin{{bmatrix}}
+          {1} & {2} & {3} \\
+          {4} & {5} & {6} \\
+          {7} & {8} & {9}
+        \end{{bmatrix}}
+      ]],
+      {
+        i(1, '1'),
+        i(2, '0'),
+        i(3, '0'),
+        i(4, '0'),
+        i(5, '1'),
+        i(6, '0'),
+        i(7, '0'),
+        i(8, '0'),
+        i(9, '1'),
+      }
+    ),
+    { condition = in_mathzone }
+  ),
   s({
     --> INJECT: luap
     trig = '([%a])(%d)',
@@ -748,6 +775,11 @@ return {
   s(
     { trig = 'approx' },
     fmt([[\approx]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'vert' },
+    fmt([[\vert]], {}),
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
