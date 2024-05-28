@@ -7,9 +7,6 @@ let
       "--enable-features=ScrollableTabStrip"
     ];
   });
-  appId = "org.kde.plasma.browser_integration.json";
-  source =
-    "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/${appId}";
 in {
   imports = [ ./home-modules/plasma.nix ];
 
@@ -84,10 +81,6 @@ in {
     ];
 
   xdg.enable = true;
-
-  # Browser integration
-  xdg.configFile."BraveSoftware/Brave-Browser/NativeMessagingHosts/${appId}".source =
-    source;
 
   xdg.mimeApps = rec {
     enable = true;
