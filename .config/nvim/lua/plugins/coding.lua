@@ -241,11 +241,16 @@ return {
       local util = require('conform.util')
       local clang_format = require('conform.formatters.clang_format')
       local deno_fmt = require('conform.formatters.deno_fmt')
+      local qfmt = require('conform.formatters.format-queries')
       local shfmt = require('conform.formatters.shfmt')
       util.add_formatter_args(clang_format, {
         '--style=file',
       })
       util.add_formatter_args(deno_fmt, { '--single-quote' }, { append = true })
+      local nvim_ts_path = vim.fn.stdpath('data') .. '/lazy/nvim-treesitter/'
+      -- recognize the latest parser from nvim-treesitter, not the one bundled
+      -- with neovim
+      util.add_formatter_args(qfmt, { '-c', 'set rtp^=' .. nvim_ts_path })
       util.add_formatter_args(shfmt, {
         '--indent',
         '4',
@@ -273,6 +278,7 @@ return {
           luau = { 'stylua' },
           markdown = { 'deno_fmt' },
           python = { 'yapf' },
+          query = { 'format-queries' },
           sh = { 'shfmt' },
           typescript = { 'deno_fmt' },
           typescriptreact = { 'deno_fmt' },

@@ -266,21 +266,6 @@ create_autocmd('TermOpen', {
   end,
 })
 
--- format query files, aligning with nvim-treesitter standards
-local cmd = 'nvim -l '
-  .. vim.fn.stdpath('data')
-  .. '/lazy/nvim-treesitter/scripts/format-queries.lua '
-create_autocmd('BufWritePost', {
-  pattern = '**/queries/*/*.scm',
-  callback = function(ev)
-    if vim.bo[ev.buf].ft ~= 'query' then
-      return
-    end
-    vim.fn.system(cmd .. vim.api.nvim_buf_get_name(ev.buf))
-    vim.cmd.checkt(ev.buf)
-  end,
-})
-
 -- allow regular CR function in cmdline windows
 create_autocmd('CmdwinEnter', {
   callback = function(ev)
