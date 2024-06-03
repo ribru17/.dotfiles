@@ -13,7 +13,7 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp-spell": { "branch": "master", "commit": "694a4e50809d6d645c1ea29015dad0c293f019d6" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
-  "conform.nvim": { "branch": "master", "commit": "63e0a32c85a39484813957dc480f171907aa90b9" },
+  "conform.nvim": { "branch": "master", "commit": "7159a23d19fb982269dae2e8147ebbe34965095b" },
   "deadcolumn.nvim": { "branch": "master", "commit": "af13928aa281f36273e8f220b19e78d497c7fb87" },
   "gitsigns.nvim": { "branch": "main", "commit": "75dc649106827183547d3bedd4602442340d2f7f" },
   "haskell-tools.nvim": { "branch": "master", "commit": "65d6993eba1a56bbd5211ef13a100d26ce3e644a" },
