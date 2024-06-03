@@ -143,7 +143,11 @@ return {
           tsx = 'rainbow-tags-react',
           commonlisp = 'rainbow-delimiters',
           scheme = 'rainbow-delimiters',
-          query = 'rainbow-delimiters',
+          query = function(bufnr)
+            -- Use blocks for read-only buffers like in `:InspectTree`
+            local is_nofile = vim.bo[bufnr].buftype == 'nofile'
+            return is_nofile and 'rainbow-blocks' or 'rainbow-delimiters'
+          end,
           clojure = 'rainbow-delimiters',
           html = 'rainbow-delimiters',
         },
