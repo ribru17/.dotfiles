@@ -57,7 +57,7 @@ vim.keymap.set('i', ';', function()
     if string.len(trim(line)) == 0 then
       return ';<esc>==$a<cr>'
     end
-    return '<esc>g_a;<cr>'
+    return '<esc>g_a;'
   end
 end, { expr = true })
 vim.keymap.set('i', '<M-;>', ';', { remap = false })
