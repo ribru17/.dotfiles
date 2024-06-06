@@ -56,6 +56,7 @@ local M = {
     'c',
     'comment',
     'diff',
+    'doxygen',
     'git_config',
     'git_rebase',
     'gitattributes',
