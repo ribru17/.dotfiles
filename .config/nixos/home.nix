@@ -44,6 +44,7 @@ in {
       fastfetch
       firefox
       fswatch # faster file watching backend for LSP
+      gdb
       gettext # for building Neovim
       gh
       ghc
