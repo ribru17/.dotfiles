@@ -171,7 +171,12 @@ return {
       local input = require('nvim-surround.input').get_input
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-surround').setup {
-        -- Configuration here, or leave empty to use defaults
+        keymaps = {
+          normal = 's',
+          normal_cur = 'ss',
+          normal_line = 'S',
+          normal_cur_line = 'SS',
+        },
         aliases = {
           ['d'] = { '{', '[', '(', '<', '"', "'", '`' }, -- any delimiter
           ['b'] = { '{', '[', '(', '<' }, -- bracket
