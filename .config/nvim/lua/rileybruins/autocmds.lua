@@ -165,19 +165,7 @@ create_autocmd('FileType', {
   end,
 })
 
--- filetypes that should not have a foldcolumn that takes up lots of space
-create_autocmd('FileType', {
-  pattern = '*',
-  callback = function(ev)
-    local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].ft)
-    local has_folds = pcall(function()
-      vim.treesitter.query.get(lang, 'folds')
-    end)
-    if not lang or not has_folds then
-      vim.opt_local.foldcolumn = '0'
-    end
-  end,
-})
+-- hide foldcolumn for certain filetypes
 create_autocmd('FileType', {
   pattern = SETTINGS.hide_foldcolumn,
   callback = function()
