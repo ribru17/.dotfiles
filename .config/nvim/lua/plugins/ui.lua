@@ -142,7 +142,6 @@ return {
             'alpha',
           },
           section_separators = { left = '', right = '' },
-          -- never could decide on any of these
           -- component_separators = { left = '·', right = '·' },
           -- component_separators = { left = '', right = '' },
           -- component_separators = { left = '┊', right = '┊' },
@@ -958,5 +957,8 @@ return {
     '3rd/image.nvim',
     ft = { 'markdown', 'norg' },
     opts = true,
+  },
+  {
+    'Bekaboo/dropbar.nvim',
   },
 }

@@ -148,6 +148,7 @@ local M = {
       'TelescopeResults',
       'alpha',
       'checkhealth',
+      'dropbar_menu',
       'fzf',
       'gitcommit',
       'gitconfig',
