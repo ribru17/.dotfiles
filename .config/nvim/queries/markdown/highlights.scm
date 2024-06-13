@@ -133,22 +133,22 @@
 
 ; Headers
 ((atx_h1_marker) @markup.heading.1
-  (#set! conceal "𝟭"))
+  (#set! conceal "󰉫"))
 
 ((atx_h2_marker) @markup.heading.2
-  (#set! conceal "𝟮"))
+  (#set! conceal "󰉬"))
 
 ((atx_h3_marker) @markup.heading.3
-  (#set! conceal "𝟯"))
+  (#set! conceal "󰉭"))
 
 ((atx_h4_marker) @markup.heading.4
-  (#set! conceal "𝟰"))
+  (#set! conceal "󰉮"))
 
 ((atx_h5_marker) @markup.heading.5
-  (#set! conceal "𝟱"))
+  (#set! conceal "󰉯"))
 
 ((atx_h6_marker) @markup.heading.6
-  (#set! conceal "𝟲"))
+  (#set! conceal "󰉰"))
 
 ; Ease fenced code block conceals a bit
 ((fenced_code_block_delimiter) @conceal
