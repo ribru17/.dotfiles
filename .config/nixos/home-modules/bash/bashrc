@@ -28,6 +28,11 @@ alias refresh='clear && fastfetch'
 # neovim development
 alias devi='$HOME/neovim/bin/nvim'
 alias devi:build='make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="$HOME/neovim/" && make install'
+# Run a specific test
+# Example usage: `devi:test test/functional/lua/diagnostic_spec.lua`
+devi:test() {
+    TEST_FILE="$1" make "$(echo "$1" | awk -F'/' '{print $2}')test"
+}
 
 # misc
 alias py='python3'
