@@ -26,7 +26,7 @@ alias nix:update='nix flake update --flake "$HOME/.config/nixos/"'
 alias refresh='clear && fastfetch'
 
 # neovim development
-alias devi='$HOME/neovim/bin/nvim'
+alias devi='VIMRUNTIME=$HOME/Documents/CodeProjects/neovim/runtime/ $HOME/neovim/bin/nvim --luamod-dev'
 alias devi:build='make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="$HOME/neovim/" && make install'
 # Run a specific test
 # Example usage: `devi:test test/functional/lua/diagnostic_spec.lua`
