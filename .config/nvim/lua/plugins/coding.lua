@@ -10,6 +10,10 @@ return {
           change = { text = '┋' },
           delete = { text = '🢒' },
         },
+        signs_staged = {
+          change = { text = '┋' },
+          delete = { text = '🢒' },
+        },
         sign_priority = 0,
         preview_config = {
           border = BORDER_STYLE,
