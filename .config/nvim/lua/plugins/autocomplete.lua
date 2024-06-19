@@ -357,7 +357,10 @@ return {
               end,
             },
           },
-          { name = 'omni' },
+          {
+            name = 'omni',
+            keyword_pattern = [[\(\k\|"\)\+]],
+          },
         },
         formatting = {
           fields = { 'abbr', 'menu', 'kind' },
