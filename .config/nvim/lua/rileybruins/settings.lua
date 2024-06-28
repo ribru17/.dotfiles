@@ -207,6 +207,7 @@ M.apply = function()
       foldmethod = 'expr',
       guifont = 'Iosevka Custom Extended,Symbols Nerd Font Mono:h15',
       ignorecase = true,
+      laststatus = 3,
       linespace = -1,
       list = true,
       mouse = '',
