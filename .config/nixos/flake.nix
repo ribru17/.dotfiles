@@ -17,25 +17,17 @@
     plasma-manager = {
       inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:pjones/plasma-manager";
+      url = "github:nix-community/plasma-manager";
     };
 
     # Pin Iosevka to a specific nixpkgs commit to prevent lots of long builds
     nixpkgs-iosevka-pin.url =
       "github:nixos/nixpkgs/7848d6f048d38c42a8aeeff7fe7d36916ffb8284";
 
-    # This will already be installed by other flake inputs anyway, may as well
-    # include it so we can prevent accidental package duplication in the
-    # future (using `follows`)
-    flake-utils.url = "github:numtide/flake-utils";
-
     # Rust overlay
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
+      inputs = { nixpkgs.follows = "nixpkgs"; };
     };
 
     # Nix Language server
@@ -47,7 +39,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, plasma-manager
-    , nixpkgs-iosevka-pin, rust-overlay, nil, flake-utils }:
+    , nixpkgs-iosevka-pin, rust-overlay, nil }:
     let
       vars = {
         username = "rileyb";

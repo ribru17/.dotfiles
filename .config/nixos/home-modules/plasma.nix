@@ -1,16 +1,15 @@
-{ options, ... }: {
+{ ... }: {
   programs.plasma = let system-notification-sounds = false;
   in {
     enable = true;
     overrideConfig = true;
-    overrideConfigFiles = options.programs.plasma.overrideConfigFiles.default
-      ++ [ "plasma-org.kde.plasma.desktop-appletsrc" ];
     workspace = {
       wallpaper = ../assets/animals.png;
       theme = "breeze-dark";
       colorScheme = "BreezeDark";
-      cursorTheme = "Bibata-Modern-Ice";
-      lookAndFeel = "org.kde.breezedark.desktop";
+      cursor.theme = "Bibata-Modern-Ice";
+      # lookAndFeel = "org.kde.breezedark.desktop";
+      splashScreen = { theme = "Illusion"; };
     };
     hotkeys.commands."launch-kitty" = {
       name = "Launch Kitty";
@@ -1070,46 +1069,42 @@
         {
           name = "org.kde.plasma.icontasks";
           config = {
-            General.launchers = [
-              "applications:systemsettings.desktop"
-              "applications:org.kde.dolphin.desktop"
-              "applications:brave-browser.desktop"
-              "applications:kitty.desktop"
-              "applications:discord.desktop"
-              "applications:spotify.desktop"
-              "applications:gimp.desktop"
-            ];
+            General = {
+              showOnlyCurrentDesktop = "false";
+              # showOnlyCurrentActivity = "true";
+              # showOnlyCurrentScreen = "true";
+              launchers = [
+                "applications:systemsettings.desktop"
+                "applications:org.kde.dolphin.desktop"
+                "applications:brave-browser.desktop"
+                "applications:kitty.desktop"
+                "applications:discord.desktop"
+                "applications:spotify.desktop"
+                "applications:gimp.desktop"
+              ];
+            };
           };
         }
-        "org.kde.plasma.systemtray"
+        {
+          systemTray = {
+            icons.scaleToFit = true;
+            items = {
+              shown = [
+                "org.kde.plasma.networkmanagement"
+                "org.kde.plasma.volume"
+                "org.kde.plasma.battery"
+              ];
+              hidden =
+                [ "org.kde.plasma.clipboard" "org.kde.plasma.notifications" ];
+              configs.battery.showPercentage = true;
+            };
+          };
+        }
+        "org.kde.plasma.digitalclock"
       ];
       # Correctly grab the system tray widget and adjust settings.
       # Cannot do this in the regular widgets nix config because the id will
       # change every time.
-      extraSettings =
-        # javascript
-        ''
-          panels().forEach((p) => {
-            p.widgets().forEach((w) => {
-              switch(w.type) {
-                case "org.kde.plasma.systemtray":
-                  systray = w.readConfig("SystrayContainmentId")
-                  systray = desktopById(systray)
-                  systray.writeConfig("scaleIconsToFit", true)
-                  systray.writeConfig("hiddenItems", [
-                    "org.kde.plasma.clipboard",
-                    "org.kde.plasma.notifications",
-                    "org.kde.plasma.battery"
-                  ])
-                  systray.writeConfig("popupHeight", 432)
-                  systray.writeConfig("popupWidth", 432)
-                  let battery = p.addWidget("org.kde.plasma.battery")
-                  battery.writeConfig("showPercentage", true)
-                  p.addWidget("org.kde.plasma.digitalclock")
-              }
-            })
-          })
-        '';
     }];
   };
 }

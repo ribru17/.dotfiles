@@ -953,11 +953,11 @@ return {
       }
     end,
   },
-  {
-    '3rd/image.nvim',
-    ft = { 'markdown', 'norg' },
-    opts = true,
-  },
+  -- {
+  --   '3rd/image.nvim',
+  --   ft = { 'markdown', 'norg' },
+  --   opts = true,
+  -- },
   {
     'Bekaboo/dropbar.nvim',
   },
