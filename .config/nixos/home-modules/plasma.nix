@@ -1071,8 +1071,6 @@
           config = {
             General = {
               showOnlyCurrentDesktop = "false";
-              # showOnlyCurrentActivity = "true";
-              # showOnlyCurrentScreen = "true";
               launchers = [
                 "applications:systemsettings.desktop"
                 "applications:org.kde.dolphin.desktop"
@@ -1102,9 +1100,6 @@
         }
         "org.kde.plasma.digitalclock"
       ];
-      # Correctly grab the system tray widget and adjust settings.
-      # Cannot do this in the regular widgets nix config because the id will
-      # change every time.
     }];
   };
 }
