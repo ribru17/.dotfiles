@@ -116,6 +116,9 @@ return {
         ts = 'typescript',
       }
 
+      -- additional language registration
+      vim.treesitter.language.register('json', { 'chart' })
+
       -- extra fallbacks for icons that do not have a filetype entry in nvim-
       -- devicons
       local icon_fallbacks = {
