@@ -65,6 +65,7 @@ local M = {
     'haskell',
     'html',
     'javascript',
+    'jsdoc',
     'json',
     'latex',
     'lua',
