@@ -12,6 +12,7 @@ local hl_map = {
   [diag_level.INFO] = 'DiagnosticVirtualTextInfo',
 }
 
+---@param dir 'prev'|'next'
 local function goto_diagnostic_hl(dir)
   assert(dir == 'prev' or dir == 'next')
   local diagnostic = vim.diagnostic['get_' .. dir]()
@@ -202,6 +203,7 @@ return {
               -- neededFileStatus = { ['codestyle-check'] = 'Any' },
             },
             telemetry = { enable = false },
+            hint = { enable = true },
             runtime = {
               version = 'LuaJIT',
               path = {
