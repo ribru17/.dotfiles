@@ -469,6 +469,7 @@ return {
     opts = {
       settings = {
         tsserver_file_preferences = {
+          includeInlayParameterNameHints = 'all',
           -- NOTE: Should only really enable this if working in a Tree-sitter
           -- grammar
           disableSuggestions = false,
