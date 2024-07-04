@@ -7,7 +7,6 @@ create_autocmd('FileType', {
   callback = function()
     local setlocal = vim.opt_local
     setlocal.shiftwidth = 2
-    setlocal.tabstop = 2
     setlocal.softtabstop = 2
   end,
 })
