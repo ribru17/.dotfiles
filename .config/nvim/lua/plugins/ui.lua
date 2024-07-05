@@ -453,10 +453,10 @@ return {
             local buffers = {}
             local len = 0
             local vim_fn = vim.fn
-            local buflisted = vim_fn.buflisted
+            local win_findbuf = vim_fn.win_findbuf
 
             for buffer = 1, vim_fn.bufnr('$') do
-              if buflisted(buffer) == 1 then
+              if #win_findbuf(buffer) ~= 0 then
                 len = len + 1
                 -- get relative name of buffer without leading slash
                 buffers[len] = '^'

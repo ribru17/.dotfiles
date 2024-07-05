@@ -36,7 +36,6 @@ create_autocmd('FileType', {
 create_autocmd('BufWinEnter', {
   callback = function()
     vim.opt_local.formatoptions:remove { 'r', 'o' }
-    vim.opt_local.bufhidden = 'delete'
   end,
 })
 
