@@ -51,7 +51,6 @@ return {
               return false
             end,
             selection_modes = {
-              ['@comment.outer'] = 'V',
               ['@conditional.outer'] = 'V',
             },
           },
