@@ -258,3 +258,11 @@ create_autocmd('CmdwinEnter', {
     vim.keymap.set('n', '<CR>', '<CR>', { remap = false, buffer = ev.buf })
   end,
 })
+
+create_autocmd('User', {
+  pattern = 'MiniFilesWindowOpen',
+  callback = function(args)
+    local win_id = args.data.win_id
+    vim.api.nvim_win_set_config(win_id, { border = SETTINGS.border })
+  end,
+})
