@@ -80,30 +80,6 @@ create_autocmd('InsertEnter', {
   end,
 })
 
--- open dashboard when in a directory
-create_autocmd('BufEnter', {
-  callback = function()
-    if vim.fn.isdirectory(vim.fn.expand('%')) == 1 then
-      vim.cmd.NvimTreeToggle(vim.fn.expand('%'))
-    end
-  end,
-})
-
--- close nvim tree if last buffer of tab/window
-create_autocmd('BufEnter', {
-  pattern = 'NvimTree_*',
-  callback = function()
-    local layout = vim.api.nvim_call_function('winlayout', {})
-    if
-      layout[1] == 'leaf'
-      and vim.bo[vim.api.nvim_win_get_buf(layout[2])].ft == 'NvimTree'
-      and layout[3] == nil
-    then
-      vim.cmd.quit { mods = { confirm = true } }
-    end
-  end,
-})
-
 -- handle dashboard animation starting and stopping
 create_autocmd({ 'FileType', 'BufEnter' }, {
   pattern = '*',
@@ -256,13 +232,5 @@ create_autocmd('TermOpen', {
 create_autocmd('CmdwinEnter', {
   callback = function(ev)
     vim.keymap.set('n', '<CR>', '<CR>', { remap = false, buffer = ev.buf })
-  end,
-})
-
-create_autocmd('User', {
-  pattern = 'MiniFilesWindowOpen',
-  callback = function(args)
-    local win_id = args.data.win_id
-    vim.api.nvim_win_set_config(win_id, { border = SETTINGS.border })
   end,
 })

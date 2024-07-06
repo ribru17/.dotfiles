@@ -551,7 +551,11 @@ return {
           ' ' .. ' Open recent',
           ":lua require('telescope.builtin').oldfiles()<CR>"
         ),
-        newButton('t', ' ' .. ' File tree', ':NvimTreeToggle <CR>'),
+        newButton(
+          't',
+          ' ' .. ' File tree',
+          ':lua require("mini.files").open(vim.api.nvim_buf_get_name(0), false)<CR>'
+        ),
         newButton(
           's',
           ' ' .. ' Search for text',
@@ -723,7 +727,9 @@ return {
           go_in_plus = '<CR>',
         },
       }
-      vim.keymap.set('n', '<leader>ft', MiniFiles.open)
+      vim.keymap.set('n', '<leader>ft', function()
+        MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+      end)
 
       local show_dotfiles = true
       local MiniFiles = require('mini.files')
@@ -762,6 +768,14 @@ return {
         local desc = 'Open in new tab'
         vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = desc })
       end
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesWindowOpen',
+        callback = function(args)
+          local win_id = args.data.win_id
+          vim.api.nvim_win_set_config(win_id, { border = SETTINGS.border })
+        end,
+      })
 
       vim.api.nvim_create_autocmd('User', {
         pattern = 'MiniFilesBufferCreate',
