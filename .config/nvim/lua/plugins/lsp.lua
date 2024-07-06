@@ -203,7 +203,10 @@ return {
               -- neededFileStatus = { ['codestyle-check'] = 'Any' },
             },
             telemetry = { enable = false },
-            hint = { enable = true },
+            hint = {
+              enable = true,
+              arrayIndex = 'Disable',
+            },
             runtime = {
               version = 'LuaJIT',
               path = {
