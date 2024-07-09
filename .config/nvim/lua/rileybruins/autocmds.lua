@@ -11,6 +11,18 @@ create_autocmd('FileType', {
   end,
 })
 
+-- settings for help files
+create_autocmd('BufWinEnter', {
+  pattern = '*',
+  callback = function(ev)
+    if vim.bo[ev.buf].ft ~= 'help' then
+      return
+    end
+    -- open help buffers in new tabs by default
+    vim.cmd.wincmd('T')
+  end,
+})
+
 ---> filetype configuration for miniindentscope
 -- bottom whitespace trimming
 create_autocmd('FileType', {
