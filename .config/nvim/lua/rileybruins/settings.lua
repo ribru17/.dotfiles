@@ -69,6 +69,7 @@ local M = {
     'json',
     'latex',
     'lua',
+    'luadoc',
     'luap',
     'markdown',
     'markdown_inline',
