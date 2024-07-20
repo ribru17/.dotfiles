@@ -184,6 +184,7 @@
     git
     gnumake
     kitty
+    mold
     neovim
     nix-bash-completions
     pciutils
