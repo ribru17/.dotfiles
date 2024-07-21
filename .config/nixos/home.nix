@@ -134,6 +134,7 @@ in {
     package = brave;
     extensions = [
       { id = "cimiefiiaegbelhefglklhhakcgmhkai"; } # Plasma integration
+      { id = "pncfbmialoiaghdehhbnbhkkgmjanfhe"; } # uBlacklist
       {
         # Bypass paywalls
         id = "dcpihecpambacapedldabdbpakmachpb";
