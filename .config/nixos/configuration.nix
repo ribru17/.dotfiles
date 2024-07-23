@@ -86,7 +86,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth = {
     enable = true;
@@ -166,6 +165,9 @@
     allowBitmaps = true;
     useEmbeddedBitmaps = true;
   };
+
+  # TODO: Install locally? 
+  programs.steam.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
