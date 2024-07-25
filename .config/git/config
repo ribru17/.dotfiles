@@ -70,7 +70,7 @@
 [mergetool]
 	keepBackup = false
 [mergetool "vimdiff"]
-	cmd = nvim -d $LOCAL $MERGED $REMOTE -c 'wincmd l'
+	cmd = nvim -d $LOCAL $MERGED $REMOTE -c 'windo set foldcolumn=0 signcolumn=no wrap | wincmd h'
 [rebase]
 	autoSquash = true
 [push]
