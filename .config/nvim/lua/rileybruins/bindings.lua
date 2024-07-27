@@ -244,20 +244,33 @@ map({ 'x', 'n' }, '<leader>t', function()
   end
 end, { silent = true, desc = 'Comment and duplicate selected lines' })
 
-map('x', 'aa', function()
+map('x', 'ae', function()
   local mode = vim.api.nvim_get_mode().mode == 'V' and '' or 'V'
   return 'ggoG' .. mode
-end, { expr = true, desc = 'Select entire buffer' })
-map('o', 'aa', function()
+end, { expr = true, desc = 'Select around everything (entire buffer)' })
+map('o', 'ae', function()
   vim.cmd.normal('ggVG')
-end, { desc = 'Select entire buffer' })
-map('x', 'ia', function()
-  local mode = vim.api.nvim_get_mode().mode == 'V' and 'v' or ''
-  return 'gg0oG$h' .. mode
-end, { expr = true, desc = 'Select entire buffer (without final newline)' })
-map('o', 'ia', function()
-  vim.cmd.normal('gg0vG$')
-end, { desc = 'Select entire buffer (without final newline)' })
+end, { desc = 'Select around everything (entire buffer)' })
+map(
+  'x',
+  'ie',
+  function()
+    local mode = vim.api.nvim_get_mode().mode == 'V' and 'v' or ''
+    return 'gg0oG$h' .. mode
+  end,
+  {
+    expr = true,
+    desc = 'Select inside everything (entire buffer without final newline)',
+  }
+)
+map(
+  'o',
+  'ie',
+  function()
+    vim.cmd.normal('gg0vG$')
+  end,
+  { desc = 'Select inside everything (entire buffer without final newline)' }
+)
 
 map('x', 'il', '_og_', { desc = 'Select text content of current line' })
 map('o', 'il', function()

@@ -181,7 +181,10 @@ that file). Save without formatting with `:W`.
     - `F`: Function implementation
     - `L`: Loop
     - `l`: Line
+    - `a`: Arguments, parameters, and array elements
     - `c`: Conditional
+    - `C`: Class
+    - `r`: Return blocks
     - `/`: Comment
     - `$` or `m`: LaTeX blocks (in Markdown)
     - `i`: Current indentation level
