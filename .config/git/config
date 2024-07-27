@@ -1,4 +1,4 @@
-; vim: ft=gitconfig
+; vim: ft=gitconfig noexpandtab shiftwidth=8 softtabstop=8
 [user]
 	email = ribru17@hotmail.com
 	name = Riley Bruins
@@ -52,6 +52,7 @@
 	stat = status
 	amend = commit -a --amend --no-edit
 	edit = !nvim ~/.config/git/config
+	fixup = commit -a --fixup HEAD
 	info = !git diff && git remote -v && git status
 	move = "!f() { git branch $1 && git reset --hard HEAD~${2-1} && git checkout $1; }; f"
 	new = checkout -b

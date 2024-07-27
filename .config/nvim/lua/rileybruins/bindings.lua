@@ -11,7 +11,7 @@ of both worlds).
 ]],
 })
 
--- TODO: Remove after https://github.com/neovim/neovim/pull/28630
+-- TODO: Remove after v0.11
 map('n', 'gx', function()
   local link = link_dest()
   if link then
