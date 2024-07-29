@@ -177,12 +177,6 @@ in {
     };
   };
 
-  programs.neovim = {
-    enable = true;
-    extraLuaPackages = ps: [ ps.magick ];
-    extraPackages = [ pkgs.imagemagick ];
-  };
-
   xdg.configFile."bat/themes" = {
     recursive = true;
     source = ./home-modules/bat-themes;

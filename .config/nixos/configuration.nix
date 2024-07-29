@@ -175,29 +175,33 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    bash
-    bash-completion
-    bashInteractive
-    bibata-cursors
-    curl
-    gcc
-    gimp
-    git
-    gnumake
-    kitty
-    mold
-    neovim
-    nix-bash-completions
-    pciutils
-    wget
-    (catppuccin-sddm.override {
-      background = "${./assets/dsotm_blurred.png}";
-      loginBackground = true;
-      font = "Iosevka Custom Extended";
-      fontSize = "15";
-    })
-  ];
+  environment.systemPackages = with pkgs;
+    let
+      custom-catppuccin-sddm = (catppuccin-sddm.override {
+        background = "${./assets/dsotm_blurred.png}";
+        loginBackground = true;
+        font = "Iosevka Custom Extended";
+        fontSize = "15";
+      });
+      neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    in [
+      bash
+      bash-completion
+      bashInteractive
+      bibata-cursors
+      custom-catppuccin-sddm
+      curl
+      gcc
+      gimp
+      git
+      gnumake
+      kitty
+      mold
+      neovim
+      nix-bash-completions
+      pciutils
+      wget
+    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

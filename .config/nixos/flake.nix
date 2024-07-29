@@ -36,10 +36,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+
+    # Neovim nightly
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, plasma-manager
-    , nixpkgs-iosevka-pin, rust-overlay, nil }:
+    , nixpkgs-iosevka-pin, rust-overlay, nil, neovim-nightly-overlay }:
     let
       vars = {
         username = "rileyb";
