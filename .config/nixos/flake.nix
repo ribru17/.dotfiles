@@ -45,7 +45,7 @@
         username = "rileyb";
         hostname = "frametop";
         system = "x86_64-linux";
-        version = "23.11";
+        version = "24.05";
       };
     in {
       nixosConfigurations.${vars.hostname} = nixpkgs.lib.nixosSystem rec {
