@@ -363,6 +363,11 @@ return {
       local telescope = require('telescope')
 
       telescope.setup {
+        pickers = {
+          find_files = {
+            find_command = { 'rg', '--files', '--sortr=modified' },
+          },
+        },
         defaults = {
           set_env = {
             LESS = '',
