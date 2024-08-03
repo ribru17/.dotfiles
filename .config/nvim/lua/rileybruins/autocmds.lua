@@ -266,7 +266,7 @@ create_autocmd('CmdwinEnter', {
 
 create_autocmd('FileType', {
   callback = function(ev)
-    if vim.F.npcall(vim.treesitter.get_parser, vim.bo[ev.buf].ft) then
+    if vim.F.npcall(vim.treesitter.query.get, vim.bo[ev.buf].ft, 'folds') then
       vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     end
   end,
