@@ -264,6 +264,7 @@ create_autocmd('CmdwinEnter', {
 --   end,
 -- })
 
+-- only set the foldexpr where necessary
 create_autocmd('FileType', {
   callback = function(ev)
     if vim.F.npcall(vim.treesitter.query.get, vim.bo[ev.buf].ft, 'folds') then

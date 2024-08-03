@@ -21,6 +21,16 @@
     "fs.inotify.max_queued_events" = 100000;
   };
 
+  # Hibernation using swapfile, 32GB
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 32 * 1024;
+  }];
+  # See https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Acquire_swap_file_offset
+  boot.kernelParams = [ "resume_offset=26255360" ];
+  # Taken from hardware-configuration.nix
+  boot.resumeDevice = "/dev/disk/by-uuid/020a6932-aa44-4c98-afae-84438b8b6ef9";
+
   networking.hostName = "${vars.hostname}";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
