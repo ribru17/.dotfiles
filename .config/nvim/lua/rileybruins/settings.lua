@@ -233,7 +233,6 @@ M.apply = function()
       wrap = false,
     },
     wo = {
-      foldexpr = 'v:lua.vim.treesitter.foldexpr()',
       foldtext = '',
     },
     opt = {
