@@ -237,7 +237,7 @@ M.apply = function()
     },
     opt = {
       completeopt = { 'menu', 'menuone', 'preview', 'noselect', 'noinsert' },
-      listchars = { tab = '<->', nbsp = '␣' },
+      listchars = { tab = '<->', nbsp = '␣', trail = '·' },
     },
     env = {
       GIT_WORK_TREE = in_dotfiles and vim.env.HOME or vim.env.GIT_WORK_TREE,
