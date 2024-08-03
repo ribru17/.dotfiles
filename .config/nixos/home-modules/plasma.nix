@@ -27,6 +27,18 @@
       captureActiveWindow = "Meta+Print";
       captureRectangularRegion = "Meta+Shift+Print";
     };
+    input = {
+      touchpads = [{
+        enable = true;
+        vendorId = "093a";
+        productId = "0274";
+        name = "PIXA3854:00 093A:0274 Touchpad";
+        naturalScroll = true;
+        tapToClick = false;
+        middleButtonEmulation = false;
+        rightClickMethod = "twoFingers";
+      }];
+    };
     # NOTE: In order to get everything running, you sometimes may have to run
     # `systemctl --user restart plasma-plasmashell`
     shortcuts = {
@@ -292,18 +304,6 @@
         "Default";
       "kactivitymanagerdrc"."main"."currentActivity".value =
         "18729546-c057-4fd4-a4fd-9a9aa7b4a44a";
-      # NOTE: Change this once it can be done without being hard-coded
-      "kcminputrc"."Libinput/2362/628/PIXA3854:00 093A:0274 Touchpad"."ClickMethod".value =
-        2;
-      "kcminputrc"."Libinput/2362/628/PIXA3854:00 093A:0274 Touchpad"."MiddleButtonEmulation".value =
-        false;
-      "kcminputrc"."Libinput/2362/628/PIXA3854:00 093A:0274 Touchpad"."NaturalScroll".value =
-        true;
-      "kcminputrc"."Libinput/2362/628/PIXA3854:00 093A:0274 Touchpad"."TapToClick".value =
-        false;
-      "kcminputrc"."Mouse"."X11LibInputXAccelProfileFlat".value = true;
-      "kcminputrc"."Tmp"."update_info".value =
-        "delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize";
       "kded5rc"."Module-browserintegrationreminder"."autoload".value = false;
       "kded5rc"."Module-device_automounter"."autoload".value = false;
       "kded5rc"."PlasmaBrowserIntegration"."shownCount".value = 4;
