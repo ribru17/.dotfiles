@@ -8,8 +8,11 @@
       theme = "breeze-dark";
       colorScheme = "BreezeDark";
       cursor.theme = "Bibata-Modern-Ice";
-      # lookAndFeel = "org.kde.breezedark.desktop";
       splashScreen = { theme = "Illusion"; };
+    };
+    powerdevil = {
+      battery = { whenSleepingEnter = "standbyThenHibernate"; };
+      lowBattery = { whenSleepingEnter = "standbyThenHibernate"; };
     };
     hotkeys.commands."launch-kitty" = {
       name = "Launch Kitty";
