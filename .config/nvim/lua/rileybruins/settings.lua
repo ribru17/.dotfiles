@@ -190,6 +190,7 @@ M.apply = function()
         },
       },
       neovide_cursor_animate_in_insert_mode = false,
+      matchup_matchparen_offscreen = { method = '' }, -- disable matchup statusline
     },
     o = {
       backup = false,
