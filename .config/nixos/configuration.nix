@@ -30,6 +30,7 @@
   boot.kernelParams = [ "resume_offset=26255360" ];
   # Taken from hardware-configuration.nix
   boot.resumeDevice = "/dev/disk/by-uuid/020a6932-aa44-4c98-afae-84438b8b6ef9";
+  systemd.sleep.extraConfig = "HibernateDelaySec=30m";
 
   networking.hostName = "${vars.hostname}";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
