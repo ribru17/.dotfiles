@@ -266,14 +266,6 @@ return {
           i = ins_tab_mapping,
           s = ins_tab_mapping,
           c = function()
-            if vim.fn.getcmdline():sub(1, 1) == '!' then
-              vim.api.nvim_feedkeys(
-                vim.api.nvim_replace_termcodes('<C-z>', true, false, true),
-                'n',
-                false
-              )
-              return
-            end
             if cmp.visible() then
               cmp.confirm { select = true }
             else
@@ -440,9 +432,9 @@ return {
         }, {
           {
             name = 'cmdline',
-            keyword_length = 3,
+            keyword_length = 2,
             option = {
-              ignore_cmds = { 'Man', '!' },
+              ignore_cmds = {},
             },
           },
         }),
