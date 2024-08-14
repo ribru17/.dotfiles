@@ -1,3 +1,4 @@
+local min = math.min
 local SETTINGS = require('rileybruins.settings')
 return {
   {
@@ -628,7 +629,7 @@ return {
     event = { 'LazyFile' },
     config = function()
       local builtin = require('statuscol.builtin')
-      local c = require('statuscol.ffidef').C
+      local fi = require('statuscol.ffidef').C.fold_info
       require('statuscol').setup {
         relculright = true,
         segments = {
@@ -669,33 +670,29 @@ return {
               -- Amazing foldcolumn
               -- https://github.com/kevinhwang91/nvim-ufo/issues/4
               function(args)
-                local foldinfo = c.fold_info(args.wp, args.lnum)
-                local foldinfo_next = c.fold_info(args.wp, args.lnum + 1)
-                local level = foldinfo.level
-                local foldstr = ' '
-                local hl = '%#FoldCol' .. level .. '#'
+                local wp = args.wp
+                local lnum = args.lnum
+                local foldinfo = fi(wp, lnum)
+                local foldinfo_next = fi(wp, lnum + 1)
+                local level = min(foldinfo.level, 8)
                 if level == 0 then
-                  hl = '%#Normal#'
-                  foldstr = ' '
-                  return hl .. foldstr .. '%#Normal# '
+                  return '%#Normal#  '
                 end
-                if level > 8 then
-                  hl = '%#FoldCol8#'
-                end
+                local foldstr = ' '
                 if foldinfo.lines ~= 0 then
                   foldstr = '▹'
-                elseif args.lnum == foldinfo.start then
+                elseif lnum == foldinfo.start then
                   foldstr = '◠'
                 elseif
                   foldinfo.level > foldinfo_next.level
                   or (
-                    foldinfo_next.start == args.lnum + 1
+                    foldinfo_next.start == lnum + 1
                     and foldinfo_next.level == foldinfo.level
                   )
                 then
                   foldstr = '◡'
                 end
-                return hl .. foldstr .. '%#Normal# '
+                return '%#FoldCol' .. level .. '#' .. foldstr .. '%#Normal# '
               end,
             },
             click = 'v:lua.ScFa',
