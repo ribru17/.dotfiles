@@ -27,7 +27,7 @@ alias refresh='clear && fastfetch'
 
 # neovim development
 alias devi='VIMRUNTIME=$HOME/Documents/CodeProjects/neovim/runtime/ $HOME/neovim/bin/nvim --luamod-dev'
-alias devi:build='make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="$HOME/neovim/" && make install'
+alias devi:build='make CMAKE_BUILD_TYPE=Debug CMAKE_INSTALL_PREFIX="$HOME/neovim/" && make install'
 # Run a specific test
 # Example usage: `devi:test test/functional/lua/diagnostic_spec.lua`
 devi:test() {
