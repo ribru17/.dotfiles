@@ -348,8 +348,9 @@ return {
 
       vim.fn.sign_define(
         'DapBreakpoint',
-        { text = '', texthl = 'Constant', linehl = '', numhl = '' }
+        { text = '󰏧', texthl = 'Constant', linehl = '', numhl = '' }
       )
+      vim.fn.sign_define('DapStopped', { text = '', texthl = 'Constant' })
     end,
   },
 }
