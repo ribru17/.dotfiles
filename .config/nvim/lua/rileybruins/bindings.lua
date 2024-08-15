@@ -251,18 +251,13 @@ end, { expr = true, desc = 'Select around everything (entire buffer)' })
 map('o', 'ae', function()
   vim.cmd.normal('ggVG')
 end, { desc = 'Select around everything (entire buffer)' })
-map(
-  'x',
-  'ie',
-  function()
-    local mode = vim.api.nvim_get_mode().mode == 'V' and 'v' or ''
-    return 'gg0oG$h' .. mode
-  end,
-  {
-    expr = true,
-    desc = 'Select inside everything (entire buffer without final newline)',
-  }
-)
+map('x', 'ie', function()
+  local mode = vim.api.nvim_get_mode().mode == 'V' and 'v' or ''
+  return 'gg0oG$h' .. mode
+end, {
+  expr = true,
+  desc = 'Select inside everything (entire buffer without final newline)',
+})
 map(
   'o',
   'ie',
@@ -375,6 +370,19 @@ map(
 map('n', '<leader>i', function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Toggle inlay hints' })
+
+map(
+  'n',
+  '<leader>db',
+  vim.cmd.DapToggleBreakpoint,
+  { desc = 'Toggle a debugging breakpoint' }
+)
+map(
+  'n',
+  '<leader>dc',
+  vim.cmd.DapContinue,
+  { desc = 'Continue the debugging session' }
+)
 
 --> END OF MISCELLANEOUS KEYMAPS <--
 
