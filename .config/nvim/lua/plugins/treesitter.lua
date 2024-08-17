@@ -168,38 +168,6 @@ return {
         metadata[capture_id].range = range
       end
 
-      -- predicates for formatting of query files
-      vim.treesitter.query.add_predicate(
-        'has-type?',
-        function(match, _, _, pred)
-          local node = match[pred[2]]
-          if not node then
-            return true
-          end
-
-          local types = { unpack(pred, 3) }
-          local type = node:type()
-          for _, value in pairs(types) do
-            if value == type then
-              return true
-            end
-          end
-          return false
-        end,
-        true
-      )
-      vim.treesitter.query.add_predicate(
-        'is-start-of-line?',
-        function(match, _, _, pred)
-          local node = match[pred[2]]
-          if not node then
-            return true
-          end
-          local start_row, start_col = node:start()
-          return vim.fn.indent(start_row + 1) == start_col
-        end
-      )
-
       vim.treesitter.query.add_directive(
         'offset-first-n!',
         offset_first_n,
