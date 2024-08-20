@@ -32,6 +32,10 @@
   boot.resumeDevice = "/dev/disk/by-uuid/020a6932-aa44-4c98-afae-84438b8b6ef9";
   systemd.sleep.extraConfig = "HibernateDelaySec=30m";
 
+  # Prevent "too many open files" errors, see the following help thread:
+  # https://discourse.nixos.org/t/unable-to-fix-too-many-open-files-error/27094/7
+  systemd.extraConfig = "DefaultLimitNOFILE=2048";
+
   networking.hostName = "${vars.hostname}";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
