@@ -511,4 +511,10 @@ local ss_cmd_opts =
 create_command('Screenshot', take_screenshot, ss_cmd_opts)
 create_command('SS', take_screenshot, ss_cmd_opts)
 
+create_command('TOhtmlPreview', function()
+  vim.cmd.TOhtml()
+  vim.cmd['!'] { args = { 'xdg-open', '%' } }
+  vim.cmd.q()
+end, { desc = 'TOhtml but just show a preview' })
+
 --> END OF MISCELLANEOUS USER COMMANDS <--
