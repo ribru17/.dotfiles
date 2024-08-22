@@ -34,7 +34,7 @@
 
   # Prevent "too many open files" errors, see the following help thread:
   # https://discourse.nixos.org/t/unable-to-fix-too-many-open-files-error/27094/7
-  systemd.extraConfig = "DefaultLimitNOFILE=2048";
+  systemd.extraConfig = "DefaultLimitNOFILE=1048576";
 
   networking.hostName = "${vars.hostname}";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
