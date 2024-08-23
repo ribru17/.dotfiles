@@ -113,7 +113,6 @@ local M = {
     'matchparen',
     'netrwPlugin',
     'tarPlugin',
-    'tohtml',
     'tutor',
     'zipPlugin',
   },
