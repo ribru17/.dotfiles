@@ -279,7 +279,7 @@ return {
           lua = { 'stylua' },
           luau = { 'stylua' },
           markdown = { 'deno_fmt' },
-          python = { 'yapf' },
+          python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
           query = { 'format-queries' },
           sh = { 'shfmt' },
           typescript = { 'deno_fmt' },
