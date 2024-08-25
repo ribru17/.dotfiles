@@ -248,11 +248,17 @@ return {
       local util = require('conform.util')
       local clang_format = require('conform.formatters.clang_format')
       local deno_fmt = require('conform.formatters.deno_fmt')
+      local ruff = require('conform.formatters.ruff_format')
       local shfmt = require('conform.formatters.shfmt')
       util.add_formatter_args(clang_format, {
         '--style=file',
       })
       util.add_formatter_args(deno_fmt, { '--single-quote' }, { append = true })
+      util.add_formatter_args(
+        ruff,
+        { '--config', "format.quote-style = 'single'" },
+        { append = true }
+      )
       util.add_formatter_args(shfmt, {
         '--indent',
         '4',
