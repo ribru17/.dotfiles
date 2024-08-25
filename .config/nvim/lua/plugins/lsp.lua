@@ -127,6 +127,17 @@ return {
           },
         },
       }
+      lspconfig.basedpyright.setup {
+        capabilities = capabilities,
+        settings = {
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = 'standard',
+              autoSearchPaths = true,
+            },
+          },
+        },
+      }
       lspconfig.bashls.setup {
         capabilities = capabilities,
       }
@@ -158,6 +169,9 @@ return {
         },
       }
       lspconfig.r_language_server.setup {
+        capabilities = capabilities,
+      }
+      lspconfig.ruff.setup {
         capabilities = capabilities,
       }
 
@@ -236,22 +250,6 @@ return {
                 -- break_all_list_when_line_exceed = true, --breaks things sadly
                 call_arg_parentheses = 'remove_table_only',
                 -- align_call_args = true, -- breaks things sadly
-              },
-            },
-          },
-        },
-      }
-      lspconfig.pylsp.setup {
-        capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          -- https://vi.stackexchange.com/questions/39200/wrapping-comment-in-visual-mode-not-working-with-gq
-          vim.bo[bufnr].formatexpr = nil
-        end,
-        settings = {
-          pylsp = {
-            plugins = {
-              pycodestyle = {
-                maxLineLength = 80,
               },
             },
           },

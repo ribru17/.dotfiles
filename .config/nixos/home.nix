@@ -29,6 +29,7 @@ in {
     in [
       (spotify.override { deviceScaleFactor = 1.5; })
       R
+      basedpyright
       bat
       betterdiscordctl # install with `betterdiscordctl install`
       blesh
@@ -62,11 +63,8 @@ in {
       nodejs_22
       prettierd
       python3
-      python311Packages.pycodestyle
-      python311Packages.pyflakes
-      python311Packages.python-lsp-server
-      python311Packages.yapf
       ripgrep
+      ruff
       rust
       sd
       shellcheck
