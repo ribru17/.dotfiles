@@ -1,6 +1,7 @@
 local include_surrounding_whitespace = {
   ['@function.outer'] = true,
   ['@class.outer'] = true,
+  ['@parameter.outer'] = true,
 }
 return {
   {
