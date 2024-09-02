@@ -76,6 +76,8 @@ in {
       wget
       wl-clipboard
       xz
+      zig
+      zls
     ];
 
   xdg.enable = true;

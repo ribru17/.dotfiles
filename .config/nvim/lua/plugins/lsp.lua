@@ -174,6 +174,9 @@ return {
       lspconfig.ruff.setup {
         capabilities = capabilities,
       }
+      lspconfig.zls.setup {
+        capabilities = capabilities,
+      }
 
       local library = {
         vim.env.VIMRUNTIME,
