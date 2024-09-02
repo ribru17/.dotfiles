@@ -1079,7 +1079,7 @@
                 "applications:org.kde.dolphin.desktop"
                 "applications:brave-browser.desktop"
                 "applications:kitty.desktop"
-                "applications:discord.desktop"
+                "applications:vesktop.desktop"
                 "applications:spotify.desktop"
                 "applications:gimp.desktop"
               ];

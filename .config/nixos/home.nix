@@ -31,7 +31,6 @@ in {
       R
       basedpyright
       bat
-      betterdiscordctl # install with `betterdiscordctl install`
       blesh
       brave
       ccache
@@ -39,7 +38,6 @@ in {
       cmake # for building Neovim
       delta
       deno
-      discord
       emmet-language-server
       eza
       fastfetch
@@ -73,6 +71,7 @@ in {
       tree-sitter
       typescript
       unzip
+      vesktop
       vscode-langservers-extracted
       wget
       wl-clipboard
