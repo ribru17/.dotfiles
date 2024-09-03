@@ -194,7 +194,6 @@ M.apply = function()
     },
     o = {
       backup = false,
-      colorcolumn = '80',
       compatible = false,
       cpoptions = 'aABceFs', -- make `cw` compatible with other `w` operations
       cursorline = true,

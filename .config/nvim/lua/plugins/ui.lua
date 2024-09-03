@@ -611,20 +611,6 @@ return {
     end,
   },
   {
-    'Bekaboo/deadcolumn.nvim',
-    event = { 'VeryLazy' },
-    config = function()
-      require('deadcolumn').setup {
-        blending = {
-          threshold = 0.75,
-        },
-        warning = {
-          alpha = 0.2,
-        },
-      }
-    end,
-  },
-  {
     'luukvbaal/statuscol.nvim',
     event = { 'LazyFile' },
     config = function()
