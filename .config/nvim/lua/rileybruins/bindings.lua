@@ -11,22 +11,6 @@ of both worlds).
 ]],
 })
 
--- TODO: Remove after v0.11
-map('n', 'gx', function()
-  local link = link_dest()
-  if link then
-    vim.fn.system {
-      'xdg-open',
-      link,
-    }
-  else
-    vim.fn.system {
-      'xdg-open',
-      vim.fn.expand('<cfile>'),
-    }
-  end
-end, { desc = 'Netrw-like link opening', silent = true })
-
 local indent_opts = { desc = 'VSCode-style block indentation' }
 map('x', '<Tab>', function()
   vim.cmd.normal { vim.v.count1 .. '>gv', bang = true }
