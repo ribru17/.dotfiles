@@ -137,7 +137,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 7d";
+    options = "--delete-older-than 14d";
     # The below is not possible sadly, see the following issue:
     # https://github.com/NixOS/nix/issues/9455
     # options = "--delete-older-than +15"; # keep the last 15 configurations only
