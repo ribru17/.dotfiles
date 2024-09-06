@@ -337,7 +337,7 @@ return {
             local bufnr = vim.api.nvim_get_current_buf()
             local params = vim.lsp.util.make_position_params()
             params.context = { includeDeclaration = true }
-            local clients = vim.lsp.get_active_clients()
+            local clients = vim.lsp.get_clients()
             if not clients or #clients == 0 then
               vim.print('No attached clients.')
               return
