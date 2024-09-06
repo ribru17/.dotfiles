@@ -112,6 +112,7 @@ return {
   },
   {
     'andymass/vim-matchup',
+    enabled = false,
     event = { 'BufReadPost', 'BufNewFile' },
   },
   {

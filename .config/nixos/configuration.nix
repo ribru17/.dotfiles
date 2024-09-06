@@ -12,6 +12,8 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  # Always keep at least the last 3 profiles
+  boot.loader.systemd-boot.configurationLimit = 3;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -134,7 +136,7 @@
   nix.settings.cores = 8;
   nix.gc = {
     automatic = true;
-    dates = "daily";
+    dates = "weekly";
     options = "--delete-older-than 7d";
     # The below is not possible sadly, see the following issue:
     # https://github.com/NixOS/nix/issues/9455
