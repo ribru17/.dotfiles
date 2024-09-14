@@ -51,7 +51,7 @@
 	st = status
 	stat = status
 	amend = commit -a --amend --no-edit
-	edit = !nvim ~/.config/git/config
+	edit = !nvim -p $(git diff --name-only)
 	fixup = commit -a --fixup HEAD
 	info = !git diff && git remote -v && git status
 	move = "!f() { git branch $1 && git reset --hard HEAD~${2-1} && git checkout $1; }; f"
