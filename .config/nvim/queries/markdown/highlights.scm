@@ -76,11 +76,11 @@
 ; Checkbox list items
 ((task_list_marker_unchecked) @markup.list.unchecked
   (#offset! @markup.list.unchecked 0 -2 0 0)
-  (#set! conceal "☐")) ; Alts:✗ ✘ 🗷 ❌☐
+  (#set! conceal "☐")) ; Alts:✗ ✘ 🗷❌☐
 
 ((task_list_marker_checked) @markup.list.checked
-  (#offset! @markup.list.checked 0 -2 0 0)
-  (#set! conceal "🗹")) ; Alts:✓ ✔ 🗹 ✅☑
+  (#offset! @markup.list.checked 0 -2 0 1)
+  (#set! conceal "🗹")) ; Alts:✓ ✔ 🗹✅☑
 
 (list_item
   (task_list_marker_checked)
