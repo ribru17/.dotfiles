@@ -75,6 +75,15 @@ return {
   {
     'mrcjkb/rustaceanvim',
     ft = { 'rust' },
+    init = function()
+      vim.g.rustaceanvim = {
+        tools = {
+          float_win_config = {
+            border = BORDER_STYLE,
+          },
+        },
+      }
+    end,
   },
   {
     'echasnovski/mini.indentscope',
