@@ -48,7 +48,7 @@ return {
           undercurl = false,
         },
         highlights = {
-          ['@comment.syntax'] = { link = 'Comment' },
+          ['@checked.content'] = { fg = '$grey', fmt = 'strikethrough' },
         },
       }
       vim.cmd.colorscheme { args = { 'bamboo' } }

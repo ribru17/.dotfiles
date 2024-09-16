@@ -84,7 +84,7 @@
 
 (list_item
   (task_list_marker_checked)
-  (_) @comment.syntax)
+  (_) @checked.content)
 
 ; Tables
 (pipe_table_header
