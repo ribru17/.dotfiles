@@ -3,54 +3,14 @@ local in_dotfiles = vim.fn.system(
 ) ~= ''
 
 local BORDER_STYLE = 'rounded'
-local telescope_border_chars = {
-  none = { '', '', '', '', '', '', '', '' },
-  single = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-  double = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
-  rounded = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-  solid = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-  shadow = { '', '', '', '', '', '', '', '' },
-}
-local connected_telescope_border_chars = {
-  none = { '', '', '', '', '', '', '', '' },
-  single = { '─', '│', '─', '│', '┌', '┐', '┤', '├' },
-  double = { '═', '║', '═', '║', '╔', '╗', '╣', '╠' },
-  rounded = { '─', '│', '─', '│', '╭', '╮', '┤', '├' },
-  solid = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-  shadow = { '', '', '', '', '', '', '', '' },
-}
 
 local M = {
   border = BORDER_STYLE,
-  telescope_border_chars = telescope_border_chars[BORDER_STYLE],
-  telescope_centered_picker = {
-    results_title = false,
-    layout_strategy = 'center',
-    layout_config = {
-      anchor = 'S',
-      preview_cutoff = 1,
-      prompt_position = 'bottom',
-      width = 0.95,
-      results_height = 5,
-    },
-    border = true,
-    borderchars = {
-      prompt = telescope_border_chars[BORDER_STYLE],
-      results = connected_telescope_border_chars[BORDER_STYLE],
-      preview = telescope_border_chars[BORDER_STYLE],
-    },
-  },
   in_dotfiles = in_dotfiles,
   -- If `true`, this consumes a lot of resources and slows the LSP greatly.
   luals_load_plugins = false,
   hide_foldcolumn = { 'markdown', 'gitconfig', 'toml' },
   codelens_refresh_events = { 'InsertLeave', 'TextChanged', 'CursorHold' },
-  lazy_loaded_colorschemes = {
-    'catppuccin',
-    'tokyonight',
-    'onedark',
-    'kanagawa',
-  },
   ensure_installed_ts_parsers = {
     'bash',
     'c',
@@ -242,7 +202,7 @@ M.apply = function()
     env = {
       GIT_WORK_TREE = in_dotfiles and vim.env.HOME or vim.env.GIT_WORK_TREE,
       GIT_DIR = in_dotfiles and vim.env.HOME .. '/.dotfiles' or vim.env.GIT_DIR,
-      -- for constant paging in Telescope delta commands
+      -- for constant paging in delta previews
       GIT_PAGER = 'delta --paging=always',
     },
   }

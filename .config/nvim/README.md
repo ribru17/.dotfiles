@@ -228,16 +228,10 @@ that file). Save without formatting with `:W`.
   - Use `zF` to Focus (close all folds except) the current fold and its children
   - Use `zO` to Open all folds
   - Use `zo` to Open all folds descending from the fold at the current line
-- Using Git with Telescope
-  - Prefix the following `:Telescope` commands with `delta_` to have nice,
-    delta-highlighted diff previews:
-    - `git_status`
-    - `git_commits`
-    - `git_bcommits`
-  - Use:
-    - `<leader>gs` to Get Git Status
-    - `<leader>gc` to Get Git Commits
-    - `<leader>gh` to Get Git Hunks (change History of current buffer)
+- Using Git with `fzf-lua`
+  - `<leader>gs` to Get Git Status
+  - `<leader>gc` to Get Git Commits
+  - `<leader>gh` to Get Git Hunks (change History of current buffer)
 - Arbitrary Tree-sitter language injections for Lua using comments like:
   ```lua
   --> INJECT: javascript

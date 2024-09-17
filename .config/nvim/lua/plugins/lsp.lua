@@ -317,14 +317,14 @@ return {
             opts
           )
           map('n', 'gi', function()
-            vim.cmd.Telescope('lsp_implementations')
+            vim.cmd.FzfLua('lsp_implementations')
           end, opts)
           map('n', 'gI', function()
             vim.cmd.split { mods = { tab = vim.fn.tabpagenr() + 1 } }
             vim.lsp.buf.implementation { on_list = choose_list_first }
           end, opts)
           map('n', 'gr', function()
-            vim.cmd.Telescope('lsp_references')
+            vim.cmd.FzfLua('lsp_references')
           end, opts)
           map('n', '<leader>dk', function()
             goto_diagnostic_hl('prev')
@@ -480,19 +480,5 @@ return {
         },
       },
     },
-  },
-  {
-    'aznhe21/actions-preview.nvim',
-    lazy = true,
-    config = function()
-      local hl = require('actions-preview.highlight')
-      require('actions-preview').setup {
-        backend = { 'telescope' },
-        telescope = SETTINGS.telescope_centered_picker,
-        highlight_command = {
-          hl.delta('delta --hunk-header-style omit --paging=always'),
-        },
-      }
-    end,
   },
 }
