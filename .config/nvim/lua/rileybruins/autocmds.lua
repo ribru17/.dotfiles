@@ -269,7 +269,7 @@ create_autocmd('FileType', {
   callback = function(ev)
     if
       vim.treesitter.query.get(
-        vim.treesitter.language.get_lang(vim.bo[ev.buf].ft),
+        vim.treesitter.language.get_lang(vim.bo[ev.buf].ft) or vim.bo[ev.buf].ft,
         'folds'
       )
     then
