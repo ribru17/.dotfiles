@@ -3,9 +3,6 @@
 ((subject) @injection.content
   (#set! injection.language "markdown_inline"))
 
-(source
-  (subject)
-  .
-  (message) @injection.content
+((message_line) @injection.content
   (#set! injection.language "markdown")
-  (#set! injection.include-children))
+  (#set! injection.combined))
