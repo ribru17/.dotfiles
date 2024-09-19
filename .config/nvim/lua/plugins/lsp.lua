@@ -392,7 +392,7 @@ return {
           end)
           -- show code actions, executing if only 1
           map('n', '<leader>ca', function()
-            require('actions-preview').code_actions()
+            vim.cmd.FzfLua('lsp_code_actions')
           end, opts)
           map('n', '<leader>cl', vim.lsp.codelens.run, opts)
         end,
