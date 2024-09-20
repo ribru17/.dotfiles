@@ -109,14 +109,12 @@ return {
       -- additional language registration
       vim.treesitter.language.register('json', { 'chart' })
 
-      -- extra fallbacks for icons that do not have a filetype entry in nvim-
-      -- devicons
-      local icon_fallbacks = {
-        mermaid = '󰈺',
+      -- extra icons that do not have a filetype entry in
+      -- mini.icons
+      local icon_overrides = {
         plantuml = '',
         ebnf = '󱘎',
         chart = '',
-        nroff = '',
       }
 
       local get_icon = nil
@@ -137,10 +135,10 @@ return {
           or node_text
 
         if not get_icon then
-          get_icon = require('nvim-web-devicons').get_icon_by_filetype
+          get_icon = require('mini.icons').get
         end
-        metadata.conceal = get_icon(node_text)
-          or icon_fallbacks[node_text]
+        metadata.conceal = icon_overrides[node_text]
+          or get_icon('filetype', node_text)
           or '󰡯'
       end
 
