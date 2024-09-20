@@ -159,7 +159,10 @@ return {
     config = function()
       local MiniIcons = require('mini.icons')
       MiniIcons.setup {
-        extension = { scm = { glyph = '󰐅', hl = 'MiniIconsGreen' } },
+        extension = {
+          scm = { glyph = '󰐅', hl = 'MiniIconsGreen' },
+          conf = { glyph = '󰒓', hl = 'MiniIconsGrey' },
+        },
       }
       MiniIcons.mock_nvim_web_devicons()
     end,
