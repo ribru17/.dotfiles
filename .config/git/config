@@ -59,6 +59,7 @@
 	recommit = reset ORIG_HEAD
 	remove = rm --cached
 	rename = branch -m
+	reword = commit --amend
 	squash = "!f() { git rebase -i HEAD~$1; }; f"
 	unadd = restore --staged
 	uncommit = "!f() { git reset HEAD~${1-1}; }; f"
