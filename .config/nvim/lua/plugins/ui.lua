@@ -154,18 +154,15 @@ return {
     end,
   },
   {
-    'nvim-tree/nvim-web-devicons',
+    'echasnovski/mini.icons',
+    event = 'VeryLazy',
     config = function()
-      local devicons = require('nvim-web-devicons')
-      local icons = devicons.get_icons()
-      devicons.setup {
-        override_by_extension = {
-          ['scm'] = icons['query'],
-          ['ss'] = icons['scm'],
-        },
+      local MiniIcons = require('mini.icons')
+      MiniIcons.setup {
+        extension = { scm = { glyph = '󰐅', hl = 'MiniIconsGreen' } },
       }
+      MiniIcons.mock_nvim_web_devicons()
     end,
-    lazy = true,
   },
   {
     'ibhagwan/fzf-lua',
