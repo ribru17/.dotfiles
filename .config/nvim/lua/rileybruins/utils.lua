@@ -162,23 +162,25 @@ M.in_mathzone = function(_, matched_trigger)
   -- NOTE: This must not be set to `lang = 'latex'`; all injection context is
   -- lost and the entire buffer is erroneously parsed as LaTeX, leading to
   -- incorrect snippet evaluation.
-  ---@type TSNode?
-  local current_node = get_node_insert_mode { ignore_injections = false }
-  while current_node do
-    if current_node:type() == 'text_mode' then
-      return false
-    elseif current_node:type() == 'generic_command' then
+  ---@type TSNode
+  local cursor_node = get_node_insert_mode { ignore_injections = false }
+  local ancestor_node = cursor_node:tree():root()
+  local in_mathzone = true
+  while ancestor_node do
+    if ancestor_node:type() == 'text_mode' then
+      in_mathzone = false
+    elseif ancestor_node:type() == 'generic_command' then
       local cmd_name =
-        vim.treesitter.get_node_text(current_node:named_child(0), 0, {})
+        vim.treesitter.get_node_text(ancestor_node:named_child(0), 0, {})
       if cmd_name == '\\textbf' or cmd_name == '\\textit' then
-        return false
+        in_mathzone = false
       end
-    elseif MATH_NODES[current_node:type()] then
-      return true
+    elseif vim.list_contains(MATH_NODES, ancestor_node:type()) then
+      in_mathzone = true
     end
-    current_node = current_node:parent()
+    ancestor_node = ancestor_node:child_containing_descendant(cursor_node)
   end
-  return false
+  return in_mathzone
 end
 
 ---Whether or not the cursor is in a LaTeX math zone
