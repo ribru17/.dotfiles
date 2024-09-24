@@ -149,34 +149,22 @@ end
 ---@param insert_mode boolean Whether or not the cursor is in insert mode
 ---@return boolean
 M.in_jsx_tags = function(insert_mode)
-  ---@type TSNode?
   local current_node = insert_mode and get_node_insert_mode() or get_node()
-  while current_node do
-    if current_node:type() == 'jsx_element' then
-      return true
-    end
-    current_node = current_node:parent()
-  end
-  return false
+  return current_node and current_node:__has_ancestor { 'jsx_element' }
 end
 
 local MATH_NODES = {
-  displayed_equation = true,
-  inline_formula = true,
-  math_environment = true,
+  'displayed_equation',
+  'inline_formula',
+  'math_environment',
 }
 
 ---Whether or not the cursor is in a LaTeX block
 ---@return boolean
 M.in_latex_zone = function()
+  ---@type TSNode
   local current_node = get_node { ignore_injections = false }
-  while current_node do
-    if MATH_NODES[current_node:type()] then
-      return true
-    end
-    current_node = current_node:parent()
-  end
-  return false
+  return current_node:__has_ancestor(MATH_NODES)
 end
 
 ---Whether or not the cursor is in a LaTeX math zone
