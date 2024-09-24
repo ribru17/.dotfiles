@@ -126,25 +126,6 @@ local get_node_insert_mode = function(opts)
   return get_node(opts)
 end
 
----Returns the destination of the Markdown link at the cursor (if any)
----@return string?
-M.get_md_link_dest = function()
-  -- NOTE: Maybe in the future make this work for injected Markdown used in e.g.
-  -- documentation?
-  if vim.bo.filetype ~= 'markdown' then
-    return
-  end
-  local current_node = get_node { lang = 'markdown_inline' }
-  while current_node do
-    local type = current_node:type()
-    if type == 'inline_link' or type == 'image' then
-      return vim.treesitter.get_node_text(current_node:named_child(1), 0)
-    end
-    current_node = current_node:parent()
-  end
-  return nil
-end
-
 ---Whether or not the cursor is in a JSX-tag region
 ---@param insert_mode boolean Whether or not the cursor is in insert mode
 ---@return boolean

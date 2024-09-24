@@ -1,5 +1,4 @@
 --> MISCELLANEOUS KEYMAPS <--
-local link_dest = require('rileybruins.utils').get_md_link_dest
 local map = vim.keymap.set
 
 map('n', '<C-i>', '<Tab>', {
