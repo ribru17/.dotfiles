@@ -165,7 +165,7 @@ M.in_mathzone = function(_, matched_trigger)
   ---@type TSNode
   local cursor_node = get_node_insert_mode { ignore_injections = false }
   local ancestor_node = cursor_node:tree():root()
-  local in_mathzone = true
+  local in_mathzone = false
   while ancestor_node do
     if ancestor_node:type() == 'text_mode' then
       in_mathzone = false
