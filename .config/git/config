@@ -3,7 +3,6 @@
 	name = Riley Bruins
 [core]
 	editor = nvim
-	excludesFile = ~/.config/git/.gitignore.global
 	pager = delta
 [interactive]
 	diffFilter = delta --color-only
