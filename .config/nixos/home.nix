@@ -53,6 +53,7 @@ in {
       haskell-language-server
       lua
       lua-language-server
+      man-pages
       marksman
       nil
       ninja
