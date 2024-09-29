@@ -15,7 +15,7 @@ create_autocmd('FileType', {
 create_autocmd('BufWinEnter', {
   pattern = '*',
   callback = function(ev)
-    if vim.bo[ev.buf].ft ~= 'help' then
+    if vim.bo[ev.buf].ft ~= 'help' or vim.env.MERGETOOL then
       return
     end
     -- open help buffers in new tabs by default
