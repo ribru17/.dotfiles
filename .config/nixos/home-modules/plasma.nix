@@ -13,6 +13,7 @@
     powerdevil = {
       battery = { whenSleepingEnter = "standbyThenHibernate"; };
       lowBattery = { whenSleepingEnter = "standbyThenHibernate"; };
+      general = { pausePlayersOnSuspend = true; };
     };
     hotkeys.commands."launch-kitty" = {
       name = "Launch Kitty";
@@ -1050,7 +1051,7 @@
       "kwinrc"."NightColor"."Mode".value = "Times";
       "kwinrc"."NightColor"."EveningBeginFixed".value = "1900";
       "kwinrc"."NightColor"."MorningBeginFixed".value = "0700";
-      "kxkbrc"."Layout"."Options".value = "caps:escape_shifted_compose";
+      "kxkbrc"."Layout"."Options".value = "caps:swapescape";
       "kxkbrc"."Layout"."ResetOldOptions".value = true;
       "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
       "plasmanotifyrc"."DoNotDisturb"."NotificationSoundsMuted".value = true;
