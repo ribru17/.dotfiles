@@ -763,8 +763,13 @@ return {
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
-    { trig = '\\?frac', regTrig = true },
+    { trig = [[\?frac]], regTrig = true },
     fmt([[\frac{{{1}}}{{{2}}}]], { i(1, 'a'), i(2, 'b') }),
+    { condition = in_mathzone }
+  ),
+  s(
+    { trig = [[\?binom]], regTrig = true },
+    fmt([[\binom{{{1}}}{{{2}}}]], { i(1, 'n'), i(2, 'k') }),
     { condition = in_mathzone }
   ),
   s(
