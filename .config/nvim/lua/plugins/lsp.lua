@@ -180,7 +180,7 @@ return {
 
       local library = {
         vim.env.VIMRUNTIME,
-        vim.fn.stdpath('config'),
+        vim.fs.joinpath(vim.fn.stdpath('config'), '/lua'),
         '${3rd}/luv/library',
         '${3rd}/busted/library',
       }
