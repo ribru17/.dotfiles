@@ -494,7 +494,7 @@ return {
   s(
     {
       --> INJECT: luap
-      trig = '(%a)bar',
+      trig = '(%w)bar',
       wordTrig = false,
       regTrig = true,
       priority = 100,
@@ -780,6 +780,11 @@ return {
   s(
     { trig = 'approx' },
     fmt([[\approx]], {}),
+    { condition = in_mathzone_ignore_backslash }
+  ),
+  s(
+    { trig = 'int' },
+    fmt([[\int]], {}),
     { condition = in_mathzone_ignore_backslash }
   ),
   s(
