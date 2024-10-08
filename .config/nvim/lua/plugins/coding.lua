@@ -1,5 +1,6 @@
 local BORDER_STYLE = require('rileybruins.settings').border
 return {
+  { 'nvim-lua/plenary.nvim', lazy = true },
   {
     'lewis6991/gitsigns.nvim',
     event = { 'LazyFile' },
