@@ -49,7 +49,7 @@
 	st = status
 	stat = status
 	amend = commit -a --amend --no-edit
-	edit = "!f() { nvim -p $(git diff "HEAD~${1-0}" --name-only); }; f"
+	edit = "!f() { nvim -p $(git diff "HEAD~${1-0}" --name-only --diff-filter=d); }; f"
 	fixup = commit -a --fixup HEAD
 	info = !git diff && git remote -v && git status
 	move = "!f() { git branch $1 && git reset --hard HEAD~${2-1} && git checkout $1; }; f"
