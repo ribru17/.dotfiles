@@ -10,9 +10,8 @@
   (function_declaration
     "function" @open.function)
   (method_definition
-    body:
-      (statement_block
-        "{" @open.function))
+    body: (statement_block
+      "{" @open.function))
 ] @scope.function
 
 (return_statement

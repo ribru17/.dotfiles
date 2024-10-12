@@ -28,7 +28,7 @@ return {
           enable = true,
         },
         matchup = {
-          enable = true,
+          enable = true, -- *very* poor performance for large files
           disable_virtual_text = true,
         },
         textobjects = {
