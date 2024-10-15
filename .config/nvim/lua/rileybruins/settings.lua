@@ -166,6 +166,7 @@ M.apply = function()
       tabstop = 8,
       termguicolors = true,
       textwidth = 80,
+      tildeop = true,
       undodir = vim.env.HOME .. '/.vim/undodir',
       undofile = true,
       virtualedit = 'block',
