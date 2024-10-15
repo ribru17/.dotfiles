@@ -50,7 +50,7 @@ return {
         highlights = {
           ['@checked.content'] = { fg = '$grey', fmt = 'strikethrough' },
           -- TODO: Put this setting into bamboo.nvim once 0.11 drops
-          ['WinBar'] = { fmt = 'underline', sp = '$light_grey' },
+          ['WinBar'] = { fmt = 'underline', fg = '$light_grey', sp = '$grey' },
         },
       }
       vim.cmd.colorscheme { args = { 'bamboo' } }
