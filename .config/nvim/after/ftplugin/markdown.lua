@@ -8,7 +8,10 @@ vim.b.matchup_matchparen_enabled = false
 vim.schedule(function()
   vim.keymap.set('i', '<CR>', function()
     local pair = require('nvim-autopairs').completion_confirm()
-    if pair == vim.api.nvim_replace_termcodes('<CR>', true, false, true) then
+    if
+      vim.bo.ft == 'markdown'
+      and pair == vim.api.nvim_replace_termcodes('<CR>', true, false, true)
+    then
       vim.cmd.InsertNewBullet()
     else
       vim.api.nvim_feedkeys(pair, 'n', false)
