@@ -169,7 +169,6 @@ return {
       { 'hrsh7th/cmp-path' },
       { 'saadparwaiz1/cmp_luasnip' },
       { 'hrsh7th/cmp-nvim-lua' },
-      { 'hrsh7th/cmp-omni' },
       { 'onsails/lspkind-nvim' },
     },
     config = function()
@@ -349,10 +348,6 @@ return {
               end,
             },
           },
-          {
-            name = 'omni',
-            keyword_pattern = [[\(\k\|"\)\+]],
-          },
         },
         formatting = {
           fields = { 'abbr', 'menu', 'kind' },
@@ -423,20 +418,6 @@ return {
       -- Insert `(` after select function or method item
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-
-      -- Destroy the final `"` in query omnifunc completions
-      cmp.event:on('confirm_done', function(evt)
-        if
-          evt.entry.source.name == 'omni'
-          and evt.entry.completion_item.label:match('"$')
-        then
-          vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes('<BS><Right>', true, false, true),
-            'n',
-            false
-          )
-        end
-      end)
 
       -- `:` cmdline setup.
       cmp.setup.cmdline(':', {

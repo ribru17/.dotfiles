@@ -296,7 +296,6 @@ return {
           luau = { 'stylua' },
           markdown = { 'deno_fmt' },
           python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
-          query = { 'format-queries' },
           sh = { 'shfmt' },
           typescript = { 'deno_fmt' },
           typescriptreact = { 'deno_fmt' },
