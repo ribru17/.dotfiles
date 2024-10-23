@@ -11,8 +11,15 @@
       splashScreen = { theme = "Illusion"; };
     };
     powerdevil = {
-      battery = { whenSleepingEnter = "standbyThenHibernate"; };
-      lowBattery = { whenSleepingEnter = "standbyThenHibernate"; };
+      AC = { whenSleepingEnter = "standbyThenHibernate"; };
+      battery = {
+        whenSleepingEnter = "standbyThenHibernate";
+        displayBrightness = 85;
+      };
+      lowBattery = {
+        whenSleepingEnter = "standbyThenHibernate";
+        displayBrightness = 30;
+      };
       general = { pausePlayersOnSuspend = true; };
     };
     hotkeys.commands."launch-kitty" = {
