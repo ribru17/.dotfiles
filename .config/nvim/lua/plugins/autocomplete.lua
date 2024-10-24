@@ -168,7 +168,6 @@ return {
       { 'hrsh7th/cmp-cmdline' },
       { 'hrsh7th/cmp-path' },
       { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lua' },
       { 'onsails/lspkind-nvim' },
     },
     config = function()
@@ -312,7 +311,6 @@ return {
         },
         sources = {
           { name = 'path' },
-          { name = 'nvim_lua', ft = 'lua' },
           {
             name = 'nvim_lsp',
             entry_filter = function(entry, _)
@@ -373,7 +371,6 @@ return {
             menu = {
               spell = '[Dict]',
               nvim_lsp = '[LSP]',
-              nvim_lua = '[API]',
               path = '[Path]',
               luasnip = '[Snip]',
             },

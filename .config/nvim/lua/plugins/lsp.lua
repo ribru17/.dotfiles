@@ -178,82 +178,18 @@ return {
         capabilities = capabilities,
       }
 
-      local library = {
-        vim.env.VIMRUNTIME,
-        vim.fs.joinpath(vim.fn.stdpath('config'), '/lua'),
-        '${3rd}/luv/library',
-        '${3rd}/busted/library',
-      }
-
-      local function add(lib)
-        for _, p in
-          pairs(vim.fn.expand(lib .. '/lua', false, true) --[[@as string[]--]])
-        do
-          local p = vim.uv.fs_realpath(p)
-          if p then
-            library[p] = true
-          end
-        end
-      end
-
-      if SETTINGS.luals_load_plugins then
-        -- add plugins
-        if package.loaded['lazy'] then
-          for _, plugin in ipairs(require('lazy').plugins()) do
-            add(plugin.dir)
-          end
-        end
-      end
-
       lspconfig.lua_ls.setup {
         capabilities = capabilities,
         settings = {
           Lua = {
             codeLens = { enable = true },
-            doc = {
-              privateName = { '^_' },
-            },
-            diagnostics = {
-              disable = { 'redefined-local' },
-              unusedLocalExclude = { '_*' },
-              -- Uncomment to receive LSP formatting diagnostics.
-              -- neededFileStatus = { ['codestyle-check'] = 'Any' },
-            },
             telemetry = { enable = false },
             hint = {
               enable = true,
               arrayIndex = 'Disable',
             },
-            runtime = {
-              version = 'LuaJIT',
-              path = {
-                '?.lua',
-                '?/init.lua',
-              },
-              pathStrict = true,
-            },
-            workspace = {
-              checkThirdParty = false,
-              -- Make the server aware of Neovim runtime files
-              library = library,
-            },
-            -- see https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
             format = {
               enable = false,
-              defaultConfig = {
-                indent_size = '2',
-                indent_style = 'space',
-                quote_style = 'single',
-                max_line_length = '80',
-                trailing_table_separator = 'smart',
-                -- NOTE: some options break some formatting properties? :(
-                -- in fact a lot of things are buggy (removing `quote_style`
-                -- property allows trailing table separators to be more
-                -- comprehensive) but... good enough :)
-                -- break_all_list_when_line_exceed = true, --breaks things sadly
-                call_arg_parentheses = 'remove_table_only',
-                -- align_call_args = true, -- breaks things sadly
-              },
             },
           },
         },

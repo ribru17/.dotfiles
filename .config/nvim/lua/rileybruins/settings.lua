@@ -7,8 +7,6 @@ local BORDER_STYLE = 'rounded'
 local M = {
   border = BORDER_STYLE,
   in_dotfiles = in_dotfiles,
-  -- If `true`, this consumes a lot of resources and slows the LSP greatly.
-  luals_load_plugins = false,
   hide_foldcolumn = { 'markdown', 'gitconfig', 'toml' },
   codelens_refresh_events = { 'InsertLeave', 'TextChanged', 'CursorHold' },
   ensure_installed_ts_parsers = {
