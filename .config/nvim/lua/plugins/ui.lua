@@ -436,7 +436,6 @@ return {
       end)
 
       local show_dotfiles = true
-      local MiniFiles = require('mini.files')
       local filter_show = function(_fs_entry)
         return true
       end

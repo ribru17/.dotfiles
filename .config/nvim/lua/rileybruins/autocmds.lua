@@ -271,7 +271,7 @@ create_autocmd('FileType', {
     if
       vim.treesitter.get_parser(ev.buf, ft, { error = false })
       and vim.treesitter.query.get(
-        vim.treesitter.language.get_lang(vim.bo[ev.buf].ft),
+        vim.treesitter.language.get_lang(vim.bo[ev.buf].ft) --[[@as string]],
         'folds'
       )
     then
@@ -299,7 +299,7 @@ create_autocmd('FileType', {
         parser_install_directories = {
           -- If using nvim-treesitter with lazy.nvim
           vim.fs.joinpath(
-            vim.fn.stdpath('data'),
+            vim.fn.stdpath('data') --[[@as string]],
             '/lazy/nvim-treesitter/parser/'
           ),
         },

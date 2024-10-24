@@ -206,6 +206,7 @@ M.apply = function()
   -- override `get_option` to allow for proper JSX/TSX commenting
   local get_option = vim.filetype.get_option
   local in_jsx = require('rileybruins.utils').in_jsx_tags
+  ---@diagnostic disable-next-line: duplicate-set-field
   vim.filetype.get_option = function(filetype, option)
     if option ~= 'commentstring' then
       return get_option(filetype, option)

@@ -1,3 +1,4 @@
+---@diagnostic disable: inject-field
 local BORDER_STYLE = require('rileybruins.settings').border
 local SETTINGS = require('rileybruins.settings')
 

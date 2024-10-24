@@ -161,10 +161,14 @@ return {
       vim.treesitter.query.add_directive(
         'offset-first-n!',
         offset_first_n,
-        true
+        { force = true }
       )
 
-      vim.treesitter.query.add_directive('ft-conceal!', ft_conceal, true)
+      vim.treesitter.query.add_directive(
+        'ft-conceal!',
+        ft_conceal,
+        { force = true }
+      )
 
       -- Trim whitespace from end of the region
       -- Arguments are the captures to trim.
@@ -181,7 +185,7 @@ return {
             if not node then
               return
             end
-            local start_row, start_col, end_row, end_col = node:range()
+            local start_row, start_col, end_row, end_col = node:range(false)
 
             while true do
               -- As we only care when end_col == 0, always inspect one line above end_row.
@@ -210,7 +214,7 @@ return {
             end
           end
         end,
-        true
+        { force = true }
       )
     end,
   },

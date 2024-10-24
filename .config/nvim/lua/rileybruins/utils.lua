@@ -123,7 +123,7 @@ local get_node_insert_mode = function(opts)
   ins_curs[1] = ins_curs[1] - 1
   ins_curs[2] = ins_curs[2] - 1
   opts.pos = ins_curs
-  return get_node(opts)
+  return get_node(opts) --[[@as TSNode]]
 end
 
 ---Whether or not the cursor is in a JSX-tag region
@@ -131,7 +131,7 @@ end
 ---@return boolean
 M.in_jsx_tags = function(insert_mode)
   local current_node = insert_mode and get_node_insert_mode() or get_node()
-  return current_node and current_node:__has_ancestor { 'jsx_element' }
+  return current_node and current_node:__has_ancestor { 'jsx_element' } or false
 end
 
 local MATH_NODES = {
@@ -143,9 +143,8 @@ local MATH_NODES = {
 ---Whether or not the cursor is in a LaTeX block
 ---@return boolean
 M.in_latex_zone = function()
-  ---@type TSNode
   local current_node = get_node { ignore_injections = false }
-  return current_node:__has_ancestor(MATH_NODES)
+  return current_node and current_node:__has_ancestor(MATH_NODES) or false
 end
 
 ---Whether or not the cursor is in a LaTeX math zone
@@ -170,15 +169,18 @@ M.in_mathzone = function(_, matched_trigger)
     if ancestor_node:type() == 'text_mode' then
       in_mathzone = false
     elseif ancestor_node:type() == 'generic_command' then
-      local cmd_name =
-        vim.treesitter.get_node_text(ancestor_node:named_child(0), 0, {})
+      local cmd_name = vim.treesitter.get_node_text(
+        assert(ancestor_node:named_child(0)),
+        0,
+        {}
+      )
       if cmd_name == '\\textbf' or cmd_name == '\\textit' then
         in_mathzone = false
       end
     elseif vim.list_contains(MATH_NODES, ancestor_node:type()) then
       in_mathzone = true
     end
-    ancestor_node = ancestor_node:child_containing_descendant(cursor_node)
+    ancestor_node = ancestor_node:child_with_descendant(cursor_node)
   end
   return in_mathzone
 end
