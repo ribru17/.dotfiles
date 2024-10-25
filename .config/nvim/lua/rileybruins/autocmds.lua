@@ -305,6 +305,8 @@ create_autocmd('FileType', {
         },
         parser_aliases = {
           ecma = 'javascript',
+          jsx = 'javascript',
+          php_only = 'php',
         },
         language_retrieval_patterns = {
           'languages/src/([^/]+)/[^/]+\\.scm$',
