@@ -57,7 +57,7 @@ in {
       marksman
       nil
       ninja
-      nixfmt-classic
+      nixfmt-rfc-style
       nodePackages_latest.bash-language-server
       nodePackages_latest.typescript-language-server
       nodejs_22
