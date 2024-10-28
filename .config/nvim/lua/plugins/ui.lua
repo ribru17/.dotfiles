@@ -277,7 +277,7 @@ return {
         newButton(
           't',
           ' ' .. ' File tree',
-          ':lua require("mini.files").open(vim.api.nvim_buf_get_name(0), false)<CR>'
+          ':lua require("oil").toggle_preview()<CR>'
         ),
         newButton(
           's',
@@ -417,90 +417,44 @@ return {
     'Bekaboo/dropbar.nvim',
   },
   {
-    'echasnovski/mini.files',
-    keys = { '<leader>ft' },
+    'stevearc/oil.nvim',
+    -- Don't lazy load in order to let this take over as default file explorer
+    lazy = false,
+    keys = {
+      {
+        '<leader>ft',
+        function()
+          require('oil').toggle_float()
+        end,
+      },
+    },
     config = function()
-      local MiniFiles = require('mini.files')
-      MiniFiles.setup {
-        windows = {
-          preview = true,
-          width_preview = 50,
-          width_focus = 25,
+      local oil = require('oil')
+      oil.setup {
+        float = {
+          border = SETTINGS.border,
         },
-        mappings = {
-          go_in_plus = '<CR>',
+        keymaps = {
+          ['<Tab>'] = {
+            'actions.select',
+            opts = { tab = true },
+            desc = 'Open the entry in new tab',
+          },
+          ['q'] = 'actions.close',
+          ['<Esc>'] = 'actions.parent',
         },
       }
-      vim.keymap.set('n', '<leader>ft', function()
-        MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-      end)
-
-      local show_dotfiles = true
-      local filter_show = function(_fs_entry)
-        return true
-      end
-      local filter_hide = function(fs_entry)
-        return not vim.startswith(fs_entry.name, '.')
-      end
-
-      local toggle_dotfiles = function()
-        show_dotfiles = not show_dotfiles
-        local new_filter = show_dotfiles and filter_show or filter_hide
-        MiniFiles.refresh { content = { filter = new_filter } }
-      end
-
-      local tab_open = function(buf_id, lhs)
-        local rhs = function()
-          local new_target_window
-          local cur_target_window = MiniFiles.get_explorer_state().target_window
-          if cur_target_window ~= nil then
-            vim.api.nvim_win_call(cur_target_window, function()
-              vim.cmd.tabe()
-              new_target_window = vim.api.nvim_get_current_win()
-            end)
-
-            MiniFiles.set_target_window(new_target_window)
-            MiniFiles.go_in()
+      -- Automatically open preview window
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'OilEnter',
+        callback = vim.schedule_wrap(function(args)
+          if
+            vim.api.nvim_get_current_buf() == args.data.buf
+            and oil.get_cursor_entry()
+          then
+            oil.open_preview()
           end
-
-          MiniFiles.close()
-          vim.cmd.tabprev()
-          MiniFiles.open(MiniFiles.get_latest_path())
-        end
-
-        local desc = 'Open in new tab'
-        vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = desc })
-      end
-
-      vim.api.nvim_create_autocmd('User', {
-        pattern = 'MiniFilesWindowOpen',
-        callback = function(args)
-          local win_id = args.data.win_id
-          vim.api.nvim_win_set_config(win_id, { border = SETTINGS.border })
-        end,
-      })
-
-      vim.api.nvim_create_autocmd('User', {
-        pattern = 'MiniFilesBufferCreate',
-        callback = function(args)
-          local buf_id = args.data.buf_id
-
-          vim.keymap.set(
-            'n',
-            'g.',
-            toggle_dotfiles,
-            { buffer = buf_id, desc = 'Toggle hidden files' }
-          )
-
-          vim.keymap.set(
-            'n',
-            '<Esc>',
-            MiniFiles.close,
-            { buffer = buf_id, desc = 'Close the file explorer' }
-          )
-
-          tab_open(buf_id, '<Tab>')
-        end,
+        end),
       })
     end,
   },
