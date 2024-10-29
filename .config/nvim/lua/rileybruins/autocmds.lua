@@ -265,18 +265,26 @@ create_autocmd('CmdwinEnter', {
 -- })
 
 -- only set the foldexpr where necessary
+-- also enable syntax if there is no treesitter highlighting
 create_autocmd('FileType', {
   callback = function(ev)
     local ft = vim.bo[ev.buf].ft
-    if
-      vim.treesitter.get_parser(ev.buf, ft, { error = false })
-      and vim.treesitter.query.get(
-        vim.treesitter.language.get_lang(vim.bo[ev.buf].ft) --[[@as string]],
-        'folds'
-      )
-    then
-      vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].ft) --[[@as string]]
+    if vim.treesitter.get_parser(ev.buf, ft, { error = false }) then
+      if vim.treesitter.query.get(lang, 'folds') then
+        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      end
+    else
+      vim.bo[ev.buf].syntax = 'ON'
     end
+  end,
+})
+
+-- enable syntax highlighting for filetypes with treesitter highlights disabled
+create_autocmd('FileType', {
+  pattern = SETTINGS.disabled_highlighting_fts,
+  callback = function(ev)
+    vim.bo[ev.buf].syntax = 'ON'
   end,
 })
 
@@ -310,6 +318,128 @@ create_autocmd('FileType', {
         },
         language_retrieval_patterns = {
           'languages/src/([^/]+)/[^/]+\\.scm$',
+        },
+      },
+    }
+  end,
+})
+
+create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    vim.wo.conceallevel = 2
+    vim.wo.concealcursor = 'nc'
+    -- Allow block comments to be continued when hitting enter.
+    vim.opt.formatoptions:append('qcro')
+    vim.b.matchup_matchparen_enabled = false
+
+    -- Allow bullets.vim and nvim-autopairs to coexist.
+    vim.schedule(function()
+      vim.keymap.set('i', '<CR>', function()
+        local pair = require('nvim-autopairs').completion_confirm()
+        if
+          vim.bo.ft == 'markdown'
+          and pair
+            == vim.api.nvim_replace_termcodes('<CR>', true, false, true)
+        then
+          vim.cmd.InsertNewBullet()
+        else
+          vim.api.nvim_feedkeys(pair, 'n', false)
+        end
+      end, {
+        buffer = 0,
+      })
+    end)
+
+    local config = require('nvim-surround.config')
+    local in_latex_zone = require('rileybruins.utils').in_latex_zone
+    ---@diagnostic disable-next-line: missing-fields
+    require('nvim-surround').buffer_setup {
+      aliases = {
+        ['b'] = { '{', '[', '(', '<', 'b' },
+      },
+      surrounds = {
+        ---@diagnostic disable-next-line: missing-fields
+        ['b'] = {
+          add = { '**', '**' },
+          --> INJECT: luap
+          find = '%*%*.-%*%*',
+          --> INJECT: luap
+          delete = '^(%*%*)().-(%*%*)()$',
+        },
+        -- recognize latex-style functions when in latex snippets
+        ['f'] = {
+          add = function()
+            local result = config.get_input('Enter the function name: ')
+            if result then
+              if in_latex_zone() then
+                return { { '\\' .. result .. '{' }, { '}' } }
+              end
+              return { { result .. '(' }, { ')' } }
+            end
+          end,
+          find = function()
+            if in_latex_zone() then
+              return config.get_selection {
+                --> INJECT: luap
+                pattern = '\\[%w_]+{.-}',
+              }
+            end
+            if vim.g.loaded_nvim_treesitter then
+              local selection = config.get_selection {
+                query = { capture = '@call.outer', type = 'textobjects' },
+              }
+              if selection then
+                return selection
+              end
+            end
+            return config.get_selection {
+              --> INJECT: luap
+              pattern = '[^=%s%(%){}]+%b()',
+            }
+          end,
+          ---@param char string
+          delete = function(char)
+            local match
+            if in_latex_zone() then
+              match = config.get_selections {
+                char = char,
+                --> INJECT: luap
+                pattern = '^(\\[%w_]+{)().-(})()$',
+              }
+            else
+              match = config.get_selections {
+                char = char,
+                --> INJECT: luap
+                pattern = '^(.-%()().-(%))()$',
+              }
+            end
+            return match
+          end,
+          change = {
+            ---@param char string
+            target = function(char)
+              if in_latex_zone() then
+                return config.get_selections {
+                  char = char,
+                  --> INJECT: luap
+                  pattern = '^.-\\([%w_]+)(){.-}()()$',
+                }
+              else
+                return config.get_selections {
+                  char = char,
+                  --> INJECT: luap
+                  pattern = '^.-([%w_]+)()%(.-%)()()$',
+                }
+              end
+            end,
+            replacement = function()
+              local result = config.get_input('Enter the function name: ')
+              if result then
+                return { { result }, { '' } }
+              end
+            end,
+          },
         },
       },
     }

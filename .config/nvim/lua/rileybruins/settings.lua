@@ -44,6 +44,9 @@ local M = {
     'vimdoc',
     'xml',
   },
+  disabled_highlighting_fts = {
+    'csv', -- get nice rainbow syntax
+  },
   unloaded_default_plugins = {
     'gzip',
     'matchit',
@@ -202,6 +205,9 @@ M.apply = function()
       ['~/.dotfiles/config'] = 'gitconfig',
     },
   }
+
+  -- we will only enable syntax for certain buffers later
+  vim.cmd.syntax('manual')
 
   -- override `get_option` to allow for proper JSX/TSX commenting
   local get_option = vim.filetype.get_option

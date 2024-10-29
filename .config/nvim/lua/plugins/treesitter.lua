@@ -3,6 +3,7 @@ local include_surrounding_whitespace = {
   ['@class.outer'] = true,
   ['@parameter.outer'] = true,
 }
+local SETTINGS = require('rileybruins.settings')
 return {
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -15,13 +16,13 @@ return {
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = require('rileybruins.settings').ensure_installed_ts_parsers,
+        ensure_installed = SETTINGS.ensure_installed_ts_parsers,
         sync_install = false,
         auto_install = true,
 
         highlight = {
           enable = true,
-          disable = { 'csv' }, -- get nice rainbow syntax
+          disable = SETTINGS.disabled_highlighting_fts,
           additional_vim_regex_highlighting = false,
         },
         indent = {

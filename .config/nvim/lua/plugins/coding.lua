@@ -109,6 +109,7 @@ return {
   {
     'lukas-reineke/indent-blankline.nvim',
     event = { 'LazyFile' },
+    tag = 'v3.8.2',
     main = 'ibl',
     opts = {
       indent = {
