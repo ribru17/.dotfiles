@@ -323,3 +323,36 @@ create_autocmd('FileType', {
     }
   end,
 })
+
+-- block out the background for nvim instances
+create_autocmd({ 'VimEnter', 'SessionLoadPost', 'FocusGained' }, {
+  callback = function()
+    vim.defer_fn(function()
+      vim
+        .system({
+          'kitty',
+          '@',
+          '--to',
+          vim.env.KITTY_LISTEN_ON,
+          'set-background-opacity',
+          '1',
+        })
+        :wait()
+      -- give this a delay so it runs after the autocmd below
+    end, 50)
+  end,
+})
+create_autocmd({ 'VimLeavePre', 'FocusLost' }, {
+  callback = function()
+    vim
+      .system({
+        'kitty',
+        '@',
+        '--to',
+        vim.env.KITTY_LISTEN_ON,
+        'set-background-opacity',
+        '0.75',
+      })
+      :wait()
+  end,
+})
