@@ -1,13 +1,21 @@
-{ pkgs, vars, lib, ... }:
+{
+  pkgs,
+  vars,
+  lib,
+  ...
+}:
 let
-  brave = (pkgs.brave.override {
-    commandLineArgs = [
-      "--force-device-scale-factor=1.5"
-      # Get rid of weird tab scrolling
-      "--enable-features=ScrollableTabStrip"
-    ];
-  });
-in {
+  brave = (
+    pkgs.brave.override {
+      commandLineArgs = [
+        "--force-device-scale-factor=1.5"
+        # Get rid of weird tab scrolling
+        "--enable-features=ScrollableTabStrip"
+      ];
+    }
+  );
+in
+{
   imports = [ ./home-modules/plasma.nix ];
 
   home.username = "${vars.username}";
@@ -20,17 +28,25 @@ in {
 
   home.sessionVariables.BROWSER = "brave";
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     let
       R = rWrapper.override { packages = with rPackages; [ languageserver ]; };
-      rust = (rust-bin.stable.latest.default.override {
-        extensions = [ "rust-analyzer" "rust-src" ];
-      });
-    in [
+      rust = (
+        rust-bin.stable.latest.default.override {
+          extensions = [
+            "rust-analyzer"
+            "rust-src"
+          ];
+        }
+      );
+    in
+    [
       (spotify.override { deviceScaleFactor = 1.5; })
       R
       basedpyright
       bat
+      biome
       blesh
       brave
       ccache
@@ -87,47 +103,49 @@ in {
   xdg.mimeApps = rec {
     enable = true;
     associations.added = defaultApplications;
-    defaultApplications = let
-      imageViewer = "brave-browser.desktop";
-      mediaPlayer = "brave-browser.desktop";
-      documentViewer = "brave-browser.desktop";
-      browser = "brave-browser.desktop";
-      textEditor = "neovim.desktop";
-    in {
-      # Documents
-      "application/pdf" = documentViewer;
+    defaultApplications =
+      let
+        imageViewer = "brave-browser.desktop";
+        mediaPlayer = "brave-browser.desktop";
+        documentViewer = "brave-browser.desktop";
+        browser = "brave-browser.desktop";
+        textEditor = "neovim.desktop";
+      in
+      {
+        # Documents
+        "application/pdf" = documentViewer;
 
-      # Images
-      "image/png" = imageViewer;
-      "image/jpeg" = imageViewer;
-      "image/gif" = imageViewer;
-      "image/svg+xml" = imageViewer;
-      "image/avif" = imageViewer;
-      "image/jpg" = imageViewer;
-      "image/pjpeg" = imageViewer;
-      "image/tiff" = imageViewer;
-      "image/webp" = imageViewer;
-      "image/x-bmp" = imageViewer;
-      "image/x-gray" = imageViewer;
-      "image/x-icb" = imageViewer;
-      "image/x-ico" = imageViewer;
-      "image/x-png" = imageViewer;
+        # Images
+        "image/png" = imageViewer;
+        "image/jpeg" = imageViewer;
+        "image/gif" = imageViewer;
+        "image/svg+xml" = imageViewer;
+        "image/avif" = imageViewer;
+        "image/jpg" = imageViewer;
+        "image/pjpeg" = imageViewer;
+        "image/tiff" = imageViewer;
+        "image/webp" = imageViewer;
+        "image/x-bmp" = imageViewer;
+        "image/x-gray" = imageViewer;
+        "image/x-icb" = imageViewer;
+        "image/x-ico" = imageViewer;
+        "image/x-png" = imageViewer;
 
-      # Videos
-      "video/webm" = mediaPlayer;
-      "video/mp4" = mediaPlayer;
-      "video/mkv" = mediaPlayer;
+        # Videos
+        "video/webm" = mediaPlayer;
+        "video/mp4" = mediaPlayer;
+        "video/mkv" = mediaPlayer;
 
-      # Text and code
-      "text/english" = textEditor;
-      "text/plain" = textEditor;
-      "application/x-shellscript" = textEditor;
+        # Text and code
+        "text/english" = textEditor;
+        "text/plain" = textEditor;
+        "application/x-shellscript" = textEditor;
 
-      # Web
-      "text/html" = browser;
-      "x-scheme-handler/http" = browser;
-      "x-scheme-handler/https" = browser;
-    };
+        # Web
+        "text/html" = browser;
+        "x-scheme-handler/http" = browser;
+        "x-scheme-handler/https" = browser;
+      };
   };
 
   programs.chromium = {
@@ -139,8 +157,7 @@ in {
       {
         # Bypass paywalls
         id = "dcpihecpambacapedldabdbpakmachpb";
-        updateUrl =
-          "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
+        updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
       }
       {
         # Vimium
@@ -157,16 +174,18 @@ in {
 
   programs.bash = {
     enable = true;
-    initExtra = (builtins.readFile ./home-modules/bash/bashrc) +
-      # bash
-      ''
-        # Sourcery
-        source "${pkgs.blesh}/share/blesh/ble.sh"
-        source "${pkgs.git}/share/bash-completion/completions/git"
-        __git_complete g __git_main
-        __git_complete d __git_main
-        __git_complete dots __git_main
-      '';
+    initExtra =
+      (builtins.readFile ./home-modules/bash/bashrc)
+      +
+        # bash
+        ''
+          # Sourcery
+          source "${pkgs.blesh}/share/blesh/ble.sh"
+          source "${pkgs.git}/share/bash-completion/completions/git"
+          __git_complete g __git_main
+          __git_complete d __git_main
+          __git_complete dots __git_main
+        '';
     profileExtra = builtins.readFile ./home-modules/bash/profile;
   };
 

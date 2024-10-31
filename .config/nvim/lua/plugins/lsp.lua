@@ -107,14 +107,8 @@ return {
           },
         },
       }
-      lspconfig.eslint.setup {
+      lspconfig.biome.setup {
         capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          vim.api.nvim_create_autocmd('BufWritePre', {
-            buffer = bufnr,
-            command = 'EslintFixAll',
-          })
-        end,
       }
       lspconfig.gopls.setup {
         capabilities = capabilities,
