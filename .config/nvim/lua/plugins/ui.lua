@@ -277,7 +277,7 @@ return {
         newButton(
           't',
           ' ' .. ' File tree',
-          ':lua require("oil").toggle_preview()<CR>'
+          ':lua require("oil").toggle_float()<CR>'
         ),
         newButton(
           's',
