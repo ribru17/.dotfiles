@@ -223,7 +223,9 @@ return {
             vim.cmd.cfirst()
           end
 
-          map('n', 'K', vim.lsp.buf.hover, opts)
+          map('n', 'K', function()
+            vim.lsp.buf.hover { border = BORDER_STYLE }
+          end, opts)
           map('n', '<leader>e', vim.diagnostic.open_float, opts)
           -- go back with <C-o>, forth with <C-i>
           map('n', 'gd', function()
@@ -356,15 +358,6 @@ return {
         severity_sort = true,
         float = { border = BORDER_STYLE },
       }
-
-      vim.lsp.handlers['textDocument/hover'] =
-        vim.lsp.with(vim.lsp.handlers.hover, {
-          border = BORDER_STYLE,
-        })
-      vim.lsp.handlers['textDocument/signatureHelp'] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, {
-          border = BORDER_STYLE,
-        })
 
       -- Create a custom namespace. This will aggregate signs from all other
       -- namespaces and only show the one with the highest severity on a
