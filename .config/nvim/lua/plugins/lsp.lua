@@ -136,6 +136,9 @@ return {
       lspconfig.bashls.setup {
         capabilities = capabilities,
       }
+      lspconfig.cmake.setup {
+        capabilities = capabilities,
+      }
       lspconfig.cssls.setup {
         capabilities = capabilities,
       }

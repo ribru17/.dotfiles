@@ -52,6 +52,7 @@ in
       ccache
       clang-tools
       cmake # for building Neovim
+      cmake-language-server
       delta
       deno
       emmet-language-server
