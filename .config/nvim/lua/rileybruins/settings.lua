@@ -61,6 +61,7 @@ local M = {
     'html',
     'javascript',
     'javascriptreact',
+    'json',
     'lua',
     'markdown',
     'nix',
