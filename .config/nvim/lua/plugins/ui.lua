@@ -414,9 +414,6 @@ return {
   --   opts = true,
   -- },
   {
-    'Bekaboo/dropbar.nvim',
-  },
-  {
     'stevearc/oil.nvim',
     -- Don't lazy load in order to let this take over as default file explorer
     lazy = false,
