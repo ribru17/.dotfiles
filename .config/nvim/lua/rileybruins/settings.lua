@@ -7,7 +7,7 @@ local BORDER_STYLE = 'rounded'
 local M = {
   border = BORDER_STYLE,
   in_dotfiles = in_dotfiles,
-  hide_foldcolumn = { 'markdown', 'gitconfig', 'toml' },
+  hide_foldcolumn = { 'markdown', 'git_config', 'toml' },
   codelens_refresh_events = { 'InsertLeave', 'TextChanged', 'CursorHold' },
   ensure_installed_ts_parsers = {
     'bash',
@@ -143,7 +143,6 @@ M.apply = function()
       encoding = 'utf-8',
       expandtab = true,
       fillchars = [[eob: ,fold: ,foldopen: ,foldsep: ,foldclose:▹]],
-      foldcolumn = '1',
       foldenable = true,
       foldlevel = 99,
       foldlevelstart = 99,
