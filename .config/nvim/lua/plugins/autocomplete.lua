@@ -200,20 +200,7 @@ return {
       -- supertab functionality
       local luasnip = require('luasnip')
       local function ins_tab_mapping(fallback)
-        local entry = cmp.get_selected_entry()
-        if
-          cmp.visible()
-          -- if tabbing on an entry that already matches what we have, just
-          -- skip and fall through to the next action
-          and not (
-            entry.source.name == 'spell'
-            and entry.context.cursor_before_line:match(
-              '^' .. entry:get_word() .. '$'
-            )
-          )
-        then
-          cmp.confirm { select = true }
-        elseif luasnip.expand_or_jumpable() then
+        if luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
         elseif escape_next() then
           move_right()
@@ -229,8 +216,6 @@ return {
       local function ins_s_tab_mapping(fallback)
         if luasnip.jumpable(-1) then
           luasnip.jump(-1)
-        elseif cmp.visible() then
-          cmp.select_prev_item()
         elseif is_in_bullet() then
           vim.cmd.BulletPromote()
           local row, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -285,6 +270,10 @@ return {
           end,
         },
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<C-y>'] = cmp.mapping(
+          cmp.mapping.confirm { select = true },
+          { 'i', 'c' }
+        ),
       }
 
       local BORDER_STYLE = require('rileybruins.settings').border
