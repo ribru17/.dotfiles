@@ -59,6 +59,7 @@
 	rename = branch -m
 	reword = commit --amend
 	squash = "!f() { git rebase -i HEAD~$1; }; f"
+	sync = !gh repo sync "ribru17/$(basename "$PWD")"
 	unadd = restore --staged
 	uncommit = "!f() { git reset HEAD~${1-1}; }; f"
 	undo = "!f() { if [ $# -eq 0 ]; then git reset --hard HEAD; else git checkout HEAD -- $@; fi }; f"
