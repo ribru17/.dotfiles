@@ -2,10 +2,17 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, inputs, vars, pkgs-iosevka-pin, ... }:
+{
+  pkgs,
+  inputs,
+  vars,
+  pkgs-iosevka-pin,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -24,10 +31,12 @@
   };
 
   # Hibernation using swapfile, 32GB
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 32 * 1024;
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 32 * 1024;
+    }
+  ];
   # See https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Acquire_swap_file_offset
   boot.kernelParams = [ "resume_offset=26255360" ];
   # Taken from hardware-configuration.nix
@@ -79,8 +88,10 @@
   };
   services.displayManager.defaultSession = "plasma";
   services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = with pkgs;
-    with kdePackages; [
+  environment.plasma6.excludePackages =
+    with pkgs;
+    with kdePackages;
+    [
       ark
       elisa
       gwenview
@@ -129,7 +140,10 @@
   # services.xserver.libinput.enable = true;
 
   nix.package = pkgs.nixVersions.git;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   # Replace duplicate software with hardlinks
   # NOTE: This may make builds noticeably slower (but saves a ton of space)
   nix.settings.auto-optimise-store = true;
@@ -147,32 +161,44 @@
   users.users.${vars.username} = {
     isNormalUser = true;
     description = "Riley Bruins";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
-  fonts.packages = with pkgs;
+  fonts.packages =
+    with pkgs;
     let
-      iosevka-custom = (pkgs-iosevka-pin.iosevka.override {
-        set = "Custom";
-        privateBuildPlan = {
-          family = "Iosevka Custom";
-          spacing = "FontConfig Mono";
-          serifs = "Sans";
-          noCvSs = true;
-          exportGlyphNames = true;
-          variants.design = {
-            at = "fourfold";
-            lig-equal-chain = "without-notch";
-            lig-hyphen-chain = "without-notch";
+      iosevka-custom = (
+        pkgs-iosevka-pin.iosevka.override {
+          set = "Custom";
+          privateBuildPlan = {
+            family = "Iosevka Custom";
+            spacing = "FontConfig Mono";
+            serifs = "Sans";
+            noCvSs = true;
+            exportGlyphNames = true;
+            variants.design = {
+              at = "fourfold";
+              lig-equal-chain = "without-notch";
+              lig-hyphen-chain = "without-notch";
+            };
+            ligations = {
+              inherits = "dlig";
+              disables = [ "brack-bar" ];
+              enables = [
+                "exeqeq"
+                "eqeqeq"
+                "llggeq"
+                "tildeeq"
+              ];
+            };
           };
-          ligations = {
-            inherits = "dlig";
-            disables = [ "brack-bar" ];
-            enables = [ "exeqeq" "eqeqeq" "llggeq" "tildeeq" ];
-          };
-        };
-      });
-    in [
+        }
+      );
+    in
+    [
       iosevka-custom
       (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     ];
@@ -192,16 +218,20 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     let
-      custom-catppuccin-sddm = (catppuccin-sddm.override {
-        background = "${./assets/dsotm_blurred.png}";
-        loginBackground = true;
-        font = "Iosevka Custom Extended";
-        fontSize = "15";
-      });
+      custom-catppuccin-sddm = (
+        catppuccin-sddm.override {
+          background = "${./assets/dsotm_blurred.png}";
+          loginBackground = true;
+          font = "Iosevka Custom Extended";
+          fontSize = "15";
+        }
+      );
       neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-    in [
+    in
+    [
       bash
       bash-completion
       bashInteractive

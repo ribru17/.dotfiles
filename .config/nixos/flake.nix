@@ -3,8 +3,7 @@
 
   nixConfig = {
     extra-substituters = "https://nix-community.cachix.org";
-    extra-trusted-public-keys =
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+    extra-trusted-public-keys = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
   };
 
   inputs = {
@@ -28,13 +27,14 @@
     };
 
     # Pin Iosevka to a specific nixpkgs commit to prevent lots of long builds
-    nixpkgs-iosevka-pin.url =
-      "github:nixos/nixpkgs/7848d6f048d38c42a8aeeff7fe7d36916ffb8284";
+    nixpkgs-iosevka-pin.url = "github:nixos/nixpkgs/7848d6f048d38c42a8aeeff7fe7d36916ffb8284";
 
     # Rust overlay
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
-      inputs = { nixpkgs.follows = "nixpkgs"; };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     # Nix Language server
@@ -48,8 +48,18 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, plasma-manager
-    , nixpkgs-iosevka-pin, rust-overlay, nil, neovim-nightly-overlay }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nixos-hardware,
+      home-manager,
+      plasma-manager,
+      nixpkgs-iosevka-pin,
+      rust-overlay,
+      nil,
+      neovim-nightly-overlay,
+    }:
     let
       vars = {
         username = "rileyb";
@@ -57,7 +67,8 @@
         system = "x86_64-linux";
         version = "23.11";
       };
-    in {
+    in
+    {
       nixosConfigurations.${vars.hostname} = nixpkgs.lib.nixosSystem rec {
         system = "${vars.system}";
         specialArgs = {
@@ -78,8 +89,7 @@
             home-manager.extraSpecialArgs = specialArgs;
             home-manager.useUserPackages = true;
             home-manager.users.${vars.username} = import ./home.nix;
-            home-manager.sharedModules =
-              [ plasma-manager.homeManagerModules.plasma-manager ];
+            home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
           }
         ];
       };
