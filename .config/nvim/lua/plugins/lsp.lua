@@ -60,6 +60,9 @@ return {
 
       local custom_capabilities = require('cmp_nvim_lsp').default_capabilities()
       custom_capabilities.offsetEncoding = { 'utf-16' }
+      lspconfig.vtsls.setup {
+        capabilities = capabilities,
+      }
       lspconfig.clangd.setup {
         capabilities = custom_capabilities,
         -- NOTE: to achieve LSP warnings on unused includes, add a `.clangd`
@@ -392,20 +395,5 @@ return {
         end,
       }
     end,
-  },
-  {
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'neovim/nvim-lspconfig' },
-    ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-    opts = {
-      settings = {
-        tsserver_file_preferences = {
-          includeInlayParameterNameHints = 'all',
-          -- NOTE: Should only really enable this if working in a Tree-sitter
-          -- grammar
-          disableSuggestions = false,
-        },
-      },
-    },
   },
 }

@@ -92,6 +92,7 @@ in
       unzip
       vesktop
       vscode-langservers-extracted
+      vtsls
       wget
       wl-clipboard
       xz
