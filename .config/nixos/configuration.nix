@@ -28,6 +28,8 @@
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 100000;
     "fs.inotify.max_queued_events" = 100000;
+    # For debugging
+    "kernel.yama.ptrace_scope" = 0;
   };
 
   # Hibernation using swapfile, 32GB

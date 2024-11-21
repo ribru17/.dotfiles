@@ -311,7 +311,7 @@ return {
       dap.adapters.gdb = {
         type = 'executable',
         command = 'gdb',
-        args = { '--interpreter=dap', '--eval-command', 'set print pretty on' },
+        args = { '-q', '-i', 'dap' },
       }
       dap.configurations.c = {
         {
@@ -332,13 +332,6 @@ return {
           name = 'Select and attach to process',
           type = 'gdb',
           request = 'attach',
-          program = function()
-            return vim.fn.input(
-              'Path to executable: ',
-              vim.fn.getcwd() .. '/',
-              'file'
-            )
-          end,
           pid = function()
             local name = vim.fn.input('Executable name (filter): ')
             return require('dap.utils').pick_process { filter = name }
@@ -359,13 +352,35 @@ return {
           end,
           cwd = '${workspaceFolder}',
         },
+        {
+          name = 'Launch nvim',
+          type = 'gdb',
+          request = 'launch',
+          program = '~/neovim/bin/nvim',
+          args = { '~/Documents/CodeProjects/neovim/BUILD.md' },
+          cwd = '~/Documents/CodeProjects/neovim',
+          stopOnEntry = false,
+          stopAtBeginningOfMainSubprogram = false,
+          setupCommands = {
+            {
+              text = '-enable-pretty-printing',
+              description = 'enable pretty printing',
+              ignoreFailures = false,
+            },
+          },
+        },
       }
 
-      vim.fn.sign_define(
+      local def_sign = vim.fn.sign_define
+      def_sign(
         'DapBreakpoint',
         { text = '󰏧', texthl = 'Constant', linehl = '', numhl = '' }
       )
-      vim.fn.sign_define('DapStopped', { text = '', texthl = 'Constant' })
+      def_sign('DapStopped', { text = '', texthl = 'Constant' })
+      def_sign(
+        'DapBreakpointRejected',
+        { text = '', texthl = 'DiagnosticError' }
+      )
     end,
   },
 }
