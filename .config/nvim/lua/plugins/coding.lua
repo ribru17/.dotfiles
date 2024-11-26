@@ -327,6 +327,7 @@ return {
           end,
           cwd = '${workspaceFolder}',
           stopAtBeginningOfMainSubprogram = false,
+          stopOnEntry = false,
         },
         {
           name = 'Select and attach to process',
@@ -361,13 +362,6 @@ return {
           cwd = '~/Documents/CodeProjects/neovim',
           stopOnEntry = false,
           stopAtBeginningOfMainSubprogram = false,
-          setupCommands = {
-            {
-              text = '-enable-pretty-printing',
-              description = 'enable pretty printing',
-              ignoreFailures = false,
-            },
-          },
         },
       }
 
