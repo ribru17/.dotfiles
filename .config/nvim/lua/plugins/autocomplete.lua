@@ -200,8 +200,8 @@ return {
       -- supertab functionality
       local luasnip = require('luasnip')
       local function ins_tab_mapping(fallback)
-        if luasnip.jumpable() then
-          luasnip.jump()
+        if luasnip.jumpable(1) then
+          luasnip.jump(1)
         elseif escape_next() then
           move_right()
         elseif is_in_bullet() then
