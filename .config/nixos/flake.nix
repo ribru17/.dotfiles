@@ -27,7 +27,7 @@
     };
 
     # Pin Iosevka to a specific nixpkgs commit to prevent lots of long builds
-    nixpkgs-iosevka-pin.url = "github:nixos/nixpkgs/7848d6f048d38c42a8aeeff7fe7d36916ffb8284";
+    nixpkgs-iosevka-pin.url = "github:nixos/nixpkgs/ac35b104800bff9028425fec3b6e8a41de2bbfff";
 
     # Rust overlay
     rust-overlay = {

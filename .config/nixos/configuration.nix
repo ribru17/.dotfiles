@@ -188,7 +188,10 @@
             };
             ligations = {
               inherits = "dlig";
-              disables = [ "brack-bar" ];
+              disables = [
+                "brack-bar"
+                "brace-bar"
+              ];
               enables = [
                 "exeqeq"
                 "eqeqeq"
@@ -202,7 +205,7 @@
     in
     [
       iosevka-custom
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      nerd-fonts.symbols-only
     ];
   fonts.fontconfig = {
     hinting.autohint = true;
@@ -211,7 +214,7 @@
     useEmbeddedBitmaps = true;
   };
 
-  # TODO: Install locally? 
+  # TODO: Install locally?
   programs.steam.enable = true;
 
   # Allow unfree packages
