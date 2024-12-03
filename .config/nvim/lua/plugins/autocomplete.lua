@@ -270,10 +270,13 @@ return {
           end,
         },
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<C-y>'] = cmp.mapping(
-          cmp.mapping.confirm { select = true },
-          { 'i', 'c' }
-        ),
+        ['<C-y>'] = cmp.mapping(function()
+          if cmp.visible() then
+            cmp.confirm { select = true }
+          elseif luasnip.expandable() then
+            luasnip.expand()
+          end
+        end, { 'i', 'c' }),
       }
 
       local BORDER_STYLE = require('rileybruins.settings').border
