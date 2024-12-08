@@ -144,77 +144,9 @@ return {
           or '󰡯'
       end
 
-      local offset_first_n = function(match, _, _, pred, metadata)
-        ---@cast pred integer[]
-        local capture_id = pred[2]
-        if not metadata[capture_id] then
-          metadata[capture_id] = {}
-        end
-
-        local range = metadata[capture_id].range
-          or { match[capture_id]:range() }
-        local offset = pred[3] or 0
-
-        range[4] = range[2] + offset
-        metadata[capture_id].range = range
-      end
-
-      vim.treesitter.query.add_directive(
-        'offset-first-n!',
-        offset_first_n,
-        { force = true }
-      )
-
       vim.treesitter.query.add_directive(
         'ft-conceal!',
         ft_conceal,
-        { force = true }
-      )
-
-      -- Trim whitespace from end of the region
-      -- Arguments are the captures to trim.
-      vim.treesitter.query.add_directive(
-        'trim-list-item!',
-        ---@param match (TSNode|nil)[]
-        ---@param _ string
-        ---@param bufnr integer
-        ---@param pred string[]
-        ---@param metadata table
-        function(match, _, bufnr, pred, metadata)
-          for _, id in ipairs { select(2, unpack(pred)) } do
-            local node = match[id]
-            if not node then
-              return
-            end
-            local start_row, start_col, end_row, end_col = node:range(false)
-
-            while true do
-              -- As we only care when end_col == 0, always inspect one line above end_row.
-              local end_line =
-                vim.api.nvim_buf_get_lines(bufnr, end_row - 1, end_row, true)[1]
-
-              if end_line ~= '' then
-                -- trim newline character
-                end_col = #end_line
-                end_row = end_row - 1
-                break
-              end
-
-              end_row = end_row - 1
-            end
-
-            -- If this produces an invalid range, we just skip it.
-            if
-              start_row < end_row
-              or (start_row == end_row and start_col <= end_col)
-            then
-              if not metadata[id] then
-                metadata[id] = {}
-              end
-              metadata[id].range = { start_row, start_col, end_row, end_col }
-            end
-          end
-        end,
         { force = true }
       )
     end,

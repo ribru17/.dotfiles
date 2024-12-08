@@ -3,4 +3,4 @@
 (pipe_table_cell) @swappable
 
 ((list_item) @swappable
-  (#trim-list-item! @swappable))
+  (#trim! @swappable 1 1 1 1))

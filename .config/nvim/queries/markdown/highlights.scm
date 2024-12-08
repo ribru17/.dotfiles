@@ -10,7 +10,7 @@
   (list_marker_plus)
   (list_marker_star)
 ] @markup.list
-  (#offset-first-n! @markup.list 1)
+  (#trim! @markup.list 1 1 1 1)
   (#set! conceal "•"))
 
 (list
@@ -22,7 +22,7 @@
           (list_marker_plus)
           (list_marker_star)
         ] @markup.list
-          (#offset-first-n! @markup.list 1)
+          (#trim! @markup.list 1 1 1 1)
           (#set! conceal "◦"))))))
 
 (list
@@ -36,7 +36,7 @@
               (list_marker_plus)
               (list_marker_star)
             ] @markup.list
-              (#offset-first-n! @markup.list 1)
+              (#trim! @markup.list 1 1 1 1)
               (#set! conceal "▪"))))))))
 
 (list
@@ -52,7 +52,7 @@
                   (list_marker_plus)
                   (list_marker_star)
                 ] @markup.list
-                  (#offset-first-n! @markup.list 1)
+                  (#trim! @markup.list 1 1 1 1)
                   (#set! conceal "▫"))))))))))
 
 (list
@@ -70,7 +70,7 @@
                       (list_marker_plus)
                       (list_marker_star)
                     ] @markup.list
-                      (#offset-first-n! @markup.list 1)
+                      (#trim! @markup.list 1 1 1 1)
                       (#set! conceal "🠢"))))))))))))
 
 ; Checkbox list items
@@ -116,7 +116,7 @@
 
 ((block_continuation) @punctuation.special
   (#lua-match? @punctuation.special "^>")
-  (#offset-first-n! @punctuation.special 1)
+  (#trim! @punctuation.special 1 1 1 1)
   (#set! conceal "▐"))
 
 ; Thematic breaks
