@@ -358,3 +358,16 @@ create_autocmd({ 'VimLeavePre', 'FocusLost' }, {
       :wait()
   end,
 })
+
+-- disable relative number in cmdline
+create_autocmd('CmdlineEnter', {
+  callback = function()
+    vim.wo.relativenumber = false
+    vim.cmd.redraw()
+  end,
+})
+create_autocmd('CmdlineLeave', {
+  callback = function()
+    vim.wo.relativenumber = true
+  end,
+})
