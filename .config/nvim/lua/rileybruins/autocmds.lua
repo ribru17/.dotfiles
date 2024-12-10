@@ -369,6 +369,9 @@ create_autocmd('CmdlineEnter', {
 })
 create_autocmd('CmdlineLeave', {
   callback = function()
-    vim.wo.rnu = vim.w.rnu
+    if vim.w.rnu ~= nil then
+      vim.wo.rnu = vim.w.rnu
+      vim.w.rnu = nil
+    end
   end,
 })
