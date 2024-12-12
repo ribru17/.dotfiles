@@ -1,3 +1,7 @@
+local BORDER = require('rileybruins.settings').border
+local in_jsx = require('rileybruins.utils').in_jsx_tags
+local keep_text_entries = { 'emmet_language_server', 'marksman' }
+local text = vim.lsp.protocol.CompletionItemKind.Text
 return {
   {
     'windwp/nvim-ts-autotag',
@@ -27,7 +31,7 @@ return {
     -- NOTE: Maybe replace with ultimate-autopair after the following issue is
     -- fixed: https://github.com/altermo/ultimate-autopair.nvim/issues/5.
     'windwp/nvim-autopairs',
-    lazy = true,
+    event = { 'InsertEnter' },
     config = function()
       local npairs = require('nvim-autopairs')
       npairs.setup {}
@@ -160,270 +164,103 @@ return {
     end,
   },
   {
-    'hrsh7th/nvim-cmp',
+    'saghen/blink.cmp',
     event = { 'InsertEnter', 'CmdlineEnter' },
-    dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'f3fora/cmp-spell' },
-      { 'hrsh7th/cmp-cmdline' },
-      { 'hrsh7th/cmp-path' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'onsails/lspkind-nvim' },
-    },
-    config = function()
-      local cmp = require('cmp')
-      local lspkind = require('lspkind')
-
-      local escape_next = function()
-        local current_line = vim.api.nvim_get_current_line()
-        local _, col = unpack(vim.api.nvim_win_get_cursor(0))
-        local next_char = string.sub(current_line, col + 1, col + 1)
-        return next_char == ')'
-          or next_char == '"'
-          or next_char == "'"
-          or next_char == '`'
-          or next_char == ']'
-          or next_char == '}'
-      end
-
-      local move_right = function()
-        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-        vim.api.nvim_win_set_cursor(0, { row, col + 1 })
-      end
-
-      local is_in_bullet = function()
-        local line = vim.api.nvim_get_current_line()
-        return line:match('^%s*(.-)%s*$') == '-'
-          and (vim.bo.filetype == 'markdown' or vim.bo.filetype == 'text')
-      end
-
-      -- supertab functionality
-      local luasnip = require('luasnip')
-      local function ins_tab_mapping(fallback)
-        if luasnip.jumpable(1) then
-          luasnip.jump(1)
-        elseif escape_next() then
-          move_right()
-        elseif is_in_bullet() then
-          vim.cmd.BulletDemote()
-          local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-          vim.api.nvim_win_set_cursor(0, { row, col + 1 })
-        else
-          fallback()
-        end
-      end
-
-      local function ins_s_tab_mapping(fallback)
-        if luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        elseif is_in_bullet() then
-          vim.cmd.BulletPromote()
-          local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-          vim.api.nvim_win_set_cursor(0, { row, col + 1 })
-        else
-          fallback()
-        end
-      end
-
-      local cmp_mappings = {
-        ['<C-p>'] = {
-          i = cmp.mapping.select_prev_item {
-            behavior = cmp.SelectBehavior.Select,
-          },
-          c = cmp.mapping.select_prev_item {
-            behavior = cmp.SelectBehavior.Insert,
-          },
-        },
-        ['<C-n>'] = {
-          i = cmp.mapping.select_next_item {
-            behavior = cmp.SelectBehavior.Select,
-          },
-          c = cmp.mapping.select_next_item {
-            behavior = cmp.SelectBehavior.Insert,
-          },
-        },
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
-        ['<Tab>'] = {
-          i = ins_tab_mapping,
-          s = ins_tab_mapping,
-          c = function()
-            if cmp.visible() then
-              cmp.confirm { select = true }
-            else
-              cmp.complete()
-              cmp.select_next_item()
-              cmp.select_prev_item { behavior = cmp.SelectBehavior.Insert }
+    build = 'nix run .#build-plugin',
+    opts = {
+      keymap = {
+        preset = 'default',
+        ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+        ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+        ['<C-y>'] = {
+          'select_and_accept',
+          vim.schedule_wrap(function()
+            local luasnip = require('luasnip')
+            if luasnip.expandable() then
+              luasnip.expand()
             end
-          end,
+          end),
         },
-        ['<S-Tab>'] = {
-          i = ins_s_tab_mapping,
-          s = ins_s_tab_mapping,
-          c = function()
-            if cmp.visible() then
-              cmp.select_prev_item { behavior = cmp.SelectBehavior.Insert }
-            else
-              cmp.complete()
-            end
-          end,
-        },
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<C-y>'] = cmp.mapping(function()
-          if cmp.visible() then
-            cmp.confirm { select = true }
-          elseif luasnip.expandable() then
-            luasnip.expand()
+      },
+
+      appearance = {
+        nerd_font_variant = 'normal',
+      },
+
+      sources = {
+        default = { 'lsp', 'path', 'luasnip' },
+        cmdline = function()
+          if vim.fn.getcmdtype() == ':' then
+            return { 'cmdline' }
           end
-        end, { 'i', 'c' }),
-      }
-
-      local BORDER_STYLE = require('rileybruins.settings').border
-      local in_ts_cap = require('cmp.config.context').in_treesitter_capture
-      local in_jsx = require('rileybruins.utils').in_jsx_tags
-      local kinds = require('cmp.types').lsp.CompletionItemKind
-      local compare = require('cmp.config.compare')
-
-      local cmp_info_style = cmp.config.window.bordered {
-        border = BORDER_STYLE,
-      }
-      -- pumheight doesn't affect the documentation window
-      cmp_info_style.max_height = 16
-
-      local cmp_config = {
-        mapping = cmp_mappings,
-        completion = {
-          completeopt = 'menu,menuone,noinsert',
-        },
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        sources = {
-          { name = 'path' },
-          {
-            name = 'nvim_lsp',
-            entry_filter = function(entry, _)
-              -- filter out most text entries from LSP suggestions
-              local keep_text_entries = { 'emmet_language_server', 'marksman' }
-              local client_name = entry.source.source.client
-                  and entry.source.source.client.name
-                or ''
-              local ft = vim.bo.filetype
-              if
-                client_name == 'emmet_language_server'
-                and (ft == 'javascriptreact' or ft == 'typescriptreact')
-              then
-                return in_jsx(true)
-              end
-              return kinds[entry:get_kind()] ~= 'Text'
-                or vim.tbl_contains(keep_text_entries, client_name)
+          return {}
+        end,
+        providers = {
+          luasnip = {
+            opts = {
+              show_autosnippets = false,
+            },
+          },
+          lsp = {
+            transform_items = function(ctx, items)
+              -- Remove the "Text" source from lsp autocomplete
+              local ft = vim.bo[ctx.bufnr].filetype
+              return vim.tbl_filter(function(item)
+                local client = vim.lsp.get_client_by_id(item.client_id)
+                local client_name = client and client.name or ''
+                if
+                  client_name == 'emmet_language_server'
+                  and (ft == 'javascriptreact' or ft == 'typescriptreact')
+                then
+                  return in_jsx(true)
+                end
+                return item.kind ~= text
+                  or vim.tbl_contains(keep_text_entries, client_name)
+              end, items)
             end,
           },
-          { name = 'luasnip' },
-          {
-            name = 'spell',
-            keyword_length = 3,
-            -- help filter out the unhelpful words
-            max_item_count = 1,
-            entry_filter = function(entry, _)
-              return not entry:get_completion_item().label:find(' ')
-            end,
-            option = {
-              keep_all_entries = true,
-              enable_in_context = function()
-                return not in_ts_cap('nospell')
-              end,
+        },
+      },
+
+      snippets = {
+        expand = function(snippet)
+          require('luasnip').lsp_expand(snippet)
+        end,
+        active = function(filter)
+          local luasnip = require('luasnip')
+          if filter and filter.direction then
+            return luasnip.jumpable(filter.direction)
+          end
+          return luasnip.in_snippet()
+        end,
+        jump = function(direction)
+          require('luasnip').jump(direction)
+        end,
+      },
+
+      completion = {
+        menu = {
+          border = BORDER,
+          draw = {
+            columns = {
+              { 'label', 'label_description', gap = 1 },
+              { 'kind_icon', 'kind' },
+              { 'source_name' },
             },
           },
         },
-        formatting = {
-          fields = { 'abbr', 'menu', 'kind' },
-          format = lspkind.cmp_format {
-            mode = 'symbol_text',
-            -- The function below will be called before any actual modifications
-            -- from lspkind so that you can provide more controls on popup
-            -- customization.
-            -- (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-            before = function(_, vim_item)
-              -- set max width of cmp window
-              local width = 30
-              local ellipses_char = '…'
-              local label = vim_item.abbr
-              local truncated_label = vim.fn.strcharpart(label, 0, width)
-              if truncated_label ~= label then
-                vim_item.abbr = truncated_label .. ellipses_char
-              else
-                vim_item.abbr = label .. ' '
-              end
-              return vim_item
-            end,
-            menu = {
-              spell = '[Dict]',
-              nvim_lsp = '[LSP]',
-              path = '[Path]',
-              luasnip = '[Snip]',
-            },
-          },
+        ghost_text = {
+          enabled = true,
         },
-        window = {
-          completion = cmp_info_style,
-          documentation = cmp_info_style,
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 50,
+          window = { border = BORDER },
         },
-        sorting = {
-          priority_weight = 2,
-          comparators = {
-            -- custom comparator for making spell sources work.
-            -- (basically compare.order but for spell source only)
-            function(a, b)
-              if a.source.name ~= 'spell' or b.source.name ~= 'spell' then
-                return nil
-              end
-              local diff = a.id - b.id
-              if diff < 0 then
-                return true
-              elseif diff > 0 then
-                return false
-              end
-              return nil
-            end,
-            compare.offset,
-            compare.exact,
-            compare.score,
-            compare.recently_used,
-            compare.locality,
-            compare.kind,
-            compare.length,
-            compare.order,
-          },
-        },
-        experimental = {
-          ghost_text = true,
-        },
-      }
-
-      -- Insert `(` after select function or method item
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-
-      -- `:` cmdline setup.
-      cmp.setup.cmdline(':', {
-        mapping = cmp_mappings,
-        sources = cmp.config.sources({
-          { name = 'path' },
-        }, {
-          {
-            name = 'cmdline',
-            keyword_length = 2,
-            option = {
-              ignore_cmds = {},
-            },
-          },
-        }),
-      })
-      cmp.setup(cmp_config)
-    end,
+      },
+    },
+    -- allows extending the providers array elsewhere in your config
+    -- without having to redefine it
+    opts_extend = { 'sources.default' },
   },
 }

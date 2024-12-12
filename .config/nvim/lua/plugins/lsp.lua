@@ -56,9 +56,9 @@ return {
     config = function()
       require('lspconfig.ui.windows').default_options.border = BORDER_STYLE
       local lspconfig = require('lspconfig')
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-      local custom_capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local custom_capabilities = require('blink.cmp').get_lsp_capabilities()
       custom_capabilities.offsetEncoding = { 'utf-16' }
       lspconfig.vtsls.setup {
         capabilities = capabilities,
