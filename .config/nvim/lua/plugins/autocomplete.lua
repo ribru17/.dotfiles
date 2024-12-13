@@ -165,6 +165,7 @@ return {
   },
   {
     'saghen/blink.cmp',
+    dependencies = { 'ribru17/blink-cmp-spell' },
     event = { 'InsertEnter', 'CmdlineEnter' },
     build = 'nix run .#build-plugin',
     opts = {
@@ -187,8 +188,22 @@ return {
         nerd_font_variant = 'normal',
       },
 
+      fuzzy = {
+        sorts = {
+          function(a, b)
+            local sort = require('blink.cmp.fuzzy.sort')
+            if a.source_id == 'spell' and b.source_id == 'spell' then
+              return sort.label(a, b)
+            end
+          end,
+          'score',
+          'kind',
+          'label',
+        },
+      },
+
       sources = {
-        default = { 'lsp', 'path', 'luasnip' },
+        default = { 'lsp', 'path', 'luasnip', 'spell' },
         cmdline = function()
           if vim.fn.getcmdtype() == ':' then
             return { 'cmdline' }
@@ -196,6 +211,10 @@ return {
           return {}
         end,
         providers = {
+          spell = {
+            name = 'Spell',
+            module = 'blink-cmp-spell',
+          },
           luasnip = {
             opts = {
               show_autosnippets = false,
