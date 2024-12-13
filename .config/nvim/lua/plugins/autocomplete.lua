@@ -221,6 +221,7 @@ return {
             },
           },
           lsp = {
+            async = true,
             transform_items = function(ctx, items)
               -- Remove the "Text" source from lsp autocomplete
               local ft = vim.bo[ctx.bufnr].filetype
