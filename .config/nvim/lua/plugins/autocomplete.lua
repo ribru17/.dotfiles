@@ -214,6 +214,15 @@ return {
           spell = {
             name = 'Spell',
             module = 'blink-cmp-spell',
+            opts = {
+              -- Disable the source in `@nospell` captures
+              enable_in_context = function()
+                return not vim.tbl_contains(
+                  vim.treesitter.get_captures_at_cursor(0),
+                  'nospell'
+                )
+              end,
+            },
           },
           luasnip = {
             opts = {
