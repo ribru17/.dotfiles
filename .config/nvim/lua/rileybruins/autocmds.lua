@@ -105,21 +105,6 @@ create_autocmd({ 'FileType', 'BufEnter' }, {
   end,
 })
 
--- prevent weird snippet jumping behavior
--- https://github.com/L3MON4D3/LuaSnip/issues/258
-create_autocmd('ModeChanged', {
-  pattern = { 's:n', 'i:*' },
-  callback = function()
-    local ls = require('luasnip')
-    if
-      ls.session.current_nodes[vim.api.nvim_get_current_buf()]
-      and not ls.session.jump_active
-    then
-      ls.unlink_current()
-    end
-  end,
-})
-
 -- update foldcolumn ribbon colors
 create_autocmd('ColorScheme', {
   callback = function()
