@@ -168,126 +168,128 @@ return {
     dependencies = { 'ribru17/blink-cmp-spell' },
     event = { 'InsertEnter', 'CmdlineEnter' },
     build = 'nix run .#build-plugin',
-    opts = {
-      keymap = {
-        preset = 'default',
-        ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-        ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
-        ['<C-y>'] = {
-          'select_and_accept',
-          vim.schedule_wrap(function()
-            local luasnip = require('luasnip')
-            if luasnip.expandable() then
-              luasnip.expand()
-            end
-          end),
+    config = function()
+      local blink = require('blink.cmp')
+      local sort_text = require('blink.cmp.fuzzy.sort').sort_text
+      blink.setup {
+        keymap = {
+          preset = 'default',
+          ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+          ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+          ['<C-y>'] = {
+            'select_and_accept',
+            vim.schedule_wrap(function()
+              local luasnip = require('luasnip')
+              if luasnip.expandable() then
+                luasnip.expand()
+              end
+            end),
+          },
         },
-      },
 
-      appearance = {
-        nerd_font_variant = 'normal',
-      },
+        appearance = {
+          nerd_font_variant = 'normal',
+        },
 
-      fuzzy = {
-        sorts = {
-          function(a, b)
-            local sort = require('blink.cmp.fuzzy.sort')
-            if a.source_id == 'spell' and b.source_id == 'spell' then
-              return sort.label(a, b)
+        fuzzy = {
+          sorts = {
+            function(a, b)
+              if a.source_id == 'spell' and b.source_id == 'spell' then
+                return sort_text(a, b)
+              end
+            end,
+            'score',
+            'sort_text',
+          },
+        },
+
+        sources = {
+          default = { 'lsp', 'path', 'luasnip', 'spell' },
+          cmdline = function()
+            if vim.fn.getcmdtype() == ':' then
+              return { 'cmdline' }
             end
+            return {}
           end,
-          'score',
-          'kind',
-          'label',
-        },
-      },
-
-      sources = {
-        default = { 'lsp', 'path', 'luasnip', 'spell' },
-        cmdline = function()
-          if vim.fn.getcmdtype() == ':' then
-            return { 'cmdline' }
-          end
-          return {}
-        end,
-        providers = {
-          spell = {
-            name = 'Spell',
-            module = 'blink-cmp-spell',
-            opts = {
-              -- Disable the source in `@nospell` captures
-              enable_in_context = function()
-                return not vim.tbl_contains(
-                  vim.treesitter.get_captures_at_cursor(0),
-                  'nospell'
-                )
+          providers = {
+            spell = {
+              name = 'Spell',
+              module = 'blink-cmp-spell',
+              opts = {
+                -- Disable the source in `@nospell` captures
+                enable_in_context = function()
+                  return not vim.tbl_contains(
+                    vim.treesitter.get_captures_at_cursor(0),
+                    'nospell'
+                  )
+                end,
+              },
+            },
+            luasnip = {
+              opts = {
+                show_autosnippets = false,
+              },
+            },
+            lsp = {
+              async = true,
+              transform_items = function(ctx, items)
+                -- Remove the "Text" source from lsp autocomplete
+                local ft = vim.bo[ctx.bufnr].filetype
+                return vim.tbl_filter(function(item)
+                  local client = vim.lsp.get_client_by_id(item.client_id)
+                  local client_name = client and client.name or ''
+                  if
+                    client_name == 'emmet_language_server'
+                    and (ft == 'javascriptreact' or ft == 'typescriptreact')
+                  then
+                    return in_jsx(true)
+                  end
+                  return item.kind ~= text
+                    or vim.tbl_contains(keep_text_entries, client_name)
+                end, items)
               end,
             },
           },
-          luasnip = {
-            opts = {
-              show_autosnippets = false,
+        },
+
+        snippets = {
+          expand = function(snippet)
+            require('luasnip').lsp_expand(snippet)
+          end,
+          active = function(filter)
+            local luasnip = require('luasnip')
+            if filter and filter.direction then
+              return luasnip.jumpable(filter.direction)
+            end
+            return luasnip.in_snippet()
+          end,
+          jump = function(direction)
+            require('luasnip').jump(direction)
+          end,
+        },
+
+        completion = {
+          menu = {
+            border = BORDER,
+            draw = {
+              columns = {
+                { 'label', 'label_description', gap = 1 },
+                { 'kind_icon', 'kind' },
+                { 'source_name' },
+              },
             },
           },
-          lsp = {
-            async = true,
-            transform_items = function(ctx, items)
-              -- Remove the "Text" source from lsp autocomplete
-              local ft = vim.bo[ctx.bufnr].filetype
-              return vim.tbl_filter(function(item)
-                local client = vim.lsp.get_client_by_id(item.client_id)
-                local client_name = client and client.name or ''
-                if
-                  client_name == 'emmet_language_server'
-                  and (ft == 'javascriptreact' or ft == 'typescriptreact')
-                then
-                  return in_jsx(true)
-                end
-                return item.kind ~= text
-                  or vim.tbl_contains(keep_text_entries, client_name)
-              end, items)
-            end,
+          ghost_text = {
+            enabled = true,
+          },
+          documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 50,
+            window = { border = BORDER },
           },
         },
-      },
-
-      snippets = {
-        expand = function(snippet)
-          require('luasnip').lsp_expand(snippet)
-        end,
-        active = function(filter)
-          local luasnip = require('luasnip')
-          if filter and filter.direction then
-            return luasnip.jumpable(filter.direction)
-          end
-          return luasnip.in_snippet()
-        end,
-        jump = function(direction)
-          require('luasnip').jump(direction)
-        end,
-      },
-
-      completion = {
-        menu = {
-          border = BORDER,
-          draw = {
-            columns = {
-              { 'label', 'label_description', gap = 1 },
-              { 'kind_icon', 'kind' },
-              { 'source_name' },
-            },
-          },
-        },
-        ghost_text = {
-          enabled = true,
-        },
-        documentation = {
-          auto_show = true,
-          auto_show_delay_ms = 50,
-          window = { border = BORDER },
-        },
-      },
-    },
+      }
+    end,
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
     opts_extend = { 'sources.default' },
