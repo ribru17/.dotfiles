@@ -120,8 +120,8 @@ local cur_pos = vim.api.nvim_win_get_cursor
 local get_node_insert_mode = function(opts)
   opts = opts or {}
   local ins_curs = cur_pos(0)
-  ins_curs[1] = ins_curs[1] - 1
-  ins_curs[2] = ins_curs[2] - 1
+  ins_curs[1] = math.max(ins_curs[1] - 1, 0)
+  ins_curs[2] = math.max(ins_curs[2] - 1, 0)
   opts.pos = ins_curs
   return get_node(opts) --[[@as TSNode]]
 end
