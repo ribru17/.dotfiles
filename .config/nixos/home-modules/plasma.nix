@@ -261,9 +261,6 @@
         "mediacontrol"."previousmedia" = "Media Previous";
         "mediacontrol"."stopmedia" = "Media Stop";
         "org.kde.dolphin.desktop"."_launch" = "Meta+E";
-        "org.kde.konsole.desktop"."NewTab" = [ ];
-        "org.kde.konsole.desktop"."NewWindow" = [ ];
-        "org.kde.konsole.desktop"."_launch" = "Ctrl+Alt+T";
         "org.kde.krunner.desktop"."RunClipboard" = "Alt+Shift+F2";
         "org.kde.krunner.desktop"."_launch" = [
           "Alt+Space"
@@ -328,7 +325,8 @@
       configFile = {
         "baloofilerc"."Basic Settings"."Indexing-Enabled".value = false;
         "baloofilerc"."General"."dbVersion".value = 2;
-        "baloofilerc"."General"."exclude filters".value = "*~,*.part,*.o,*.la,*.lo,*.loT,*.moc,moc_*.cpp,qrc_*.cpp,ui_*.h,cmake_install.cmake,CMakeCache.txt,CTestTestfile.cmake,libtool,config.status,confdefs.h,autom4te,conftest,confstat,Makefile.am,*.gcode,.ninja_deps,.ninja_log,build.ninja,*.csproj,*.m4,*.rej,*.gmo,*.pc,*.omf,*.aux,*.tmp,*.po,*.vm*,*.nvram,*.rcore,*.swp,*.swap,lzo,litmain.sh,*.orig,.histfile.*,.xsession-errors*,*.map,*.so,*.a,*.db,*.qrc,*.ini,*.init,*.img,*.vdi,*.vbox*,vbox.log,*.qcow2,*.vmdk,*.vhd,*.vhdx,*.sql,*.sql.gz,*.ytdl,*.class,*.pyc,*.pyo,*.elc,*.qmlc,*.jsc,*.fastq,*.fq,*.gb,*.fasta,*.fna,*.gbff,*.faa,po,CVS,.svn,.git,_darcs,.bzr,.hg,CMakeFiles,CMakeTmp,CMakeTmpQmake,.moc,.obj,.pch,.uic,.npm,.yarn,.yarn-cache,__pycache__,node_modules,node_packages,nbproject,.venv,venv,core-dumps,lost+found";
+        "baloofilerc"."General"."exclude filters".value =
+          "*~,*.part,*.o,*.la,*.lo,*.loT,*.moc,moc_*.cpp,qrc_*.cpp,ui_*.h,cmake_install.cmake,CMakeCache.txt,CTestTestfile.cmake,libtool,config.status,confdefs.h,autom4te,conftest,confstat,Makefile.am,*.gcode,.ninja_deps,.ninja_log,build.ninja,*.csproj,*.m4,*.rej,*.gmo,*.pc,*.omf,*.aux,*.tmp,*.po,*.vm*,*.nvram,*.rcore,*.swp,*.swap,lzo,litmain.sh,*.orig,.histfile.*,.xsession-errors*,*.map,*.so,*.a,*.db,*.qrc,*.ini,*.init,*.img,*.vdi,*.vbox*,vbox.log,*.qcow2,*.vmdk,*.vhd,*.vhdx,*.sql,*.sql.gz,*.ytdl,*.class,*.pyc,*.pyo,*.elc,*.qmlc,*.jsc,*.fastq,*.fq,*.gb,*.fasta,*.fna,*.gbff,*.faa,po,CVS,.svn,.git,_darcs,.bzr,.hg,CMakeFiles,CMakeTmp,CMakeTmpQmake,.moc,.obj,.pch,.uic,.npm,.yarn,.yarn-cache,__pycache__,node_modules,node_packages,nbproject,.venv,venv,core-dumps,lost+found";
         "baloofilerc"."General"."exclude filters version".value = 8;
         "kactivitymanagerdrc"."activities"."18729546-c057-4fd4-a4fd-9a9aa7b4a44a".value = "Default";
         "kactivitymanagerdrc"."main"."currentActivity".value = "18729546-c057-4fd4-a4fd-9a9aa7b4a44a";
@@ -338,6 +336,8 @@
         "kdeglobals"."General"."AllowKDEAppsToRememberWindowPositions".value = true;
         "kdeglobals"."General"."BrowserApplication".value = "brave-browser.desktop";
         "kdeglobals"."General"."UseSystemBell".value = false;
+        "kdeglobals"."General"."TerminalApplication".value = "kitty";
+        "kdeglobals"."General"."TerminalService".value = "kitty.desktop";
         # TODO: Set the appropriate value in `xsettingsd`?
         "kdeglobals"."Sounds"."Enable".value = system-notification-sounds;
         "gtk-3.0/settings.ini"."Settings"."gtk-enable-event-sounds".value = system-notification-sounds;
@@ -360,7 +360,8 @@
         "kdeglobals"."KFileDialog Settings"."Sort reversed".value = false;
         "kdeglobals"."KFileDialog Settings"."Speedbar Width".value = 138;
         "kdeglobals"."KFileDialog Settings"."View Style".value = "DetailTree";
-        "kdeglobals"."KScreen"."ScreenScaleFactors".value = "eDP-1=1;DP-1=1;DP-2=1;DP-3=1;DP-4=1;DP-5=1;DP-6=1;DP-7=1;DP-8=1;";
+        "kdeglobals"."KScreen"."ScreenScaleFactors".value =
+          "eDP-1=1;DP-1=1;DP-2=1;DP-3=1;DP-4=1;DP-5=1;DP-6=1;DP-7=1;DP-8=1;";
         "kdeglobals"."WM"."activeBackground".value = "49,54,59";
         "kdeglobals"."WM"."activeBlend".value = "252,252,252";
         "kdeglobals"."WM"."activeForeground".value = "252,252,252";
@@ -368,7 +369,8 @@
         "kdeglobals"."WM"."inactiveBlend".value = "161,169,177";
         "kdeglobals"."WM"."inactiveForeground".value = "161,169,177";
         "kglobalshortcutsrc"."ActivityManager"."_k_friendly_name".value = "Activity Manager";
-        "kglobalshortcutsrc"."KDE Keyboard Layout Switcher"."_k_friendly_name".value = "Keyboard Layout Switcher";
+        "kglobalshortcutsrc"."KDE Keyboard Layout Switcher"."_k_friendly_name".value =
+          "Keyboard Layout Switcher";
         "kglobalshortcutsrc"."kaccess"."_k_friendly_name".value = "Accessibility";
         "kglobalshortcutsrc"."kcm_touchpad"."_k_friendly_name".value = "Touchpad";
         "kglobalshortcutsrc"."kded5"."_k_friendly_name".value = "KDE Daemon";
@@ -408,7 +410,8 @@
         "khotkeysrc"."Data_1_1Triggers0"."Key".value = "";
         "khotkeysrc"."Data_1_1Triggers0"."Type".value = "SHORTCUT";
         "khotkeysrc"."Data_1_1Triggers0"."Uuid".value = "{d03619b6-9b3c-48cc-9d9c-a2aadb485550}";
-        "khotkeysrc"."Data_2"."Comment".value = "This group contains various examples demonstrating most of the features of KHotkeys. (Note that this group and all its actions are disabled by default.)";
+        "khotkeysrc"."Data_2"."Comment".value =
+          "This group contains various examples demonstrating most of the features of KHotkeys. (Note that this group and all its actions are disabled by default.)";
         "khotkeysrc"."Data_2"."DataCount".value = 8;
         "khotkeysrc"."Data_2"."Enabled".value = false;
         "khotkeysrc"."Data_2"."ImportId".value = "kde32b1";
@@ -417,7 +420,8 @@
         "khotkeysrc"."Data_2"."Type".value = "ACTION_DATA_GROUP";
         "khotkeysrc"."Data_2Conditions"."Comment".value = "";
         "khotkeysrc"."Data_2Conditions"."ConditionsCount".value = 0;
-        "khotkeysrc"."Data_2_1"."Comment".value = "After pressing Ctrl+Alt+I, the KSIRC window will be activated, if it exists. Simple.";
+        "khotkeysrc"."Data_2_1"."Comment".value =
+          "After pressing Ctrl+Alt+I, the KSIRC window will be activated, if it exists. Simple.";
         "khotkeysrc"."Data_2_1"."Enabled".value = false;
         "khotkeysrc"."Data_2_1"."Name".value = "Activate KSIRC Window";
         "khotkeysrc"."Data_2_1"."Type".value = "SIMPLE_ACTION_DATA";
@@ -479,15 +483,16 @@
         "khotkeysrc"."Data_2_3Triggers0"."Key".value = "Ctrl+Alt+T";
         "khotkeysrc"."Data_2_3Triggers0"."Type".value = "SHORTCUT";
         "khotkeysrc"."Data_2_3Triggers0"."Uuid".value = "{8e4549d7-7c38-45f1-8fcf-723ac7c025d7}";
-        "khotkeysrc"."Data_2_4"."Comment".value = ''
-          Read the comment on the "Type 'Hello'" action first.
+        "khotkeysrc"."Data_2_4"."Comment".value =
+          ''
+            Read the comment on the "Type 'Hello'" action first.
 
-          Qt Designer uses Ctrl+F4 for closing windows.  In KDE, however, Ctrl+F4 is the shortcut for going to virtual desktop 4, so this shortcut does not work in Qt Designer.  Further, Qt Designer does not use KDE's standard Ctrl+W for closing the window.
+            Qt Designer uses Ctrl+F4 for closing windows.  In KDE, however, Ctrl+F4 is the shortcut for going to virtual desktop 4, so this shortcut does not work in Qt Designer.  Further, Qt Designer does not use KDE's standard Ctrl+W for closing the window.
 
-          This problem can be solved by remapping Ctrl+W to Ctrl+F4 when the active window is Qt Designer. When Qt Designer is active, every time Ctrl+W is pressed, Ctrl+F4 will be sent to Qt Designer instead. In other applications, the effect of Ctrl+W is unchanged.
+            This problem can be solved by remapping Ctrl+W to Ctrl+F4 when the active window is Qt Designer. When Qt Designer is active, every time Ctrl+W is pressed, Ctrl+F4 will be sent to Qt Designer instead. In other applications, the effect of Ctrl+W is unchanged.
 
-          We now need to specify three things: A new shortcut trigger on 'Ctrl+W', a new keyboard input action sending Ctrl+F4, and a new condition that the active window is Qt Designer.
-          Qt Designer seems to always have title 'Qt Designer by Trolltech', so the condition will check for the active window having that title.'';
+            We now need to specify three things: A new shortcut trigger on 'Ctrl+W', a new keyboard input action sending Ctrl+F4, and a new condition that the active window is Qt Designer.
+            Qt Designer seems to always have title 'Qt Designer by Trolltech', so the condition will check for the active window having that title.'';
         "khotkeysrc"."Data_2_4"."Enabled".value = false;
         "khotkeysrc"."Data_2_4"."Name".value = "Remap Ctrl+W to Ctrl+F4 in Qt Designer";
         "khotkeysrc"."Data_2_4"."Type".value = "GENERIC_ACTION_DATA";
@@ -514,7 +519,8 @@
         "khotkeysrc"."Data_2_4Triggers0"."Key".value = "Ctrl+W";
         "khotkeysrc"."Data_2_4Triggers0"."Type".value = "SHORTCUT";
         "khotkeysrc"."Data_2_4Triggers0"."Uuid".value = "{35cace53-6662-451e-a219-84e4ea686bb0}";
-        "khotkeysrc"."Data_2_5"."Comment".value = "By pressing Alt+Ctrl+W a D-Bus call will be performed that will show the minicli. You can use any kind of D-Bus call, just like using the command line 'qdbus' tool.";
+        "khotkeysrc"."Data_2_5"."Comment".value =
+          "By pressing Alt+Ctrl+W a D-Bus call will be performed that will show the minicli. You can use any kind of D-Bus call, just like using the command line 'qdbus' tool.";
         "khotkeysrc"."Data_2_5"."Enabled".value = false;
         "khotkeysrc"."Data_2_5"."Name".value = "Perform D-Bus call 'qdbus org.kde.krunner /App display'";
         "khotkeysrc"."Data_2_5"."Type".value = "SIMPLE_ACTION_DATA";
@@ -562,22 +568,23 @@
         "khotkeysrc"."Data_2_6Triggers0"."Key".value = "Ctrl+Alt+B";
         "khotkeysrc"."Data_2_6Triggers0"."Type".value = "SHORTCUT";
         "khotkeysrc"."Data_2_6Triggers0"."Uuid".value = "{04312a12-280c-4670-8dfa-c507a26ef1b0}";
-        "khotkeysrc"."Data_2_7"."Comment".value = ''
-          Konqueror in KDE3.1 has tabs, and now you can also have gestures.
+        "khotkeysrc"."Data_2_7"."Comment".value =
+          ''
+            Konqueror in KDE3.1 has tabs, and now you can also have gestures.
 
-          Just press the middle mouse button and start drawing one of the gestures, and after you are finished, release the mouse button. If you only need to paste the selection, it still works, just click the middle mouse button. (You can change the mouse button to use in the global settings).
+            Just press the middle mouse button and start drawing one of the gestures, and after you are finished, release the mouse button. If you only need to paste the selection, it still works, just click the middle mouse button. (You can change the mouse button to use in the global settings).
 
-          Right now, there are the following gestures available:
-          move right and back left - Forward (Alt+Right)
-          move left and back right - Back (Alt+Left)
-          move up and back down  - Up (Alt+Up)
-          circle counterclockwise - Reload (F5)
+            Right now, there are the following gestures available:
+            move right and back left - Forward (Alt+Right)
+            move left and back right - Back (Alt+Left)
+            move up and back down  - Up (Alt+Up)
+            circle counterclockwise - Reload (F5)
 
-          The gesture shapes can be entered by performing them in the configuration dialog. You can also look at your numeric pad to help you: gestures are recognized like a 3x3 grid of fields, numbered 1 to 9.
+            The gesture shapes can be entered by performing them in the configuration dialog. You can also look at your numeric pad to help you: gestures are recognized like a 3x3 grid of fields, numbered 1 to 9.
 
-          Note that you must perform exactly the gesture to trigger the action. Because of this, it is possible to enter more gestures for the action. You should try to avoid complicated gestures where you change the direction of mouse movement more than once.  For instance, 45654 or 74123 are simple to perform, but 1236987 may be already quite difficult.
+            Note that you must perform exactly the gesture to trigger the action. Because of this, it is possible to enter more gestures for the action. You should try to avoid complicated gestures where you change the direction of mouse movement more than once.  For instance, 45654 or 74123 are simple to perform, but 1236987 may be already quite difficult.
 
-          The conditions for all gestures are defined in this group. All these gestures are active only if the active window is Konqueror (class contains 'konqueror').'';
+            The conditions for all gestures are defined in this group. All these gestures are active only if the active window is Konqueror (class contains 'konqueror').'';
         "khotkeysrc"."Data_2_7"."DataCount".value = 4;
         "khotkeysrc"."Data_2_7"."Enabled".value = false;
         "khotkeysrc"."Data_2_7"."Name".value = "Konqi Gestures";
@@ -609,11 +616,14 @@
         "khotkeysrc"."Data_2_7_1Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_2_7_1Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_2_7_1Triggers"."TriggersCount".value = 3;
-        "khotkeysrc"."Data_2_7_1Triggers0"."GesturePointData".value = "0,0.0625,1,1,0.5,0.0625,0.0625,1,0.875,0.5,0.125,0.0625,1,0.75,0.5,0.1875,0.0625,1,0.625,0.5,0.25,0.0625,1,0.5,0.5,0.3125,0.0625,1,0.375,0.5,0.375,0.0625,1,0.25,0.5,0.4375,0.0625,1,0.125,0.5,0.5,0.0625,0,0,0.5,0.5625,0.0625,0,0.125,0.5,0.625,0.0625,0,0.25,0.5,0.6875,0.0625,0,0.375,0.5,0.75,0.0625,0,0.5,0.5,0.8125,0.0625,0,0.625,0.5,0.875,0.0625,0,0.75,0.5,0.9375,0.0625,0,0.875,0.5,1,0,0,1,0.5";
+        "khotkeysrc"."Data_2_7_1Triggers0"."GesturePointData".value =
+          "0,0.0625,1,1,0.5,0.0625,0.0625,1,0.875,0.5,0.125,0.0625,1,0.75,0.5,0.1875,0.0625,1,0.625,0.5,0.25,0.0625,1,0.5,0.5,0.3125,0.0625,1,0.375,0.5,0.375,0.0625,1,0.25,0.5,0.4375,0.0625,1,0.125,0.5,0.5,0.0625,0,0,0.5,0.5625,0.0625,0,0.125,0.5,0.625,0.0625,0,0.25,0.5,0.6875,0.0625,0,0.375,0.5,0.75,0.0625,0,0.5,0.5,0.8125,0.0625,0,0.625,0.5,0.875,0.0625,0,0.75,0.5,0.9375,0.0625,0,0.875,0.5,1,0,0,1,0.5";
         "khotkeysrc"."Data_2_7_1Triggers0"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_2_7_1Triggers1"."GesturePointData".value = "0,0.0833333,1,0.5,0.5,0.0833333,0.0833333,1,0.375,0.5,0.166667,0.0833333,1,0.25,0.5,0.25,0.0833333,1,0.125,0.5,0.333333,0.0833333,0,0,0.5,0.416667,0.0833333,0,0.125,0.5,0.5,0.0833333,0,0.25,0.5,0.583333,0.0833333,0,0.375,0.5,0.666667,0.0833333,0,0.5,0.5,0.75,0.0833333,0,0.625,0.5,0.833333,0.0833333,0,0.75,0.5,0.916667,0.0833333,0,0.875,0.5,1,0,0,1,0.5";
+        "khotkeysrc"."Data_2_7_1Triggers1"."GesturePointData".value =
+          "0,0.0833333,1,0.5,0.5,0.0833333,0.0833333,1,0.375,0.5,0.166667,0.0833333,1,0.25,0.5,0.25,0.0833333,1,0.125,0.5,0.333333,0.0833333,0,0,0.5,0.416667,0.0833333,0,0.125,0.5,0.5,0.0833333,0,0.25,0.5,0.583333,0.0833333,0,0.375,0.5,0.666667,0.0833333,0,0.5,0.5,0.75,0.0833333,0,0.625,0.5,0.833333,0.0833333,0,0.75,0.5,0.916667,0.0833333,0,0.875,0.5,1,0,0,1,0.5";
         "khotkeysrc"."Data_2_7_1Triggers1"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_2_7_1Triggers2"."GesturePointData".value = "0,0.0833333,1,1,0.5,0.0833333,0.0833333,1,0.875,0.5,0.166667,0.0833333,1,0.75,0.5,0.25,0.0833333,1,0.625,0.5,0.333333,0.0833333,1,0.5,0.5,0.416667,0.0833333,1,0.375,0.5,0.5,0.0833333,1,0.25,0.5,0.583333,0.0833333,1,0.125,0.5,0.666667,0.0833333,0,0,0.5,0.75,0.0833333,0,0.125,0.5,0.833333,0.0833333,0,0.25,0.5,0.916667,0.0833333,0,0.375,0.5,1,0,0,0.5,0.5";
+        "khotkeysrc"."Data_2_7_1Triggers2"."GesturePointData".value =
+          "0,0.0833333,1,1,0.5,0.0833333,0.0833333,1,0.875,0.5,0.166667,0.0833333,1,0.75,0.5,0.25,0.0833333,1,0.625,0.5,0.333333,0.0833333,1,0.5,0.5,0.416667,0.0833333,1,0.375,0.5,0.5,0.0833333,1,0.25,0.5,0.583333,0.0833333,1,0.125,0.5,0.666667,0.0833333,0,0,0.5,0.75,0.0833333,0,0.125,0.5,0.833333,0.0833333,0,0.25,0.5,0.916667,0.0833333,0,0.375,0.5,1,0,0,0.5,0.5";
         "khotkeysrc"."Data_2_7_1Triggers2"."Type".value = "GESTURE";
         "khotkeysrc"."Data_2_7_2"."Comment".value = "";
         "khotkeysrc"."Data_2_7_2"."Enabled".value = false;
@@ -627,11 +637,14 @@
         "khotkeysrc"."Data_2_7_2Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_2_7_2Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_2_7_2Triggers"."TriggersCount".value = 3;
-        "khotkeysrc"."Data_2_7_2Triggers0"."GesturePointData".value = "0,0.0625,0,0,0.5,0.0625,0.0625,0,0.125,0.5,0.125,0.0625,0,0.25,0.5,0.1875,0.0625,0,0.375,0.5,0.25,0.0625,0,0.5,0.5,0.3125,0.0625,0,0.625,0.5,0.375,0.0625,0,0.75,0.5,0.4375,0.0625,0,0.875,0.5,0.5,0.0625,1,1,0.5,0.5625,0.0625,1,0.875,0.5,0.625,0.0625,1,0.75,0.5,0.6875,0.0625,1,0.625,0.5,0.75,0.0625,1,0.5,0.5,0.8125,0.0625,1,0.375,0.5,0.875,0.0625,1,0.25,0.5,0.9375,0.0625,1,0.125,0.5,1,0,0,0,0.5";
+        "khotkeysrc"."Data_2_7_2Triggers0"."GesturePointData".value =
+          "0,0.0625,0,0,0.5,0.0625,0.0625,0,0.125,0.5,0.125,0.0625,0,0.25,0.5,0.1875,0.0625,0,0.375,0.5,0.25,0.0625,0,0.5,0.5,0.3125,0.0625,0,0.625,0.5,0.375,0.0625,0,0.75,0.5,0.4375,0.0625,0,0.875,0.5,0.5,0.0625,1,1,0.5,0.5625,0.0625,1,0.875,0.5,0.625,0.0625,1,0.75,0.5,0.6875,0.0625,1,0.625,0.5,0.75,0.0625,1,0.5,0.5,0.8125,0.0625,1,0.375,0.5,0.875,0.0625,1,0.25,0.5,0.9375,0.0625,1,0.125,0.5,1,0,0,0,0.5";
         "khotkeysrc"."Data_2_7_2Triggers0"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_2_7_2Triggers1"."GesturePointData".value = "0,0.0833333,0,0.5,0.5,0.0833333,0.0833333,0,0.625,0.5,0.166667,0.0833333,0,0.75,0.5,0.25,0.0833333,0,0.875,0.5,0.333333,0.0833333,1,1,0.5,0.416667,0.0833333,1,0.875,0.5,0.5,0.0833333,1,0.75,0.5,0.583333,0.0833333,1,0.625,0.5,0.666667,0.0833333,1,0.5,0.5,0.75,0.0833333,1,0.375,0.5,0.833333,0.0833333,1,0.25,0.5,0.916667,0.0833333,1,0.125,0.5,1,0,0,0,0.5";
+        "khotkeysrc"."Data_2_7_2Triggers1"."GesturePointData".value =
+          "0,0.0833333,0,0.5,0.5,0.0833333,0.0833333,0,0.625,0.5,0.166667,0.0833333,0,0.75,0.5,0.25,0.0833333,0,0.875,0.5,0.333333,0.0833333,1,1,0.5,0.416667,0.0833333,1,0.875,0.5,0.5,0.0833333,1,0.75,0.5,0.583333,0.0833333,1,0.625,0.5,0.666667,0.0833333,1,0.5,0.5,0.75,0.0833333,1,0.375,0.5,0.833333,0.0833333,1,0.25,0.5,0.916667,0.0833333,1,0.125,0.5,1,0,0,0,0.5";
         "khotkeysrc"."Data_2_7_2Triggers1"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_2_7_2Triggers2"."GesturePointData".value = "0,0.0833333,0,0,0.5,0.0833333,0.0833333,0,0.125,0.5,0.166667,0.0833333,0,0.25,0.5,0.25,0.0833333,0,0.375,0.5,0.333333,0.0833333,0,0.5,0.5,0.416667,0.0833333,0,0.625,0.5,0.5,0.0833333,0,0.75,0.5,0.583333,0.0833333,0,0.875,0.5,0.666667,0.0833333,1,1,0.5,0.75,0.0833333,1,0.875,0.5,0.833333,0.0833333,1,0.75,0.5,0.916667,0.0833333,1,0.625,0.5,1,0,0,0.5,0.5";
+        "khotkeysrc"."Data_2_7_2Triggers2"."GesturePointData".value =
+          "0,0.0833333,0,0,0.5,0.0833333,0.0833333,0,0.125,0.5,0.166667,0.0833333,0,0.25,0.5,0.25,0.0833333,0,0.375,0.5,0.333333,0.0833333,0,0.5,0.5,0.416667,0.0833333,0,0.625,0.5,0.5,0.0833333,0,0.75,0.5,0.583333,0.0833333,0,0.875,0.5,0.666667,0.0833333,1,1,0.5,0.75,0.0833333,1,0.875,0.5,0.833333,0.0833333,1,0.75,0.5,0.916667,0.0833333,1,0.625,0.5,1,0,0,0.5,0.5";
         "khotkeysrc"."Data_2_7_2Triggers2"."Type".value = "GESTURE";
         "khotkeysrc"."Data_2_7_3"."Comment".value = "";
         "khotkeysrc"."Data_2_7_3"."Enabled".value = false;
@@ -645,11 +658,14 @@
         "khotkeysrc"."Data_2_7_3Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_2_7_3Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_2_7_3Triggers"."TriggersCount".value = 3;
-        "khotkeysrc"."Data_2_7_3Triggers0"."GesturePointData".value = "0,0.0625,-0.5,0.5,1,0.0625,0.0625,-0.5,0.5,0.875,0.125,0.0625,-0.5,0.5,0.75,0.1875,0.0625,-0.5,0.5,0.625,0.25,0.0625,-0.5,0.5,0.5,0.3125,0.0625,-0.5,0.5,0.375,0.375,0.0625,-0.5,0.5,0.25,0.4375,0.0625,-0.5,0.5,0.125,0.5,0.0625,0.5,0.5,0,0.5625,0.0625,0.5,0.5,0.125,0.625,0.0625,0.5,0.5,0.25,0.6875,0.0625,0.5,0.5,0.375,0.75,0.0625,0.5,0.5,0.5,0.8125,0.0625,0.5,0.5,0.625,0.875,0.0625,0.5,0.5,0.75,0.9375,0.0625,0.5,0.5,0.875,1,0,0,0.5,1";
+        "khotkeysrc"."Data_2_7_3Triggers0"."GesturePointData".value =
+          "0,0.0625,-0.5,0.5,1,0.0625,0.0625,-0.5,0.5,0.875,0.125,0.0625,-0.5,0.5,0.75,0.1875,0.0625,-0.5,0.5,0.625,0.25,0.0625,-0.5,0.5,0.5,0.3125,0.0625,-0.5,0.5,0.375,0.375,0.0625,-0.5,0.5,0.25,0.4375,0.0625,-0.5,0.5,0.125,0.5,0.0625,0.5,0.5,0,0.5625,0.0625,0.5,0.5,0.125,0.625,0.0625,0.5,0.5,0.25,0.6875,0.0625,0.5,0.5,0.375,0.75,0.0625,0.5,0.5,0.5,0.8125,0.0625,0.5,0.5,0.625,0.875,0.0625,0.5,0.5,0.75,0.9375,0.0625,0.5,0.5,0.875,1,0,0,0.5,1";
         "khotkeysrc"."Data_2_7_3Triggers0"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_2_7_3Triggers1"."GesturePointData".value = "0,0.0833333,-0.5,0.5,1,0.0833333,0.0833333,-0.5,0.5,0.875,0.166667,0.0833333,-0.5,0.5,0.75,0.25,0.0833333,-0.5,0.5,0.625,0.333333,0.0833333,-0.5,0.5,0.5,0.416667,0.0833333,-0.5,0.5,0.375,0.5,0.0833333,-0.5,0.5,0.25,0.583333,0.0833333,-0.5,0.5,0.125,0.666667,0.0833333,0.5,0.5,0,0.75,0.0833333,0.5,0.5,0.125,0.833333,0.0833333,0.5,0.5,0.25,0.916667,0.0833333,0.5,0.5,0.375,1,0,0,0.5,0.5";
+        "khotkeysrc"."Data_2_7_3Triggers1"."GesturePointData".value =
+          "0,0.0833333,-0.5,0.5,1,0.0833333,0.0833333,-0.5,0.5,0.875,0.166667,0.0833333,-0.5,0.5,0.75,0.25,0.0833333,-0.5,0.5,0.625,0.333333,0.0833333,-0.5,0.5,0.5,0.416667,0.0833333,-0.5,0.5,0.375,0.5,0.0833333,-0.5,0.5,0.25,0.583333,0.0833333,-0.5,0.5,0.125,0.666667,0.0833333,0.5,0.5,0,0.75,0.0833333,0.5,0.5,0.125,0.833333,0.0833333,0.5,0.5,0.25,0.916667,0.0833333,0.5,0.5,0.375,1,0,0,0.5,0.5";
         "khotkeysrc"."Data_2_7_3Triggers1"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_2_7_3Triggers2"."GesturePointData".value = "0,0.0833333,-0.5,0.5,0.5,0.0833333,0.0833333,-0.5,0.5,0.375,0.166667,0.0833333,-0.5,0.5,0.25,0.25,0.0833333,-0.5,0.5,0.125,0.333333,0.0833333,0.5,0.5,0,0.416667,0.0833333,0.5,0.5,0.125,0.5,0.0833333,0.5,0.5,0.25,0.583333,0.0833333,0.5,0.5,0.375,0.666667,0.0833333,0.5,0.5,0.5,0.75,0.0833333,0.5,0.5,0.625,0.833333,0.0833333,0.5,0.5,0.75,0.916667,0.0833333,0.5,0.5,0.875,1,0,0,0.5,1";
+        "khotkeysrc"."Data_2_7_3Triggers2"."GesturePointData".value =
+          "0,0.0833333,-0.5,0.5,0.5,0.0833333,0.0833333,-0.5,0.5,0.375,0.166667,0.0833333,-0.5,0.5,0.25,0.25,0.0833333,-0.5,0.5,0.125,0.333333,0.0833333,0.5,0.5,0,0.416667,0.0833333,0.5,0.5,0.125,0.5,0.0833333,0.5,0.5,0.25,0.583333,0.0833333,0.5,0.5,0.375,0.666667,0.0833333,0.5,0.5,0.5,0.75,0.0833333,0.5,0.5,0.625,0.833333,0.0833333,0.5,0.5,0.75,0.916667,0.0833333,0.5,0.5,0.875,1,0,0,0.5,1";
         "khotkeysrc"."Data_2_7_3Triggers2"."Type".value = "GESTURE";
         "khotkeysrc"."Data_2_7_4"."Comment".value = "";
         "khotkeysrc"."Data_2_7_4"."Enabled".value = false;
@@ -663,13 +679,17 @@
         "khotkeysrc"."Data_2_7_4Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_2_7_4Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_2_7_4Triggers"."TriggersCount".value = 3;
-        "khotkeysrc"."Data_2_7_4Triggers0"."GesturePointData".value = "0,0.03125,0,0,1,0.03125,0.03125,0,0.125,1,0.0625,0.03125,0,0.25,1,0.09375,0.03125,0,0.375,1,0.125,0.03125,0,0.5,1,0.15625,0.03125,0,0.625,1,0.1875,0.03125,0,0.75,1,0.21875,0.03125,0,0.875,1,0.25,0.03125,-0.5,1,1,0.28125,0.03125,-0.5,1,0.875,0.3125,0.03125,-0.5,1,0.75,0.34375,0.03125,-0.5,1,0.625,0.375,0.03125,-0.5,1,0.5,0.40625,0.03125,-0.5,1,0.375,0.4375,0.03125,-0.5,1,0.25,0.46875,0.03125,-0.5,1,0.125,0.5,0.03125,1,1,0,0.53125,0.03125,1,0.875,0,0.5625,0.03125,1,0.75,0,0.59375,0.03125,1,0.625,0,0.625,0.03125,1,0.5,0,0.65625,0.03125,1,0.375,0,0.6875,0.03125,1,0.25,0,0.71875,0.03125,1,0.125,0,0.75,0.03125,0.5,0,0,0.78125,0.03125,0.5,0,0.125,0.8125,0.03125,0.5,0,0.25,0.84375,0.03125,0.5,0,0.375,0.875,0.03125,0.5,0,0.5,0.90625,0.03125,0.5,0,0.625,0.9375,0.03125,0.5,0,0.75,0.96875,0.03125,0.5,0,0.875,1,0,0,0,1";
+        "khotkeysrc"."Data_2_7_4Triggers0"."GesturePointData".value =
+          "0,0.03125,0,0,1,0.03125,0.03125,0,0.125,1,0.0625,0.03125,0,0.25,1,0.09375,0.03125,0,0.375,1,0.125,0.03125,0,0.5,1,0.15625,0.03125,0,0.625,1,0.1875,0.03125,0,0.75,1,0.21875,0.03125,0,0.875,1,0.25,0.03125,-0.5,1,1,0.28125,0.03125,-0.5,1,0.875,0.3125,0.03125,-0.5,1,0.75,0.34375,0.03125,-0.5,1,0.625,0.375,0.03125,-0.5,1,0.5,0.40625,0.03125,-0.5,1,0.375,0.4375,0.03125,-0.5,1,0.25,0.46875,0.03125,-0.5,1,0.125,0.5,0.03125,1,1,0,0.53125,0.03125,1,0.875,0,0.5625,0.03125,1,0.75,0,0.59375,0.03125,1,0.625,0,0.625,0.03125,1,0.5,0,0.65625,0.03125,1,0.375,0,0.6875,0.03125,1,0.25,0,0.71875,0.03125,1,0.125,0,0.75,0.03125,0.5,0,0,0.78125,0.03125,0.5,0,0.125,0.8125,0.03125,0.5,0,0.25,0.84375,0.03125,0.5,0,0.375,0.875,0.03125,0.5,0,0.5,0.90625,0.03125,0.5,0,0.625,0.9375,0.03125,0.5,0,0.75,0.96875,0.03125,0.5,0,0.875,1,0,0,0,1";
         "khotkeysrc"."Data_2_7_4Triggers0"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_2_7_4Triggers1"."GesturePointData".value = "0,0.0277778,0,0,1,0.0277778,0.0277778,0,0.125,1,0.0555556,0.0277778,0,0.25,1,0.0833333,0.0277778,0,0.375,1,0.111111,0.0277778,0,0.5,1,0.138889,0.0277778,0,0.625,1,0.166667,0.0277778,0,0.75,1,0.194444,0.0277778,0,0.875,1,0.222222,0.0277778,-0.5,1,1,0.25,0.0277778,-0.5,1,0.875,0.277778,0.0277778,-0.5,1,0.75,0.305556,0.0277778,-0.5,1,0.625,0.333333,0.0277778,-0.5,1,0.5,0.361111,0.0277778,-0.5,1,0.375,0.388889,0.0277778,-0.5,1,0.25,0.416667,0.0277778,-0.5,1,0.125,0.444444,0.0277778,1,1,0,0.472222,0.0277778,1,0.875,0,0.5,0.0277778,1,0.75,0,0.527778,0.0277778,1,0.625,0,0.555556,0.0277778,1,0.5,0,0.583333,0.0277778,1,0.375,0,0.611111,0.0277778,1,0.25,0,0.638889,0.0277778,1,0.125,0,0.666667,0.0277778,0.5,0,0,0.694444,0.0277778,0.5,0,0.125,0.722222,0.0277778,0.5,0,0.25,0.75,0.0277778,0.5,0,0.375,0.777778,0.0277778,0.5,0,0.5,0.805556,0.0277778,0.5,0,0.625,0.833333,0.0277778,0.5,0,0.75,0.861111,0.0277778,0.5,0,0.875,0.888889,0.0277778,0,0,1,0.916667,0.0277778,0,0.125,1,0.944444,0.0277778,0,0.25,1,0.972222,0.0277778,0,0.375,1,1,0,0,0.5,1";
+        "khotkeysrc"."Data_2_7_4Triggers1"."GesturePointData".value =
+          "0,0.0277778,0,0,1,0.0277778,0.0277778,0,0.125,1,0.0555556,0.0277778,0,0.25,1,0.0833333,0.0277778,0,0.375,1,0.111111,0.0277778,0,0.5,1,0.138889,0.0277778,0,0.625,1,0.166667,0.0277778,0,0.75,1,0.194444,0.0277778,0,0.875,1,0.222222,0.0277778,-0.5,1,1,0.25,0.0277778,-0.5,1,0.875,0.277778,0.0277778,-0.5,1,0.75,0.305556,0.0277778,-0.5,1,0.625,0.333333,0.0277778,-0.5,1,0.5,0.361111,0.0277778,-0.5,1,0.375,0.388889,0.0277778,-0.5,1,0.25,0.416667,0.0277778,-0.5,1,0.125,0.444444,0.0277778,1,1,0,0.472222,0.0277778,1,0.875,0,0.5,0.0277778,1,0.75,0,0.527778,0.0277778,1,0.625,0,0.555556,0.0277778,1,0.5,0,0.583333,0.0277778,1,0.375,0,0.611111,0.0277778,1,0.25,0,0.638889,0.0277778,1,0.125,0,0.666667,0.0277778,0.5,0,0,0.694444,0.0277778,0.5,0,0.125,0.722222,0.0277778,0.5,0,0.25,0.75,0.0277778,0.5,0,0.375,0.777778,0.0277778,0.5,0,0.5,0.805556,0.0277778,0.5,0,0.625,0.833333,0.0277778,0.5,0,0.75,0.861111,0.0277778,0.5,0,0.875,0.888889,0.0277778,0,0,1,0.916667,0.0277778,0,0.125,1,0.944444,0.0277778,0,0.25,1,0.972222,0.0277778,0,0.375,1,1,0,0,0.5,1";
         "khotkeysrc"."Data_2_7_4Triggers1"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_2_7_4Triggers2"."GesturePointData".value = "0,0.0277778,0.5,0,0.5,0.0277778,0.0277778,0.5,0,0.625,0.0555556,0.0277778,0.5,0,0.75,0.0833333,0.0277778,0.5,0,0.875,0.111111,0.0277778,0,0,1,0.138889,0.0277778,0,0.125,1,0.166667,0.0277778,0,0.25,1,0.194444,0.0277778,0,0.375,1,0.222222,0.0277778,0,0.5,1,0.25,0.0277778,0,0.625,1,0.277778,0.0277778,0,0.75,1,0.305556,0.0277778,0,0.875,1,0.333333,0.0277778,-0.5,1,1,0.361111,0.0277778,-0.5,1,0.875,0.388889,0.0277778,-0.5,1,0.75,0.416667,0.0277778,-0.5,1,0.625,0.444444,0.0277778,-0.5,1,0.5,0.472222,0.0277778,-0.5,1,0.375,0.5,0.0277778,-0.5,1,0.25,0.527778,0.0277778,-0.5,1,0.125,0.555556,0.0277778,1,1,0,0.583333,0.0277778,1,0.875,0,0.611111,0.0277778,1,0.75,0,0.638889,0.0277778,1,0.625,0,0.666667,0.0277778,1,0.5,0,0.694444,0.0277778,1,0.375,0,0.722222,0.0277778,1,0.25,0,0.75,0.0277778,1,0.125,0,0.777778,0.0277778,0.5,0,0,0.805556,0.0277778,0.5,0,0.125,0.833333,0.0277778,0.5,0,0.25,0.861111,0.0277778,0.5,0,0.375,0.888889,0.0277778,0.5,0,0.5,0.916667,0.0277778,0.5,0,0.625,0.944444,0.0277778,0.5,0,0.75,0.972222,0.0277778,0.5,0,0.875,1,0,0,0,1";
+        "khotkeysrc"."Data_2_7_4Triggers2"."GesturePointData".value =
+          "0,0.0277778,0.5,0,0.5,0.0277778,0.0277778,0.5,0,0.625,0.0555556,0.0277778,0.5,0,0.75,0.0833333,0.0277778,0.5,0,0.875,0.111111,0.0277778,0,0,1,0.138889,0.0277778,0,0.125,1,0.166667,0.0277778,0,0.25,1,0.194444,0.0277778,0,0.375,1,0.222222,0.0277778,0,0.5,1,0.25,0.0277778,0,0.625,1,0.277778,0.0277778,0,0.75,1,0.305556,0.0277778,0,0.875,1,0.333333,0.0277778,-0.5,1,1,0.361111,0.0277778,-0.5,1,0.875,0.388889,0.0277778,-0.5,1,0.75,0.416667,0.0277778,-0.5,1,0.625,0.444444,0.0277778,-0.5,1,0.5,0.472222,0.0277778,-0.5,1,0.375,0.5,0.0277778,-0.5,1,0.25,0.527778,0.0277778,-0.5,1,0.125,0.555556,0.0277778,1,1,0,0.583333,0.0277778,1,0.875,0,0.611111,0.0277778,1,0.75,0,0.638889,0.0277778,1,0.625,0,0.666667,0.0277778,1,0.5,0,0.694444,0.0277778,1,0.375,0,0.722222,0.0277778,1,0.25,0,0.75,0.0277778,1,0.125,0,0.777778,0.0277778,0.5,0,0,0.805556,0.0277778,0.5,0,0.125,0.833333,0.0277778,0.5,0,0.25,0.861111,0.0277778,0.5,0,0.375,0.888889,0.0277778,0.5,0,0.5,0.916667,0.0277778,0.5,0,0.625,0.944444,0.0277778,0.5,0,0.75,0.972222,0.0277778,0.5,0,0.875,1,0,0,0,1";
         "khotkeysrc"."Data_2_7_4Triggers2"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_2_8"."Comment".value = "After pressing Win+E (Tux+E) a WWW browser will be launched, and it will open http://www.kde.org . You may run all kind of commands you can run in minicli (Alt+F2).";
+        "khotkeysrc"."Data_2_8"."Comment".value =
+          "After pressing Win+E (Tux+E) a WWW browser will be launched, and it will open http://www.kde.org . You may run all kind of commands you can run in minicli (Alt+F2).";
         "khotkeysrc"."Data_2_8"."Enabled".value = false;
         "khotkeysrc"."Data_2_8"."Name".value = "Go to KDE Website";
         "khotkeysrc"."Data_2_8"."Type".value = "SIMPLE_ACTION_DATA";
@@ -724,7 +744,8 @@
         "khotkeysrc"."Data_3_10Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_10Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_10Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_10Triggers0"."GesturePointData".value = "0,0.125,-0.5,0.5,1,0.125,0.125,-0.5,0.5,0.875,0.25,0.125,-0.5,0.5,0.75,0.375,0.125,-0.5,0.5,0.625,0.5,0.125,-0.5,0.5,0.5,0.625,0.125,-0.5,0.5,0.375,0.75,0.125,-0.5,0.5,0.25,0.875,0.125,-0.5,0.5,0.125,1,0,0,0.5,0";
+        "khotkeysrc"."Data_3_10Triggers0"."GesturePointData".value =
+          "0,0.125,-0.5,0.5,1,0.125,0.125,-0.5,0.5,0.875,0.25,0.125,-0.5,0.5,0.75,0.375,0.125,-0.5,0.5,0.625,0.5,0.125,-0.5,0.5,0.5,0.625,0.125,-0.5,0.5,0.375,0.75,0.125,-0.5,0.5,0.25,0.875,0.125,-0.5,0.5,0.125,1,0,0,0.5,0";
         "khotkeysrc"."Data_3_10Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_11"."Comment".value = ''
           Going up in URL/directory structure.
@@ -740,7 +761,8 @@
         "khotkeysrc"."Data_3_11Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_11Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_11Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_11Triggers0"."GesturePointData".value = "0,0.0625,-0.5,1,1,0.0625,0.0625,-0.5,1,0.875,0.125,0.0625,-0.5,1,0.75,0.1875,0.0625,-0.5,1,0.625,0.25,0.0625,1,1,0.5,0.3125,0.0625,1,0.875,0.5,0.375,0.0625,1,0.75,0.5,0.4375,0.0625,1,0.625,0.5,0.5,0.0625,1,0.5,0.5,0.5625,0.0625,1,0.375,0.5,0.625,0.0625,1,0.25,0.5,0.6875,0.0625,1,0.125,0.5,0.75,0.0625,-0.5,0,0.5,0.8125,0.0625,-0.5,0,0.375,0.875,0.0625,-0.5,0,0.25,0.9375,0.0625,-0.5,0,0.125,1,0,0,0,0";
+        "khotkeysrc"."Data_3_11Triggers0"."GesturePointData".value =
+          "0,0.0625,-0.5,1,1,0.0625,0.0625,-0.5,1,0.875,0.125,0.0625,-0.5,1,0.75,0.1875,0.0625,-0.5,1,0.625,0.25,0.0625,1,1,0.5,0.3125,0.0625,1,0.875,0.5,0.375,0.0625,1,0.75,0.5,0.4375,0.0625,1,0.625,0.5,0.5,0.0625,1,0.5,0.5,0.5625,0.0625,1,0.375,0.5,0.625,0.0625,1,0.25,0.5,0.6875,0.0625,1,0.125,0.5,0.75,0.0625,-0.5,0,0.5,0.8125,0.0625,-0.5,0,0.375,0.875,0.0625,-0.5,0,0.25,0.9375,0.0625,-0.5,0,0.125,1,0,0,0,0";
         "khotkeysrc"."Data_3_11Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_12"."Comment".value = ''
           Going up in URL/directory structure.
@@ -759,7 +781,8 @@
         "khotkeysrc"."Data_3_12Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_12Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_12Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_12Triggers0"."GesturePointData".value = "0,0.0625,-0.5,1,1,0.0625,0.0625,-0.5,1,0.875,0.125,0.0625,-0.5,1,0.75,0.1875,0.0625,-0.5,1,0.625,0.25,0.0625,-0.5,1,0.5,0.3125,0.0625,-0.5,1,0.375,0.375,0.0625,-0.5,1,0.25,0.4375,0.0625,-0.5,1,0.125,0.5,0.0625,1,1,0,0.5625,0.0625,1,0.875,0,0.625,0.0625,1,0.75,0,0.6875,0.0625,1,0.625,0,0.75,0.0625,1,0.5,0,0.8125,0.0625,1,0.375,0,0.875,0.0625,1,0.25,0,0.9375,0.0625,1,0.125,0,1,0,0,0,0";
+        "khotkeysrc"."Data_3_12Triggers0"."GesturePointData".value =
+          "0,0.0625,-0.5,1,1,0.0625,0.0625,-0.5,1,0.875,0.125,0.0625,-0.5,1,0.75,0.1875,0.0625,-0.5,1,0.625,0.25,0.0625,-0.5,1,0.5,0.3125,0.0625,-0.5,1,0.375,0.375,0.0625,-0.5,1,0.25,0.4375,0.0625,-0.5,1,0.125,0.5,0.0625,1,1,0,0.5625,0.0625,1,0.875,0,0.625,0.0625,1,0.75,0,0.6875,0.0625,1,0.625,0,0.75,0.0625,1,0.5,0,0.8125,0.0625,1,0.375,0,0.875,0.0625,1,0.25,0,0.9375,0.0625,1,0.125,0,1,0,0,0,0";
         "khotkeysrc"."Data_3_12Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_13"."Comment".value = "Press, move up, move right, release.";
         "khotkeysrc"."Data_3_13"."Enabled".value = true;
@@ -775,7 +798,8 @@
         "khotkeysrc"."Data_3_13Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_13Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_13Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_13Triggers0"."GesturePointData".value = "0,0.0625,-0.5,0,1,0.0625,0.0625,-0.5,0,0.875,0.125,0.0625,-0.5,0,0.75,0.1875,0.0625,-0.5,0,0.625,0.25,0.0625,-0.5,0,0.5,0.3125,0.0625,-0.5,0,0.375,0.375,0.0625,-0.5,0,0.25,0.4375,0.0625,-0.5,0,0.125,0.5,0.0625,0,0,0,0.5625,0.0625,0,0.125,0,0.625,0.0625,0,0.25,0,0.6875,0.0625,0,0.375,0,0.75,0.0625,0,0.5,0,0.8125,0.0625,0,0.625,0,0.875,0.0625,0,0.75,0,0.9375,0.0625,0,0.875,0,1,0,0,1,0";
+        "khotkeysrc"."Data_3_13Triggers0"."GesturePointData".value =
+          "0,0.0625,-0.5,0,1,0.0625,0.0625,-0.5,0,0.875,0.125,0.0625,-0.5,0,0.75,0.1875,0.0625,-0.5,0,0.625,0.25,0.0625,-0.5,0,0.5,0.3125,0.0625,-0.5,0,0.375,0.375,0.0625,-0.5,0,0.25,0.4375,0.0625,-0.5,0,0.125,0.5,0.0625,0,0,0,0.5625,0.0625,0,0.125,0,0.625,0.0625,0,0.25,0,0.6875,0.0625,0,0.375,0,0.75,0.0625,0,0.5,0,0.8125,0.0625,0,0.625,0,0.875,0.0625,0,0.75,0,0.9375,0.0625,0,0.875,0,1,0,0,1,0";
         "khotkeysrc"."Data_3_13Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_14"."Comment".value = "Press, move up, move left, release.";
         "khotkeysrc"."Data_3_14"."Enabled".value = true;
@@ -789,7 +813,8 @@
         "khotkeysrc"."Data_3_14Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_14Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_14Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_14Triggers0"."GesturePointData".value = "0,0.0625,-0.5,1,1,0.0625,0.0625,-0.5,1,0.875,0.125,0.0625,-0.5,1,0.75,0.1875,0.0625,-0.5,1,0.625,0.25,0.0625,-0.5,1,0.5,0.3125,0.0625,-0.5,1,0.375,0.375,0.0625,-0.5,1,0.25,0.4375,0.0625,-0.5,1,0.125,0.5,0.0625,1,1,0,0.5625,0.0625,1,0.875,0,0.625,0.0625,1,0.75,0,0.6875,0.0625,1,0.625,0,0.75,0.0625,1,0.5,0,0.8125,0.0625,1,0.375,0,0.875,0.0625,1,0.25,0,0.9375,0.0625,1,0.125,0,1,0,0,0,0";
+        "khotkeysrc"."Data_3_14Triggers0"."GesturePointData".value =
+          "0,0.0625,-0.5,1,1,0.0625,0.0625,-0.5,1,0.875,0.125,0.0625,-0.5,1,0.75,0.1875,0.0625,-0.5,1,0.625,0.25,0.0625,-0.5,1,0.5,0.3125,0.0625,-0.5,1,0.375,0.375,0.0625,-0.5,1,0.25,0.4375,0.0625,-0.5,1,0.125,0.5,0.0625,1,1,0,0.5625,0.0625,1,0.875,0,0.625,0.0625,1,0.75,0,0.6875,0.0625,1,0.625,0,0.75,0.0625,1,0.5,0,0.8125,0.0625,1,0.375,0,0.875,0.0625,1,0.25,0,0.9375,0.0625,1,0.125,0,1,0,0,0,0";
         "khotkeysrc"."Data_3_14Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_1Actions"."ActionsCount".value = 1;
         "khotkeysrc"."Data_3_1Actions0"."DestinationWindow".value = 2;
@@ -799,7 +824,8 @@
         "khotkeysrc"."Data_3_1Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_1Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_1Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_1Triggers0"."GesturePointData".value = "0,0.125,1,1,0.5,0.125,0.125,1,0.875,0.5,0.25,0.125,1,0.75,0.5,0.375,0.125,1,0.625,0.5,0.5,0.125,1,0.5,0.5,0.625,0.125,1,0.375,0.5,0.75,0.125,1,0.25,0.5,0.875,0.125,1,0.125,0.5,1,0,0,0,0.5";
+        "khotkeysrc"."Data_3_1Triggers0"."GesturePointData".value =
+          "0,0.125,1,1,0.5,0.125,0.125,1,0.875,0.5,0.25,0.125,1,0.75,0.5,0.375,0.125,1,0.625,0.5,0.5,0.125,1,0.5,0.5,0.625,0.125,1,0.375,0.5,0.75,0.125,1,0.25,0.5,0.875,0.125,1,0.125,0.5,1,0,0,0,0.5";
         "khotkeysrc"."Data_3_1Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_2"."Comment".value = "Press, move down, move up, move down, release.";
         "khotkeysrc"."Data_3_2"."Enabled".value = true;
@@ -815,7 +841,8 @@
         "khotkeysrc"."Data_3_2Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_2Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_2Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_2Triggers0"."GesturePointData".value = "0,0.0416667,0.5,0.5,0,0.0416667,0.0416667,0.5,0.5,0.125,0.0833333,0.0416667,0.5,0.5,0.25,0.125,0.0416667,0.5,0.5,0.375,0.166667,0.0416667,0.5,0.5,0.5,0.208333,0.0416667,0.5,0.5,0.625,0.25,0.0416667,0.5,0.5,0.75,0.291667,0.0416667,0.5,0.5,0.875,0.333333,0.0416667,-0.5,0.5,1,0.375,0.0416667,-0.5,0.5,0.875,0.416667,0.0416667,-0.5,0.5,0.75,0.458333,0.0416667,-0.5,0.5,0.625,0.5,0.0416667,-0.5,0.5,0.5,0.541667,0.0416667,-0.5,0.5,0.375,0.583333,0.0416667,-0.5,0.5,0.25,0.625,0.0416667,-0.5,0.5,0.125,0.666667,0.0416667,0.5,0.5,0,0.708333,0.0416667,0.5,0.5,0.125,0.75,0.0416667,0.5,0.5,0.25,0.791667,0.0416667,0.5,0.5,0.375,0.833333,0.0416667,0.5,0.5,0.5,0.875,0.0416667,0.5,0.5,0.625,0.916667,0.0416667,0.5,0.5,0.75,0.958333,0.0416667,0.5,0.5,0.875,1,0,0,0.5,1";
+        "khotkeysrc"."Data_3_2Triggers0"."GesturePointData".value =
+          "0,0.0416667,0.5,0.5,0,0.0416667,0.0416667,0.5,0.5,0.125,0.0833333,0.0416667,0.5,0.5,0.25,0.125,0.0416667,0.5,0.5,0.375,0.166667,0.0416667,0.5,0.5,0.5,0.208333,0.0416667,0.5,0.5,0.625,0.25,0.0416667,0.5,0.5,0.75,0.291667,0.0416667,0.5,0.5,0.875,0.333333,0.0416667,-0.5,0.5,1,0.375,0.0416667,-0.5,0.5,0.875,0.416667,0.0416667,-0.5,0.5,0.75,0.458333,0.0416667,-0.5,0.5,0.625,0.5,0.0416667,-0.5,0.5,0.5,0.541667,0.0416667,-0.5,0.5,0.375,0.583333,0.0416667,-0.5,0.5,0.25,0.625,0.0416667,-0.5,0.5,0.125,0.666667,0.0416667,0.5,0.5,0,0.708333,0.0416667,0.5,0.5,0.125,0.75,0.0416667,0.5,0.5,0.25,0.791667,0.0416667,0.5,0.5,0.375,0.833333,0.0416667,0.5,0.5,0.5,0.875,0.0416667,0.5,0.5,0.625,0.916667,0.0416667,0.5,0.5,0.75,0.958333,0.0416667,0.5,0.5,0.875,1,0,0,0.5,1";
         "khotkeysrc"."Data_3_2Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_3"."Comment".value = "Press, move down, move up, release.";
         "khotkeysrc"."Data_3_3"."Enabled".value = true;
@@ -831,7 +858,8 @@
         "khotkeysrc"."Data_3_3Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_3Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_3Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_3Triggers0"."GesturePointData".value = "0,0.0625,0.5,0.5,0,0.0625,0.0625,0.5,0.5,0.125,0.125,0.0625,0.5,0.5,0.25,0.1875,0.0625,0.5,0.5,0.375,0.25,0.0625,0.5,0.5,0.5,0.3125,0.0625,0.5,0.5,0.625,0.375,0.0625,0.5,0.5,0.75,0.4375,0.0625,0.5,0.5,0.875,0.5,0.0625,-0.5,0.5,1,0.5625,0.0625,-0.5,0.5,0.875,0.625,0.0625,-0.5,0.5,0.75,0.6875,0.0625,-0.5,0.5,0.625,0.75,0.0625,-0.5,0.5,0.5,0.8125,0.0625,-0.5,0.5,0.375,0.875,0.0625,-0.5,0.5,0.25,0.9375,0.0625,-0.5,0.5,0.125,1,0,0,0.5,0";
+        "khotkeysrc"."Data_3_3Triggers0"."GesturePointData".value =
+          "0,0.0625,0.5,0.5,0,0.0625,0.0625,0.5,0.5,0.125,0.125,0.0625,0.5,0.5,0.25,0.1875,0.0625,0.5,0.5,0.375,0.25,0.0625,0.5,0.5,0.5,0.3125,0.0625,0.5,0.5,0.625,0.375,0.0625,0.5,0.5,0.75,0.4375,0.0625,0.5,0.5,0.875,0.5,0.0625,-0.5,0.5,1,0.5625,0.0625,-0.5,0.5,0.875,0.625,0.0625,-0.5,0.5,0.75,0.6875,0.0625,-0.5,0.5,0.625,0.75,0.0625,-0.5,0.5,0.5,0.8125,0.0625,-0.5,0.5,0.375,0.875,0.0625,-0.5,0.5,0.25,0.9375,0.0625,-0.5,0.5,0.125,1,0,0,0.5,0";
         "khotkeysrc"."Data_3_3Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_4"."Comment".value = "Press, move right, release.";
         "khotkeysrc"."Data_3_4"."Enabled".value = true;
@@ -845,7 +873,8 @@
         "khotkeysrc"."Data_3_4Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_4Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_4Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_4Triggers0"."GesturePointData".value = "0,0.125,0,0,0.5,0.125,0.125,0,0.125,0.5,0.25,0.125,0,0.25,0.5,0.375,0.125,0,0.375,0.5,0.5,0.125,0,0.5,0.5,0.625,0.125,0,0.625,0.5,0.75,0.125,0,0.75,0.5,0.875,0.125,0,0.875,0.5,1,0,0,1,0.5";
+        "khotkeysrc"."Data_3_4Triggers0"."GesturePointData".value =
+          "0,0.125,0,0,0.5,0.125,0.125,0,0.125,0.5,0.25,0.125,0,0.25,0.5,0.375,0.125,0,0.375,0.5,0.5,0.125,0,0.5,0.5,0.625,0.125,0,0.625,0.5,0.75,0.125,0,0.75,0.5,0.875,0.125,0,0.875,0.5,1,0,0,1,0.5";
         "khotkeysrc"."Data_3_4Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_5"."Comment".value = ''
           Press, move down, move half up, move right, move down, release.
@@ -863,9 +892,11 @@
         "khotkeysrc"."Data_3_5Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_5Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_5Triggers"."TriggersCount".value = 2;
-        "khotkeysrc"."Data_3_5Triggers0"."GesturePointData".value = "0,0.0461748,0.5,0,0,0.0461748,0.0461748,0.5,0,0.125,0.0923495,0.0461748,0.5,0,0.25,0.138524,0.0461748,0.5,0,0.375,0.184699,0.0461748,0.5,0,0.5,0.230874,0.0461748,0.5,0,0.625,0.277049,0.0461748,0.5,0,0.75,0.323223,0.0461748,0.5,0,0.875,0.369398,0.065301,-0.25,0,1,0.434699,0.065301,-0.25,0.125,0.875,0.5,0.065301,-0.25,0.25,0.75,0.565301,0.065301,-0.25,0.375,0.625,0.630602,0.0461748,0,0.5,0.5,0.676777,0.0461748,0,0.625,0.5,0.722951,0.0461748,0,0.75,0.5,0.769126,0.0461748,0,0.875,0.5,0.815301,0.0461748,0.5,1,0.5,0.861476,0.0461748,0.5,1,0.625,0.90765,0.0461748,0.5,1,0.75,0.953825,0.0461748,0.5,1,0.875,1,0,0,1,1";
+        "khotkeysrc"."Data_3_5Triggers0"."GesturePointData".value =
+          "0,0.0461748,0.5,0,0,0.0461748,0.0461748,0.5,0,0.125,0.0923495,0.0461748,0.5,0,0.25,0.138524,0.0461748,0.5,0,0.375,0.184699,0.0461748,0.5,0,0.5,0.230874,0.0461748,0.5,0,0.625,0.277049,0.0461748,0.5,0,0.75,0.323223,0.0461748,0.5,0,0.875,0.369398,0.065301,-0.25,0,1,0.434699,0.065301,-0.25,0.125,0.875,0.5,0.065301,-0.25,0.25,0.75,0.565301,0.065301,-0.25,0.375,0.625,0.630602,0.0461748,0,0.5,0.5,0.676777,0.0461748,0,0.625,0.5,0.722951,0.0461748,0,0.75,0.5,0.769126,0.0461748,0,0.875,0.5,0.815301,0.0461748,0.5,1,0.5,0.861476,0.0461748,0.5,1,0.625,0.90765,0.0461748,0.5,1,0.75,0.953825,0.0461748,0.5,1,0.875,1,0,0,1,1";
         "khotkeysrc"."Data_3_5Triggers0"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_3_5Triggers1"."GesturePointData".value = "0,0.0416667,0.5,0,0,0.0416667,0.0416667,0.5,0,0.125,0.0833333,0.0416667,0.5,0,0.25,0.125,0.0416667,0.5,0,0.375,0.166667,0.0416667,0.5,0,0.5,0.208333,0.0416667,0.5,0,0.625,0.25,0.0416667,0.5,0,0.75,0.291667,0.0416667,0.5,0,0.875,0.333333,0.0416667,-0.5,0,1,0.375,0.0416667,-0.5,0,0.875,0.416667,0.0416667,-0.5,0,0.75,0.458333,0.0416667,-0.5,0,0.625,0.5,0.0416667,0,0,0.5,0.541667,0.0416667,0,0.125,0.5,0.583333,0.0416667,0,0.25,0.5,0.625,0.0416667,0,0.375,0.5,0.666667,0.0416667,0,0.5,0.5,0.708333,0.0416667,0,0.625,0.5,0.75,0.0416667,0,0.75,0.5,0.791667,0.0416667,0,0.875,0.5,0.833333,0.0416667,0.5,1,0.5,0.875,0.0416667,0.5,1,0.625,0.916667,0.0416667,0.5,1,0.75,0.958333,0.0416667,0.5,1,0.875,1,0,0,1,1";
+        "khotkeysrc"."Data_3_5Triggers1"."GesturePointData".value =
+          "0,0.0416667,0.5,0,0,0.0416667,0.0416667,0.5,0,0.125,0.0833333,0.0416667,0.5,0,0.25,0.125,0.0416667,0.5,0,0.375,0.166667,0.0416667,0.5,0,0.5,0.208333,0.0416667,0.5,0,0.625,0.25,0.0416667,0.5,0,0.75,0.291667,0.0416667,0.5,0,0.875,0.333333,0.0416667,-0.5,0,1,0.375,0.0416667,-0.5,0,0.875,0.416667,0.0416667,-0.5,0,0.75,0.458333,0.0416667,-0.5,0,0.625,0.5,0.0416667,0,0,0.5,0.541667,0.0416667,0,0.125,0.5,0.583333,0.0416667,0,0.25,0.5,0.625,0.0416667,0,0.375,0.5,0.666667,0.0416667,0,0.5,0.5,0.708333,0.0416667,0,0.625,0.5,0.75,0.0416667,0,0.75,0.5,0.791667,0.0416667,0,0.875,0.5,0.833333,0.0416667,0.5,1,0.5,0.875,0.0416667,0.5,1,0.625,0.916667,0.0416667,0.5,1,0.75,0.958333,0.0416667,0.5,1,0.875,1,0,0,1,1";
         "khotkeysrc"."Data_3_5Triggers1"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_6"."Comment".value = ''
           Press, move right, move down, move right, release.
@@ -883,9 +914,11 @@
         "khotkeysrc"."Data_3_6Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_6Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_6Triggers"."TriggersCount".value = 2;
-        "khotkeysrc"."Data_3_6Triggers0"."GesturePointData".value = "0,0.0625,0,0,0,0.0625,0.0625,0,0.125,0,0.125,0.0625,0,0.25,0,0.1875,0.0625,0,0.375,0,0.25,0.0625,0.5,0.5,0,0.3125,0.0625,0.5,0.5,0.125,0.375,0.0625,0.5,0.5,0.25,0.4375,0.0625,0.5,0.5,0.375,0.5,0.0625,0.5,0.5,0.5,0.5625,0.0625,0.5,0.5,0.625,0.625,0.0625,0.5,0.5,0.75,0.6875,0.0625,0.5,0.5,0.875,0.75,0.0625,0,0.5,1,0.8125,0.0625,0,0.625,1,0.875,0.0625,0,0.75,1,0.9375,0.0625,0,0.875,1,1,0,0,1,1";
+        "khotkeysrc"."Data_3_6Triggers0"."GesturePointData".value =
+          "0,0.0625,0,0,0,0.0625,0.0625,0,0.125,0,0.125,0.0625,0,0.25,0,0.1875,0.0625,0,0.375,0,0.25,0.0625,0.5,0.5,0,0.3125,0.0625,0.5,0.5,0.125,0.375,0.0625,0.5,0.5,0.25,0.4375,0.0625,0.5,0.5,0.375,0.5,0.0625,0.5,0.5,0.5,0.5625,0.0625,0.5,0.5,0.625,0.625,0.0625,0.5,0.5,0.75,0.6875,0.0625,0.5,0.5,0.875,0.75,0.0625,0,0.5,1,0.8125,0.0625,0,0.625,1,0.875,0.0625,0,0.75,1,0.9375,0.0625,0,0.875,1,1,0,0,1,1";
         "khotkeysrc"."Data_3_6Triggers0"."Type".value = "GESTURE";
-        "khotkeysrc"."Data_3_6Triggers1"."GesturePointData".value = "0,0.0625,0.5,0,0,0.0625,0.0625,0.5,0,0.125,0.125,0.0625,0.5,0,0.25,0.1875,0.0625,0.5,0,0.375,0.25,0.0625,0.5,0,0.5,0.3125,0.0625,0.5,0,0.625,0.375,0.0625,0.5,0,0.75,0.4375,0.0625,0.5,0,0.875,0.5,0.0625,0,0,1,0.5625,0.0625,0,0.125,1,0.625,0.0625,0,0.25,1,0.6875,0.0625,0,0.375,1,0.75,0.0625,0,0.5,1,0.8125,0.0625,0,0.625,1,0.875,0.0625,0,0.75,1,0.9375,0.0625,0,0.875,1,1,0,0,1,1";
+        "khotkeysrc"."Data_3_6Triggers1"."GesturePointData".value =
+          "0,0.0625,0.5,0,0,0.0625,0.0625,0.5,0,0.125,0.125,0.0625,0.5,0,0.25,0.1875,0.0625,0.5,0,0.375,0.25,0.0625,0.5,0,0.5,0.3125,0.0625,0.5,0,0.625,0.375,0.0625,0.5,0,0.75,0.4375,0.0625,0.5,0,0.875,0.5,0.0625,0,0,1,0.5625,0.0625,0,0.125,1,0.625,0.0625,0,0.25,1,0.6875,0.0625,0,0.375,1,0.75,0.0625,0,0.5,1,0.8125,0.0625,0,0.625,1,0.875,0.0625,0,0.75,1,0.9375,0.0625,0,0.875,1,1,0,0,1,1";
         "khotkeysrc"."Data_3_6Triggers1"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_7"."Comment".value = ''
           Press, move up, release.
@@ -901,7 +934,8 @@
         "khotkeysrc"."Data_3_7Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_7Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_7Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_7Triggers0"."GesturePointData".value = "0,0.125,-0.5,0.5,1,0.125,0.125,-0.5,0.5,0.875,0.25,0.125,-0.5,0.5,0.75,0.375,0.125,-0.5,0.5,0.625,0.5,0.125,-0.5,0.5,0.5,0.625,0.125,-0.5,0.5,0.375,0.75,0.125,-0.5,0.5,0.25,0.875,0.125,-0.5,0.5,0.125,1,0,0,0.5,0";
+        "khotkeysrc"."Data_3_7Triggers0"."GesturePointData".value =
+          "0,0.125,-0.5,0.5,1,0.125,0.125,-0.5,0.5,0.875,0.25,0.125,-0.5,0.5,0.75,0.375,0.125,-0.5,0.5,0.625,0.5,0.125,-0.5,0.5,0.5,0.625,0.125,-0.5,0.5,0.375,0.75,0.125,-0.5,0.5,0.25,0.875,0.125,-0.5,0.5,0.125,1,0,0,0.5,0";
         "khotkeysrc"."Data_3_7Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_8"."Comment".value = "Press, move down, release.";
         "khotkeysrc"."Data_3_8"."Enabled".value = true;
@@ -917,7 +951,8 @@
         "khotkeysrc"."Data_3_8Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_8Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_8Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_8Triggers0"."GesturePointData".value = "0,0.125,0.5,0.5,0,0.125,0.125,0.5,0.5,0.125,0.25,0.125,0.5,0.5,0.25,0.375,0.125,0.5,0.5,0.375,0.5,0.125,0.5,0.5,0.5,0.625,0.125,0.5,0.5,0.625,0.75,0.125,0.5,0.5,0.75,0.875,0.125,0.5,0.5,0.875,1,0,0,0.5,1";
+        "khotkeysrc"."Data_3_8Triggers0"."GesturePointData".value =
+          "0,0.125,0.5,0.5,0,0.125,0.125,0.5,0.5,0.125,0.25,0.125,0.5,0.5,0.25,0.375,0.125,0.5,0.5,0.375,0.5,0.125,0.5,0.5,0.5,0.625,0.125,0.5,0.5,0.625,0.75,0.125,0.5,0.5,0.75,0.875,0.125,0.5,0.5,0.875,1,0,0,0.5,1";
         "khotkeysrc"."Data_3_8Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."Data_3_9"."Comment".value = "Press, move up, move down, release.";
         "khotkeysrc"."Data_3_9"."Enabled".value = true;
@@ -931,7 +966,8 @@
         "khotkeysrc"."Data_3_9Conditions"."ConditionsCount".value = 0;
         "khotkeysrc"."Data_3_9Triggers"."Comment".value = "Gesture_triggers";
         "khotkeysrc"."Data_3_9Triggers"."TriggersCount".value = 1;
-        "khotkeysrc"."Data_3_9Triggers0"."GesturePointData".value = "0,0.0625,-0.5,0.5,1,0.0625,0.0625,-0.5,0.5,0.875,0.125,0.0625,-0.5,0.5,0.75,0.1875,0.0625,-0.5,0.5,0.625,0.25,0.0625,-0.5,0.5,0.5,0.3125,0.0625,-0.5,0.5,0.375,0.375,0.0625,-0.5,0.5,0.25,0.4375,0.0625,-0.5,0.5,0.125,0.5,0.0625,0.5,0.5,0,0.5625,0.0625,0.5,0.5,0.125,0.625,0.0625,0.5,0.5,0.25,0.6875,0.0625,0.5,0.5,0.375,0.75,0.0625,0.5,0.5,0.5,0.8125,0.0625,0.5,0.5,0.625,0.875,0.0625,0.5,0.5,0.75,0.9375,0.0625,0.5,0.5,0.875,1,0,0,0.5,1";
+        "khotkeysrc"."Data_3_9Triggers0"."GesturePointData".value =
+          "0,0.0625,-0.5,0.5,1,0.0625,0.0625,-0.5,0.5,0.875,0.125,0.0625,-0.5,0.5,0.75,0.1875,0.0625,-0.5,0.5,0.625,0.25,0.0625,-0.5,0.5,0.5,0.3125,0.0625,-0.5,0.5,0.375,0.375,0.0625,-0.5,0.5,0.25,0.4375,0.0625,-0.5,0.5,0.125,0.5,0.0625,0.5,0.5,0,0.5625,0.0625,0.5,0.5,0.125,0.625,0.0625,0.5,0.5,0.25,0.6875,0.0625,0.5,0.5,0.375,0.75,0.0625,0.5,0.5,0.5,0.8125,0.0625,0.5,0.5,0.625,0.875,0.0625,0.5,0.5,0.75,0.9375,0.0625,0.5,0.5,0.875,1,0,0,0.5,1";
         "khotkeysrc"."Data_3_9Triggers0"."Type".value = "GESTURE";
         "khotkeysrc"."General"."AllowKDEAppsToRememberWindowPositions[$d]".value = "";
         "khotkeysrc"."General"."BrowserApplication[$d]".value = "";
@@ -981,8 +1017,10 @@
         "kwinrc"."Desktops"."Number".value = 3;
         "kwinrc"."Desktops"."Rows".value = 1;
         "kwinrc"."Tiling"."padding".value = 4;
-        "kwinrc"."Tiling/213a9620-187e-58a6-b80b-85d8fb95dfce"."tiles".value = ''{"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}'';
-        "kwinrc"."Tiling/3c373409-48e0-57e9-a1a9-eb32e49f8772"."tiles".value = ''{"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}'';
+        "kwinrc"."Tiling/213a9620-187e-58a6-b80b-85d8fb95dfce"."tiles".value =
+          ''{"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}'';
+        "kwinrc"."Tiling/3c373409-48e0-57e9-a1a9-eb32e49f8772"."tiles".value =
+          ''{"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}'';
         "kwinrc"."Windows"."RollOverDesktops".value = true;
         "kwinrc"."Xwayland"."Scale".value = 1.25;
         "kwinrc"."NightColor"."Active".value = true;
@@ -996,8 +1034,10 @@
         "plasmanotifyrc"."DoNotDisturb"."Until".value = "2025,4,16,23,38,52.564";
         "plasmanotifyrc"."Notifications"."PopupPosition".value = "TopRight";
         "kscreenlockerrc"."Greeter"."WallpaperPlugin".value = "org.kde.image";
-        "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image".value = "${../assets/animals.png}";
-        "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage".value = "${../assets/animals.png}";
+        "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image".value =
+          "${../assets/animals.png}";
+        "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage".value =
+          "${../assets/animals.png}";
       };
       panels = [
         {
