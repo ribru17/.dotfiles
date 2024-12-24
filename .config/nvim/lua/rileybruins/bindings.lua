@@ -1,5 +1,12 @@
 --> MISCELLANEOUS KEYMAPS <--
 local map = vim.keymap.set
+local unmap = vim.keymap.del
+
+-- remove default keybindings that cause `gr` delay
+unmap('n', 'gri')
+unmap('n', 'grr')
+unmap('n', 'gra')
+unmap('n', 'grn')
 
 map('n', '<C-i>', '<Tab>', {
   desc = [[
