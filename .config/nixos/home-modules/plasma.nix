@@ -1034,10 +1034,12 @@
         "plasmanotifyrc"."DoNotDisturb"."Until".value = "2025,4,16,23,38,52.564";
         "plasmanotifyrc"."Notifications"."PopupPosition".value = "TopRight";
         "kscreenlockerrc"."Greeter"."WallpaperPlugin".value = "org.kde.image";
-        "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image".value =
-          "${../assets/animals.png}";
-        "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage".value =
-          "${../assets/animals.png}";
+        # This can cause screen locking due to an insane bug, see:
+        # https://forum.manjaro.org/t/plasmashell-freeze-after-getting-out-of-hibernation-howto-troubleshoot/153078/14
+        # "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image".value =
+        #   "${../assets/animals.png}";
+        # "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage".value =
+        #   "${../assets/animals.png}";
       };
       panels = [
         {
