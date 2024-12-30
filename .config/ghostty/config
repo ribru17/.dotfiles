@@ -1,3 +1,4 @@
+# vim: ft=conf
 font-family = Iosevka Custom Extended
 font-size = 15.0
 font-codepoint-map = U+2610-U+2612=Noto Sans Symbols 2
@@ -7,3 +8,6 @@ adjust-underline-thickness = 50%
 
 theme = light:bamboo_light,dark:bamboo_multiplex
 background-opacity = 0.75
+# start maximized
+window-height = 9999
+window-width = 9999

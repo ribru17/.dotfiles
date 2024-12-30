@@ -241,8 +241,8 @@
       bash-completion
       bashInteractive
       bibata-cursors
-      custom-catppuccin-sddm
       curl
+      custom-catppuccin-sddm
       gcc
       gimp
       git
@@ -252,6 +252,7 @@
       neovim
       nix-bash-completions
       pciutils
+      prismlauncher
       wget
     ];
 

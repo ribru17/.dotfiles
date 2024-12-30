@@ -65,6 +65,7 @@ in
       gettext # for building Neovim
       gh
       ghc
+      ghostty
       go
       gopls
       haskell-language-server
