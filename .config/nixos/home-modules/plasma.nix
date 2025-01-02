@@ -31,6 +31,11 @@
         general = {
           pausePlayersOnSuspend = true;
         };
+        batteryLevels = {
+          criticalAction = "hibernate";
+          criticalLevel = 10;
+          lowLevel = 20;
+        };
       };
       hotkeys.commands."launch-kitty" = {
         name = "Launch Kitty";
