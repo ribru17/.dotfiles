@@ -290,7 +290,7 @@ create_autocmd('FileType', {
         ),
       },
       root_dir = vim.fs.root(0, { 'queries' }),
-      settings = {
+      init_options = {
         parser_install_directories = {
           -- If using nvim-treesitter with lazy.nvim
           vim.fs.joinpath(
