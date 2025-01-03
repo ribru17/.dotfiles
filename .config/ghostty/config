@@ -2,7 +2,7 @@
 font-family = Iosevka Custom Extended
 font-size = 15.0
 font-codepoint-map = U+2610-U+2612=Noto Sans Symbols 2
-font-codepoint-map = U+25E0-U+25E1=DejaVu Sans Mono
+font-codepoint-map = U+25E0-U+25E1,U+2026=DejaVu Sans Mono
 adjust-underline-position = 99
 adjust-underline-thickness = 50%
 
