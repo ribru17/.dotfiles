@@ -204,7 +204,7 @@ return {
         },
 
         sources = {
-          default = { 'lsp', 'path', 'luasnip', 'spell' },
+          default = { 'lsp', 'path', 'snippets', 'spell' },
           cmdline = function()
             if vim.fn.getcmdtype() == ':' then
               return { 'cmdline' }
@@ -225,7 +225,7 @@ return {
                 end,
               },
             },
-            luasnip = {
+            snippets = {
               opts = {
                 show_autosnippets = false,
               },
