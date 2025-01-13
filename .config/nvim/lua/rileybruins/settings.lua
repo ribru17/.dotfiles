@@ -155,6 +155,7 @@ M.apply = function()
       mouse = '',
       number = true,
       pumheight = 10,
+      redrawtime = 4000,
       relativenumber = true,
       scrolloff = 8,
       shiftwidth = 4,
