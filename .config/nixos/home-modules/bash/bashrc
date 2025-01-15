@@ -18,6 +18,9 @@ alias :wq='exit'
 # tar help
 alias tar-unzip='tar -xvzf'
 
+# UCLA VPN
+alias ucla-vpn='sudo openconnect ssl.vpn.ucla.edu'
+
 # system configuring
 alias nix:rebuild='sudo nixos-rebuild switch --flake "$HOME/.config/nixos/"'
 alias nix:update='nix flake update --flake "$HOME/.config/nixos/"'

@@ -79,6 +79,7 @@ in
       nodePackages_latest.bash-language-server
       nodePackages_latest.typescript-language-server
       nodejs_22
+      openconnect
       prettierd
       python3
       ripgrep
