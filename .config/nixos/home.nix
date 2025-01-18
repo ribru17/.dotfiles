@@ -69,6 +69,7 @@ in
       go
       gopls
       haskell-language-server
+      htop
       lua
       lua-language-server
       man-pages
