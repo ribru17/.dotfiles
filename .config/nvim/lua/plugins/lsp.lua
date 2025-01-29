@@ -303,31 +303,29 @@ return {
               'textDocument/references',
               params,
               function(_, result)
-                if not result or vim.tbl_isempty(result) then
-                  vim.notify('Nothing to rename.')
-                  return
-                end
-
-                for _, v in ipairs(result) do
-                  if v.range then
-                    local buf = vim.uri_to_bufnr(v.uri)
-                    local line = v.range.start.line
-                    local start_char = v.range.start.character
-                    local end_char = v.range['end'].character
-                    if buf == bufnr then
-                      print(line, start_char, end_char)
-                      vim.api.nvim_buf_add_highlight(
-                        bufnr,
-                        ns,
-                        'LspReferenceWrite',
-                        line,
-                        start_char,
-                        end_char
-                      )
+                if result and not vim.tbl_isempty(result) then
+                  for _, v in ipairs(result) do
+                    if v.range then
+                      local buf = vim.uri_to_bufnr(v.uri)
+                      local line = v.range.start.line
+                      local start_char = v.range.start.character
+                      local end_char = v.range['end'].character
+                      if buf == bufnr then
+                        print(line, start_char, end_char)
+                        vim.api.nvim_buf_add_highlight(
+                          bufnr,
+                          ns,
+                          'LspReferenceWrite',
+                          line,
+                          start_char,
+                          end_char
+                        )
+                      end
                     end
                   end
+                  vim.cmd.redraw()
                 end
-                vim.cmd.redraw()
+
                 local new_name = vim.fn.input { prompt = 'New name: ' }
                 vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
                 if #new_name == 0 then
