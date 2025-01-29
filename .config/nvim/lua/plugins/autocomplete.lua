@@ -167,7 +167,7 @@ return {
     'saghen/blink.cmp',
     dependencies = { 'ribru17/blink-cmp-spell' },
     event = { 'InsertEnter', 'CmdlineEnter' },
-    build = 'nix run .#build-plugin',
+    version = '*',
     config = function()
       local blink = require('blink.cmp')
       local sort_text = require('blink.cmp.fuzzy.sort').sort_text
@@ -216,12 +216,19 @@ return {
               name = 'Spell',
               module = 'blink-cmp-spell',
               opts = {
-                -- Disable the source in `@nospell` captures
+                -- Only enable source in `@spell` captures, and disable it in
+                -- `@nospell` captures
                 enable_in_context = function()
-                  return not vim.tbl_contains(
-                    vim.treesitter.get_captures_at_cursor(0),
-                    'nospell'
-                  )
+                  local captures = vim.treesitter.get_captures_at_cursor(0)
+                  local in_spell_capture = false
+                  for _, capture in ipairs(captures) do
+                    if capture == 'spell' then
+                      in_spell_capture = true
+                    elseif capture == 'nospell' then
+                      return false
+                    end
+                  end
+                  return in_spell_capture
                 end,
               },
             },
