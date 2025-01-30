@@ -100,6 +100,7 @@ in
       wl-clipboard
       xz
       zig
+      zip
       zls
     ];
 
