@@ -165,16 +165,6 @@ in
         id = "dcpihecpambacapedldabdbpakmachpb";
         updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
       }
-      {
-        # Vimium
-        id = "dbepggeogbaibhgnhhndojpepiihcmeb";
-        # Mappings:
-        # map <c-h> previousTab
-        # map <c-H> moveTabLeft
-        # map <c-L> moveTabRight
-        # map <c-l> nextTab
-        # map :q<enter> removeTab
-      }
     ];
   };
 
