@@ -380,7 +380,9 @@ return {
                   return '%#Normal#  '
                 end
                 local foldstr = ' '
-                if foldinfo.lines ~= 0 then
+                if args.virtnum ~= 0 then
+                  foldstr = ' '
+                elseif foldinfo.lines ~= 0 then
                   foldstr = '▹'
                 elseif lnum == foldinfo.start then
                   foldstr = '◠'
