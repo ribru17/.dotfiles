@@ -6,6 +6,11 @@ return {
     event = { 'LazyFile' },
     config = function()
       require('gitsigns').setup {
+        diff_opts = {
+          internal = true,
+          indent_heuristic = true,
+          linematch = 60,
+        },
         attach_to_untracked = true,
         signs = {
           change = { text = '┋' },
@@ -34,7 +39,7 @@ return {
               return ']c'
             end
             vim.schedule(function()
-              gs.next_hunk()
+              gs.nav_hunk('next')
             end)
             return '<Ignore>'
           end, { expr = true })
@@ -44,7 +49,7 @@ return {
               return '[c'
             end
             vim.schedule(function()
-              gs.prev_hunk()
+              gs.nav_hunk('prev')
             end)
             return '<Ignore>'
           end, { expr = true })
