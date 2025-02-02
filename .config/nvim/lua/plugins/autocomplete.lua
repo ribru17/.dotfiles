@@ -176,6 +176,16 @@ return {
           preset = 'default',
           ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
           ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+          ['<C-n>'] = {
+            function()
+              blink.select_next { auto_insert = false }
+            end,
+          },
+          ['<C-p>'] = {
+            function()
+              blink.select_prev { auto_insert = false }
+            end,
+          },
           ['<C-y>'] = {
             'select_and_accept',
             vim.schedule_wrap(function()
