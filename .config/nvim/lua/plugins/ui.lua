@@ -226,10 +226,10 @@ return {
         },
       }
       vim.keymap.set('n', '<leader>ff', function()
-        vim.cmd.FzfLua('files')
+        require('fzf-lua').files { silent = true }
       end)
       vim.keymap.set('n', '<leader>fs', function()
-        vim.cmd.FzfLua('live_grep_native')
+        require('fzf-lua').live_grep_native { silent = true }
       end)
       vim.keymap.set('n', '<leader>fc', function()
         vim.cmd.FzfLua('colorschemes')
@@ -281,7 +281,7 @@ return {
         newButton(
           's',
           ' ' .. ' Search for text',
-          ':FzfLua live_grep_native<CR>'
+          ':FzfLua live_grep_native silent=true<CR>'
         ),
         newButton('p', '󰏗 ' .. ' Plugins', ':Lazy<CR>'),
         newButton('q', '󰗼 ' .. ' Quit', ':q<CR>'),
