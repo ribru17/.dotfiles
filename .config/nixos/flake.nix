@@ -93,5 +93,45 @@
           }
         ];
       };
+      devShells.${vars.system}.python =
+        let
+          pkgs = import nixpkgs { system = vars.system; };
+          python = pkgs.python312;
+          pythonPackages = python.pkgs;
+          lib-path = pkgs.lib.makeLibraryPath [
+            pkgs.libffi
+            pkgs.openssl
+            pkgs.stdenv.cc.cc
+          ];
+
+        in
+        pkgs.mkShell {
+          packages = [
+            pythonPackages.numpy
+          ];
+
+          buildInputs = [
+            pkgs.openssl
+            pkgs.git
+          ];
+
+          shellHook = ''
+            SOURCE_DATE_EPOCH=$(date +%s)
+            export "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${lib-path}"
+            VENV=.venv
+
+            if test ! -d $VENV; then
+              python -m venv $VENV
+            fi
+            source ./$VENV/bin/activate
+            export PYTHONPATH=`pwd`/$VENV/${python.sitePackages}/:$PYTHONPATH
+            pip install -r requirements.txt
+          '';
+
+          postShellHook = ''
+            ln -sf ${python.sitePackages}/* ./.venv/lib/python3.12/site-packages
+          '';
+        };
+
     };
 }
