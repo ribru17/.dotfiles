@@ -254,7 +254,10 @@ create_autocmd('CmdwinEnter', {
 create_autocmd('FileType', {
   callback = function(ev)
     local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].ft) --[[@as string]]
-    if vim.treesitter.get_parser(ev.buf, lang, { error = false }) then
+    if
+      vim.api.nvim_buf_is_loaded(ev.buf)
+      and vim.treesitter.get_parser(ev.buf, lang, { error = false })
+    then
       if vim.treesitter.query.get(lang, 'folds') then
         vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
         if not vim.tbl_contains(SETTINGS.hide_foldcolumn, lang) then
