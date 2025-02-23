@@ -229,7 +229,8 @@ return {
         require('fzf-lua').files { silent = true }
       end)
       vim.keymap.set('n', '<leader>fs', function()
-        require('fzf-lua').live_grep_native { silent = true }
+        -- Equivalent to live_grep_native with glob support
+        require('fzf-lua').live_grep_glob { silent = true, multiprocess = true }
       end)
       vim.keymap.set('n', '<leader>fc', function()
         vim.cmd.FzfLua('colorschemes')
@@ -281,7 +282,7 @@ return {
         newButton(
           's',
           ' ' .. ' Search for text',
-          ':FzfLua live_grep_native silent=true<CR>'
+          ':FzfLua live_grep_glob multiprocess=true silent=true<CR>'
         ),
         newButton('p', '󰏗 ' .. ' Plugins', ':Lazy<CR>'),
         newButton('q', '󰗼 ' .. ' Quit', ':q<CR>'),
