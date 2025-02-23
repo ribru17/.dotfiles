@@ -246,7 +246,6 @@ return {
               opts = {
                 -- Only enable source in `@spell` captures, and disable it in
                 -- `@nospell` captures
-                keep_all_entries = true,
                 enable_in_context = function()
                   local curpos = vim.api.nvim_win_get_cursor(0)
                   local captures = vim.treesitter.get_captures_at_pos(
@@ -294,19 +293,7 @@ return {
         },
 
         snippets = {
-          expand = function(snippet)
-            require('luasnip').lsp_expand(snippet)
-          end,
-          active = function(filter)
-            local luasnip = require('luasnip')
-            if filter and filter.direction then
-              return luasnip.jumpable(filter.direction)
-            end
-            return luasnip.in_snippet()
-          end,
-          jump = function(direction)
-            require('luasnip').jump(direction)
-          end,
+          preset = 'luasnip',
         },
 
         completion = {
