@@ -229,14 +229,16 @@ return {
           },
         },
 
-        sources = {
-          default = { 'lsp', 'path', 'snippets', 'spell' },
-          cmdline = function()
+        cmdline = {
+          sources = function()
             if vim.fn.getcmdtype() == ':' then
               return { 'cmdline' }
             end
             return {}
           end,
+        },
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'spell' },
           providers = {
             spell = {
               name = 'Spell',
@@ -244,6 +246,7 @@ return {
               opts = {
                 -- Only enable source in `@spell` captures, and disable it in
                 -- `@nospell` captures
+                keep_all_entries = true,
                 enable_in_context = function()
                   local curpos = vim.api.nvim_win_get_cursor(0)
                   local captures = vim.treesitter.get_captures_at_pos(
