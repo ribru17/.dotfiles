@@ -57,6 +57,7 @@
         touchpads = [
           {
             enable = true;
+            # NOTE: Change if hardware changes
             vendorId = "093a";
             productId = "0274";
             name = "PIXA3854:00 093A:0274 Touchpad";
@@ -66,6 +67,9 @@
             rightClickMethod = "twoFingers";
           }
         ];
+        keyboard = {
+          repeatDelay = 250;
+        };
       };
       # NOTE: In order to get everything running, you sometimes may have to run
       # `systemctl --user restart plasma-plasmashell`
