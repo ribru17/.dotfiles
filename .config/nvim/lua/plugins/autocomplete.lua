@@ -204,6 +204,15 @@ return {
         },
 
         cmdline = {
+          completion = {
+            menu = {
+              auto_show = function()
+                return vim.fn.getcmdtype() == ':'
+                  -- enable for inputs as well, with:
+                  or vim.fn.getcmdtype() == '@'
+              end,
+            },
+          },
           sources = function()
             if vim.fn.getcmdtype() == ':' then
               return { 'cmdline' }
