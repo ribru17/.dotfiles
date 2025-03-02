@@ -176,32 +176,6 @@ return {
           preset = 'default',
           ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
           ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
-          ['<C-n>'] = {
-            function()
-              if blink.is_visible() then
-                blink.select_next { auto_insert = false }
-              elseif vim.fn.mode() == 'c' then
-                vim.api.nvim_feedkeys(
-                  vim.api.nvim_replace_termcodes('<Down>', true, true, true),
-                  'n',
-                  true
-                )
-              end
-            end,
-          },
-          ['<C-p>'] = {
-            function()
-              if blink.is_visible() then
-                blink.select_prev { auto_insert = false }
-              elseif vim.fn.mode() == 'c' then
-                vim.api.nvim_feedkeys(
-                  vim.api.nvim_replace_termcodes('<Up>', true, true, true),
-                  'n',
-                  true
-                )
-              end
-            end,
-          },
           ['<C-y>'] = {
             'select_and_accept',
             vim.schedule_wrap(function()
