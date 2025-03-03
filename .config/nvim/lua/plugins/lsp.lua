@@ -193,9 +193,9 @@ return {
         settings = {
           Lua = {
             codeLens = { enable = true },
-            telemetry = { enable = false },
             hint = {
               enable = true,
+              await = false,
               arrayIndex = 'Disable',
             },
             format = {
