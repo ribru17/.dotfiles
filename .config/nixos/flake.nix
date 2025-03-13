@@ -102,6 +102,7 @@
             pkgs.libffi
             pkgs.openssl
             pkgs.stdenv.cc.cc
+            pkgs.zlib
           ];
 
         in
@@ -118,6 +119,7 @@
           shellHook = ''
             SOURCE_DATE_EPOCH=$(date +%s)
             export "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${lib-path}"
+            export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib.outPath}/lib:$LD_LIBRARY_PATH"
             VENV=.venv
 
             if test ! -d $VENV; then
