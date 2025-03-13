@@ -229,6 +229,8 @@ return {
               opts = {
                 -- Only enable source in `@spell` captures, and disable it in
                 -- `@nospell` captures
+                preselect_current_word = false,
+                keep_all_entries = false,
                 enable_in_context = function()
                   local curpos = vim.api.nvim_win_get_cursor(0)
                   local captures = vim.treesitter.get_captures_at_pos(
