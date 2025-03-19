@@ -126,8 +126,9 @@ return {
     },
   },
   {
-    'andymass/vim-matchup',
-    event = { 'BufReadPost', 'BufNewFile' },
+    'yorickpeterse/nvim-tree-pairs',
+    main = 'tree-pairs',
+    opts = true,
   },
   {
     'tpope/vim-fugitive',
