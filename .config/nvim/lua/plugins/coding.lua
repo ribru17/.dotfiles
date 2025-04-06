@@ -129,6 +129,9 @@ return {
     'yorickpeterse/nvim-tree-pairs',
     main = 'tree-pairs',
     opts = true,
+    keys = {
+      { '%', mode = { 'n', 'v', 'o' } },
+    },
   },
   {
     'tpope/vim-fugitive',
