@@ -81,6 +81,8 @@ in
       nodePackages_latest.typescript-language-server
       nodejs_22
       openconnect
+      openssl
+      pkg-config
       prettierd
       python3
       ripgrep
@@ -181,6 +183,9 @@ in
           __git_complete g __git_main
           __git_complete d __git_main
           __git_complete dots __git_main
+
+          # Extra environment help
+          export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig"
         '';
     profileExtra = builtins.readFile ./home-modules/bash/profile;
   };
