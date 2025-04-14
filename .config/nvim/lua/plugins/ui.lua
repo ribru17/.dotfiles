@@ -188,7 +188,7 @@ return {
             previewer = 'codeaction_native',
             preview_pager = (
               'delta --side-by-side --width=$FZF_PREVIEW_COLUMNS '
-              .. "--hunk-header-style='omit'"
+              .. "--hunk-header-style=omit"
             ),
             async_or_timeout = 1000,
             winopts = {
