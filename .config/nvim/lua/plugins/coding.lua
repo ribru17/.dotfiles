@@ -180,10 +180,8 @@ return {
   {
     'kylechui/nvim-surround',
     keys = {
-      'ys',
-      'yS',
-      'cs',
-      'ds',
+      's',
+      'S',
       { 's', 'S', remap = true, mode = { 'x' } },
       { 'S', mode = { 'x' } },
       { 'gS', mode = { 'x' } },
@@ -194,6 +192,15 @@ return {
       local input = require('nvim-surround.input').get_input
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-surround').setup {
+        keymaps = {
+          normal = 's',
+          normal_cur = 'ss',
+          normal_line = 'S',
+          normal_cur_line = 'SS',
+          delete = 'sd',
+          change = 'sc',
+          change_line = 'Sc',
+        },
         aliases = {
           ['d'] = { '{', '[', '(', '<', '"', "'", '`' }, -- any delimiter
           ['b'] = { '{', '[', '(', '<' }, -- bracket
