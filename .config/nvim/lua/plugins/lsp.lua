@@ -187,6 +187,9 @@ return {
       lspconfig.ruff.setup {
         capabilities = capabilities,
       }
+      lspconfig.yamlls.setup {
+        capabilities = capabilities,
+      }
       lspconfig.zls.setup {
         capabilities = capabilities,
       }

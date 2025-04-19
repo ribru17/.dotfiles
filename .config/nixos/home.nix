@@ -101,6 +101,7 @@ in
       wget
       wl-clipboard
       xz
+      yaml-language-server
       zig
       zip
       zls
