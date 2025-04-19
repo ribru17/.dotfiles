@@ -113,6 +113,9 @@ return {
       lspconfig.biome.setup {
         capabilities = capabilities,
       }
+      lspconfig.eslint.setup {
+        capabilities = capabilities,
+      }
       lspconfig.gopls.setup {
         capabilities = capabilities,
         settings = {
