@@ -63,6 +63,7 @@
 	unadd = restore --staged
 	uncommit = "!f() { git reset HEAD~${1-1}; }; f"
 	undo = "!f() { if [ $# -eq 0 ]; then git reset --hard HEAD; else git checkout HEAD -- $@; fi }; f"
+	update = !git sync && git pull
 [pull]
 	rebase = true
 [merge]
