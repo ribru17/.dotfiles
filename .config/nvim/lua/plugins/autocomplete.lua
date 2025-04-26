@@ -292,6 +292,9 @@ return {
               },
             },
           },
+          accept = {
+            auto_brackets = { blocked_filetypes = { 'query' } },
+          },
           ghost_text = {
             enabled = true,
           },
