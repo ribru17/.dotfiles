@@ -263,6 +263,7 @@
       git
       gnumake
       kitty
+      linuxPackages_latest.perf
       mold
       neovim
       nix-bash-completions
