@@ -272,6 +272,15 @@
       wget
     ];
 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.daemon.settings = {
+    builder.gc = {
+      defaultKeepStorage = "20GB";
+      enabled = true;
+    };
+  };
+  users.extraGroups.docker.members = [ "${vars.username}" ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
