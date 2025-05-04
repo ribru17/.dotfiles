@@ -55,6 +55,8 @@ in
       cmake-language-server
       delta
       deno
+      discord
+      docker-compose
       emmet-language-server
       eza
       fastfetch
@@ -83,6 +85,7 @@ in
       openconnect
       openssl
       pkg-config
+      pnpm
       prettierd
       python3
       ripgrep
@@ -95,7 +98,6 @@ in
       tree-sitter
       typescript
       unzip
-      vesktop
       vscode-langservers-extracted
       vtsls
       wget
