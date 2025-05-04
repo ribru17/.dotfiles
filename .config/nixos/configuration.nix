@@ -155,7 +155,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  nix.package = pkgs.nixVersions.git;
+  nix.package = pkgs.nixVersions.latest;
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   nix.settings.experimental-features = [
     "nix-command"
