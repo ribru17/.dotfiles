@@ -301,7 +301,8 @@ return {
           documentation = {
             auto_show = true,
             auto_show_delay_ms = 50,
-            window = { border = BORDER },
+            -- Scrollbar crashes Neovim right now
+            window = { border = BORDER, scrollbar = false },
           },
         },
       }

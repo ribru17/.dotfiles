@@ -294,7 +294,7 @@ create_autocmd('FileType', {
           'Documents/CodeProjects/ts_query_ls/target/release/ts_query_ls'
         ),
       },
-      root_dir = vim.fs.root(0, { 'queries' }),
+      root_dir = vim.fs.root(0, { 'queries', 'tsqueryrc.json' }),
       -- OPTIONAL: Override the query omnifunc
       on_attach = function(_, buf)
         vim.bo[buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
@@ -302,18 +302,7 @@ create_autocmd('FileType', {
       init_options = {
         parser_install_directories = {
           -- If using nvim-treesitter with lazy.nvim
-          vim.fs.joinpath(
-            vim.fn.stdpath('data') --[[@as string]],
-            '/lazy/nvim-treesitter/parser/'
-          ),
-        },
-        parser_aliases = {
-          ecma = 'javascript',
-          jsx = 'javascript',
-          php_only = 'php',
-        },
-        language_retrieval_patterns = {
-          'languages/src/([^/]+)/[^/]+\\.scm$',
+          '${XDG_DATA_HOME}/nvim/lazy/nvim-treesitter/parser/',
         },
       },
     }

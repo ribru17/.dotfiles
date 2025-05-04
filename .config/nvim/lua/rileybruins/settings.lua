@@ -108,7 +108,6 @@ local M = {
 M.apply = function()
   local settings = {
     g = {
-      -- This is sadly super slow sometimes. Look into making it faster?
       query_lint_on = {},
       bullets_checkbox_markers = ' x',
       bullets_outline_levels = { 'ROM', 'ABC', 'rom', 'abc', 'std-' },
@@ -155,7 +154,7 @@ M.apply = function()
       mouse = '',
       number = true,
       pumheight = 10,
-      redrawtime = 6000,
+      redrawtime = 10000,
       relativenumber = true,
       scrolloff = 8,
       shiftwidth = 4,
