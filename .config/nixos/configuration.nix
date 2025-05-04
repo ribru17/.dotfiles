@@ -77,6 +77,20 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      # Basic system libraries commonly needed
+      stdenv.cc.cc.lib
+      zlib
+      openssl
+
+      # Node.js related dependencies that might be needed
+      nodejs
+      # Add more libraries if needed after testing
+    ];
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
