@@ -317,7 +317,6 @@ return {
                       local start_char = v.range.start.character
                       local end_char = v.range['end'].character
                       if buf == bufnr then
-                        print(line, start_char, end_char)
                         vim.api.nvim_buf_add_highlight(
                           bufnr,
                           ns,
