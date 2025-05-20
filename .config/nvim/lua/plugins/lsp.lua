@@ -289,7 +289,7 @@ return {
           -- rename symbol starting with empty prompt, highlight references
           map('n', '<leader>r', function()
             local bufnr = vim.api.nvim_get_current_buf()
-            local params = vim.lsp.util.make_position_params()
+            local params = vim.lsp.util.make_position_params(bufnr, 'utf-8')
             params.context = { includeDeclaration = true }
             local clients = vim.lsp.get_clients()
             if not clients or #clients == 0 then
@@ -305,7 +305,7 @@ return {
             end
             local ns = vim.api.nvim_create_namespace('LspRenamespace')
 
-            client.request(
+            client:request(
               'textDocument/references',
               params,
               function(_, result)
@@ -317,7 +317,7 @@ return {
                       local start_char = v.range.start.character
                       local end_char = v.range['end'].character
                       if buf == bufnr then
-                        vim.api.nvim_buf_add_highlight(
+                        vim.hl.range(
                           bufnr,
                           ns,
                           'LspReferenceWrite',
