@@ -289,7 +289,7 @@ return {
           -- rename symbol starting with empty prompt, highlight references
           map('n', '<leader>r', function()
             local bufnr = vim.api.nvim_get_current_buf()
-            local params = vim.lsp.util.make_position_params(bufnr, 'utf-8')
+            local params = vim.lsp.util.make_position_params(nil, 'utf-8')
             params.context = { includeDeclaration = true }
             local clients = vim.lsp.get_clients()
             if not clients or #clients == 0 then
@@ -313,17 +313,17 @@ return {
                   for _, v in ipairs(result) do
                     if v.range then
                       local buf = vim.uri_to_bufnr(v.uri)
-                      local line = v.range.start.line
+                      local start_line = v.range.start.line
                       local start_char = v.range.start.character
+                      local end_line = v.range['end'].line
                       local end_char = v.range['end'].character
                       if buf == bufnr then
                         vim.hl.range(
                           bufnr,
                           ns,
                           'LspReferenceWrite',
-                          line,
-                          start_char,
-                          end_char
+                          { start_line, start_char },
+                          { end_line, end_char }
                         )
                       end
                     end
