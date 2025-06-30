@@ -94,13 +94,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Charge my phone please (no USB autosuspend)
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="add", SUBSYSTEM=="usb", TEST=="power/autosuspend" ATTR{power/autosuspend}="0"
-    ACTION=="add", SUBSYSTEM=="usb", TEST=="power/autosuspend_delay_ms" ATTR{power/autosuspend_delay_ms}="0"
-  '';
-
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm = {
     enable = true;
