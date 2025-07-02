@@ -7,6 +7,7 @@ unmap('n', 'gri')
 unmap('n', 'grr')
 unmap('n', 'gra')
 unmap('n', 'grn')
+unmap('n', 'grt')
 
 map('n', '<C-i>', '<Tab>', {
   desc = [[
