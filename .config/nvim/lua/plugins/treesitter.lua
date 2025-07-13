@@ -3,67 +3,26 @@ local include_surrounding_whitespace = {
   ['@class.outer'] = true,
   ['@parameter.outer'] = true,
 }
-local SETTINGS = require('rileybruins.settings')
 return {
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'main',
     event = { 'LazyFile' },
+    opts = {
+      select = {
+        include_surrounding_whitespace = function(capture)
+          return include_surrounding_whitespace[capture.query_string] or false
+        end,
+      },
+    },
   },
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    branch = 'main',
     event = { 'LazyFile', 'VeryLazy' },
     config = function()
       ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = SETTINGS.ensure_installed_ts_parsers,
-        sync_install = false,
-        auto_install = true,
-
-        highlight = {
-          enable = true,
-          disable = SETTINGS.disabled_highlighting_fts,
-          additional_vim_regex_highlighting = false,
-        },
-        indent = {
-          enable = true,
-        },
-        matchup = {
-          enable = true, -- *very* poor performance for large files
-          disable_virtual_text = true,
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            include_surrounding_whitespace = function(ev)
-              if include_surrounding_whitespace[ev.query_string] then
-                return true
-              end
-              return false
-            end,
-            selection_modes = {
-              ['@conditional.outer'] = 'V',
-            },
-          },
-          swap = {
-            enable = true,
-            swap_next = {
-              ['<leader>sl'] = {
-                query = { '@parameter.inner', '@swappable' },
-                desc = 'Swap things that should be swappable',
-              },
-            },
-            swap_previous = {
-              ['<leader>sh'] = {
-                query = { '@parameter.inner', '@swappable' },
-                desc = 'Swap things that should be swappable',
-              },
-            },
-          },
-        },
-      }
-
       local map = vim.keymap.set
 
       -- Globally map Tree-sitter text object binds
@@ -75,16 +34,28 @@ return {
           silent = true,
         }
         map('x', 'i' .. key, function()
-          vim.cmd.TSTextobjectSelect(inner)
+          require('nvim-treesitter-textobjects.select').select_textobject(
+            inner,
+            'textobjects'
+          )
         end, opts)
         map('x', 'a' .. key, function()
-          vim.cmd.TSTextobjectSelect(outer)
+          require('nvim-treesitter-textobjects.select').select_textobject(
+            outer,
+            'textobjects'
+          )
         end, opts)
         map('o', 'i' .. key, function()
-          vim.cmd.TSTextobjectSelect(inner)
+          require('nvim-treesitter-textobjects.select').select_textobject(
+            inner,
+            'textobjects'
+          )
         end, opts)
         map('o', 'a' .. key, function()
-          vim.cmd.TSTextobjectSelect(outer)
+          require('nvim-treesitter-textobjects.select').select_textobject(
+            outer,
+            'textobjexts'
+          )
         end, opts)
       end
 
@@ -98,6 +69,19 @@ return {
       textobj_map('/', 'comment')
       textobj_map('a', 'parameter') -- also applies to arguments and array elements
       textobj_map('r', 'return')
+
+      map('n', '<leader>sl', function()
+        require('nvim-treesitter-textobjects.swap').swap_next {
+          '@swappable',
+          '@parameter.inner',
+        }
+      end)
+      map('n', '<leader>sh', function()
+        require('nvim-treesitter-textobjects.swap').swap_previous {
+          '@swappable',
+          '@parameter.inner',
+        }
+      end)
 
       local non_filetype_match_injection_language_aliases = {
         ex = 'elixir',
