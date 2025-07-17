@@ -294,7 +294,7 @@ create_autocmd('FileType', {
           'Documents/CodeProjects/ts_query_ls/target/release/ts_query_ls'
         ),
       },
-      root_dir = vim.fs.root(0, { 'queries', 'tsqueryrc.json' }),
+      root_dir = vim.fs.root(0, { '.tsqueryrc.json', '.git' }),
       -- OPTIONAL: Override the query omnifunc
       on_attach = function(_, buf)
         vim.bo[buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
