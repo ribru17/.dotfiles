@@ -188,7 +188,7 @@ return {
             previewer = 'codeaction_native',
             preview_pager = (
               'delta --side-by-side --width=$FZF_PREVIEW_COLUMNS '
-              .. "--hunk-header-style=omit"
+              .. '--hunk-header-style=omit'
             ),
             async_or_timeout = 1000,
             winopts = {
@@ -230,7 +230,7 @@ return {
       end)
       vim.keymap.set('n', '<leader>fs', function()
         -- Equivalent to live_grep_native with glob support
-        require('fzf-lua').live_grep_glob { silent = true, multiprocess = true }
+        require('fzf-lua').live_grep { silent = true, multiprocess = true }
       end)
       vim.keymap.set('n', '<leader>fc', function()
         vim.cmd.FzfLua('colorschemes')
@@ -282,7 +282,7 @@ return {
         newButton(
           's',
           ' ' .. ' Search for text',
-          ':FzfLua live_grep_glob multiprocess=true silent=true<CR>'
+          ':FzfLua live_grep multiprocess=true silent=true<CR>'
         ),
         newButton('p', '󰏗 ' .. ' Plugins', ':Lazy<CR>'),
         newButton('q', '󰗼 ' .. ' Quit', ':q<CR>'),
