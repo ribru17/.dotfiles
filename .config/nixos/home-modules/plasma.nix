@@ -345,8 +345,8 @@
         "kdeglobals"."General"."AllowKDEAppsToRememberWindowPositions".value = true;
         "kdeglobals"."General"."BrowserApplication".value = "brave-browser.desktop";
         "kdeglobals"."General"."UseSystemBell".value = false;
-        "kdeglobals"."General"."TerminalApplication".value = "kitty";
-        "kdeglobals"."General"."TerminalService".value = "kitty.desktop";
+        "kdeglobals"."General"."TerminalApplication".value = "ghostty";
+        "kdeglobals"."General"."TerminalService".value = "com.mitchellh.ghostty.desktop";
         # TODO: Set the appropriate value in `xsettingsd`?
         "kdeglobals"."Sounds"."Enable".value = system-notification-sounds;
         "gtk-3.0/settings.ini"."Settings"."gtk-enable-event-sounds".value = system-notification-sounds;
@@ -1067,7 +1067,7 @@
                     "applications:systemsettings.desktop"
                     "applications:org.kde.dolphin.desktop"
                     "applications:brave-browser.desktop"
-                    "applications:kitty.desktop"
+                    "applications:com.mitchellh.ghostty.desktop"
                     "applications:discord.desktop"
                     "applications:spotify.desktop"
                     "applications:gimp.desktop"
