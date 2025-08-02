@@ -29,10 +29,9 @@
 
 ; 'else' and 'else if'
 (else_clause
-  "else" @_start
+  "else" @mid.if.1
   (if_statement
-    "if" @_end)?
-  (#make-range! "mid.if.1" @_start @_end))
+    "if" @mid.if.1)?)
 
 ; if
 ((if_statement

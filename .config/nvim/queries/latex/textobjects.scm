@@ -1,22 +1,13 @@
 ; extends
 
-; TODO: Replace with quantified capture after nvim-treesitter 1.0
-((inline_formula
+(inline_formula
   .
   "$"
-  .
-  (_) @_start
-  (_)? @_end
-  .
+  _+ @math.inner
   "$" .) @math.outer
-  (#make-range! "math.inner" @_start @_end))
 
-((displayed_equation
+(displayed_equation
   .
   "$$"
-  .
-  (_) @_start
-  (_)? @_end
-  .
+  _+ @math.inner
   "$$" .) @math.outer
-  (#make-range! "math.inner" @_start @_end))
