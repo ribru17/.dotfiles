@@ -341,3 +341,13 @@ create_autocmd({ 'VimLeavePre', 'FocusLost' }, {
       :wait()
   end,
 })
+
+create_autocmd('FileType', {
+  callback = function(ev)
+    local buf = vim.bo[ev.buf]
+    pcall(function()
+      vim.treesitter.start(ev.buf)
+      buf.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end)
+  end,
+})
