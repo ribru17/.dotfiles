@@ -301,8 +301,7 @@ create_autocmd('FileType', {
       end,
       init_options = {
         parser_install_directories = {
-          -- If using nvim-treesitter with lazy.nvim
-          '${XDG_DATA_HOME}/nvim/lazy/nvim-treesitter/parser/',
+          '${XDG_DATA_HOME}/nvim/site/parser/',
         },
       },
     }
