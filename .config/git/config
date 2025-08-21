@@ -67,12 +67,12 @@
 [pull]
 	rebase = true
 [merge]
-	tool = vimdiff
+	tool = nvimdiff
 	conflictstyle = zdiff3
 [mergetool]
 	keepBackup = false
-[mergetool "vimdiff"]
-	cmd = MERGETOOL=1 nvim -d $LOCAL $MERGED $REMOTE -c 'windo set foldcolumn=0 signcolumn=no wrap | wincmd h'
+[mergetool "nvimdiff"]
+	cmd = MERGETOOL=1 nvim -d $LOCAL $MERGED $REMOTE -c 'windo set foldcolumn=0 signcolumn=no wrap | wincmd h' -c 'lua vim.diagnostic.enable(false)'
 [rebase]
 	autoSquash = true
 [push]
