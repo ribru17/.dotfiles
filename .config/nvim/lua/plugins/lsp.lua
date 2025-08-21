@@ -190,6 +190,9 @@ return {
       lspconfig.yamlls.setup {
         capabilities = capabilities,
       }
+      lspconfig.taplo.setup {
+        capabilities = capabilities,
+      }
       lspconfig.zls.setup {
         capabilities = capabilities,
       }

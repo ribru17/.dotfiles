@@ -95,6 +95,7 @@ in
       shellcheck
       shfmt
       stylua
+      taplo
       tree-sitter
       typescript
       unzip
