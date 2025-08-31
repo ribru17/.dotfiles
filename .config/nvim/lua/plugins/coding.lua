@@ -83,6 +83,15 @@ return {
     ft = { 'rust' },
     init = function()
       vim.g.rustaceanvim = {
+        server = {
+          settings = {
+            ['rust-analyzer'] = {
+              typing = {
+                triggerChars = '.=({<>',
+              },
+            },
+          },
+        },
         tools = {
           float_win_config = {
             border = BORDER_STYLE,
