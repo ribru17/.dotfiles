@@ -15,3 +15,7 @@ window-padding-y = 0
 window-padding-x = 0
 window-theme = ghostty
 gtk-tabs-location = bottom
+
+# keybindings
+keybind = ctrl+shift+n=previous_tab
+keybind = ctrl+shift+p=next_tab
