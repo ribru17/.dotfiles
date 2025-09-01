@@ -4,30 +4,6 @@ local keep_text_entries = { 'emmet_language_server', 'marksman' }
 local text = vim.lsp.protocol.CompletionItemKind.Text
 return {
   {
-    'windwp/nvim-ts-autotag',
-    ft = {
-      'html',
-      'xml',
-      'javascript',
-      'typescript',
-      'javascriptreact',
-      'typescriptreact',
-      'svelte',
-      'vue',
-      'tsx',
-      'jsx',
-      'rescript',
-      'php',
-      'glimmer',
-      'handlebars',
-      'hbs',
-      'markdown',
-    },
-    -- disabled here because I have it overridden somewhere else in order to
-    -- achieve compatibility with luasnip
-    opts = { enable_close_on_slash = false },
-  },
-  {
     -- NOTE: Maybe replace with ultimate-autopair after the following issue is
     -- fixed: https://github.com/altermo/ultimate-autopair.nvim/issues/5.
     'windwp/nvim-autopairs',
@@ -135,32 +111,6 @@ return {
       ls.filetype_extend('javascriptreact', { 'javascript' })
       ls.filetype_extend('typescriptreact', { 'javascript' })
       require('luasnip.loaders.from_lua').lazy_load { paths = { './snippets' } }
-
-      -- allow ts-autotag to coexist with luasnip
-      local autotag
-      vim.keymap.set('i', '>', function()
-        -- NOTE: this function makes it so that inserted `>` characters are not
-        -- dot-repeatable...
-        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-        vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { '>' })
-        if not autotag then
-          autotag = require('nvim-ts-autotag.internal')
-        end
-        autotag.close_tag()
-        vim.api.nvim_win_set_cursor(0, { row, col + 1 })
-        ls.expand_auto()
-      end, { remap = false })
-
-      -- NOTE: Uncomment the following to achieve auto tag closing upon entering
-      -- a slash character.
-      -- vim.keymap.set('i', '/', function()
-      --   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-      --   vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { '/' })
-      --   autotag.close_slash_tag()
-      --   local new_row, new_col = unpack(vim.api.nvim_win_get_cursor(0))
-      --   vim.api.nvim_win_set_cursor(0, { new_row, new_col + 1 })
-      --   ls.expand_auto()
-      -- end, { remap = false })
     end,
   },
   {
