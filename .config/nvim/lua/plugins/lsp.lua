@@ -144,6 +144,7 @@ return {
             analysis = {
               typeCheckingMode = 'standard',
               autoSearchPaths = true,
+              autoFormatStrings = true,
             },
           },
         },
@@ -214,6 +215,10 @@ return {
         },
       }
 
+      vim.lsp.inlay_hint.enable()
+      vim.lsp.linked_editing_range.enable()
+      vim.lsp.on_type_formatting.enable()
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         -- to disable qflist opening, see
@@ -238,8 +243,6 @@ return {
           end
           local map = vim.keymap.set
           local opts = { buffer = ev.buf, remap = false, silent = true }
-
-          vim.lsp.inlay_hint.enable()
 
           -- if action opens up qf list, open the first item and close the list
           local function choose_list_first(options)
