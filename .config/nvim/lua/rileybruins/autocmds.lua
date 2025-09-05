@@ -280,34 +280,6 @@ create_autocmd('FileType', {
   end,
 })
 
-create_autocmd('FileType', {
-  pattern = 'query',
-  callback = function(ev)
-    if vim.bo[ev.buf].buftype == 'nofile' then
-      return
-    end
-    vim.lsp.start {
-      name = 'ts_query_ls',
-      cmd = {
-        vim.fs.joinpath(
-          vim.env.HOME,
-          'Documents/CodeProjects/ts_query_ls/target/release/ts_query_ls'
-        ),
-      },
-      root_dir = vim.fs.root(0, { '.tsqueryrc.json', '.git' }),
-      -- OPTIONAL: Override the query omnifunc
-      on_attach = function(_, buf)
-        vim.bo[buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-      end,
-      init_options = {
-        parser_install_directories = {
-          '${XDG_DATA_HOME}/nvim/site/parser/',
-        },
-      },
-    }
-  end,
-})
-
 -- block out the background for nvim instances
 create_autocmd({ 'VimEnter', 'SessionLoadPost', 'FocusGained' }, {
   callback = function()

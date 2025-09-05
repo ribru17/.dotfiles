@@ -60,6 +60,15 @@ return {
 
       local custom_capabilities = require('blink.cmp').get_lsp_capabilities()
       custom_capabilities.offsetEncoding = { 'utf-16' }
+
+      vim.lsp.config('ts_query_ls', {
+        cmd = {
+          vim.env.HOME
+            .. '/Documents/CodeProjects/ts_query_ls/target/release/ts_query_ls',
+        },
+      })
+      vim.lsp.enable('ts_query_ls')
+
       lspconfig.vtsls.setup {
         capabilities = capabilities,
       }
