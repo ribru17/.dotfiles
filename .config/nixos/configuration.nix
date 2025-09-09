@@ -100,8 +100,7 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    theme = "catppuccin-mocha";
-    # BUG: Not working when setting a custom theme?
+    theme = "sddm-astronaut-theme";
     settings.Theme.CursorTheme = "Bibata-Modern-Ice";
   };
   services.displayManager.defaultSession = "plasma";
@@ -249,27 +248,43 @@
   environment.systemPackages =
     with pkgs;
     let
-      custom-catppuccin-sddm = (
-        catppuccin-sddm.override {
-          background = "${./assets/dsotm_blurred.png}";
-          loginBackground = true;
-          font = "Iosevka Custom Extended";
-          fontSize = "15";
+      astronaut-theme = (
+        pkgs.stdenv.mkDerivation {
+          name = "sddm-astronaut-theme";
+          src = pkgs.fetchFromGitHub {
+            owner = "Keyitdev";
+            repo = "sddm-astronaut-theme";
+            rev = "master";
+            sha256 = "sha256-ITufiMTnSX9cg83mlmuufNXxG1dp9OKG90VBZdDeMxw=";
+          };
+          installPhase = ''
+            mkdir -p $out/share/sddm/themes
+            cp -R $src $out/share/sddm/themes/sddm-astronaut-theme
+
+            configFile=$out/share/sddm/themes/sddm-astronaut-theme/metadata.desktop
+
+            substituteInPlace $configFile \
+              --replace-fail 'ConfigFile=Themes/astronaut.conf' 'ConfigFile=Themes/black_hole.conf'
+
+            substituteInPlace $out/share/sddm/themes/sddm-astronaut-theme/Themes/black_hole.conf \
+              --replace-fail 'Background="Backgrounds/black_hole.png"' 'Background="${./assets/dsotm_clear.png}"'
+          '';
         }
       );
       neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     in
     [
+      astronaut-theme
       bash
       bash-completion
       bashInteractive
       bibata-cursors
       curl
-      custom-catppuccin-sddm
       gcc
       gimp
       git
       gnumake
+      kdePackages.qtmultimedia
       kitty
       linuxPackages_latest.perf
       mold
