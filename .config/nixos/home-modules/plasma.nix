@@ -16,6 +16,36 @@
           theme = "Illusion";
         };
       };
+      kwin = {
+        effects = {
+          translucency.enable = true;
+          wobblyWindows.enable = true;
+          desktopSwitching = {
+            navigationWrapping = true;
+          };
+          blur.enable = false;
+        };
+        virtualDesktops = {
+          rows = 1;
+          names = [
+            "Desktop 1"
+            "Desktop 2"
+            "Desktop 3"
+          ];
+        };
+        nightLight = {
+          enable = true;
+          mode = "times";
+          time = {
+            morning = "07:00";
+            evening = "19:00";
+          };
+          transitionTime = 30;
+        };
+        tiling = {
+          padding = 4;
+        };
+      };
       powerdevil = {
         AC = {
           whenSleepingEnter = "standbyThenHibernate";
@@ -1020,22 +1050,7 @@
         "khotkeysrc"."WM"."inactiveBlend[$d]".value = "";
         "khotkeysrc"."WM"."inactiveForeground[$d]".value = "";
         "kwalletrc"."Wallet"."First Use".value = false;
-        "kwinrc"."Desktops"."Id_1".value = "1759ad87-ee33-4150-804f-35a401525f05";
-        "kwinrc"."Desktops"."Id_2".value = "d2470d55-7b1f-439b-87cd-a630007d9266";
-        "kwinrc"."Desktops"."Id_3".value = "bbfa875f-c547-4920-bd83-4e4b51ab5a42";
-        "kwinrc"."Desktops"."Number".value = 3;
-        "kwinrc"."Desktops"."Rows".value = 1;
-        "kwinrc"."Tiling"."padding".value = 4;
-        "kwinrc"."Tiling/213a9620-187e-58a6-b80b-85d8fb95dfce"."tiles".value =
-          ''{"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}'';
-        "kwinrc"."Tiling/3c373409-48e0-57e9-a1a9-eb32e49f8772"."tiles".value =
-          ''{"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}'';
-        "kwinrc"."Windows"."RollOverDesktops".value = true;
         "kwinrc"."Xwayland"."Scale".value = 1.25;
-        "kwinrc"."NightColor"."Active".value = true;
-        "kwinrc"."NightColor"."Mode".value = "Times";
-        "kwinrc"."NightColor"."EveningBeginFixed".value = "1900";
-        "kwinrc"."NightColor"."MorningBeginFixed".value = "0700";
         "kxkbrc"."Layout"."Options".value = "caps:swapescape";
         "kxkbrc"."Layout"."ResetOldOptions".value = true;
         "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
