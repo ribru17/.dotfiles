@@ -120,6 +120,12 @@
       print-manager
     ];
 
+  # Allow SDDM to pick up cursor theme
+  xdg.icons = {
+    enable = true;
+    fallbackCursorThemes = [ "Bibata-Modern-Ice" ];
+  };
+
   services.fwupd.enable = true;
 
   # Configure keymap in X11
