@@ -23,7 +23,15 @@
           desktopSwitching = {
             navigationWrapping = true;
           };
-          blur.enable = false;
+          blur = {
+            enable = true;
+            strength = 2;
+            noiseStrength = 0;
+          };
+          minimization = {
+            animation = "magiclamp";
+            duration = 200;
+          };
         };
         virtualDesktops = {
           rows = 1;
@@ -1051,6 +1059,7 @@
         "khotkeysrc"."WM"."inactiveForeground[$d]".value = "";
         "kwalletrc"."Wallet"."First Use".value = false;
         "kwinrc"."Xwayland"."Scale".value = 1.25;
+        "kwinrc"."Plugins"."contrastEnabled".value = false;
         "kxkbrc"."Layout"."Options".value = "caps:swapescape";
         "kxkbrc"."Layout"."ResetOldOptions".value = true;
         "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
