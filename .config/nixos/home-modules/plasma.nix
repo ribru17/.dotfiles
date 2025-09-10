@@ -32,6 +32,7 @@
             animation = "magiclamp";
             duration = 200;
           };
+          windowOpenClose.animation = "fade";
         };
         virtualDesktops = {
           rows = 1;
