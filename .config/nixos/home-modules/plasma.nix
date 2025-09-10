@@ -381,6 +381,7 @@
         "kded5rc"."Module-device_automounter"."autoload".value = false;
         "kded5rc"."PlasmaBrowserIntegration"."shownCount".value = 4;
         "kdeglobals"."General"."AllowKDEAppsToRememberWindowPositions".value = true;
+        "kdeglobals"."General"."AccentColor" = "233,157,69";
         "kdeglobals"."General"."BrowserApplication".value = "brave-browser.desktop";
         "kdeglobals"."General"."UseSystemBell".value = false;
         "kdeglobals"."General"."TerminalApplication".value = "ghostty";
