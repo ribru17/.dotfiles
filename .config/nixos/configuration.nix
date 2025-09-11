@@ -286,7 +286,7 @@
       gnumake
       kdePackages.qtmultimedia
       kitty
-      linuxPackages_latest.perf
+      perf
       mold
       neovim
       nix-bash-completions
