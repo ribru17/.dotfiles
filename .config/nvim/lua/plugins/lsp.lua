@@ -214,6 +214,9 @@ return {
         settings = {
           Lua = {
             codeLens = { enable = true },
+            language = {
+              fix_indent = false,
+            },
             hint = {
               enable = true,
               await = false,
