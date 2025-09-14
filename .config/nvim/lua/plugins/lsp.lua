@@ -53,6 +53,9 @@ return {
   {
     'neovim/nvim-lspconfig',
     event = { 'LazyFile' },
+    init = function()
+      vim.lsp.enable('ts_query_ls')
+    end,
     config = function()
       require('lspconfig.ui.windows').default_options.border = BORDER_STYLE
       local lspconfig = require('lspconfig')
@@ -67,7 +70,6 @@ return {
             .. '/Documents/CodeProjects/ts_query_ls/target/release/ts_query_ls',
         },
       })
-      vim.lsp.enable('ts_query_ls')
 
       lspconfig.vtsls.setup {
         capabilities = capabilities,
