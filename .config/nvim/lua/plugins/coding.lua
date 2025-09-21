@@ -86,6 +86,10 @@ return {
         server = {
           settings = {
             ['rust-analyzer'] = {
+              checkOnSave = {
+                enable = true,
+                command = 'clippy',
+              },
               typing = {
                 triggerChars = '.=({<>',
               },
