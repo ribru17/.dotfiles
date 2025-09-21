@@ -103,7 +103,9 @@ return {
           show_close_icon = false,
           show_buffer_close_icons = false,
           modified_icon = '•',
-          diagnostics = 'nvim_lsp',
+          -- This causes CPU usage to reach 100% for several seconds on large
+          -- rust projects, vimtex, others?
+          diagnostics = false,
           ---@param count integer
           ---@param level string
           diagnostics_indicator = function(count, level)
