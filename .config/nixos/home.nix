@@ -8,7 +8,7 @@ let
   brave = (
     pkgs.brave.override {
       commandLineArgs = [
-        "--force-device-scale-factor=1.5"
+        "--force-device-scale-factor=1.25"
         # Get rid of weird tab scrolling
         "--enable-features=ScrollableTabStrip"
       ];
