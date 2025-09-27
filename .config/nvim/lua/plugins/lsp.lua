@@ -16,7 +16,8 @@ local hl_map = {
 ---@param dir 'prev'|'next'
 local function goto_diagnostic_hl(dir)
   assert(dir == 'prev' or dir == 'next')
-  local diagnostic = vim.diagnostic['get_' .. dir]()
+  local off = dir == 'prev' and -1 or 1
+  local diagnostic = vim.diagnostic.jump { count = off, float = true }
   if not diagnostic then
     return
   end
@@ -33,6 +34,7 @@ local function goto_diagnostic_hl(dir)
       end_row = diagnostic.end_lnum,
       end_col = diagnostic.end_col,
       hl_group = hl_map[diagnostic.severity],
+      strict = false,
     }
   )
   hl_cancel = function()
@@ -41,7 +43,6 @@ local function goto_diagnostic_hl(dir)
     pcall(vim.api.nvim_buf_clear_namespace, 0, diagnostic_ns, 0, -1)
   end
   diagnostic_timer = vim.defer_fn(hl_cancel, 500)
-  vim.diagnostic['goto_' .. dir]()
 end
 
 return {
@@ -54,15 +55,39 @@ return {
     'neovim/nvim-lspconfig',
     event = { 'LazyFile' },
     init = function()
-      vim.lsp.enable('ts_query_ls')
+      vim.lsp.enable {
+        'bashls',
+        'biome',
+        'cmake',
+        'cssls',
+        'eslint',
+        'html',
+        'jsonls',
+        'marksman',
+        'r_language_server',
+        'ruff',
+        'taplo',
+        'ts_query_ls',
+        'basedpyright',
+        'gopls',
+        'emmet_language_server',
+        'clangd',
+        'lua_ls',
+        'vtsls',
+        'nil_ls',
+        'yamlls',
+        'zls',
+      }
     end,
     config = function()
-      require('lspconfig.ui.windows').default_options.border = BORDER_STYLE
-      local lspconfig = require('lspconfig')
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       local custom_capabilities = require('blink.cmp').get_lsp_capabilities()
       custom_capabilities.offsetEncoding = { 'utf-16' }
+
+      vim.lsp.config('*', {
+        capabilities = capabilities,
+      })
 
       vim.lsp.config('ts_query_ls', {
         cmd = {
@@ -71,10 +96,7 @@ return {
         },
       })
 
-      lspconfig.vtsls.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.clangd.setup {
+      vim.lsp.config('clangd', {
         capabilities = custom_capabilities,
         -- NOTE: to achieve LSP warnings on unused includes, add a `.clangd`
         -- file to the project directory containing:
@@ -101,33 +123,29 @@ return {
           completeUnimported = true,
           clangdFileStatus = true,
         },
-      }
-      local emmet_fts =
-        lspconfig.emmet_language_server.document_config.default_config.filetypes
+      })
       -- These are the default filetypes less the ones that are covered by
       -- `cssls`. The two (sort of) conflict, and `cssls` is better. I
       -- don't use Emmet CSS abbreviations anyway.
-      local ignored_fts =
-        lspconfig.cssls.document_config.default_config.filetypes
-      local filtered_fts = vim.tbl_filter(function(value)
-        return not vim.tbl_contains(ignored_fts, value)
-      end, emmet_fts)
-      lspconfig.emmet_language_server.setup {
+      local emmet_fts = {
+        'html',
+        'htmlangular',
+        'htmldjango',
+        'pug',
+        'typescriptreact',
+        'javascriptreact',
+        'eruby',
+      }
+      vim.lsp.config('emmet_language_server', {
         capabilities = capabilities,
-        filetypes = filtered_fts,
+        filetypes = emmet_fts,
         init_options = {
           preferences = {
             ['caniuse.enabled'] = false,
           },
         },
-      }
-      lspconfig.biome.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.eslint.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.gopls.setup {
+      })
+      vim.lsp.config('gopls', {
         capabilities = capabilities,
         settings = {
           gopls = {
@@ -147,8 +165,8 @@ return {
             },
           },
         },
-      }
-      lspconfig.basedpyright.setup {
+      })
+      vim.lsp.config('basedpyright', {
         capabilities = capabilities,
         settings = {
           basedpyright = {
@@ -159,26 +177,8 @@ return {
             },
           },
         },
-      }
-      lspconfig.bashls.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.cmake.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.cssls.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.jsonls.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.html.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.marksman.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.nil_ls.setup {
+      })
+      vim.lsp.config('nil_ls', {
         capabilities = capabilities,
         settings = {
           ['nil'] = {
@@ -192,24 +192,9 @@ return {
             },
           },
         },
-      }
-      lspconfig.r_language_server.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.ruff.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.yamlls.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.taplo.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.zls.setup {
-        capabilities = capabilities,
-      }
+      })
 
-      lspconfig.lua_ls.setup {
+      vim.lsp.config('lua_ls', {
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -227,7 +212,7 @@ return {
             },
           },
         },
-      }
+      })
 
       vim.lsp.inlay_hint.enable()
       vim.lsp.linked_editing_range.enable()
