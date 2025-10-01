@@ -322,3 +322,17 @@ create_autocmd('FileType', {
     end)
   end,
 })
+
+local ui_send = vim.api.nvim_ui_send
+create_autocmd('LspProgress', {
+  callback = function(ev)
+    local value = ev.data.params.value
+    if value.kind == 'begin' then
+      ui_send('\027]9;4;1;0\027\\')
+    elseif value.kind == 'end' then
+      ui_send('\027]9;4;0\027\\')
+    elseif value.kind == 'report' then
+      ui_send(string.format('\027]9;4;1;%d\027\\', value.percentage or 0))
+    end
+  end,
+})
