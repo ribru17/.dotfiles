@@ -12,10 +12,4 @@ return {
     ft = { 'markdown', 'text', 'gitcommit' },
     cmd = { 'InsertNewBullet' },
   },
-  {
-    'nvim-neorg/neorg',
-    ft = 'norg',
-    cmd = 'Neorg',
-    config = true,
-  },
 }
