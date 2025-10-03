@@ -259,11 +259,9 @@ create_autocmd('FileType', {
       and vim.treesitter.get_parser(ev.buf, lang, { error = false })
     then
       if vim.treesitter.query.get(lang, 'folds') then
-        vim.schedule(function()
-          vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-        end)
+        vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
         if not vim.tbl_contains(SETTINGS.hide_foldcolumn, lang) then
-          vim.wo.foldcolumn = '1'
+          vim.wo[0][0].foldcolumn = '1'
         end
       end
     else
