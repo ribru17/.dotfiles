@@ -432,9 +432,6 @@ return {
     config = function()
       local oil = require('oil')
       oil.setup {
-        float = {
-          border = SETTINGS.border,
-        },
         keymaps = {
           ['<Tab>'] = {
             'actions.select',

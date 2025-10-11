@@ -1,4 +1,3 @@
-local BORDER = require('rileybruins.settings').border
 local in_jsx = require('rileybruins.utils').in_jsx_tags
 local keep_text_entries = { 'emmet_language_server', 'marksman' }
 local text = vim.lsp.protocol.CompletionItemKind.Text
@@ -233,7 +232,6 @@ return {
 
         completion = {
           menu = {
-            border = BORDER,
             draw = {
               columns = {
                 { 'label', 'label_description', gap = 1 },
@@ -251,8 +249,6 @@ return {
           documentation = {
             auto_show = true,
             auto_show_delay_ms = 50,
-            -- Scrollbar crashes Neovim right now
-            window = { border = BORDER, scrollbar = false },
           },
         },
       }

@@ -2,10 +2,7 @@ local in_dotfiles = vim.fn.system(
   'git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-tree --name-only HEAD'
 ) ~= ''
 
-local BORDER_STYLE = 'rounded'
-
 local M = {
-  border = BORDER_STYLE,
   in_dotfiles = in_dotfiles,
   hide_foldcolumn = { 'markdown', 'git_config', 'toml' },
   codelens_refresh_events = { 'InsertLeave', 'TextChanged', 'CursorHold' },
@@ -153,6 +150,7 @@ M.apply = function()
       list = true,
       mouse = '',
       number = true,
+      pumborder = 'rounded',
       pumheight = 10,
       redrawtime = 10000,
       relativenumber = true,
@@ -171,6 +169,7 @@ M.apply = function()
       undodir = vim.env.HOME .. '/.vim/undodir',
       undofile = true,
       virtualedit = 'block',
+      winborder = 'rounded',
       wrap = false,
     },
     wo = {

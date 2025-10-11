@@ -1,5 +1,4 @@
 ---@diagnostic disable: inject-field
-local BORDER_STYLE = require('rileybruins.settings').border
 local SETTINGS = require('rileybruins.settings')
 
 local diagnostic_ns = vim.api.nvim_create_namespace('hldiagnosticregion')
@@ -250,7 +249,7 @@ return {
           end
 
           map('n', 'K', function()
-            vim.lsp.buf.hover { border = BORDER_STYLE }
+            vim.lsp.buf.hover {}
           end, opts)
           map('n', '<leader>e', vim.diagnostic.open_float, opts)
           -- go back with <C-o>, forth with <C-i>
@@ -379,7 +378,6 @@ return {
         update_in_insert = false,
         underline = true,
         severity_sort = true,
-        float = { border = BORDER_STYLE },
       }
 
       -- Create a custom namespace. This will aggregate signs from all other

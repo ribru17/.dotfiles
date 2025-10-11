@@ -1,4 +1,3 @@
-local BORDER_STYLE = require('rileybruins.settings').border
 return {
   { 'nvim-lua/plenary.nvim', lazy = true },
   {
@@ -21,9 +20,6 @@ return {
           delete = { text = '🢒' },
         },
         sign_priority = 0,
-        preview_config = {
-          border = BORDER_STYLE,
-        },
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
 
@@ -94,11 +90,6 @@ return {
                 triggerChars = '.=({<>',
               },
             },
-          },
-        },
-        tools = {
-          float_win_config = {
-            border = BORDER_STYLE,
           },
         },
       }

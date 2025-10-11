@@ -33,7 +33,8 @@ require('lazy').setup('plugins', {
   -- defaults = { lazy = true },
   -- checker = { enabled = true },
   ui = {
-    border = SETTINGS.border,
+    -- TODO: Remove once https://github.com/folke/lazy.nvim/pull/1957 is merged
+    border = vim.o.winborder,
     backdrop = 100,
   },
   install = {
