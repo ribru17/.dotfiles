@@ -209,6 +209,14 @@ return {
             format = {
               enable = false,
             },
+            typeFormat = {
+              config = {
+                -- Indentation conflict with TS indent
+                format_line = 'false',
+                auto_complete_line = 'true',
+                auto_complete_table_sep = 'true',
+              },
+            },
           },
         },
       })
