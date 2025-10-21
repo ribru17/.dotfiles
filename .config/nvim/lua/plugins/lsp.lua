@@ -52,32 +52,6 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
-    event = { 'LazyFile' },
-    init = function()
-      vim.lsp.enable {
-        'bashls',
-        'biome',
-        'cmake',
-        'cssls',
-        'eslint',
-        'html',
-        'jsonls',
-        'marksman',
-        'r_language_server',
-        'ruff',
-        'taplo',
-        'ts_query_ls',
-        'basedpyright',
-        'gopls',
-        'emmet_language_server',
-        'clangd',
-        'lua_ls',
-        'vtsls',
-        'nil_ls',
-        'yamlls',
-        'zls',
-      }
-    end,
     config = function()
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
@@ -416,6 +390,30 @@ return {
         hide = function(_, bufnr)
           orig_signs_handler.hide(ns, bufnr)
         end,
+      }
+
+      vim.lsp.enable {
+        'bashls',
+        'biome',
+        'cmake',
+        'cssls',
+        'eslint',
+        'html',
+        'jsonls',
+        'marksman',
+        'r_language_server',
+        'ruff',
+        'taplo',
+        'ts_query_ls',
+        'basedpyright',
+        'gopls',
+        'emmet_language_server',
+        'clangd',
+        'lua_ls',
+        'vtsls',
+        'nil_ls',
+        'yamlls',
+        'zls',
       }
     end,
   },
