@@ -33,29 +33,11 @@ return {
           desc = 'Selection for ' .. query .. ' text objects',
           silent = true,
         }
-        map('x', 'i' .. key, function()
-          require('nvim-treesitter-textobjects.select').select_textobject(
-            inner,
-            'textobjects'
-          )
+        map({ 'x', 'o' }, 'i' .. key, function()
+          require('nvim-treesitter-textobjects.select').select_textobject(inner)
         end, opts)
-        map('x', 'a' .. key, function()
-          require('nvim-treesitter-textobjects.select').select_textobject(
-            outer,
-            'textobjects'
-          )
-        end, opts)
-        map('o', 'i' .. key, function()
-          require('nvim-treesitter-textobjects.select').select_textobject(
-            inner,
-            'textobjects'
-          )
-        end, opts)
-        map('o', 'a' .. key, function()
-          require('nvim-treesitter-textobjects.select').select_textobject(
-            outer,
-            'textobjexts'
-          )
+        map({ 'x', 'o' }, 'a' .. key, function()
+          require('nvim-treesitter-textobjects.select').select_textobject(outer)
         end, opts)
       end
 
