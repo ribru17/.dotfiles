@@ -12,6 +12,14 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require('vim._extui').enable {
+  enable = true,
+  msg = {
+    target = 'msg',
+    timeout = 5000,
+  },
+}
+
 -- settings and autocmds must load before plugins,
 -- but we can manually enable caching before both
 -- of these for optimal performance
