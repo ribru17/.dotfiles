@@ -244,7 +244,7 @@ return {
             auto_brackets = { blocked_filetypes = { 'query' } },
           },
           ghost_text = {
-            enabled = true,
+            enabled = false,
           },
           documentation = {
             auto_show = true,
