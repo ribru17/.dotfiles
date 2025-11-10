@@ -341,8 +341,8 @@ return {
           text = {
             [diag_level.ERROR] = ' ',
             [diag_level.WARN] = ' ',
-            [diag_level.INFO] = '󰌶 ',
-            [diag_level.HINT] = ' ',
+            [diag_level.INFO] = ' ',
+            [diag_level.HINT] = '󰛩 ',
           },
           texthl = {
             [diag_level.ERROR] = 'DiagnosticSignError',

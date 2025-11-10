@@ -111,11 +111,11 @@ return {
           diagnostics_indicator = function(count, level)
             local icon = ' '
             if level:match('warn') then
-              icon = ' '
+              icon = ' '
             elseif level:match('hint') then
-              icon = '󰌶 '
+              icon = '󰛩 '
             elseif level:match('info') then
-              icon = ' '
+              icon = ' '
             end
             return icon .. count
           end,
