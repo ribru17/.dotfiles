@@ -17,6 +17,17 @@ return {
     },
   },
   {
+    'nvim-treesitter/nvim-treesitter-context',
+    event = { 'LazyFile' },
+    opts = {
+      enable = true,
+      max_lines = 2,
+      line_numbers = false,
+      trim_scope = 'inner',
+      mode = 'topline',
+    },
+  },
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     branch = 'main',
