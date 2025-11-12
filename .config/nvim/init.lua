@@ -61,5 +61,6 @@ require('lazy').setup('plugins', {
       disabled_plugins = SETTINGS.unloaded_default_plugins,
     },
   },
+  rocks = { enabled = false },
   -- debug = true,
 })
