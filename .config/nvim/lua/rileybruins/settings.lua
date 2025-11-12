@@ -102,6 +102,50 @@ local M = {
   },
 }
 
+local error = vim.diagnostic.severity.ERROR
+local warn = vim.diagnostic.severity.WARN
+local hint = vim.diagnostic.severity.HINT
+local info = vim.diagnostic.severity.INFO
+
+M.statusline = function()
+  local ft = vim.bo.ft
+  if ft == 'alpha' then
+    return '%#Normal#'
+  end
+
+  local icon, hl = require('mini.icons').get('filetype', ft)
+  local git_summary = vim.b.gitsigns_status_dict or {}
+  local diags = vim.diagnostic.count(0)
+  return string.format(
+    '%%#MiniStatuslineModeNormal# %%t %%#DiagnosticOk#%%##%s%s%s%s %s%s%s%s %%= %%#%s#%s %%##%s %%#DiagnosticOk#%%#MiniStatuslineModeNormal# %%l/%%L:%%c ',
+    git_summary.head and '  ' .. git_summary.head or '',
+    git_summary.added
+        and git_summary.added > 0
+        and string.format(' %%#DiffAdded#+%s%%##', git_summary.added)
+      or '',
+    git_summary.changed
+        and git_summary.changed > 0
+        and string.format(' %%#DiffChanged#~%s%%##', git_summary.changed)
+      or '',
+    git_summary.removed
+        and git_summary.removed > 0
+        and string.format(' %%#DiffRemoved#-%s%%##', git_summary.removed)
+      or '',
+    diags[error]
+        and string.format(' %%#DiagnosticError# %s%%##', diags[error])
+      or '',
+    diags[warn] and string.format(' %%#DiagnosticWarn# %s%%##', diags[warn])
+      or '',
+    diags[info] and string.format(' %%#DiagnosticInfo# %s%%##', diags[info])
+      or '',
+    diags[hint] and string.format(' %%#DiagnosticHint#󰛩 %s%%##', diags[hint])
+      or '',
+    hl,
+    icon,
+    ft
+  )
+end
+
 M.apply = function()
   local settings = {
     g = {
@@ -161,6 +205,7 @@ M.apply = function()
       smartcase = true,
       softtabstop = 4,
       splitright = true,
+      statusline = "%!v:lua.require'rileybruins.settings'.statusline()",
       swapfile = false,
       tabstop = 8,
       termguicolors = true,
