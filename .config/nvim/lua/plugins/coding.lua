@@ -117,9 +117,8 @@ return {
     'yorickpeterse/nvim-tree-pairs',
     main = 'tree-pairs',
     opts = true,
-    keys = {
-      { '%', mode = { 'n', 'v', 'o' } },
-    },
+    -- Don't lazy load on '%'. The plugin does this by itself, and doing it with
+    -- lazy will mess things up slightly.
   },
   {
     'tpope/vim-fugitive',
