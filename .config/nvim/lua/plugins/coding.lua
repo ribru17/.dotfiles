@@ -96,36 +96,20 @@ return {
     end,
   },
   {
-    'echasnovski/mini.indentscope',
-    main = 'mini.indentscope',
+    'saghen/blink.indent',
     event = { 'LazyFile' },
     opts = {
-      symbol = '┊',
-      mappings = {
-        goto_top = '<leader>k',
-        goto_bottom = '<leader>j',
-      },
-      options = {
-        try_as_border = true,
-      },
-      draw = {
-        animation = function()
-          return 0
-        end,
-      },
-    },
-  },
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    event = { 'LazyFile' },
-    main = 'ibl',
-    opts = {
-      indent = {
+      static = {
         char = '┊',
-        smart_indent_cap = true,
       },
       scope = {
-        enabled = false,
+        char = '┊',
+        highlights = { 'IndentBlanklineContextChar' },
+      },
+      mappings = {
+        border = 'none',
+        goto_top = '<leader>k',
+        goto_bottom = '<leader>j',
       },
     },
   },
