@@ -23,26 +23,6 @@ create_autocmd('BufWinEnter', {
   end,
 })
 
----> filetype configuration for miniindentscope
--- bottom whitespace trimming
-create_autocmd('FileType', {
-  pattern = SETTINGS.mini_indent_scope.ignore_bottom_whitespace,
-  callback = function()
-    vim.b.miniindentscope_config = {
-      options = {
-        border = 'top',
-      },
-    }
-  end,
-})
--- disabling
-create_autocmd('FileType', {
-  pattern = SETTINGS.mini_indent_scope.disabled,
-  callback = function()
-    vim.b.miniindentscope_disable = true
-  end,
-})
-
 -->> "RUN ONCE" ON FILE OPEN COMMANDS <<--
 -- prevent comment from being inserted when entering new line in existing comment
 create_autocmd('BufWinEnter', {
@@ -221,7 +201,6 @@ create_autocmd('TermOpen', {
     vim.opt_local.relativenumber = false
     vim.opt_local.signcolumn = 'no'
     vim.opt_local.foldcolumn = '0'
-    vim.b.miniindentscope_disable = true
   end,
 })
 

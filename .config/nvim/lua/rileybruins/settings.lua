@@ -71,35 +71,6 @@ local M = {
     'xml',
     'yaml',
   },
-  mini_indent_scope = {
-    ignore_bottom_whitespace = {
-      'gitconfig',
-      'markdown',
-      'python',
-      'query',
-      'scheme',
-    },
-    disabled = {
-      'NeogitPopup',
-      'NeogitStatus',
-      'NvimTree',
-      'TelescopePrompt',
-      'TelescopeResults',
-      'alpha',
-      'checkhealth',
-      'dropbar_menu',
-      'fzf',
-      'gitcommit',
-      'gitconfig',
-      'help',
-      'lazy',
-      'lspinfo',
-      'make',
-      'man',
-      'mason',
-      'qf',
-    },
-  },
 }
 
 local error = vim.diagnostic.severity.ERROR
