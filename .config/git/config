@@ -77,3 +77,5 @@
 	autoSquash = true
 [remote]
 	pushDefault = origin
+[init]
+	defaultBranch = mainster
