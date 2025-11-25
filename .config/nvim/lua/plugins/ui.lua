@@ -1,5 +1,4 @@
 local min = math.min
-local SETTINGS = require('rileybruins.settings')
 return {
   {
     'navarasu/onedark.nvim',
@@ -51,6 +50,18 @@ return {
           ['@checked.content'] = { fg = '$grey', fmt = 'strikethrough' },
           -- TODO: Put this setting into bamboo.nvim once 0.11 drops
           ['WinBar'] = { fmt = 'underline', fg = '$light_grey', sp = '$grey' },
+          ['TabLineEdge'] = { fg = '$bg1', bg = '$bg3' },
+          ['TabLineEdgeSel'] = { fg = '$bg0', bg = '$bg3' },
+          ['TabLineModified'] = { fg = '$green', bg = '$bg1' },
+          ['TabLineModifiedSel'] = { fg = '$green', bg = '$bg0' },
+          ['TabLineError'] = { fg = '$red', bg = '$bg1' },
+          ['TabLineErrorSel'] = { fg = '$red', bg = '$bg0' },
+          ['TabLineWarn'] = { fg = '$yellow', bg = '$bg1' },
+          ['TabLineWarnSel'] = { fg = '$yellow', bg = '$bg0' },
+          ['TabLineInfo'] = { fg = '$cyan', bg = '$bg1' },
+          ['TabLineInfoSel'] = { fg = '$cyan', bg = '$bg0' },
+          ['TabLineHint'] = { fg = '$purple', bg = '$bg1' },
+          ['TabLineHintSel'] = { fg = '$purple', bg = '$bg0' },
         },
       }
       vim.cmd.colorscheme { args = { 'bamboo' } }
@@ -91,37 +102,6 @@ return {
   {
     'folke/tokyonight.nvim',
     lazy = true,
-  },
-  {
-    'akinsho/bufferline.nvim',
-    config = function()
-      require('bufferline').setup {
-        options = {
-          mode = 'tabs',
-          separator_style = 'slant',
-          color_icons = true,
-          show_close_icon = false,
-          show_buffer_close_icons = false,
-          modified_icon = '•',
-          -- This causes CPU usage to reach 100% for several seconds on large
-          -- rust projects, vimtex, others?
-          diagnostics = false,
-          ---@param count integer
-          ---@param level string
-          diagnostics_indicator = function(count, level)
-            local icon = ' '
-            if level:match('warn') then
-              icon = ' '
-            elseif level:match('hint') then
-              icon = '󰛩 '
-            elseif level:match('info') then
-              icon = ' '
-            end
-            return icon .. count
-          end,
-        },
-      }
-    end,
   },
   {
     'echasnovski/mini.icons',

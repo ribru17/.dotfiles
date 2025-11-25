@@ -1,6 +1,7 @@
 local in_dotfiles = vim.fn.system(
   'git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-tree --name-only HEAD'
 ) ~= ''
+local api = vim.api
 
 local M = {
   in_dotfiles = in_dotfiles,
@@ -117,6 +118,45 @@ M.statusline = function()
   )
 end
 
+M.tabline = function()
+  local cur_tab = api.nvim_get_current_tabpage()
+  local all_tabs = api.nvim_list_tabpages()
+  local s = ''
+  for _, tab in ipairs(all_tabs) do
+    local mod = tab == cur_tab and 'Sel' or ''
+    s = string.format('%s%%#TabLineEdge%s#%%#TabLine%s#   ', s, mod, mod)
+    local win = api.nvim_tabpage_get_win(tab)
+    local buf = api.nvim_win_get_buf(win)
+    local name = api.nvim_buf_get_name(buf)
+    if name:len() == 0 then
+      name = '[No Name]'
+    end
+    s = s .. vim.fs.basename(name)
+    local diags = vim.diagnostic.count(buf)
+    local worst_diag = diags[error]
+        and string.format('%%#TabLineError%s#  ', mod)
+      or diags[warn] and string.format('%%#TabLineWarn%s#  ', mod)
+      or diags[info] and string.format('%%#TabLineInfo%s#  ', mod)
+      or diags[hint] and string.format('%%#TabLineHint%s# 󰛩 ', mod)
+      or ''
+    local diag_sum = (diags[error] or 0)
+      + (diags[warn] or 0)
+      + (diags[info] or 0)
+      + (diags[hint] or 0)
+
+    s = s .. worst_diag .. (diag_sum > 0 and diag_sum or '')
+
+    if api.nvim_get_option_value('modified', { buf = buf }) then
+      s = string.format('%s %%#TabLineModified%s#• ', s, mod)
+    else
+      s = s .. '   '
+    end
+    s = string.format('%s%%#TabLineEdge%s#', s, mod)
+  end
+  s = s .. '%#TabLineFill#%T'
+  return s
+end
+
 M.apply = function()
   local settings = {
     g = {
@@ -171,6 +211,7 @@ M.apply = function()
       relativenumber = true,
       scrolloff = 8,
       shiftwidth = 4,
+      showtabline = 2,
       sidescrolloff = 5,
       signcolumn = 'number',
       smartcase = true,
@@ -178,6 +219,7 @@ M.apply = function()
       splitright = true,
       statusline = "%!v:lua.require'rileybruins.settings'.statusline()",
       swapfile = false,
+      tabline = "%!v:lua.require'rileybruins.settings'.tabline()",
       tabstop = 8,
       termguicolors = true,
       textwidth = 80,

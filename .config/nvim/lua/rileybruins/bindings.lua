@@ -142,8 +142,8 @@ map('x', '<leader>h', '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>', {
                  (breaks on multiple lines & special chars)]],
 })
 
-map('n', '<C-n>', '<Cmd>BufferLineCyclePrev<CR>', { desc = 'Cycle tab left' })
-map('n', '<C-p>', '<Cmd>BufferLineCycleNext<CR>', { desc = 'Cycle tab right' })
+map('n', '<C-n>', '<Cmd>tabp<CR>', { desc = 'Cycle tab left' })
+map('n', '<C-p>', '<Cmd>tabn<CR>', { desc = 'Cycle tab right' })
 map('n', '<C-l>', '<Cmd>tabmove +1<CR>', { desc = 'Move tab right' })
 map('n', '<C-h>', '<Cmd>tabmove -1<CR>', { desc = 'Move tab left' })
 map('n', '<C-t>', '<Cmd>tabnew<CR>', { desc = 'New tab' })

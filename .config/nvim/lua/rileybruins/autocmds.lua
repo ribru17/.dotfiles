@@ -313,3 +313,10 @@ create_autocmd('LspProgress', {
     end
   end,
 })
+
+create_autocmd('DiagnosticChanged', {
+  callback = function()
+    -- NOTE: Can also use nvim__redraw()
+    vim.cmd.redrawtabline()
+  end,
+})
