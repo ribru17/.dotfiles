@@ -131,6 +131,11 @@ M.tabline = function()
     if name:len() == 0 then
       name = '[No Name]'
     end
+    local ft = vim.bo[buf].ft
+    if ft:len() > 0 then
+      local icon, hl = require('mini.icons').get('filetype', ft)
+      s = s .. string.format('%%#Tab%s%s#%s %%#TabLine%s#', hl, mod, icon, mod)
+    end
     s = s .. vim.fs.basename(name)
     local diags = vim.diagnostic.count(buf)
     local worst_diag = diags[error]
