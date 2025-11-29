@@ -316,7 +316,13 @@ create_autocmd('LspProgress', {
 
 create_autocmd('DiagnosticChanged', {
   callback = function()
-    -- NOTE: Can also use nvim__redraw()
-    vim.cmd.redrawtabline()
+    vim.api.nvim__redraw { tabline = true }
+  end,
+})
+
+create_autocmd('User', {
+  pattern = 'GitSignsUpdate',
+  callback = function(ev)
+    vim.api.nvim__redraw { statusline = true, buf = ev.buf }
   end,
 })
