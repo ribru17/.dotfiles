@@ -227,13 +227,21 @@
     in
     [
       iosevka-custom
+      (pkgs.iosevka-bin.override { variant = "Etoile"; })
+      (pkgs.iosevka-bin.override { variant = "Aile"; })
       nerd-fonts.symbols-only
     ];
   fonts.fontconfig = {
-    hinting.autohint = true;
     antialias = true;
-    allowBitmaps = true;
-    useEmbeddedBitmaps = true;
+    hinting = {
+      enable = true;
+    };
+    enable = true;
+    defaultFonts = {
+      serif = [ "Iosevka Etoile" ];
+      sansSerif = [ "Iosevka Aile" ];
+      monospace = [ "Iosevka Custom Extended" ];
+    };
   };
 
   # TODO: Install locally?
@@ -271,7 +279,7 @@
           '';
         }
       );
-      neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+      neovim = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
     in
     [
       astronaut-theme

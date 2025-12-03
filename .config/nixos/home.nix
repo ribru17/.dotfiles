@@ -160,6 +160,9 @@ in
       };
   };
 
+  # We handle this system-wide.
+  fonts.fontconfig.enable = false;
+
   programs.chromium = {
     enable = true;
     package = brave;

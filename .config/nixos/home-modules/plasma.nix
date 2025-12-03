@@ -16,6 +16,32 @@
           theme = "Illusion";
         };
       };
+      fonts = {
+        general = {
+          family = "Iosevka Aile";
+          pointSize = 11;
+        };
+        fixedWidth = {
+          family = "Iosevka Custom Extended";
+          pointSize = 11;
+        };
+        small = {
+          family = "Iosevka Aile";
+          pointSize = 8;
+        };
+        menu = {
+          family = "Iosevka Aile";
+          pointSize = 10;
+        };
+        toolbar = {
+          family = "Iosevka Aile";
+          pointSize = 10;
+        };
+        windowTitle = {
+          family = "Iosevka Aile";
+          pointSize = 10;
+        };
+      };
       kwin = {
         effects = {
           translucency.enable = true;
@@ -1071,10 +1097,12 @@
         "kscreenlockerrc"."Greeter"."WallpaperPlugin".value = "org.kde.image";
         # This can cause screen locking due to an insane bug, see:
         # https://forum.manjaro.org/t/plasmashell-freeze-after-getting-out-of-hibernation-howto-troubleshoot/153078/14
-        "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image".value =
-          "${../assets/animals.png}";
-        "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage".value =
-          "${../assets/animals.png}";
+        "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image".value = "${
+          ../assets/animals.png
+        }";
+        "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage".value = "${
+          ../assets/animals.png
+        }";
       };
       panels = [
         {
