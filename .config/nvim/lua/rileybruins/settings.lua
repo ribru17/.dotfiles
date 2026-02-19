@@ -123,8 +123,8 @@ M.tabline = function()
   local all_tabs = api.nvim_list_tabpages()
   local s = ''
   for _, tab in ipairs(all_tabs) do
-    local mod = tab == cur_tab and 'Sel' or ''
-    s = string.format('%s%%#TabLineEdge%s#%%#TabLine%s#   ', s, mod, mod)
+    local mod = tab == cur_tab and 'TabLineSel' or 'TabLine'
+    s = s .. string.format('%%#%s#%%$TabLineEdge$%%#%s#   ', mod, mod)
     local win = api.nvim_tabpage_get_win(tab)
     local buf = api.nvim_win_get_buf(win)
     local name = api.nvim_buf_get_name(buf)
@@ -134,15 +134,14 @@ M.tabline = function()
     local ft = vim.bo[buf].ft
     if ft:len() > 0 then
       local icon, hl = require('mini.icons').get('filetype', ft)
-      s = s .. string.format('%%#Tab%s%s#%s %%#TabLine%s#', hl, mod, icon, mod)
+      s = s .. string.format('%%$%s$%s %%#%s#', hl, icon, mod)
     end
     s = s .. vim.fs.basename(name)
     local diags = vim.diagnostic.count(buf)
-    local worst_diag = diags[error]
-        and string.format('%%#TabLineError%s#  ', mod)
-      or diags[warn] and string.format('%%#TabLineWarn%s#  ', mod)
-      or diags[info] and string.format('%%#TabLineInfo%s#  ', mod)
-      or diags[hint] and string.format('%%#TabLineHint%s# 󰛩 ', mod)
+    local worst_diag = diags[error] and '%$DiagnosticError$  '
+      or diags[warn] and '%$DiagnosticWarn$  '
+      or diags[info] and '%$DiagnosticInfo$  '
+      or diags[hint] and '%$DiagnosticHint$ 󰛩 '
       or ''
     local diag_sum = (diags[error] or 0)
       + (diags[warn] or 0)
@@ -152,11 +151,11 @@ M.tabline = function()
     s = s .. worst_diag .. (diag_sum > 0 and diag_sum or '')
 
     if api.nvim_get_option_value('modified', { buf = buf }) then
-      s = string.format('%s %%#TabLineModified%s#• ', s, mod)
+      s = s .. ' %$DiagnosticOk$• '
     else
       s = s .. '   '
     end
-    s = string.format('%s%%#TabLineEdge%s#', s, mod)
+    s = s .. '%$TabLineEdge$'
   end
   s = s .. '%#TabLineFill#%T'
   return s

@@ -263,7 +263,7 @@
             owner = "Keyitdev";
             repo = "sddm-astronaut-theme";
             rev = "master";
-            sha256 = "sha256-ee7ta/yiRieaZxitq5LQZ5dwAkGLVjjmnekXRu6yh5E=";
+            sha256 = "sha256-+94WVxOWfVhIEiVNWwnNBRmN+d1kbZCIF10Gjorea9M=";
           };
           installPhase = ''
             mkdir -p $out/share/sddm/themes

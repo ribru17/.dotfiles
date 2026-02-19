@@ -211,14 +211,16 @@ return {
             attached_client
             and attached_client.server_capabilities.codeLensProvider
           then
-            vim.lsp.codelens.refresh()
+            vim.lsp.codelens.enable(true, { bufnr = ev.buf })
             vim.api.nvim_create_autocmd(SETTINGS.codelens_refresh_events, {
               buffer = ev.buf,
               group = vim.api.nvim_create_augroup(
                 'CodelensRefresh',
                 { clear = true }
               ),
-              callback = vim.lsp.codelens.refresh,
+              callback = function()
+                vim.lsp.codelens.enable(true, { bufnr = ev.buf })
+              end,
             })
           end
           local map = vim.keymap.set

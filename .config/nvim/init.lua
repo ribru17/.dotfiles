@@ -12,7 +12,7 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('vim._extui').enable {
+require('vim._core.ui2').enable {
   enable = true,
   msg = {
     target = 'msg',
