@@ -1,0 +1,34 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+[user]
+name = "Riley Bruins"
+email = "ribru17@hotmail.com"
+
+[ui]
+default-command = "log"
+
+[aliases]
+checkout = ["edit"]
+d = ["diff"]
+pd = ["pdiff"]
+e = ["edit"]
+s = ["show"]
+vi = ["util", "exec", "--", "bash", "-c", "jj diff --name-only | xargs nvim -p"]
+pvi = ["util", "exec", "--", "bash", "-c", "jj pdiff --name-only | xargs nvim -p"]
+
+[template-aliases]
+default_commit_description = '''
+"
+
+
+JJ: Fixes #
+"
+'''
+
+[templates]
+draft_commit_description = '''
+concat(
+  builtin_draft_commit_description,
+  "\nJJ: ignore-rest\n",
+  diff.git(),
+)
+'''

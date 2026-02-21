@@ -72,6 +72,7 @@ in
       gopls
       haskell-language-server
       htop
+      jujutsu
       lua
       lua-language-server
       man-pages

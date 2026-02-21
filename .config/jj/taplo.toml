@@ -1,0 +1,3 @@
+# Don't remove me! I exist to allow taplo to view this directory as a workspace.
+# Otherwise taplo will ignore config files in this folder, effectively disabling
+# itself.
