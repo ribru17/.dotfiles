@@ -12,7 +12,6 @@ d = ["diff"]
 e = ["edit"]
 s = ["show"]
 vi = ["util", "exec", "--", "bash", "-c", "jj diff --name-only | xargs nvim -p"]
-pvi = ["util", "exec", "--", "bash", "-c", "jj pdiff --name-only | xargs nvim -p"]
 
 [template-aliases]
 default_commit_description = '''
@@ -22,6 +21,8 @@ default_commit_description = '''
 JJ: Fixes #
 "
 '''
+
+'format_short_signature(signature)' = 'signature'
 
 [templates]
 draft_commit_description = '''
