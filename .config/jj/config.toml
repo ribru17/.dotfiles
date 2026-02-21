@@ -9,7 +9,6 @@ default-command = "log"
 [aliases]
 checkout = ["edit"]
 d = ["diff"]
-pd = ["pdiff"]
 e = ["edit"]
 s = ["show"]
 vi = ["util", "exec", "--", "bash", "-c", "jj diff --name-only | xargs nvim -p"]
