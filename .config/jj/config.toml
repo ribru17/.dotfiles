@@ -5,6 +5,8 @@ email = "ribru17@hotmail.com"
 
 [ui]
 default-command = "log"
+pager = "delta"
+diff-formatter = ":git"
 
 [aliases]
 checkout = ["edit"]
