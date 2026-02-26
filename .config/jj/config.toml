@@ -12,6 +12,8 @@ d = ["diff"]
 e = ["edit"]
 s = ["show"]
 vi = ["util", "exec", "--", "bash", "-c", "jj diff --name-only | xargs nvim -p"]
+# Refer to https://github.com/jj-vcs/jj/discussions/4974
+sync = ["util", "exec", "--", "sh", "-c", "jj git fetch && jj rebase -d 'trunk()' -s 'roots(trunk()..) & mutable()'"]
 
 [template-aliases]
 default_commit_description = '''
