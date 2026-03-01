@@ -187,6 +187,7 @@ M.apply = function()
       neovide_cursor_animate_in_insert_mode = false,
       matchup_matchparen_offscreen = {}, -- disable matchup statusline
       matchup_matchparen_deferred = 1, -- better cursor movement performance
+      nvim_surround_no_normal_mappings = true,
     },
     o = {
       backup = false,

@@ -170,23 +170,11 @@ return {
       'S',
       { 's', 'S', remap = true, mode = { 'x' } },
       { 'S', mode = { 'x' } },
-      { 'gS', mode = { 'x' } },
-      { '<C-g>s', mode = { 'i' } },
-      { '<C-g>S', mode = { 'i' } },
     },
     config = function()
       local input = require('nvim-surround.input').get_input
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-surround').setup {
-        keymaps = {
-          normal = 's',
-          normal_cur = 'ss',
-          normal_line = 'S',
-          normal_cur_line = 'SS',
-          delete = 'sd',
-          change = 'sc',
-          change_line = 'Sc',
-        },
         aliases = {
           ['d'] = { '{', '[', '(', '<', '"', "'", '`' }, -- any delimiter
           ['b'] = { '{', '[', '(', '<' }, -- bracket
@@ -245,6 +233,14 @@ return {
         },
         move_cursor = false,
       }
+
+      vim.keymap.set('n', 's', '<Plug>(nvim-surround-normal)')
+      vim.keymap.set('n', 'ss', '<Plug>(nvim-surround-normal-cur)')
+      vim.keymap.set('n', 'S', '<Plug>(nvim-surround-normal-line)')
+      vim.keymap.set('n', 'SS', '<Plug>(nvim-surround-normal-cur-line)')
+      vim.keymap.set('n', 'sd', '<Plug>(nvim-surround-delete)')
+      vim.keymap.set('n', 'sc', '<Plug>(nvim-surround-change)')
+      vim.keymap.set('x', 'S', '<Plug>(nvim-surround-visual)')
     end,
   },
   {
