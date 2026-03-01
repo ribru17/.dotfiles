@@ -210,6 +210,7 @@ M.apply = function()
       list = true,
       mouse = '',
       number = true,
+      numberwidth = 3,
       pumborder = 'rounded',
       pumheight = 10,
       redrawtime = 10000,
