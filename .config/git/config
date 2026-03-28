@@ -78,4 +78,4 @@
 [remote]
 	pushDefault = origin
 [init]
-	defaultBranch = mainster
+	defaultBranch = main
