@@ -45,6 +45,7 @@ in
       (spotify.override { deviceScaleFactor = 1.5; })
       R
       basedpyright
+      bash-language-server
       bat
       biome
       blesh
@@ -80,8 +81,6 @@ in
       nil
       ninja
       nixfmt
-      nodePackages_latest.bash-language-server
-      nodePackages_latest.typescript-language-server
       nodejs_22
       openconnect
       openssl
@@ -99,6 +98,7 @@ in
       taplo
       tree-sitter
       typescript
+      typescript-language-server
       unzip
       vscode-langservers-extracted
       vtsls
@@ -183,18 +183,18 @@ in
     initExtra =
       (builtins.readFile ./home-modules/bash/bashrc)
       +
-        # bash
-        ''
-          # Sourcery
-          source "${pkgs.blesh}/share/blesh/ble.sh"
-          source "${pkgs.git}/share/bash-completion/completions/git"
-          __git_complete g __git_main
-          __git_complete d __git_main
-          __git_complete dots __git_main
+      # bash
+      ''
+        # Sourcery
+        source "${pkgs.blesh}/share/blesh/ble.sh"
+        source "${pkgs.git}/share/bash-completion/completions/git"
+        __git_complete g __git_main
+        __git_complete d __git_main
+        __git_complete dots __git_main
 
-          # Extra environment help
-          export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig"
-        '';
+        # Extra environment help
+        export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig"
+      '';
     profileExtra = builtins.readFile ./home-modules/bash/profile;
   };
 
