@@ -46,10 +46,4 @@ JJ: Fixes #
 'format_short_signature(signature)' = 'signature'
 
 [templates]
-draft_commit_description = '''
-concat(
-  builtin_draft_commit_description,
-  "\nJJ: ignore-rest\n",
-  diff.git(),
-)
-'''
+draft_commit_description = 'builtin_draft_commit_description_with_diff'
