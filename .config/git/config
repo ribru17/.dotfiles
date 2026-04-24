@@ -20,7 +20,7 @@
 	side-by-side = false
 	syntax-theme = bamboo_multiplex
 [delta "decorations"]
-	file-decoration-style = bold yellow ul
+	file-decoration-style = bold purple ul
 	file-style = purple bold
 	hunk-header-decoration-style = yellow box ul
 	hunk-header-file-style = yellow
