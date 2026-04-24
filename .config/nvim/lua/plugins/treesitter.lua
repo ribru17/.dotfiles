@@ -105,7 +105,7 @@ return {
           metadata[capture_id] = {}
         end
 
-        local node = match[pred[2]]
+        local node = match[pred[2]][1]
         local node_text = vim.treesitter.get_node_text(node, source)
 
         local ft = vim.filetype.match { filename = 'a.' .. node_text }
