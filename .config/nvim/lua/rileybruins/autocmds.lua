@@ -127,7 +127,7 @@ create_autocmd('FileType', {
 -- cool yank highlighting
 create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank { higroup = 'Search' }
+    vim.hl.hl_op { higroup = 'Search' }
   end,
 })
 
