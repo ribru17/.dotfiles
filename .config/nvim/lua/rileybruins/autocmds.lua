@@ -315,8 +315,12 @@ create_autocmd('LspProgress', {
 })
 
 create_autocmd('DiagnosticChanged', {
-  callback = function()
-    vim.api.nvim__redraw { tabline = true }
+  callback = function(ev)
+    -- Without this check, weird stuff happens in TablineLand
+    -- https://github.com/neovim/neovim/pull/40002
+    if vim.fn.win_gettype(vim.fn.bufwinid(ev.buf)) == '' then
+      vim.api.nvim__redraw { tabline = true, buf = ev.buf }
+    end
   end,
 })
 
