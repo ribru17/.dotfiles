@@ -97,11 +97,9 @@ in
       stylua
       taplo
       tree-sitter
-      typescript
-      typescript-language-server
+      typescript-go
       unzip
       vscode-langservers-extracted
-      vtsls
       wget
       wl-clipboard
       xz

@@ -412,7 +412,7 @@ return {
         'emmet_language_server',
         'clangd',
         'lua_ls',
-        'vtsls',
+        'tsgo',
         'nil_ls',
         'yamlls',
         'zls',
