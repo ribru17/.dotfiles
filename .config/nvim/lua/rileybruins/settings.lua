@@ -259,6 +259,22 @@ M.apply = function()
     end
   end
 
+  -- disable conceal lines patterns
+  local md_highlights = vim.treesitter.query.get('markdown', 'highlights') --[[@as vim.treesitter.Query]]
+  assert(vim.deep_equal(
+    ---@diagnostic disable-next-line: invisible
+    md_highlights._processed_patterns[17].directives[2],
+    { 'set!', 'conceal_lines', '' }
+  ))
+  assert(vim.deep_equal(
+    ---@diagnostic disable-next-line: invisible
+    md_highlights._processed_patterns[18].directives[2],
+    { 'set!', 'conceal_lines', '' }
+  ))
+  md_highlights.query:disable_pattern(17)
+  md_highlights.query:disable_pattern(18)
+  md_highlights.has_conceal_line = false
+
   -- properly recognize more filetypes
   vim.filetype.add {
     filename = {
