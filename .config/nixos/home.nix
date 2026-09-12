@@ -97,7 +97,7 @@ in
       stylua
       taplo
       tree-sitter
-      typescript-go
+      typescript
       unzip
       vscode-langservers-extracted
       wget

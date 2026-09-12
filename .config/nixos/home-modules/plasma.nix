@@ -84,13 +84,23 @@
       powerdevil = {
         AC = {
           whenSleepingEnter = "standbyThenHibernate";
+          powerProfile = "performance";
         };
         battery = {
           whenSleepingEnter = "standbyThenHibernate";
-          displayBrightness = 85;
+          powerProfile = "balanced";
+          displayBrightness = 75;
+          dimDisplay = {
+            enable = true;
+            idleTimeout = 120;
+          };
+          turnOffDisplay = {
+            idleTimeout = 540;
+          };
         };
         lowBattery = {
           whenSleepingEnter = "standbyThenHibernate";
+          powerProfile = "powerSaving";
           displayBrightness = 30;
         };
         general = {
