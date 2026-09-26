@@ -84,6 +84,8 @@ in
       nodejs_22
       openconnect
       openssl
+      p7zip
+      kdePackages.ark
       pkg-config
       pnpm
       prettierd
