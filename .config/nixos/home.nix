@@ -170,11 +170,6 @@ in
     extensions = [
       { id = "cimiefiiaegbelhefglklhhakcgmhkai"; } # Plasma integration
       { id = "pncfbmialoiaghdehhbnbhkkgmjanfhe"; } # uBlacklist
-      {
-        # Bypass paywalls
-        id = "dcpihecpambacapedldabdbpakmachpb";
-        updateUrl = "https://raw.githubusercontent.com/iamadamdev/bypass-paywalls-chrome/master/src/updates/updates.xml";
-      }
     ];
   };
 
